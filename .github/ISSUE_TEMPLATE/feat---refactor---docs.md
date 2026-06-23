@@ -1,6 +1,6 @@
 ---
 name: feat / refactor / docs
-about: 작업 / 기존 기획이나 기능 변경
+about: 기능 개발 / 코드 구조 개선 / 문서 수정
 title: ''
 labels: ''
 assignees: ''
