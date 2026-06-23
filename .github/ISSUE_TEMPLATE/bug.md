@@ -1,9 +1,10 @@
 ---
 name: bug
-about: bug
+about: 결함 발생 시 등록
 title: ''
 labels: ''
 assignees: ''
+type: Bug
 
 ---
 
