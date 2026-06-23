@@ -1,6 +1,6 @@
 ---
 name: feat / refactor / docs
-about: feat / refactor / docs
+about: 작업 / 기존 기획이나 기능 변경
 title: ''
 labels: ''
 assignees: ''
