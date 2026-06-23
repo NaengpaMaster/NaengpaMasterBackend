@@ -1,6 +1,6 @@
 ---
 name: discuss
-about: 논의/건의/기타
+about: 팀원 간 결정이 필요한 사항
 title: ''
 labels: ''
 assignees: ''
