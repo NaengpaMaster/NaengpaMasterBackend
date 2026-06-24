@@ -2,13 +2,14 @@
 name: discuss
 about: 팀원 간 결정이 필요한 사항
 title: ''
-labels: ''
+labels: docs
 assignees: ''
+type: Task
 
 ---
 
-## 논의 배경
-왜 이 결정이 필요한지
+## 논의 주제
+- 왜 이 결정이 필요한지
 
 ## 선택지
 - A안: ...
