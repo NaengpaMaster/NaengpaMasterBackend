@@ -23,6 +23,15 @@ INSERT INTO recipe_categories (recipe_category_id, name) VALUES
     (6, '기타')
 ON CONFLICT (recipe_category_id) DO NOTHING;
 
+INSERT INTO grades (name, min_score, max_score) VALUES
+    ('냉털 새내기',   0,  19),
+    ('냉파 수련생',  20,  39),
+    ('냉장고 탐험가', 40,  59),
+    ('냉파 에이스',  60,  79),
+    ('냉파 고인물',  80,  89),
+    ('냉파 마스터',  90, 100)
+ON CONFLICT (name) DO NOTHING;
+
 INSERT INTO products (product_id, product_category_id, name, default_expiry_days, is_active) VALUES
     (1, 7, '연두부', NULL, TRUE),
     (2, 4, '칵테일새우', NULL, TRUE),
@@ -21571,6 +21580,7 @@ INSERT INTO recipe_required_products (recipe_required_product_id, recipe_id, pro
     (12331, 1146, 920)
 ON CONFLICT (recipe_required_product_id) DO NOTHING;
 
+SELECT setval('grades_grade_id_seq', COALESCE((SELECT MAX(grade_id) FROM grades), 1));
 SELECT setval('product_categories_product_category_id_seq', COALESCE((SELECT MAX(product_category_id) FROM product_categories), 1));
 SELECT setval('products_product_id_seq', COALESCE((SELECT MAX(product_id) FROM products), 1));
 SELECT setval('recipe_categories_recipe_category_id_seq', COALESCE((SELECT MAX(recipe_category_id) FROM recipe_categories), 1));
