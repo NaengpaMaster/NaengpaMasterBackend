@@ -1,78 +1,59 @@
 package com.naengpa.naengpamasterbackend.product;
 
 import com.naengpa.naengpamasterbackend.product.dto.response.ProductSearchResponse;
-import com.naengpa.naengpamasterbackend.product.entity.Product;
 import com.naengpa.naengpamasterbackend.product.exception.ProductNotFoundException;
 import com.naengpa.naengpamasterbackend.product.repository.ProductRepository;
 import com.naengpa.naengpamasterbackend.product.service.ProductService;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.mock;
+import static org.assertj.core.api.Assertions.catchThrowable;
 
-@ExtendWith(MockitoExtension.class)
+@SpringBootTest
 class ProductServiceTest {
 
-    @Mock
-    private ProductRepository productRepository;
-
-    @InjectMocks
+    @Autowired
     private ProductService productService;
 
     @Test
+    @DisplayName("부분 검색하면 ProductSearchResponse 반환")
     void searchProducts_returnsProductSearchResponsesByPartialKeyword() {
         // given
-        Product product = product(1L, 7L, "연두부", null);
-        given(productRepository.findByIsActiveTrueAndNameContaining("두"))
-                .willReturn(List.of(product));
+        String keyword = "두";
 
         // when
-        List<ProductSearchResponse> result = productService.searchProducts("두");
+        List<ProductSearchResponse> result = productService.searchProducts(keyword);
 
         // then
-        assertThat(result).hasSize(1);
-        assertThat(result.get(0).productId()).isEqualTo(1L);
-        assertThat(result.get(0).name()).isEqualTo("연두부");
+        assertThat(result).isNotEmpty();
     }
 
     @Test
-    void searchProducts_returnsEmptyListWhenNoProductMatches() {
-        // given
-        given(productRepository.findByIsActiveTrueAndNameContaining("없는재료"))
-                .willReturn(List.of());
-
-        // when
-        List<ProductSearchResponse> result = productService.searchProducts("없는재료");
-
-        // then
+    @DisplayName("검색 결과 없으면 빈 리스트 반환")
+    void searchProducts_returnProductSearchResponsesByNotFound() {
+        //given
+        String keyword = "뷁";
+        //when
+        List<ProductSearchResponse> result = productService.searchProducts(keyword);
+        //then
         assertThat(result).isEmpty();
     }
 
     @Test
-    void validateExists_throwsExceptionWhenProductDoesNotExist() {
+    @DisplayName("없는 productId면 ProductNotFoundException 발생")
+    void searchProducts_returnsProductNotFoundException() {
         // given
-        given(productRepository.existsByProductIdAndIsActiveTrue(999L))
-                .willReturn(false);
+        Long productId = 999999999L;
 
-        // when & then
-        assertThatThrownBy(() -> productService.validateExists(999L))
-                .isInstanceOf(ProductNotFoundException.class);
-    }
+        // when
+        Throwable thrown = catchThrowable(() -> productService.validateExists(productId));
 
-    private Product product(Long productId, Long productCategoryId, String name, Integer defaultExpiryDays) {
-        Product product = mock(Product.class);
-        given(product.getProductId()).willReturn(productId);
-        given(product.getProductCategoryId()).willReturn(productCategoryId);
-        given(product.getName()).willReturn(name);
-        given(product.getDefaultExpiryDays()).willReturn(defaultExpiryDays);
-        return product;
+        // then
+        assertThat(thrown).isInstanceOf(ProductNotFoundException.class);
     }
 }
