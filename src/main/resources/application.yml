@@ -1,0 +1,19 @@
+spring:
+  config:
+    import: optional:classpath:application-secret.env[.properties]
+  application:
+    name: NaengpaMasterBackend
+  datasource:
+    url: ${DB_URL}
+    driver-class-name: ${DB_DRIVER_CLASS_NAME}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: ${JPA_DDL_AUTO}
+    open-in-view: ${JPA_OPEN_IN_VIEW}
+
+jwt:
+  secret: ${JWT_SECRET}
+  expiration: ${JWT_EXPIRATION}
+  refresh-expiration: ${JWT_REFRESH_EXPIRATION}
