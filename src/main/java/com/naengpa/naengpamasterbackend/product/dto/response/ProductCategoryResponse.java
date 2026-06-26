@@ -1,4 +1,15 @@
 package com.naengpa.naengpamasterbackend.product.dto.response;
 
-public class ProductCategoryResponse {
+import com.naengpa.naengpamasterbackend.product.entity.ProductCategory;
+
+public record ProductCategoryResponse (
+        Long productCategoryId,
+        String name
+){
+    public static ProductCategoryResponse from(ProductCategory productCategory){
+        return new ProductCategoryResponse(
+                productCategory.getProductCategoryId(),
+                productCategory.getName()
+        );
+    }
 }
