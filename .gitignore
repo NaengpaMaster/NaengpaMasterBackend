@@ -39,3 +39,4 @@ out/
 ### Environment ###
 .env
 .env.*
+src/main/resources/application-secret.env
