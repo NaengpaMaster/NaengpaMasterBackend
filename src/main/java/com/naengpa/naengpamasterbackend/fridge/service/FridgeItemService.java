@@ -1,6 +1,7 @@
 package com.naengpa.naengpamasterbackend.fridge.service;
 
 import com.naengpa.naengpamasterbackend.fridge.dto.request.FridgeItemCreateRequest;
+import com.naengpa.naengpamasterbackend.fridge.dto.request.FridgeItemUpdateRequest;
 import com.naengpa.naengpamasterbackend.fridge.dto.response.FridgeItemListResponse;
 import com.naengpa.naengpamasterbackend.fridge.dto.response.FridgeItemResponse;
 import com.naengpa.naengpamasterbackend.fridge.entity.FridgeItem;
@@ -115,5 +116,25 @@ public class FridgeItemService {
                     );
                 })
                 .toList();
+    }
+
+    //냉장고 재료 수정
+    @Transactional
+    public FridgeItemResponse updateFridgeItem(String email, Long fridgeItemId, FridgeItemUpdateRequest request) {
+        Member member = findMemberByEmail(email);
+
+        productService.validateExists(request.productId());
+
+        FridgeItem fridgeItem = fridgeItemRepository
+                .findByFridgeItemIdAndMemberIdAndIsDeletedFalse(fridgeItemId, member.getId())
+                .orElseThrow();
+
+        fridgeItem.update(
+                request.productId(),
+                request.quantity(),
+                request.expiryDate(),
+                request.memo()
+        );
+        return FridgeItemResponse.from(fridgeItem);
     }
 }

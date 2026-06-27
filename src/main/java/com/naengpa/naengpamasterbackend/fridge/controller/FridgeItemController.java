@@ -1,6 +1,7 @@
 package com.naengpa.naengpamasterbackend.fridge.controller;
 
 import com.naengpa.naengpamasterbackend.fridge.dto.request.FridgeItemCreateRequest;
+import com.naengpa.naengpamasterbackend.fridge.dto.request.FridgeItemUpdateRequest;
 import com.naengpa.naengpamasterbackend.fridge.dto.response.FridgeItemListResponse;
 import com.naengpa.naengpamasterbackend.fridge.dto.response.FridgeItemResponse;
 import com.naengpa.naengpamasterbackend.fridge.service.FridgeItemService;
@@ -44,5 +45,15 @@ public class FridgeItemController {
             @PathVariable Long categoryId
     ) {
         return fridgeItemService.findFridgeItemsByCategory(authentication.getName(), categoryId);
+    }
+
+    //냉장고 재료 수정
+    @PatchMapping("/{fridgeItemId}")
+    public FridgeItemResponse updateFridgeItem(
+            Authentication authentication,
+            @PathVariable Long fridgeItemId,
+            @Valid @RequestBody FridgeItemUpdateRequest request
+    ) {
+        return fridgeItemService.updateFridgeItem(authentication.getName(), fridgeItemId, request);
     }
 }

@@ -1,6 +1,7 @@
 package com.naengpa.naengpamasterbackend.fridge;
 
 import com.naengpa.naengpamasterbackend.fridge.dto.request.FridgeItemCreateRequest;
+import com.naengpa.naengpamasterbackend.fridge.dto.request.FridgeItemUpdateRequest;
 import com.naengpa.naengpamasterbackend.fridge.dto.response.FridgeItemListResponse;
 import com.naengpa.naengpamasterbackend.fridge.dto.response.FridgeItemResponse;
 import com.naengpa.naengpamasterbackend.fridge.service.FridgeItemService;
@@ -70,5 +71,41 @@ class FridgeItemServiceTests {
 
         //then
         assertThat(result).allMatch(item -> item.productCategoryId().equals(categoryId));
+    }
+
+    @Test
+    @DisplayName("냉장고 재료 수정 시 수정된 FridgeItemResponse 반환")
+    void updateFridgeItem_returnsUpdatedFridgeItemResponse() {
+        // given
+        String email = "test-user@example.com";
+
+        FridgeItemCreateRequest createRequest = new FridgeItemCreateRequest(
+                1L,
+                "1개",
+                LocalDate.now().plusDays(7),
+                "수정 전"
+        );
+
+        FridgeItemResponse created = fridgeItemService.createFridgeItem(email, createRequest);
+
+        FridgeItemUpdateRequest updateRequest = new FridgeItemUpdateRequest(
+                1L,
+                "2개",
+                LocalDate.now().plusDays(10),
+                "수정 후"
+        );
+
+        // when
+        FridgeItemResponse result = fridgeItemService.updateFridgeItem(
+                email,
+                created.fridgeItemId(),
+                updateRequest
+        );
+
+        // then
+        assertThat(result.fridgeItemId()).isEqualTo(created.fridgeItemId());
+        assertThat(result.productId()).isEqualTo(1L);
+        assertThat(result.quantity()).isEqualTo("2개");
+        assertThat(result.memo()).isEqualTo("수정 후");
     }
 }

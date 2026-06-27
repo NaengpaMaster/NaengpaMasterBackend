@@ -62,4 +62,18 @@ public class FridgeItem {
         isDeleted = false;
     }
 
+    //추가
+    public void update(
+            Long productId,
+            String quantity,
+            LocalDate expiryDate,
+            String memo
+    ) {
+        this.productId = productId;
+        this.quantity = quantity;
+        this.expiryDate = expiryDate;
+        this.memo = memo;
+        this.updatedAt = LocalDateTime.now();
+    }
+
 }

@@ -1,4 +1,19 @@
 package com.naengpa.naengpamasterbackend.fridge.dto.request;
 
-public class FridgeItemUpdateRequest {
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
+import java.time.LocalDate;
+
+public record FridgeItemUpdateRequest(
+        @NotNull
+        Long productId,
+
+        @NotBlank
+        String quantity,
+
+        LocalDate expiryDate,
+
+        String memo
+) {
 }
