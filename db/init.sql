@@ -360,6 +360,7 @@ CREATE TABLE recipes (
                          recipe_id BIGSERIAL PRIMARY KEY,
 
                          recipe_category_id BIGINT NOT NULL,
+                         created_by BIGINT NULL,
 
                          name VARCHAR(100) NOT NULL,
                          description VARCHAR(1000) NULL,
@@ -387,6 +388,9 @@ CREATE INDEX idx_recipes_deleted
 
 CREATE INDEX idx_recipes_name
     ON recipes(name);
+
+CREATE INDEX idx_recipes_created_by
+    ON recipes(created_by);
 
 -- =========================================
 -- 레시피 필수 재료

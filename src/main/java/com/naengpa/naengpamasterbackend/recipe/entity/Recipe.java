@@ -32,6 +32,9 @@ public class Recipe {
     @JoinColumn(name = "recipe_category_id", nullable = false)
     private RecipeCategory category;
 
+    @Column(name = "created_by")
+    private Long createdBy;
+
     @Column(name = "name", nullable = false, length = 100)
     private String name;
 
