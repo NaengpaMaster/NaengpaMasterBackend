@@ -17,6 +17,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -68,6 +69,13 @@ public class RecipeController {
     ) {
         recipeCommandService.updateRecipe(recipeId, authentication.getName(), isAdmin(authentication), request);
         return ResponseEntity.ok(ApiResponse.success("레시피가 수정되었습니다.", null));
+    }
+
+    @DeleteMapping("/{recipeId}")
+    public ResponseEntity<ApiResponse<Void>> deleteRecipe(@PathVariable Long recipeId,
+                                                          Authentication authentication) {
+        recipeCommandService.deleteRecipe(recipeId, authentication.getName(), isAdmin(authentication));
+        return ResponseEntity.ok(ApiResponse.success("레시피가 삭제되었습니다.", null));
     }
 
     private boolean isAdmin(Authentication authentication) {

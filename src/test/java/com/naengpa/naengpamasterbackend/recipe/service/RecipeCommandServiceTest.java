@@ -90,4 +90,37 @@ class RecipeCommandServiceTest {
                 .isInstanceOf(ResponseStatusException.class)
                 .hasMessageContaining("403");
     }
+
+    @Test
+    @DisplayName("삭제 - 작성자 본인이면 소프트 삭제된다")
+    void delete_byOwner() {
+        givenMember("owner@test.com", 7L);
+        Recipe recipe = givenRecipeOwnedBy(7L);
+
+        recipeCommandService.deleteRecipe(1L, "owner@test.com", false);
+
+        assertThat(recipe.isDeleted()).isTrue();
+    }
+
+    @Test
+    @DisplayName("삭제 - 관리자면 타인 레시피도 삭제된다")
+    void delete_byAdmin() {
+        givenMember("admin@test.com", 1L);
+        Recipe recipe = givenRecipeOwnedBy(99L);
+
+        recipeCommandService.deleteRecipe(1L, "admin@test.com", true);
+
+        assertThat(recipe.isDeleted()).isTrue();
+    }
+
+    @Test
+    @DisplayName("삭제 - 작성자도 관리자도 아니면 403 예외가 발생한다")
+    void delete_byOther_forbidden() {
+        givenMember("other@test.com", 7L);
+        givenRecipeOwnedBy(99L);
+
+        assertThatThrownBy(() -> recipeCommandService.deleteRecipe(1L, "other@test.com", false))
+                .isInstanceOf(ResponseStatusException.class)
+                .hasMessageContaining("403");
+    }
 }

@@ -87,6 +87,18 @@ public class RecipeCommandService {
                 request.cookingTime(), request.difficulty());
     }
 
+    public void deleteRecipe(Long recipeId, String email, boolean isAdmin) {
+        Long memberId = resolveMemberId(email);
+        Recipe recipe = recipeRepository.findByRecipeIdAndDeletedFalse(recipeId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "레시피를 찾을 수 없습니다."));
+
+        if (!recipe.isOwnedBy(memberId) && !isAdmin) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "본인이 작성한 레시피만 삭제할 수 있습니다.");
+        }
+
+        recipe.softDelete();
+    }
+
     private Long resolveMemberId(String email) {
         return memberRepository.findByEmail(email)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "인증 정보가 유효하지 않습니다."))

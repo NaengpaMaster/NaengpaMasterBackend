@@ -22,6 +22,7 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.willDoNothing;
 import static org.mockito.BDDMockito.willThrow;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -136,6 +137,26 @@ class RecipeControllerTest {
                         .principal(AUTH)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(body))
+                .andExpect(status().isForbidden());
+    }
+
+    @Test
+    @DisplayName("레시피 삭제 - 200을 반환한다")
+    void deleteRecipe_returns200() throws Exception {
+        willDoNothing().given(recipeCommandService).deleteRecipe(eq(1L), any(), anyBoolean());
+
+        mockMvc.perform(delete("/api/v1/recipes/{recipeId}", 1L).principal(AUTH))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.success").value(true));
+    }
+
+    @Test
+    @DisplayName("레시피 삭제 - 작성자도 관리자도 아니면 403을 반환한다")
+    void deleteRecipe_returns403_whenNotAllowed() throws Exception {
+        willThrow(new ResponseStatusException(HttpStatus.FORBIDDEN, "본인이 작성한 레시피만 삭제할 수 있습니다."))
+                .given(recipeCommandService).deleteRecipe(eq(1L), any(), anyBoolean());
+
+        mockMvc.perform(delete("/api/v1/recipes/{recipeId}", 1L).principal(AUTH))
                 .andExpect(status().isForbidden());
     }
 }
