@@ -76,4 +76,11 @@ public class FridgeItem {
         this.updatedAt = LocalDateTime.now();
     }
 
+    //삭제
+    public void delete() {
+        this.isDeleted = true;
+        this.deletedAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
+    }
+
 }

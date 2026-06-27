@@ -4,7 +4,10 @@ import com.naengpa.naengpamasterbackend.fridge.dto.request.FridgeItemCreateReque
 import com.naengpa.naengpamasterbackend.fridge.dto.request.FridgeItemUpdateRequest;
 import com.naengpa.naengpamasterbackend.fridge.dto.response.FridgeItemListResponse;
 import com.naengpa.naengpamasterbackend.fridge.dto.response.FridgeItemResponse;
+import com.naengpa.naengpamasterbackend.fridge.entity.FridgeItem;
+import com.naengpa.naengpamasterbackend.fridge.repository.FridgeItemRepository;
 import com.naengpa.naengpamasterbackend.fridge.service.FridgeItemService;
+import com.naengpa.naengpamasterbackend.member.entity.Member;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +23,8 @@ class FridgeItemServiceTests {
 
     @Autowired
     private FridgeItemService fridgeItemService;
+    @Autowired
+    private FridgeItemRepository fridgeItemRepository;
 
     @Test
     @DisplayName("냉장고 재료 등록 시 FridgeItemResponse 반환")
@@ -107,5 +112,30 @@ class FridgeItemServiceTests {
         assertThat(result.productId()).isEqualTo(1L);
         assertThat(result.quantity()).isEqualTo("2개");
         assertThat(result.memo()).isEqualTo("수정 후");
+    }
+
+    @Test
+    @DisplayName("냉장고 재료 삭제시 ???")
+    void deleteFridgeItem_returnDeletedFridgeItemResponse() {
+        //given
+        String email = "test-user@example.com";
+        FridgeItemCreateRequest request = new FridgeItemCreateRequest(
+                1L,
+                "1개",
+                LocalDate.now().plusDays(7),
+                "삭제 테스트"
+        );
+
+        FridgeItemResponse created = fridgeItemService.createFridgeItem(email, request);
+
+        //when
+        fridgeItemService.deleteFridgeItem(email, created.fridgeItemId());
+
+        //then
+        List<FridgeItemListResponse> result = fridgeItemService.findFridgeItem(email);
+
+        assertThat(result)
+                .extracting(FridgeItemListResponse::fridgeItemId)
+                .doesNotContain(created.fridgeItemId());
     }
 }

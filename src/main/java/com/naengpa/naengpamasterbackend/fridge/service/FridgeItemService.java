@@ -137,4 +137,16 @@ public class FridgeItemService {
         );
         return FridgeItemResponse.from(fridgeItem);
     }
+
+    //냉장고 재료 삭제
+    @Transactional
+    public void deleteFridgeItem(String email, Long fridgeItemId) {
+        Member member = findMemberByEmail(email);
+
+        FridgeItem fridgeItem = fridgeItemRepository
+                .findByFridgeItemIdAndMemberIdAndIsDeletedFalse(fridgeItemId, member.getId())
+                .orElseThrow();
+
+        fridgeItem.delete();
+    }
 }

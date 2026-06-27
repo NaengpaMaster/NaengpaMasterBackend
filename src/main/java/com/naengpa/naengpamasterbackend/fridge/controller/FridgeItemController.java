@@ -56,4 +56,13 @@ public class FridgeItemController {
     ) {
         return fridgeItemService.updateFridgeItem(authentication.getName(), fridgeItemId, request);
     }
+
+    //냉장고 재료 삭제
+    @DeleteMapping("/{fridgeItemId}")
+    public void deleteFridgeItem(
+            Authentication authentication,
+            @PathVariable Long fridgeItemId
+    ) {
+        fridgeItemService.deleteFridgeItem(authentication.getName(), fridgeItemId);
+    }
 }
