@@ -2,7 +2,6 @@ package com.naengpa.naengpamasterbackend.product;
 
 import com.naengpa.naengpamasterbackend.product.dto.response.ProductSearchResponse;
 import com.naengpa.naengpamasterbackend.product.exception.ProductNotFoundException;
-import com.naengpa.naengpamasterbackend.product.repository.ProductRepository;
 import com.naengpa.naengpamasterbackend.product.service.ProductService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,7 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
 
 @SpringBootTest
-class ProductServiceTest {
+class ProductServiceTests {
 
     @Autowired
     private ProductService productService;
