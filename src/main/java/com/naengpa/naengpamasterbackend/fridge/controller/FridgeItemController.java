@@ -1,12 +1,15 @@
 package com.naengpa.naengpamasterbackend.fridge.controller;
 
 import com.naengpa.naengpamasterbackend.fridge.dto.request.FridgeItemCreateRequest;
+import com.naengpa.naengpamasterbackend.fridge.dto.response.FridgeItemListResponse;
 import com.naengpa.naengpamasterbackend.fridge.dto.response.FridgeItemResponse;
 import com.naengpa.naengpamasterbackend.fridge.service.FridgeItemService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @RestController
@@ -26,5 +29,20 @@ public class FridgeItemController {
             Authentication authentication,
             @Valid @RequestBody FridgeItemCreateRequest request) {
         return fridgeItemService.createFridgeItem(authentication.getName(), request);
+    }
+
+    //냉장고 재료 조회
+    @GetMapping
+    public List<FridgeItemListResponse> findFridgeItems(Authentication authentication) {
+        return fridgeItemService.findFridgeItem(authentication.getName());
+    }
+
+    //냉장고 카테고리별 조회
+    @GetMapping("/categories/{categoryId}")
+    public List<FridgeItemListResponse> findFridgeItemsByCategory(
+            Authentication authentication,
+            @PathVariable Long categoryId
+    ) {
+        return fridgeItemService.findFridgeItemsByCategory(authentication.getName(), categoryId);
     }
 }
