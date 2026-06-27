@@ -3,8 +3,6 @@ package com.naengpa.naengpamasterbackend.fridge.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import org.springframework.validation.annotation.Validated;
-
 import java.time.LocalDate;
 
 public record FridgeItemCreateRequest (
