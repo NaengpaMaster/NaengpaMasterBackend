@@ -65,4 +65,14 @@ public class FridgeItemController {
     ) {
         fridgeItemService.deleteFridgeItem(authentication.getName(), fridgeItemId);
     }
+
+    //냉장고 재료 전부 사용
+    @PatchMapping("/{fridgeItemId}/use-all")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void useAllFridgeItem(
+            Authentication authentication,
+            @PathVariable Long fridgeItemId
+    ) {
+        fridgeItemService.useAllFridgeItem(authentication.getName(), fridgeItemId);
+    }
 }

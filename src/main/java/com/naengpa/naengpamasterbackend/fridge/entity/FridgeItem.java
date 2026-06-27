@@ -83,4 +83,9 @@ public class FridgeItem {
         this.updatedAt = LocalDateTime.now();
     }
 
+    //전부 사용
+    public void useAll() {
+        delete();
+    }
+
 }

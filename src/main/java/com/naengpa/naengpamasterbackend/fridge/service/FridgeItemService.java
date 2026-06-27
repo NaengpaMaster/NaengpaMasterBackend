@@ -149,4 +149,16 @@ public class FridgeItemService {
 
         fridgeItem.delete();
     }
+
+    //냉장고 재료 전부 사용
+    @Transactional
+    public void useAllFridgeItem(String email, Long fridgeItemId) {
+        Member member = findMemberByEmail(email);
+
+        FridgeItem fridgeItem = fridgeItemRepository
+                .findByFridgeItemIdAndMemberIdAndIsDeletedFalse(fridgeItemId, member.getId())
+                .orElseThrow();
+
+        fridgeItem.useAll();
+    }
 }

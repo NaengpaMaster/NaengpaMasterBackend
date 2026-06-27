@@ -138,4 +138,30 @@ class FridgeItemServiceTests {
                 .extracting(FridgeItemListResponse::fridgeItemId)
                 .doesNotContain(created.fridgeItemId());
     }
+
+    @Test
+    @DisplayName("냉장고 재료 전부 사용 처리 시 목록 조회에서 제외된다")
+    void useAllFridgeItem_excludesUsedItemFromList() {
+        // given
+        String email = "test-user@example.com";
+
+        FridgeItemCreateRequest request = new FridgeItemCreateRequest(
+                1L,
+                "1개",
+                LocalDate.now().plusDays(7),
+                "전부 사용 테스트"
+        );
+
+        FridgeItemResponse created = fridgeItemService.createFridgeItem(email, request);
+
+        // when
+        fridgeItemService.useAllFridgeItem(email, created.fridgeItemId());
+
+        // then
+        List<FridgeItemListResponse> result = fridgeItemService.findFridgeItem(email);
+
+        assertThat(result)
+                .extracting(FridgeItemListResponse::fridgeItemId)
+                .doesNotContain(created.fridgeItemId());
+    }
 }
