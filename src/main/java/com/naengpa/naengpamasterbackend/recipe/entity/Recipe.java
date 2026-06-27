@@ -72,4 +72,18 @@ public class Recipe {
         this.difficulty = difficulty;
         this.createdAt = LocalDateTime.now();
     }
+
+    public boolean isOwnedBy(Long memberId) {
+        return this.createdBy != null && this.createdBy.equals(memberId);
+    }
+
+    public void update(RecipeCategory category, String name, String description,
+                       Integer cookingTime, Difficulty difficulty) {
+        this.category = category;
+        this.name = name;
+        this.description = description;
+        this.cookingTime = cookingTime;
+        this.difficulty = difficulty;
+        this.updatedAt = LocalDateTime.now();
+    }
 }
