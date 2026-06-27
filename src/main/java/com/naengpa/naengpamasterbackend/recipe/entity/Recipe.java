@@ -86,4 +86,9 @@ public class Recipe {
         this.difficulty = difficulty;
         this.updatedAt = LocalDateTime.now();
     }
+
+    public void softDelete() {
+        this.deleted = true;
+        this.deletedAt = LocalDateTime.now();
+    }
 }
