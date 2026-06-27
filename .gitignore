@@ -35,8 +35,3 @@ out/
 
 ### VS Code ###
 .vscode/
-
-### Environment ###
-.env
-.env.*
-src/main/resources/application-secret.env
