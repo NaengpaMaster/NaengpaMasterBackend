@@ -1,15 +1,21 @@
 package com.naengpa.naengpamasterbackend.fridge.service;
 
 import com.naengpa.naengpamasterbackend.fridge.dto.request.FridgeItemCreateRequest;
+import com.naengpa.naengpamasterbackend.fridge.dto.request.FridgeItemUpdateRequest;
+import com.naengpa.naengpamasterbackend.fridge.dto.response.FridgeItemListResponse;
 import com.naengpa.naengpamasterbackend.fridge.dto.response.FridgeItemResponse;
 import com.naengpa.naengpamasterbackend.fridge.entity.FridgeItem;
 import com.naengpa.naengpamasterbackend.fridge.repository.FridgeItemRepository;
 import com.naengpa.naengpamasterbackend.member.entity.Member;
 import com.naengpa.naengpamasterbackend.member.repository.MemberRepository;
+import com.naengpa.naengpamasterbackend.product.entity.Product;
+import com.naengpa.naengpamasterbackend.product.repository.ProductRepository;
 import com.naengpa.naengpamasterbackend.product.service.ProductService;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 public class FridgeItemService {
@@ -17,23 +23,31 @@ public class FridgeItemService {
     private final FridgeItemRepository fridgeItemRepository;
     private final MemberRepository memberRepository;
     private final ProductService productService;
+    private final ProductRepository productRepository;
+
+    private Member findMemberByEmail(String email) {
+        return memberRepository.findByEmail(email)
+                .orElseThrow(() -> new BadCredentialsException("회원을 찾을 수 없습니다."));
+    }
 
     public FridgeItemService(
             FridgeItemRepository fridgeItemRepository,
             MemberRepository memberRepository,
-            ProductService productService
-    ) {
+            ProductService productService,
+            ProductRepository productRepository) {
         this.fridgeItemRepository = fridgeItemRepository;
         this.memberRepository = memberRepository;
         this.productService = productService;
+        this.productRepository = productRepository;
     }
 
     // 냉장고 재료 등록
     @Transactional
     public FridgeItemResponse createFridgeItem(String email, FridgeItemCreateRequest request) {
-        Member member = memberRepository.findByEmail(email)
-                .orElseThrow(() -> new BadCredentialsException("회원을 찾을 수 없습니다."));
 
+        Member member = findMemberByEmail(email);
+
+        //존재하는 사전 재료인지
         productService.validateExists(request.productId());
 
         FridgeItem fridgeItem = FridgeItem.create(
@@ -45,5 +59,94 @@ public class FridgeItemService {
         );
 
         return FridgeItemResponse.from(fridgeItemRepository.save(fridgeItem));
+    }
+
+    //냉장고 재료 목록 조회
+    public List<FridgeItemListResponse> findFridgeItem(String email) {
+        Member member = findMemberByEmail(email);
+
+        List<FridgeItem> fridgeItems =
+                fridgeItemRepository.findByMemberIdAndIsDeletedFalse(member.getId());
+
+        return toListResponse(fridgeItems);
+    }
+
+
+    //냉장고 카테고리별 조회
+    public List<FridgeItemListResponse> findFridgeItemsByCategory(String email, Long categoryId) {
+        Member member = findMemberByEmail(email);
+
+        List<Long> productIds = productRepository.findByProductCategoryIdAndIsActiveTrue(categoryId)
+                .stream()
+                .map(Product::getProductId)
+                .toList();
+
+        if (productIds.isEmpty()) {
+            return List.of();
+        }
+        List<FridgeItem> fridgeItems =
+                fridgeItemRepository.findByMemberIdAndProductIdInAndIsDeletedFalse(member.getId(), productIds);
+
+        return toListResponse(fridgeItems);
+    }
+
+    //
+    private List<FridgeItemListResponse> toListResponse(List<FridgeItem> fridgeItems) {
+        List<Long> productIds = fridgeItems.stream()
+                .map(FridgeItem::getProductId)
+                .toList();
+
+        List<Product> products = productRepository.findByProductIdInAndIsActiveTrue(productIds);
+
+        return fridgeItems.stream()
+                .map(fridgeItem -> {
+                    Product product = products.stream()
+                            .filter(p -> p.getProductId().equals(fridgeItem.getProductId()))
+                            .findFirst()
+                            .orElseThrow();
+
+                    return new FridgeItemListResponse(
+                            fridgeItem.getFridgeItemId(),
+                            fridgeItem.getProductId(),
+                            product.getProductCategoryId(),
+                            product.getName(),
+                            fridgeItem.getQuantity(),
+                            fridgeItem.getExpiryDate(),
+                            fridgeItem.getMemo()
+                    );
+                })
+                .toList();
+    }
+
+    //냉장고 재료 수정
+    @Transactional
+    public FridgeItemResponse updateFridgeItem(String email, Long fridgeItemId, FridgeItemUpdateRequest request) {
+        Member member = findMemberByEmail(email);
+
+        productService.validateExists(request.productId());
+
+        FridgeItem fridgeItem = fridgeItemRepository
+                .findByFridgeItemIdAndMemberIdAndIsDeletedFalse(fridgeItemId, member.getId())
+                .orElseThrow();
+
+        fridgeItem.update(
+                request.productId(),
+                request.quantity(),
+                request.expiryDate(),
+                request.memo()
+        );
+        return FridgeItemResponse.from(fridgeItem);
+    }
+
+    //냉장고 재료 삭제
+    @Transactional
+    public void deleteFridgeItem(String email, Long fridgeItemId) {
+        Member member = findMemberByEmail(email);
+
+        FridgeItem fridgeItem = fridgeItemRepository
+                .findByFridgeItemIdAndMemberIdAndIsDeletedFalse(fridgeItemId, member.getId())
+                .orElseThrow();
+
+        fridgeItem.delete();
     }
 }

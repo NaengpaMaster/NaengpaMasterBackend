@@ -1,12 +1,16 @@
 package com.naengpa.naengpamasterbackend.fridge.controller;
 
 import com.naengpa.naengpamasterbackend.fridge.dto.request.FridgeItemCreateRequest;
+import com.naengpa.naengpamasterbackend.fridge.dto.request.FridgeItemUpdateRequest;
+import com.naengpa.naengpamasterbackend.fridge.dto.response.FridgeItemListResponse;
 import com.naengpa.naengpamasterbackend.fridge.dto.response.FridgeItemResponse;
 import com.naengpa.naengpamasterbackend.fridge.service.FridgeItemService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @RestController
@@ -26,5 +30,39 @@ public class FridgeItemController {
             Authentication authentication,
             @Valid @RequestBody FridgeItemCreateRequest request) {
         return fridgeItemService.createFridgeItem(authentication.getName(), request);
+    }
+
+    //냉장고 재료 조회
+    @GetMapping
+    public List<FridgeItemListResponse> findFridgeItems(Authentication authentication) {
+        return fridgeItemService.findFridgeItem(authentication.getName());
+    }
+
+    //냉장고 카테고리별 조회
+    @GetMapping("/categories/{categoryId}")
+    public List<FridgeItemListResponse> findFridgeItemsByCategory(
+            Authentication authentication,
+            @PathVariable Long categoryId
+    ) {
+        return fridgeItemService.findFridgeItemsByCategory(authentication.getName(), categoryId);
+    }
+
+    //냉장고 재료 수정
+    @PatchMapping("/{fridgeItemId}")
+    public FridgeItemResponse updateFridgeItem(
+            Authentication authentication,
+            @PathVariable Long fridgeItemId,
+            @Valid @RequestBody FridgeItemUpdateRequest request
+    ) {
+        return fridgeItemService.updateFridgeItem(authentication.getName(), fridgeItemId, request);
+    }
+
+    //냉장고 재료 삭제
+    @DeleteMapping("/{fridgeItemId}")
+    public void deleteFridgeItem(
+            Authentication authentication,
+            @PathVariable Long fridgeItemId
+    ) {
+        fridgeItemService.deleteFridgeItem(authentication.getName(), fridgeItemId);
     }
 }
