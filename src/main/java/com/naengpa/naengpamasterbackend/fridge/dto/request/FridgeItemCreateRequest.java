@@ -1,4 +1,21 @@
 package com.naengpa.naengpamasterbackend.fridge.dto.request;
 
-public class FridgeItemCreateRequest {
-}
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import org.springframework.validation.annotation.Validated;
+
+import java.time.LocalDate;
+
+public record FridgeItemCreateRequest (
+
+    @NotNull
+    Long productId,
+    @NotBlank
+    String quantity,
+    LocalDate expiryDate,
+    String memo
+) {
+
+        }
+
