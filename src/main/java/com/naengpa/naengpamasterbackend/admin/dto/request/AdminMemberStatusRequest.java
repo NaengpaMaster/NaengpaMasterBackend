@@ -1,14 +1,9 @@
 package com.naengpa.naengpamasterbackend.admin.dto.request;
 
-import jakarta.validation.constraints.NotBlank;
+import com.naengpa.naengpamasterbackend.member.entity.MemberStatus;
 import jakarta.validation.constraints.NotNull;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
 
-@Getter
-@NoArgsConstructor
-public class AdminMemberStatusRequest {
-
-    @NotNull
-    private Boolean isDeleted;
-}
+public record AdminMemberStatusRequest(
+        @NotNull(message = "status는 필수입니다.")
+        MemberStatus status
+) {}
