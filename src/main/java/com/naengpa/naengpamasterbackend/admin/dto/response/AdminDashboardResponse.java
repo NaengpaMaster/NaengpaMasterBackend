@@ -7,7 +7,4 @@ public record AdminDashboardResponse(Long adminCount,
                                      Long totalRecipes,
                                      Long pendingInquiries,
                                      Double averageScore,
-                                     Long todayExpiredCount) {
-
-
-}
+                                     Long todayExpiredCount) {}

@@ -1,6 +1,6 @@
 package com.naengpa.naengpamasterbackend.admin.dto.request;
 
-import com.naengpa.naengpamasterbackend.member.entity.MemberStatus;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,5 +10,5 @@ import lombok.NoArgsConstructor;
 public class AdminMemberStatusRequest {
 
     @NotNull
-    private MemberStatus status;
+    private Boolean isDeleted;
 }
