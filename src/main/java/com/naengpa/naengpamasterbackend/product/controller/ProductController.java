@@ -1,7 +1,9 @@
 package com.naengpa.naengpamasterbackend.product.controller;
 
+import com.naengpa.naengpamasterbackend.global.response.ApiResponse;
 import com.naengpa.naengpamasterbackend.product.dto.response.ProductSearchResponse;
 import com.naengpa.naengpamasterbackend.product.service.ProductService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,7 +20,7 @@ public class ProductController {
 
     //사전 재료 검색 API-200
     @GetMapping("/search")
-    public List<ProductSearchResponse> searchProducts(@RequestParam String keyword) {
-        return productService.searchProducts(keyword);
+    public ResponseEntity<ApiResponse<List<ProductSearchResponse>>> searchProducts(@RequestParam String keyword) {
+        return ResponseEntity.ok(ApiResponse.success(productService.searchProducts(keyword)));
     }
 }
