@@ -17,20 +17,16 @@ public class ScoreHistory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "score_history_id")
-    private Long scoreHistoryId;
+    private int scoreHistoryId;
 
     @Column(name = "member_id", nullable = false)
-    private Long memberId;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "score_reason", length = 100)
-    private ScoreReason scoreReason;
+    private int memberId;
 
     @Column(name = "target_type", length = 100)
     private String targetType;
 
     @Column(name = "target_id")
-    private Long targetId;
+    private int targetId;
 
     @Column(name = "score_delta", nullable = false)
     private Integer scoreDelta;
