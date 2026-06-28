@@ -23,7 +23,7 @@ public class Score {
     private Long memberId;
 
     @Column(name = "grade_id", nullable = false)
-    private Long gradeId;
+    private int gradeId;
 
     @Column(name = "score")
     private int score;
