@@ -194,4 +194,28 @@ class FridgeItemServiceTests {
         assertThat(result.fridgeItemId()).isEqualTo(created.fridgeItemId());
         assertThat(result.quantity()).isEqualTo("2개");
     }
+
+    @Test
+    @DisplayName("유통기한 임박 재료 조회 시 오늘부터 3일 이내 재료를 반환")
+    void findExpiringSoonFridgeItems_returnsExpiringSoonItems() {
+        // given
+        String email = "test-user@example.com";
+
+        FridgeItemCreateRequest request = new FridgeItemCreateRequest(
+                1L,
+                "1개",
+                LocalDate.now().plusDays(2),
+                "임박 테스트"
+        );
+
+        FridgeItemResponse created = fridgeItemService.createFridgeItem(email, request);
+
+        // when
+        List<FridgeItemListResponse> result = fridgeItemService.findExpiringSoonFridgeItems(email);
+
+        // then
+        assertThat(result)
+                .extracting(FridgeItemListResponse::fridgeItemId)
+                .contains(created.fridgeItemId());
+    }
 }

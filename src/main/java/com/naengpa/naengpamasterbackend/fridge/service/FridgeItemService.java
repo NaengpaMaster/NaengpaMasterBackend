@@ -16,6 +16,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -179,5 +180,22 @@ public class FridgeItemService {
         fridgeItem.usePartial(request.quantity());
 
         return FridgeItemResponse.from(fridgeItem);
+    }
+
+    //유통기한 임박 재료 조회
+    public List<FridgeItemListResponse> findExpiringSoonFridgeItems(String email) {
+        Member member = findMemberByEmail(email);
+
+        LocalDate today = LocalDate.now();
+        LocalDate threeDaysLater = today.plusDays(3);
+
+        List<FridgeItem> fridgeItems =
+                fridgeItemRepository.findByMemberIdAndExpiryDateBetweenAndIsDeletedFalse(
+                        member.getId(),
+                        today,
+                        threeDaysLater
+                );
+
+        return toListResponse(fridgeItems);
     }
 }

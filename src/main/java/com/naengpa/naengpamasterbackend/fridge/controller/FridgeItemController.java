@@ -90,4 +90,10 @@ public class FridgeItemController {
                 request
         );
     }
+
+    //유통기한 임박 재료 조회
+    @GetMapping("/expiring-soon")
+    public List<FridgeItemListResponse> findExpiringSoonFridgeItems(Authentication authentication) {
+        return fridgeItemService.findExpiringSoonFridgeItems(authentication.getName());
+    }
 }
