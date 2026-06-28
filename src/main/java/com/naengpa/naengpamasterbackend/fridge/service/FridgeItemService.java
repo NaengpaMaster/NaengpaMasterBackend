@@ -2,6 +2,7 @@ package com.naengpa.naengpamasterbackend.fridge.service;
 
 import com.naengpa.naengpamasterbackend.fridge.dto.request.FridgeItemCreateRequest;
 import com.naengpa.naengpamasterbackend.fridge.dto.request.FridgeItemUpdateRequest;
+import com.naengpa.naengpamasterbackend.fridge.dto.request.FridgeItemUsePartialRequest;
 import com.naengpa.naengpamasterbackend.fridge.dto.response.FridgeItemListResponse;
 import com.naengpa.naengpamasterbackend.fridge.dto.response.FridgeItemResponse;
 import com.naengpa.naengpamasterbackend.fridge.entity.FridgeItem;
@@ -160,5 +161,23 @@ public class FridgeItemService {
                 .orElseThrow();
 
         fridgeItem.useAll();
+    }
+
+    //냉장고 재료 일부 사용
+    @Transactional
+    public FridgeItemResponse usePartialFridgeItem(
+            String email,
+            Long fridgeItemId,
+            FridgeItemUsePartialRequest request
+    ) {
+        Member member = findMemberByEmail(email);
+
+        FridgeItem fridgeItem = fridgeItemRepository
+                .findByFridgeItemIdAndMemberIdAndIsDeletedFalse(fridgeItemId, member.getId())
+                .orElseThrow();
+
+        fridgeItem.usePartial(request.quantity());
+
+        return FridgeItemResponse.from(fridgeItem);
     }
 }

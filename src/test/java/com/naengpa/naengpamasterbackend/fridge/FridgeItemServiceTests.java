@@ -2,6 +2,7 @@ package com.naengpa.naengpamasterbackend.fridge;
 
 import com.naengpa.naengpamasterbackend.fridge.dto.request.FridgeItemCreateRequest;
 import com.naengpa.naengpamasterbackend.fridge.dto.request.FridgeItemUpdateRequest;
+import com.naengpa.naengpamasterbackend.fridge.dto.request.FridgeItemUsePartialRequest;
 import com.naengpa.naengpamasterbackend.fridge.dto.response.FridgeItemListResponse;
 import com.naengpa.naengpamasterbackend.fridge.dto.response.FridgeItemResponse;
 import com.naengpa.naengpamasterbackend.fridge.entity.FridgeItem;
@@ -163,5 +164,34 @@ class FridgeItemServiceTests {
         assertThat(result)
                 .extracting(FridgeItemListResponse::fridgeItemId)
                 .doesNotContain(created.fridgeItemId());
+    }
+
+    @Test
+    @DisplayName("냉장고 재료 일부 사용 처리 시 남은 수량으로 변경된다")
+    void usePartialFridgeItem_updatesQuantity() {
+        // given
+        String email = "test-user@example.com";
+
+        FridgeItemCreateRequest createRequest = new FridgeItemCreateRequest(
+                1L,
+                "3개",
+                LocalDate.now().plusDays(7),
+                "일부 사용 테스트"
+        );
+
+        FridgeItemResponse created = fridgeItemService.createFridgeItem(email, createRequest);
+
+        FridgeItemUsePartialRequest request = new FridgeItemUsePartialRequest("2개");
+
+        // when
+        FridgeItemResponse result = fridgeItemService.usePartialFridgeItem(
+                email,
+                created.fridgeItemId(),
+                request
+        );
+
+        // then
+        assertThat(result.fridgeItemId()).isEqualTo(created.fridgeItemId());
+        assertThat(result.quantity()).isEqualTo("2개");
     }
 }

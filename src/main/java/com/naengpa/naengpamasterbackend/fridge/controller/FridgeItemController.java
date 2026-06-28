@@ -2,6 +2,7 @@ package com.naengpa.naengpamasterbackend.fridge.controller;
 
 import com.naengpa.naengpamasterbackend.fridge.dto.request.FridgeItemCreateRequest;
 import com.naengpa.naengpamasterbackend.fridge.dto.request.FridgeItemUpdateRequest;
+import com.naengpa.naengpamasterbackend.fridge.dto.request.FridgeItemUsePartialRequest;
 import com.naengpa.naengpamasterbackend.fridge.dto.response.FridgeItemListResponse;
 import com.naengpa.naengpamasterbackend.fridge.dto.response.FridgeItemResponse;
 import com.naengpa.naengpamasterbackend.fridge.service.FridgeItemService;
@@ -74,5 +75,19 @@ public class FridgeItemController {
             @PathVariable Long fridgeItemId
     ) {
         fridgeItemService.useAllFridgeItem(authentication.getName(), fridgeItemId);
+    }
+
+    //냉장고 재료 일부 사용
+    @PatchMapping("/{fridgeItemId}/use-partial")
+    public FridgeItemResponse usePartialFridgeItem(
+            Authentication authentication,
+            @PathVariable Long fridgeItemId,
+            @Valid @RequestBody FridgeItemUsePartialRequest request
+    ) {
+        return fridgeItemService.usePartialFridgeItem(
+                authentication.getName(),
+                fridgeItemId,
+                request
+        );
     }
 }

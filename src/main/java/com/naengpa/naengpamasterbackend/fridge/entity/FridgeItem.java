@@ -88,4 +88,10 @@ public class FridgeItem {
         delete();
     }
 
+    //일부 사용
+    public void usePartial(String quantity) {
+        this.quantity = quantity;
+        this.updatedAt = LocalDateTime.now();
+    }
+
 }
