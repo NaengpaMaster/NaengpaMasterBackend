@@ -18,4 +18,6 @@ public interface AdminMemberRepository extends JpaRepository<Member, Long> {
             "m.status = :status AND " +
             "(:search IS NULL OR m.nickname LIKE %:search% OR m.email LIKE %:search%)")
     Page<Member> findMembers(MemberRole role, MemberStatus status, String search, Pageable pageable);
+
+
 }
