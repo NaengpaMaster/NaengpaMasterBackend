@@ -1,8 +1,14 @@
 package com.naengpa.naengpamasterbackend.admin.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-public record AdminAnswerRequest(
-        @NotBlank(message = "답변 내용은 필수입니다.")
-        String content
-) {}
+@NoArgsConstructor
+@Getter
+public class AdminAnswerRequest {
+
+    @NotBlank
+    private String content;
+
+}
