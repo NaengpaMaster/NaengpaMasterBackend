@@ -2,6 +2,7 @@ package com.naengpa.naengpamasterbackend.fridge;
 
 import com.naengpa.naengpamasterbackend.fridge.dto.request.FridgeItemCreateRequest;
 import com.naengpa.naengpamasterbackend.fridge.dto.request.FridgeItemUpdateRequest;
+import com.naengpa.naengpamasterbackend.fridge.dto.request.FridgeItemUsePartialRequest;
 import com.naengpa.naengpamasterbackend.fridge.dto.response.FridgeItemListResponse;
 import com.naengpa.naengpamasterbackend.fridge.dto.response.FridgeItemResponse;
 import com.naengpa.naengpamasterbackend.fridge.entity.FridgeItem;
@@ -137,5 +138,108 @@ class FridgeItemServiceTests {
         assertThat(result)
                 .extracting(FridgeItemListResponse::fridgeItemId)
                 .doesNotContain(created.fridgeItemId());
+    }
+
+    @Test
+    @DisplayName("냉장고 재료 전부 사용 처리 시 목록 조회에서 제외된다")
+    void useAllFridgeItem_excludesUsedItemFromList() {
+        // given
+        String email = "test-user@example.com";
+
+        FridgeItemCreateRequest request = new FridgeItemCreateRequest(
+                1L,
+                "1개",
+                LocalDate.now().plusDays(7),
+                "전부 사용 테스트"
+        );
+
+        FridgeItemResponse created = fridgeItemService.createFridgeItem(email, request);
+
+        // when
+        fridgeItemService.useAllFridgeItem(email, created.fridgeItemId());
+
+        // then
+        List<FridgeItemListResponse> result = fridgeItemService.findFridgeItem(email);
+
+        assertThat(result)
+                .extracting(FridgeItemListResponse::fridgeItemId)
+                .doesNotContain(created.fridgeItemId());
+    }
+
+    @Test
+    @DisplayName("냉장고 재료 일부 사용 처리 시 남은 수량으로 변경된다")
+    void usePartialFridgeItem_updatesQuantity() {
+        // given
+        String email = "test-user@example.com";
+
+        FridgeItemCreateRequest createRequest = new FridgeItemCreateRequest(
+                1L,
+                "3개",
+                LocalDate.now().plusDays(7),
+                "일부 사용 테스트"
+        );
+
+        FridgeItemResponse created = fridgeItemService.createFridgeItem(email, createRequest);
+
+        FridgeItemUsePartialRequest request = new FridgeItemUsePartialRequest("2개");
+
+        // when
+        FridgeItemResponse result = fridgeItemService.usePartialFridgeItem(
+                email,
+                created.fridgeItemId(),
+                request
+        );
+
+        // then
+        assertThat(result.fridgeItemId()).isEqualTo(created.fridgeItemId());
+        assertThat(result.quantity()).isEqualTo("2개");
+    }
+
+    @Test
+    @DisplayName("유통기한 임박 재료 조회 시 오늘부터 3일 이내 재료를 반환")
+    void findExpiringSoonFridgeItems_returnsExpiringSoonItems() {
+        // given
+        String email = "test-user@example.com";
+
+        FridgeItemCreateRequest request = new FridgeItemCreateRequest(
+                1L,
+                "1개",
+                LocalDate.now().plusDays(2),
+                "임박 테스트"
+        );
+
+        FridgeItemResponse created = fridgeItemService.createFridgeItem(email, request);
+
+        // when
+        List<FridgeItemListResponse> result = fridgeItemService.findExpiringSoonFridgeItems(email);
+
+        // then
+        assertThat(result)
+                .extracting(FridgeItemListResponse::fridgeItemId)
+                .contains(created.fridgeItemId());
+    }
+
+    @Test
+    @DisplayName("만료 재료 조회 시 오늘 이전 유통기한 재료를 반환")
+    void findExpiredFridgeItems_returnsExpiredItems() {
+        // given
+        String email = "test-user@example.com";
+
+        FridgeItemCreateRequest request = new FridgeItemCreateRequest(
+                1L,
+                "1개",
+                LocalDate.now().minusDays(1),
+                "만료 테스트"
+        );
+
+        FridgeItemResponse created = fridgeItemService.createFridgeItem(email, request);
+
+        // when
+        List<FridgeItemListResponse> result = fridgeItemService.findExpiredFridgeItems(email);
+
+        // then
+        assertThat(result)
+                .extracting(FridgeItemListResponse::fridgeItemId)
+                .contains(created.fridgeItemId());
     }
 }

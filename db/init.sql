@@ -436,3 +436,11 @@ COMMENT ON TABLE recipe_steps IS '레시피 조리 순서';
 CREATE INDEX idx_recipe_steps_recipe
     ON recipe_steps(recipe_id);
 
+-- =========================================
+-- pg_trgm + GIN index
+-- =========================================
+CREATE EXTENSION IF NOT EXISTS pg_trgm;
+
+CREATE INDEX IF NOT EXISTS idx_products_name_trgm
+    ON products
+        USING gin (name gin_trgm_ops);

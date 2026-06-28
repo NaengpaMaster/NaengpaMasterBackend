@@ -2,6 +2,7 @@ package com.naengpa.naengpamasterbackend.fridge.controller;
 
 import com.naengpa.naengpamasterbackend.fridge.dto.request.FridgeItemCreateRequest;
 import com.naengpa.naengpamasterbackend.fridge.dto.request.FridgeItemUpdateRequest;
+import com.naengpa.naengpamasterbackend.fridge.dto.request.FridgeItemUsePartialRequest;
 import com.naengpa.naengpamasterbackend.fridge.dto.response.FridgeItemListResponse;
 import com.naengpa.naengpamasterbackend.fridge.dto.response.FridgeItemResponse;
 import com.naengpa.naengpamasterbackend.fridge.service.FridgeItemService;
@@ -64,5 +65,41 @@ public class FridgeItemController {
             @PathVariable Long fridgeItemId
     ) {
         fridgeItemService.deleteFridgeItem(authentication.getName(), fridgeItemId);
+    }
+
+    //냉장고 재료 전부 사용
+    @PatchMapping("/{fridgeItemId}/use-all")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void useAllFridgeItem(
+            Authentication authentication,
+            @PathVariable Long fridgeItemId
+    ) {
+        fridgeItemService.useAllFridgeItem(authentication.getName(), fridgeItemId);
+    }
+
+    //냉장고 재료 일부 사용
+    @PatchMapping("/{fridgeItemId}/use-partial")
+    public FridgeItemResponse usePartialFridgeItem(
+            Authentication authentication,
+            @PathVariable Long fridgeItemId,
+            @Valid @RequestBody FridgeItemUsePartialRequest request
+    ) {
+        return fridgeItemService.usePartialFridgeItem(
+                authentication.getName(),
+                fridgeItemId,
+                request
+        );
+    }
+
+    //유통기한 임박 재료 조회
+    @GetMapping("/expiring-soon")
+    public List<FridgeItemListResponse> findExpiringSoonFridgeItems(Authentication authentication) {
+        return fridgeItemService.findExpiringSoonFridgeItems(authentication.getName());
+    }
+
+    //만료 재료 조회
+    @GetMapping("/expired")
+    public List<FridgeItemListResponse> findExpiredFridgeItems(Authentication authentication) {
+        return fridgeItemService.findExpiredFridgeItems(authentication.getName());
     }
 }
