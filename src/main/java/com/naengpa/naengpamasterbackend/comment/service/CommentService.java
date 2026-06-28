@@ -1,8 +1,11 @@
 package com.naengpa.naengpamasterbackend.comment.service;
 
+import com.naengpa.naengpamasterbackend.comment.dto.request.CommentCreateRequest;
+import com.naengpa.naengpamasterbackend.comment.dto.response.CommentCreateResponse;
 import com.naengpa.naengpamasterbackend.comment.dto.response.CommentListResponse;
 import com.naengpa.naengpamasterbackend.comment.entity.Comment;
 import com.naengpa.naengpamasterbackend.comment.repository.CommentRepository;
+import com.naengpa.naengpamasterbackend.global.exception.MemberNotFoundException;
 import com.naengpa.naengpamasterbackend.global.exception.RecipeNotFoundException;
 import com.naengpa.naengpamasterbackend.member.entity.Member;
 import com.naengpa.naengpamasterbackend.member.repository.MemberRepository;
@@ -42,6 +45,20 @@ public class CommentService {
                         .collect(Collectors.toMap(Member::getId, Member::getNickname));
 
         return CommentListResponse.from(comments, writerNicknames);
+    }
+
+    @Transactional
+    public CommentCreateResponse createComment(String email, Long recipeId, CommentCreateRequest request) {
+        validateRecipeExists(recipeId);
+
+        Member member = memberRepository.findByEmail(email)
+                .orElseThrow(MemberNotFoundException::new);
+
+        Comment comment = commentRepository.save(
+                Comment.create(recipeId, member.getId(), request.content())
+        );
+
+        return new CommentCreateResponse(comment.getCommentId());
     }
 
     private void validateRecipeExists(Long recipeId) {

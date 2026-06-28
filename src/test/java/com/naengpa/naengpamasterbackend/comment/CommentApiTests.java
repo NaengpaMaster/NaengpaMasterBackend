@@ -18,7 +18,10 @@ import java.util.UUID;
 
 import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
+import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -124,6 +127,72 @@ class CommentApiTests {
     @DisplayName("API-307: 존재하지 않는 레시피의 댓글 목록 조회 시 404를 반환한다")
     void getComments_recipeNotFound_returns404() throws Exception {
         mockMvc.perform(get("/api/v1/recipes/{recipeId}/comments", 999_999_999L))
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$.success", is(false)))
+                .andExpect(jsonPath("$.message", is("레시피를 찾을 수 없습니다.")));
+    }
+
+    @Test
+    @DisplayName("API-308: 로그인 사용자가 댓글을 등록하면 201과 생성된 댓글 ID를 반환하고 DB에 저장된다")
+    void createComment_success_returns201() throws Exception {
+        mockMvc.perform(post("/api/v1/recipes/{recipeId}/comments", recipeId)
+                        .header("Authorization", "Bearer " + writerToken)
+                        .contentType(APPLICATION_JSON)
+                        .content("{\"content\": \"맛있게 만들어 먹었습니다.\"}"))
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.success", is(true)))
+                .andExpect(jsonPath("$.message", is("댓글이 등록되었습니다.")))
+                .andExpect(jsonPath("$.data.commentId", is(notNullValue())));
+
+        Long count = jdbcTemplate.queryForObject(
+                "SELECT COUNT(*) FROM recipe_comments WHERE recipe_id = ? AND content = ? AND is_deleted = false",
+                Long.class, recipeId, "맛있게 만들어 먹었습니다."
+        );
+        org.junit.jupiter.api.Assertions.assertEquals(1L, count);
+    }
+
+    @Test
+    @DisplayName("API-308: 댓글 내용이 비어 있으면 400을 반환한다")
+    void createComment_blankContent_returns400() throws Exception {
+        mockMvc.perform(post("/api/v1/recipes/{recipeId}/comments", recipeId)
+                        .header("Authorization", "Bearer " + writerToken)
+                        .contentType(APPLICATION_JSON)
+                        .content("{\"content\": \"  \"}"))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.success", is(false)))
+                .andExpect(jsonPath("$.message", is("댓글 내용을 입력해주세요.")));
+    }
+
+    @Test
+    @DisplayName("API-308: 댓글이 300자를 초과하면 400을 반환한다")
+    void createComment_tooLong_returns400() throws Exception {
+        String tooLong = "가".repeat(301);
+
+        mockMvc.perform(post("/api/v1/recipes/{recipeId}/comments", recipeId)
+                        .header("Authorization", "Bearer " + writerToken)
+                        .contentType(APPLICATION_JSON)
+                        .content("{\"content\": \"" + tooLong + "\"}"))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.success", is(false)))
+                .andExpect(jsonPath("$.message", is("댓글은 300자 이하로 입력해주세요.")));
+    }
+
+    @Test
+    @DisplayName("API-308: 인증 없이 댓글 등록을 시도하면 401을 반환한다")
+    void createComment_withoutAuth_returns401() throws Exception {
+        mockMvc.perform(post("/api/v1/recipes/{recipeId}/comments", recipeId)
+                        .contentType(APPLICATION_JSON)
+                        .content("{\"content\": \"인증 없이 등록\"}"))
+                .andExpect(status().isUnauthorized());
+    }
+
+    @Test
+    @DisplayName("API-308: 존재하지 않는 레시피에 댓글 등록 시 404를 반환한다")
+    void createComment_recipeNotFound_returns404() throws Exception {
+        mockMvc.perform(post("/api/v1/recipes/{recipeId}/comments", 999_999_999L)
+                        .header("Authorization", "Bearer " + writerToken)
+                        .contentType(APPLICATION_JSON)
+                        .content("{\"content\": \"존재하지 않는 레시피 댓글\"}"))
                 .andExpect(status().isNotFound())
                 .andExpect(jsonPath("$.success", is(false)))
                 .andExpect(jsonPath("$.message", is("레시피를 찾을 수 없습니다.")));
