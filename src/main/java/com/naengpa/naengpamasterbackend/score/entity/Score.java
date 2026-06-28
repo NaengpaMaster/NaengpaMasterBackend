@@ -28,6 +28,6 @@ public class Score {
     @Column(name = "score")
     private int score;
 
-    @Column(name = "update_at")
-    private LocalDateTime updateAt;
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
 }

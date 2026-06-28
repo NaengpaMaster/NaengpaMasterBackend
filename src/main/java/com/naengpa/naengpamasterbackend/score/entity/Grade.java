@@ -23,7 +23,7 @@ public class Grade {
     @Column(name = "min_score", nullable = false)
     private int minScore;
 
-    @Column(name = "max_socre", nullable = false)
+    @Column(name = "max_score", nullable = false)
     private int maxScore;
 
 }
