@@ -96,4 +96,10 @@ public class FridgeItemController {
     public List<FridgeItemListResponse> findExpiringSoonFridgeItems(Authentication authentication) {
         return fridgeItemService.findExpiringSoonFridgeItems(authentication.getName());
     }
+
+    //만료 재료 조회
+    @GetMapping("/expired")
+    public List<FridgeItemListResponse> findExpiredFridgeItems(Authentication authentication) {
+        return fridgeItemService.findExpiredFridgeItems(authentication.getName());
+    }
 }

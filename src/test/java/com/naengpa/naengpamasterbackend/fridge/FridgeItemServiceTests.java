@@ -218,4 +218,28 @@ class FridgeItemServiceTests {
                 .extracting(FridgeItemListResponse::fridgeItemId)
                 .contains(created.fridgeItemId());
     }
+
+    @Test
+    @DisplayName("만료 재료 조회 시 오늘 이전 유통기한 재료를 반환")
+    void findExpiredFridgeItems_returnsExpiredItems() {
+        // given
+        String email = "test-user@example.com";
+
+        FridgeItemCreateRequest request = new FridgeItemCreateRequest(
+                1L,
+                "1개",
+                LocalDate.now().minusDays(1),
+                "만료 테스트"
+        );
+
+        FridgeItemResponse created = fridgeItemService.createFridgeItem(email, request);
+
+        // when
+        List<FridgeItemListResponse> result = fridgeItemService.findExpiredFridgeItems(email);
+
+        // then
+        assertThat(result)
+                .extracting(FridgeItemListResponse::fridgeItemId)
+                .contains(created.fridgeItemId());
+    }
 }

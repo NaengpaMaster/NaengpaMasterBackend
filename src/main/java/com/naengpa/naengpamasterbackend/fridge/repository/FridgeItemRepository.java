@@ -21,4 +21,9 @@ public interface FridgeItemRepository extends JpaRepository<FridgeItem, Long> {
             LocalDate endDate
     );
 
+    List<FridgeItem> findByMemberIdAndExpiryDateBeforeAndIsDeletedFalse(
+            Long memberId,
+            LocalDate today
+    );
+
 }

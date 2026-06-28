@@ -198,4 +198,19 @@ public class FridgeItemService {
 
         return toListResponse(fridgeItems);
     }
+
+    //만료 재료 조회
+    public List<FridgeItemListResponse> findExpiredFridgeItems(String email) {
+        Member member = findMemberByEmail(email);
+
+        LocalDate today = LocalDate.now();
+
+        List<FridgeItem> fridgeItems =
+                fridgeItemRepository.findByMemberIdAndExpiryDateBeforeAndIsDeletedFalse(
+                        member.getId(),
+                        today
+                );
+
+        return toListResponse(fridgeItems);
+    }
 }
