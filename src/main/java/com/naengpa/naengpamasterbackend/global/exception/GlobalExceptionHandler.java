@@ -89,4 +89,10 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(ApiResponse.fail(exception.getMessage()));
     }
+
+    @ExceptionHandler(RecipeNotFoundException.class)
+    public ResponseEntity<ApiResponse<Void>> handleRecipeNotFoundException(RecipeNotFoundException exception) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(ApiResponse.fail(exception.getMessage()));
+    }
 }
