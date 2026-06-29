@@ -193,4 +193,12 @@ public class Member {
     public void updateRole(MemberRole role) {
         this.role = role;
     }
+
+    public void increaseMaintenancePeriod() {
+        this.maintenancePeriod += 1;
+    }
+
+    public void resetMaintenancePeriod() {
+        this.maintenancePeriod = 0;
+    }
 }

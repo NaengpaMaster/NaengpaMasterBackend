@@ -41,4 +41,20 @@ public class ScoreHistory {
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
+    @PrePersist
+    void prePersist() {
+        this.createdAt = LocalDateTime.now();
+    }
+
+    public static ScoreHistory create(Long memberId, ScoreReason reason, String targetType, Long targetId, Integer delta, String description){
+        ScoreHistory history = new ScoreHistory();
+        history.memberId = memberId;
+        history.scoreReason = reason;
+        history.targetType = targetType;
+        history.targetId = targetId;
+        history.scoreDelta = delta;
+        history.description = description;
+        return history;
+    }
+
 }
