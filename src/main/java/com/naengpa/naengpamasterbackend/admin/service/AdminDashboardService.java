@@ -18,9 +18,9 @@ public class AdminDashboardService {
 
     @Transactional(readOnly = true)
     public AdminDashboardResponse getDashboard() {
-        Long adminCount = adminMemberRepository.countByRole(MemberRole.ADMIN);
-        Long activeMembers = adminMemberRepository.countByStatus(MemberStatus.ACTIVE);
-        Long inactiveMembers = adminMemberRepository.countByStatus(MemberStatus.INACTIVE);
+        Long adminCount = adminMemberRepository.countByStatusAndRole(MemberStatus.ACTIVE, MemberRole.ADMIN);
+        Long activeMembers = adminMemberRepository.countByStatusAndRole(MemberStatus.ACTIVE, MemberRole.USER);
+        Long inactiveMembers = adminMemberRepository.countByStatusAndRole(MemberStatus.INACTIVE, MemberRole.USER);
         Long pendingInquiries = adminInquiryRepository.countPendingInquiries();
         return new AdminDashboardResponse(adminCount, activeMembers, inactiveMembers, pendingInquiries);
     }

@@ -20,9 +20,6 @@ public interface AdminMemberRepository extends JpaRepository<Member, Long> {
             "(:search IS NULL OR m.nickname LIKE %:search% OR m.email LIKE %:search%)")
     Page<Member> findMembers(MemberRole role, MemberStatus status, String search, Pageable pageable);
 
-    @Query("SELECT COUNT(m) FROM Member m WHERE m.role = :role AND m.deletedAt IS NULL")
-    Long countByRole(MemberRole role);
-
-    @Query("SELECT COUNT(m) FROM Member m WHERE m.status = :status AND m.deletedAt IS NULL")
-    Long countByStatus(MemberStatus status);
+    @Query("SELECT COUNT(m) FROM Member m WHERE m.status = :status AND m.role = :role AND m.deletedAt IS NULL")
+    Long countByStatusAndRole(@Param("status") MemberStatus status, @Param("role") MemberRole role);
 }
