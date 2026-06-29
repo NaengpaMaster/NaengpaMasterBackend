@@ -17,6 +17,7 @@ public interface RecipeRequiredProductRepository extends JpaRepository<RecipeReq
             ORDER BY p.name ASC
             """)
     List<IngredientView> findIngredients(@Param("recipeId") Long recipeId);
+
     List<RecipeRequiredProduct> findByRecipeIdOrderByRecipeRequiredProductIdAsc(Long recipeId);
 
 }

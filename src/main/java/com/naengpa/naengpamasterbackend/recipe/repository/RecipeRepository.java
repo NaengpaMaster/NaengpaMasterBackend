@@ -28,4 +28,5 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
                     SELECT COUNT(r) FROM Recipe r WHERE r.deleted = false
                     """)
     Page<RecipeListProjection> findRecipeList(Pageable pageable);
+
 }
