@@ -47,4 +47,9 @@ public class MemberAuthController {
     public ResponseEntity<ApiResponse<MemberResponse>> me(Authentication authentication) {
         return ResponseEntity.ok(ApiResponse.success(authService.getMember(authentication.getName())));
     }
+
+    @GetMapping("/me/profile")
+    public ResponseEntity<ApiResponse<MemberResponse>> profile(Authentication authentication) {
+        return ResponseEntity.ok(ApiResponse.success(authService.getMember(authentication.getName())));
+    }
 }
