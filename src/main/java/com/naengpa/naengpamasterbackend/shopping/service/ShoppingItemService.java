@@ -13,6 +13,7 @@ import com.naengpa.naengpamasterbackend.shopping.repository.ShoppingItemReposito
 import jakarta.validation.Valid;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -94,6 +95,19 @@ public class ShoppingItemService {
                     );
                 })
                 .toList();
+    }
+
+    @Transactional
+    public void deleteShoppingItem(String email, @Valid Long shoppingItemId) {
+        Member member = findMemberByEmail(email);
+
+        ShoppingItem shoppingItem = shoppingItemRepository
+                .findByShoppingItemIdAndMemberIdAndIsDeletedFalse(shoppingItemId, member.getId())
+                .orElseThrow();
+
+        shoppingItem.delete();
+
+
     }
 }
 

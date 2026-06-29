@@ -77,4 +77,27 @@ class ShoppingItemServiceTests {
                 .extracting(ShoppingItemListResponse::shoppingItemId)
                 .contains(created.shoppingItemId());
     }
+
+    @Test
+    @DisplayName("장보기 항목 삭제 시 목록 조회에서 제외")
+    void deleteShoppingItem_excludesDeletedItemFromList() {
+        // given
+        String email = "test-user@example.com";
+        ShoppingItemCreateRequest request = new ShoppingItemCreateRequest(
+                1L,
+                "1개"
+        );
+
+        ShoppingItemResponse created = shoppingItemService.createShoppingItem(email, request);
+
+        // when
+        shoppingItemService.deleteShoppingItem(email, created.shoppingItemId());
+
+        // then
+        List<ShoppingItemListResponse> result = shoppingItemService.findShoppingItems(email);
+
+        assertThat(result)
+                .extracting(ShoppingItemListResponse::shoppingItemId)
+                .doesNotContain(created.shoppingItemId());
+    }
 }

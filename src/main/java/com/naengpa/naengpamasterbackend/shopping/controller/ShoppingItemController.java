@@ -45,4 +45,16 @@ public class ShoppingItemController {
                 ApiResponse.success(shoppingItemService.findShoppingItems(authentication.getName()))
         );
     }
+
+    //장보기 항목 삭제
+    @DeleteMapping("/{shoppingItemId}")
+    public ResponseEntity<ApiResponse<Void>> deleteShoppingItem(
+            Authentication authentication,
+            @Valid @PathVariable Long shoppingItemId
+    ) {
+        shoppingItemService.deleteShoppingItem(authentication.getName(), shoppingItemId);
+        return ResponseEntity.ok(
+                ApiResponse.success("장보기 항목이 삭제되었습니다.", null)
+        );
+    }
 }

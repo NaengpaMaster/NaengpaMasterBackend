@@ -60,5 +60,12 @@ public class ShoppingItem {
         return shoppingItem;
     }
 
+    //삭제
+    public void delete() {
+        this.isDeleted = true;
+        this.deletedAt = LocalDate.now();
+
+    }
+
 
 }
