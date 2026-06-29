@@ -12,6 +12,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -59,4 +60,16 @@ public class Recipe {
 
     @Column(name = "deleted_at")
     private LocalDateTime deletedAt;
+
+    @Builder
+    private Recipe(RecipeCategory category, Long createdBy, String name, String description,
+                  Integer cookingTime, Difficulty difficulty) {
+        this.category = category;
+        this.createdBy = createdBy;
+        this.name = name;
+        this.description = description;
+        this.cookingTime = cookingTime;
+        this.difficulty = difficulty;
+        this.createdAt = LocalDateTime.now();
+    }
 }

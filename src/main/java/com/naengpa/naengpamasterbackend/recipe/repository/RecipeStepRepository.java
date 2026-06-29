@@ -8,4 +8,5 @@ import java.util.List;
 public interface RecipeStepRepository extends JpaRepository<RecipeStep, Long> {
 
     List<RecipeStep> findByRecipeIdAndDeletedFalseOrderByStepNoAsc(Long recipeId);
+
 }
