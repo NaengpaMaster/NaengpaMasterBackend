@@ -8,14 +8,21 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.web.server.ResponseStatusException;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyBoolean;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.BDDMockito.willDoNothing;
+import static org.mockito.BDDMockito.willThrow;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -96,5 +103,39 @@ class RecipeControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(body))
                 .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    @DisplayName("레시피 수정 - 200을 반환한다")
+    void updateRecipe_returns200() throws Exception {
+        willDoNothing().given(recipeCommandService).updateRecipe(eq(1L), any(), anyBoolean(), any());
+
+        String body = """
+                {"name":"수정","difficulty":"NORMAL","categoryId":2}
+                """;
+
+        mockMvc.perform(patch("/api/v1/recipes/{recipeId}", 1L)
+                        .principal(AUTH)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(body))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.success").value(true));
+    }
+
+    @Test
+    @DisplayName("레시피 수정 - 작성자도 관리자도 아니면 403을 반환한다")
+    void updateRecipe_returns403_whenNotAllowed() throws Exception {
+        willThrow(new ResponseStatusException(HttpStatus.FORBIDDEN, "본인이 작성한 레시피만 수정할 수 있습니다."))
+                .given(recipeCommandService).updateRecipe(eq(1L), any(), anyBoolean(), any());
+
+        String body = """
+                {"name":"수정","difficulty":"NORMAL","categoryId":2}
+                """;
+
+        mockMvc.perform(patch("/api/v1/recipes/{recipeId}", 1L)
+                        .principal(AUTH)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(body))
+                .andExpect(status().isForbidden());
     }
 }

@@ -2,6 +2,7 @@ package com.naengpa.naengpamasterbackend.recipe.service;
 
 import com.naengpa.naengpamasterbackend.member.repository.MemberRepository;
 import com.naengpa.naengpamasterbackend.recipe.dto.request.RecipeCreateRequest;
+import com.naengpa.naengpamasterbackend.recipe.dto.request.RecipeUpdateRequest;
 import com.naengpa.naengpamasterbackend.recipe.dto.response.RecipeCreateResponse;
 import com.naengpa.naengpamasterbackend.recipe.entity.Recipe;
 import com.naengpa.naengpamasterbackend.recipe.entity.RecipeCategory;
@@ -68,6 +69,22 @@ public class RecipeCommandService {
         recipeStepRepository.saveAll(steps);
 
         return new RecipeCreateResponse(recipeId);
+    }
+
+    public void updateRecipe(Long recipeId, String email, boolean isAdmin, RecipeUpdateRequest request) {
+        Long memberId = resolveMemberId(email);
+        Recipe recipe = recipeRepository.findByRecipeIdAndDeletedFalse(recipeId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "레시피를 찾을 수 없습니다."));
+
+        if (!recipe.isOwnedBy(memberId) && !isAdmin) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "본인이 작성한 레시피만 수정할 수 있습니다.");
+        }
+
+        RecipeCategory category = recipeCategoryRepository.findById(request.categoryId())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "존재하지 않는 카테고리입니다."));
+
+        recipe.update(category, request.name(), request.description(),
+                request.cookingTime(), request.difficulty());
     }
 
     private Long resolveMemberId(String email) {
