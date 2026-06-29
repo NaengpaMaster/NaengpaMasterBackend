@@ -1,12 +1,15 @@
 package com.naengpa.naengpamasterbackend.shopping;
 
 import com.naengpa.naengpamasterbackend.shopping.dto.request.ShoppingItemCreateRequest;
+import com.naengpa.naengpamasterbackend.shopping.dto.response.ShoppingItemListResponse;
 import com.naengpa.naengpamasterbackend.shopping.dto.response.ShoppingItemResponse;
 import com.naengpa.naengpamasterbackend.shopping.service.ShoppingItemService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -51,5 +54,27 @@ class ShoppingItemServiceTests {
 
         // then
         assertThat(result.isPurchased()).isFalse();
+    }
+
+    @Test
+    @DisplayName("장보기 목록 조회 시 내가 등록한 장보기 항목을 반환")
+    void findShoppingItems_returnsMyShoppingItems() {
+        // given
+        String email = "test-user@example.com";
+
+        ShoppingItemCreateRequest request = new ShoppingItemCreateRequest(
+                1L,
+                "1개"
+        );
+
+        ShoppingItemResponse created = shoppingItemService.createShoppingItem(email, request);
+
+        // when
+        List<ShoppingItemListResponse> result = shoppingItemService.findShoppingItems(email);
+
+        // then
+        assertThat(result)
+                .extracting(ShoppingItemListResponse::shoppingItemId)
+                .contains(created.shoppingItemId());
     }
 }

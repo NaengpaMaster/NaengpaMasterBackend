@@ -48,7 +48,6 @@ public class FridgeItemService {
     public FridgeItemResponse createFridgeItem(String email, FridgeItemCreateRequest request) {
 
         Member member = findMemberByEmail(email);
-
         //존재하는 사전 재료인지
         productService.validateExists(request.productId());
 
