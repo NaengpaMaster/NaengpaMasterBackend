@@ -6,6 +6,7 @@ import com.naengpa.naengpamasterbackend.member.entity.MemberRole;
 import com.naengpa.naengpamasterbackend.member.entity.MemberStatus;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public record MemberResponse(
         Long memberId,
@@ -13,6 +14,8 @@ public record MemberResponse(
         String nickname,
         MemberRole role,
         HouseholdType householdType,
+        List<String> favoriteFoods,
+        List<String> avoidIngredients,
         LocalDateTime createdAt,
         LocalDateTime updatedAt,
         LocalDateTime deletedAt,
@@ -26,6 +29,8 @@ public record MemberResponse(
                 member.getNickname(),
                 member.getRole(),
                 member.getHouseholdType(),
+                List.of(),
+                List.of(),
                 member.getCreatedAt(),
                 member.getUpdatedAt(),
                 member.getDeletedAt(),

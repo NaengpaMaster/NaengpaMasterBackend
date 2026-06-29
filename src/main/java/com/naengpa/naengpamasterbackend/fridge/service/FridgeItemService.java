@@ -13,6 +13,7 @@ import com.naengpa.naengpamasterbackend.product.entity.Product;
 import com.naengpa.naengpamasterbackend.product.repository.ProductRepository;
 import com.naengpa.naengpamasterbackend.product.service.ProductService;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,6 +31,11 @@ public class FridgeItemService {
     private Member findMemberByEmail(String email) {
         return memberRepository.findByEmail(email)
                 .orElseThrow(() -> new BadCredentialsException("회원을 찾을 수 없습니다."));
+    }
+
+    private FridgeItem findOwnedFridgeItem(Long fridgeItemId, Long memberId) {
+        return fridgeItemRepository.findByFridgeItemIdAndMemberIdAndIsDeletedFalse(fridgeItemId, memberId)
+                .orElseThrow(() -> new AccessDeniedException("본인 냉장고 재료만 접근할 수 있습니다."));
     }
 
     public FridgeItemService(
@@ -124,12 +130,9 @@ public class FridgeItemService {
     @Transactional
     public FridgeItemResponse updateFridgeItem(String email, Long fridgeItemId, FridgeItemUpdateRequest request) {
         Member member = findMemberByEmail(email);
+        FridgeItem fridgeItem = findOwnedFridgeItem(fridgeItemId, member.getId());
 
         productService.validateExists(request.productId());
-
-        FridgeItem fridgeItem = fridgeItemRepository
-                .findByFridgeItemIdAndMemberIdAndIsDeletedFalse(fridgeItemId, member.getId())
-                .orElseThrow();
 
         fridgeItem.update(
                 request.productId(),
@@ -145,9 +148,7 @@ public class FridgeItemService {
     public void deleteFridgeItem(String email, Long fridgeItemId) {
         Member member = findMemberByEmail(email);
 
-        FridgeItem fridgeItem = fridgeItemRepository
-                .findByFridgeItemIdAndMemberIdAndIsDeletedFalse(fridgeItemId, member.getId())
-                .orElseThrow();
+        FridgeItem fridgeItem = findOwnedFridgeItem(fridgeItemId, member.getId());
 
         fridgeItem.delete();
     }
@@ -157,9 +158,7 @@ public class FridgeItemService {
     public void useAllFridgeItem(String email, Long fridgeItemId) {
         Member member = findMemberByEmail(email);
 
-        FridgeItem fridgeItem = fridgeItemRepository
-                .findByFridgeItemIdAndMemberIdAndIsDeletedFalse(fridgeItemId, member.getId())
-                .orElseThrow();
+        FridgeItem fridgeItem = findOwnedFridgeItem(fridgeItemId, member.getId());
 
         fridgeItem.useAll();
     }
@@ -173,9 +172,7 @@ public class FridgeItemService {
     ) {
         Member member = findMemberByEmail(email);
 
-        FridgeItem fridgeItem = fridgeItemRepository
-                .findByFridgeItemIdAndMemberIdAndIsDeletedFalse(fridgeItemId, member.getId())
-                .orElseThrow();
+        FridgeItem fridgeItem = findOwnedFridgeItem(fridgeItemId, member.getId());
 
         fridgeItem.usePartial(request.quantity());
 
