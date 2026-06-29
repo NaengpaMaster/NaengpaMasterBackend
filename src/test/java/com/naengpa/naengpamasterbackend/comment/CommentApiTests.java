@@ -3,6 +3,7 @@ package com.naengpa.naengpamasterbackend.comment;
 import com.naengpa.naengpamasterbackend.global.security.JwtTokenProvider;
 import com.naengpa.naengpamasterbackend.member.entity.HouseholdType;
 import com.naengpa.naengpamasterbackend.member.entity.Member;
+import com.naengpa.naengpamasterbackend.member.entity.MemberRole;
 import com.naengpa.naengpamasterbackend.member.repository.MemberRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -19,12 +20,13 @@ import java.util.UUID;
 import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
-import static org.springframework.http.MediaType.APPLICATION_JSON;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.http.MediaType.APPLICATION_JSON;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -293,6 +295,73 @@ class CommentApiTests {
                         .header("Authorization", "Bearer " + writerToken)
                         .contentType(APPLICATION_JSON)
                         .content("{\"content\": \"존재하지 않는 댓글 수정\"}"))
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$.success", is(false)))
+                .andExpect(jsonPath("$.message", is("댓글을 찾을 수 없습니다.")));
+    }
+
+    @Test
+    @DisplayName("API-310: 작성자 본인이 댓글을 삭제하면 200을 반환하고 목록에서 제외된다")
+    void deleteComment_byWriter_returns200() throws Exception {
+        Long commentId = insertComment(recipeId, writer.getId(), "삭제될 댓글", false);
+
+        mockMvc.perform(delete("/api/v1/comments/{commentId}", commentId)
+                        .header("Authorization", "Bearer " + writerToken))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.success", is(true)))
+                .andExpect(jsonPath("$.message", is("댓글이 삭제되었습니다.")));
+
+        // 삭제 후 목록에서 제외됨
+        mockMvc.perform(get("/api/v1/recipes/{recipeId}/comments", recipeId))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.data.comments.length()", is(0)))
+                .andExpect(jsonPath("$.data.totalElements", is(0)));
+    }
+
+    @Test
+    @DisplayName("API-310: 관리자는 다른 사용자의 댓글을 삭제할 수 있다")
+    void deleteComment_byAdmin_returns200() throws Exception {
+        Long commentId = insertComment(recipeId, writer.getId(), "관리자가 삭제할 댓글", false);
+
+        Member admin = createMember("관리자");
+        admin.updateRole(MemberRole.ADMIN);
+        memberRepository.save(admin);
+        String adminToken = jwtTokenProvider.createAccessToken(admin.getEmail(), MemberRole.ADMIN.name());
+
+        mockMvc.perform(delete("/api/v1/comments/{commentId}", commentId)
+                        .header("Authorization", "Bearer " + adminToken))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.success", is(true)))
+                .andExpect(jsonPath("$.message", is("댓글이 삭제되었습니다.")));
+    }
+
+    @Test
+    @DisplayName("API-310: 작성자가 아닌 일반 사용자가 삭제하면 403을 반환한다")
+    void deleteComment_notWriter_returns403() throws Exception {
+        Long commentId = insertComment(recipeId, writer.getId(), "타인이 삭제 시도", false);
+        Member other = createMember("타인");
+
+        mockMvc.perform(delete("/api/v1/comments/{commentId}", commentId)
+                        .header("Authorization", "Bearer " + tokenOf(other)))
+                .andExpect(status().isForbidden())
+                .andExpect(jsonPath("$.success", is(false)))
+                .andExpect(jsonPath("$.message", is("댓글 삭제 권한이 없습니다.")));
+    }
+
+    @Test
+    @DisplayName("API-310: 인증 없이 댓글 삭제를 시도하면 401을 반환한다")
+    void deleteComment_withoutAuth_returns401() throws Exception {
+        Long commentId = insertComment(recipeId, writer.getId(), "인증 없이 삭제 시도", false);
+
+        mockMvc.perform(delete("/api/v1/comments/{commentId}", commentId))
+                .andExpect(status().isUnauthorized());
+    }
+
+    @Test
+    @DisplayName("API-310: 존재하지 않는 댓글 삭제 시 404를 반환한다")
+    void deleteComment_notFound_returns404() throws Exception {
+        mockMvc.perform(delete("/api/v1/comments/{commentId}", 999_999_999L)
+                        .header("Authorization", "Bearer " + writerToken))
                 .andExpect(status().isNotFound())
                 .andExpect(jsonPath("$.success", is(false)))
                 .andExpect(jsonPath("$.message", is("댓글을 찾을 수 없습니다.")));

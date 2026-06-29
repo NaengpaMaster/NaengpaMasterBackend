@@ -14,6 +14,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -57,5 +58,14 @@ public class CommentController {
     ) {
         commentService.updateComment(authentication.getName(), commentId, request);
         return ResponseEntity.ok(ApiResponse.success("댓글이 수정되었습니다.", null));
+    }
+
+    @DeleteMapping("/api/v1/comments/{commentId}")
+    public ResponseEntity<ApiResponse<Void>> deleteComment(
+            @PathVariable Long commentId,
+            Authentication authentication
+    ) {
+        commentService.deleteComment(authentication.getName(), commentId);
+        return ResponseEntity.ok(ApiResponse.success("댓글이 삭제되었습니다.", null));
     }
 }

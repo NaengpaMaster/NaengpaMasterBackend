@@ -11,6 +11,7 @@ import com.naengpa.naengpamasterbackend.global.exception.CommentNotFoundExceptio
 import com.naengpa.naengpamasterbackend.global.exception.MemberNotFoundException;
 import com.naengpa.naengpamasterbackend.global.exception.RecipeNotFoundException;
 import com.naengpa.naengpamasterbackend.member.entity.Member;
+import com.naengpa.naengpamasterbackend.member.entity.MemberRole;
 import com.naengpa.naengpamasterbackend.member.repository.MemberRepository;
 import com.naengpa.naengpamasterbackend.recipe.repository.RecipeRepository;
 import lombok.RequiredArgsConstructor;
@@ -77,6 +78,22 @@ public class CommentService {
         }
 
         comment.updateContent(request.content());
+    }
+
+    @Transactional
+    public void deleteComment(String email, Long commentId) {
+        Comment comment = commentRepository.findByCommentIdAndDeletedFalse(commentId)
+                .orElseThrow(CommentNotFoundException::new);
+
+        Member member = memberRepository.findByEmail(email)
+                .orElseThrow(MemberNotFoundException::new);
+
+        boolean isAdmin = member.getRole() == MemberRole.ADMIN;
+        if (!comment.isWrittenBy(member.getId()) && !isAdmin) {
+            throw new CommentAccessDeniedException("댓글 삭제 권한이 없습니다.");
+        }
+
+        comment.softDelete();
     }
 
     private void validateRecipeExists(Long recipeId) {
