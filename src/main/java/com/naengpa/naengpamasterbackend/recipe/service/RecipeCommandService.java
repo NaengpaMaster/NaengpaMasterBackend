@@ -1,14 +1,18 @@
 package com.naengpa.naengpamasterbackend.recipe.service;
 
+import com.naengpa.naengpamasterbackend.global.exception.RecipeNotFoundException;
 import com.naengpa.naengpamasterbackend.member.repository.MemberRepository;
 import com.naengpa.naengpamasterbackend.recipe.dto.request.RecipeCreateRequest;
 import com.naengpa.naengpamasterbackend.recipe.dto.request.RecipeUpdateRequest;
 import com.naengpa.naengpamasterbackend.recipe.dto.response.RecipeCreateResponse;
+import com.naengpa.naengpamasterbackend.recipe.dto.response.RecipeLikeResponse;
 import com.naengpa.naengpamasterbackend.recipe.entity.Recipe;
 import com.naengpa.naengpamasterbackend.recipe.entity.RecipeCategory;
+import com.naengpa.naengpamasterbackend.recipe.entity.RecipeFavorite;
 import com.naengpa.naengpamasterbackend.recipe.entity.RecipeRequiredProduct;
 import com.naengpa.naengpamasterbackend.recipe.entity.RecipeStep;
 import com.naengpa.naengpamasterbackend.recipe.repository.RecipeCategoryRepository;
+import com.naengpa.naengpamasterbackend.recipe.repository.RecipeFavoriteRepository;
 import com.naengpa.naengpamasterbackend.recipe.repository.RecipeRepository;
 import com.naengpa.naengpamasterbackend.recipe.repository.RecipeRequiredProductRepository;
 import com.naengpa.naengpamasterbackend.recipe.repository.RecipeStepRepository;
@@ -30,6 +34,7 @@ public class RecipeCommandService {
     private final RecipeCategoryRepository recipeCategoryRepository;
     private final RecipeRequiredProductRepository recipeRequiredProductRepository;
     private final RecipeStepRepository recipeStepRepository;
+    private final RecipeFavoriteRepository recipeFavoriteRepository;
     private final MemberRepository memberRepository;
 
     public RecipeCreateResponse createRecipe(String email, RecipeCreateRequest request) {
@@ -97,6 +102,24 @@ public class RecipeCommandService {
         }
 
         recipe.softDelete();
+    }
+
+    public RecipeLikeResponse toggleLike(String email, Long recipeId) {
+        Long memberId = resolveMemberId(email);
+        recipeRepository.findByRecipeIdAndDeletedFalse(recipeId)
+                .orElseThrow(RecipeNotFoundException::new);
+
+        boolean liked;
+        if (recipeFavoriteRepository.existsByRecipeIdAndMemberId(recipeId, memberId)) {
+            recipeFavoriteRepository.deleteByRecipeIdAndMemberId(recipeId, memberId);
+            liked = false;
+        } else {
+            recipeFavoriteRepository.save(RecipeFavorite.create(recipeId, memberId));
+            liked = true;
+        }
+
+        long likeCount = recipeFavoriteRepository.countByRecipeId(recipeId);
+        return new RecipeLikeResponse(liked, likeCount);
     }
 
     private Long resolveMemberId(String email) {
