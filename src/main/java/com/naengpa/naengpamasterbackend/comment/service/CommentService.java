@@ -1,10 +1,13 @@
 package com.naengpa.naengpamasterbackend.comment.service;
 
 import com.naengpa.naengpamasterbackend.comment.dto.request.CommentCreateRequest;
+import com.naengpa.naengpamasterbackend.comment.dto.request.CommentUpdateRequest;
 import com.naengpa.naengpamasterbackend.comment.dto.response.CommentCreateResponse;
 import com.naengpa.naengpamasterbackend.comment.dto.response.CommentListResponse;
 import com.naengpa.naengpamasterbackend.comment.entity.Comment;
 import com.naengpa.naengpamasterbackend.comment.repository.CommentRepository;
+import com.naengpa.naengpamasterbackend.global.exception.CommentAccessDeniedException;
+import com.naengpa.naengpamasterbackend.global.exception.CommentNotFoundException;
 import com.naengpa.naengpamasterbackend.global.exception.MemberNotFoundException;
 import com.naengpa.naengpamasterbackend.global.exception.RecipeNotFoundException;
 import com.naengpa.naengpamasterbackend.member.entity.Member;
@@ -59,6 +62,21 @@ public class CommentService {
         );
 
         return new CommentCreateResponse(comment.getCommentId());
+    }
+
+    @Transactional
+    public void updateComment(String email, Long commentId, CommentUpdateRequest request) {
+        Comment comment = commentRepository.findByCommentIdAndDeletedFalse(commentId)
+                .orElseThrow(CommentNotFoundException::new);
+
+        Member member = memberRepository.findByEmail(email)
+                .orElseThrow(MemberNotFoundException::new);
+
+        if (!comment.isWrittenBy(member.getId())) {
+            throw new CommentAccessDeniedException("댓글 수정 권한이 없습니다.");
+        }
+
+        comment.updateContent(request.content());
     }
 
     private void validateRecipeExists(Long recipeId) {

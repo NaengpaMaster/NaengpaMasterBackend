@@ -1,6 +1,7 @@
 package com.naengpa.naengpamasterbackend.comment.controller;
 
 import com.naengpa.naengpamasterbackend.comment.dto.request.CommentCreateRequest;
+import com.naengpa.naengpamasterbackend.comment.dto.request.CommentUpdateRequest;
 import com.naengpa.naengpamasterbackend.comment.dto.response.CommentCreateResponse;
 import com.naengpa.naengpamasterbackend.comment.dto.response.CommentListResponse;
 import com.naengpa.naengpamasterbackend.comment.service.CommentService;
@@ -14,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -45,5 +47,15 @@ public class CommentController {
                 commentService.createComment(authentication.getName(), recipeId, request);
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(ApiResponse.success("댓글이 등록되었습니다.", response));
+    }
+
+    @PatchMapping("/api/v1/comments/{commentId}")
+    public ResponseEntity<ApiResponse<Void>> updateComment(
+            @PathVariable Long commentId,
+            @Valid @RequestBody CommentUpdateRequest request,
+            Authentication authentication
+    ) {
+        commentService.updateComment(authentication.getName(), commentId, request);
+        return ResponseEntity.ok(ApiResponse.success("댓글이 수정되었습니다.", null));
     }
 }

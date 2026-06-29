@@ -21,6 +21,7 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -70,6 +71,20 @@ class CommentApiTests {
                         + "VALUES (?, ?, ?, ?, ?, ?, false)",
                 recipeId, categoryId, "댓글테스트레시피", "댓글 테스트용 레시피", 15, "EASY"
         );
+    }
+
+    private Member createMember(String label) {
+        String unique = UUID.randomUUID().toString().substring(0, 8);
+        return memberRepository.save(Member.createUser(
+                label + "-" + unique + "@example.com",
+                "encoded-password",
+                label + unique,
+                HouseholdType.ETC
+        ));
+    }
+
+    private String tokenOf(Member member) {
+        return jwtTokenProvider.createAccessToken(member.getEmail(), member.getRole().name());
     }
 
     private Long nextId(String table, String idColumn) {
@@ -196,5 +211,90 @@ class CommentApiTests {
                 .andExpect(status().isNotFound())
                 .andExpect(jsonPath("$.success", is(false)))
                 .andExpect(jsonPath("$.message", is("레시피를 찾을 수 없습니다.")));
+    }
+
+    @Test
+    @DisplayName("API-309: 작성자가 본인 댓글을 수정하면 200을 반환하고 내용/수정여부가 갱신된다")
+    void updateComment_byWriter_returns200() throws Exception {
+        Long commentId = insertComment(recipeId, writer.getId(), "수정 전 내용", false);
+
+        mockMvc.perform(patch("/api/v1/comments/{commentId}", commentId)
+                        .header("Authorization", "Bearer " + writerToken)
+                        .contentType(APPLICATION_JSON)
+                        .content("{\"content\": \"수정된 댓글 내용입니다.\"}"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.success", is(true)))
+                .andExpect(jsonPath("$.message", is("댓글이 수정되었습니다.")));
+
+        // 목록 조회로 수정된 내용과 수정 여부(modified=true)를 검증
+        mockMvc.perform(get("/api/v1/recipes/{recipeId}/comments", recipeId))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.data.comments[0].content", is("수정된 댓글 내용입니다.")))
+                .andExpect(jsonPath("$.data.comments[0].modified", is(true)));
+    }
+
+    @Test
+    @DisplayName("API-309: 댓글 내용이 비어 있으면 400을 반환한다")
+    void updateComment_blankContent_returns400() throws Exception {
+        Long commentId = insertComment(recipeId, writer.getId(), "수정 전 내용", false);
+
+        mockMvc.perform(patch("/api/v1/comments/{commentId}", commentId)
+                        .header("Authorization", "Bearer " + writerToken)
+                        .contentType(APPLICATION_JSON)
+                        .content("{\"content\": \"   \"}"))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.message", is("댓글 내용을 입력해주세요.")));
+    }
+
+    @Test
+    @DisplayName("API-309: 댓글이 300자를 초과하면 400을 반환한다")
+    void updateComment_tooLong_returns400() throws Exception {
+        Long commentId = insertComment(recipeId, writer.getId(), "수정 전 내용", false);
+        String tooLong = "나".repeat(301);
+
+        mockMvc.perform(patch("/api/v1/comments/{commentId}", commentId)
+                        .header("Authorization", "Bearer " + writerToken)
+                        .contentType(APPLICATION_JSON)
+                        .content("{\"content\": \"" + tooLong + "\"}"))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.message", is("댓글은 300자 이하로 입력해주세요.")));
+    }
+
+    @Test
+    @DisplayName("API-309: 작성자가 아닌 사용자가 수정하면 403을 반환한다")
+    void updateComment_notWriter_returns403() throws Exception {
+        Long commentId = insertComment(recipeId, writer.getId(), "수정 전 내용", false);
+        Member other = createMember("타인");
+
+        mockMvc.perform(patch("/api/v1/comments/{commentId}", commentId)
+                        .header("Authorization", "Bearer " + tokenOf(other))
+                        .contentType(APPLICATION_JSON)
+                        .content("{\"content\": \"남의 댓글 수정 시도\"}"))
+                .andExpect(status().isForbidden())
+                .andExpect(jsonPath("$.success", is(false)))
+                .andExpect(jsonPath("$.message", is("댓글 수정 권한이 없습니다.")));
+    }
+
+    @Test
+    @DisplayName("API-309: 인증 없이 댓글 수정을 시도하면 401을 반환한다")
+    void updateComment_withoutAuth_returns401() throws Exception {
+        Long commentId = insertComment(recipeId, writer.getId(), "수정 전 내용", false);
+
+        mockMvc.perform(patch("/api/v1/comments/{commentId}", commentId)
+                        .contentType(APPLICATION_JSON)
+                        .content("{\"content\": \"인증 없이 수정\"}"))
+                .andExpect(status().isUnauthorized());
+    }
+
+    @Test
+    @DisplayName("API-309: 존재하지 않는 댓글 수정 시 404를 반환한다")
+    void updateComment_notFound_returns404() throws Exception {
+        mockMvc.perform(patch("/api/v1/comments/{commentId}", 999_999_999L)
+                        .header("Authorization", "Bearer " + writerToken)
+                        .contentType(APPLICATION_JSON)
+                        .content("{\"content\": \"존재하지 않는 댓글 수정\"}"))
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$.success", is(false)))
+                .andExpect(jsonPath("$.message", is("댓글을 찾을 수 없습니다.")));
     }
 }

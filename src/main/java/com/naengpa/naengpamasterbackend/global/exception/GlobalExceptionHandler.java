@@ -102,4 +102,16 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(ApiResponse.fail(exception.getMessage()));
     }
+
+    @ExceptionHandler(CommentNotFoundException.class)
+    public ResponseEntity<ApiResponse<Void>> handleCommentNotFoundException(CommentNotFoundException exception) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(ApiResponse.fail(exception.getMessage()));
+    }
+
+    @ExceptionHandler(CommentAccessDeniedException.class)
+    public ResponseEntity<ApiResponse<Void>> handleCommentAccessDeniedException(CommentAccessDeniedException exception) {
+        return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                .body(ApiResponse.fail(exception.getMessage()));
+    }
 }
