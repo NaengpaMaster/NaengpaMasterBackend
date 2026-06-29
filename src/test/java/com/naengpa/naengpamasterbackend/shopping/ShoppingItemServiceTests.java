@@ -1,7 +1,9 @@
 package com.naengpa.naengpamasterbackend.shopping;
 
+import com.naengpa.naengpamasterbackend.fridge.dto.response.FridgeItemResponse;
 import com.naengpa.naengpamasterbackend.shopping.dto.request.ShoppingItemCheckRequest;
 import com.naengpa.naengpamasterbackend.shopping.dto.request.ShoppingItemCreateRequest;
+import com.naengpa.naengpamasterbackend.shopping.dto.request.ShoppingItemMoveToFridgeRequest;
 import com.naengpa.naengpamasterbackend.shopping.dto.response.ShoppingItemListResponse;
 import com.naengpa.naengpamasterbackend.shopping.dto.response.ShoppingItemResponse;
 import com.naengpa.naengpamasterbackend.shopping.service.ShoppingItemService;
@@ -10,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -124,5 +127,44 @@ class ShoppingItemServiceTests {
 
         // then
         assertThat(result.isPurchased()).isTrue();
+    }
+
+    @Test
+    @DisplayName("장보기 항목 냉장고 반영 시 냉장고 재료를 생성하고 장보기 목록에서 제외")
+    void moveShoppingItemToFridge_createsFridgeItemAndRemovesShoppingItem() {
+        // given
+        String email = "test-user@example.com";
+
+        ShoppingItemCreateRequest createRequest = new ShoppingItemCreateRequest(
+                1L,
+                "1개"
+        );
+
+        ShoppingItemResponse created = shoppingItemService.createShoppingItem(email, createRequest);
+
+        ShoppingItemMoveToFridgeRequest request = new ShoppingItemMoveToFridgeRequest(
+                LocalDate.now().plusDays(7),
+                "장보기에서 냉장고로 추가"
+        );
+
+        // when
+        FridgeItemResponse result = shoppingItemService.moveShoppingItemToFridge(
+                email,
+                created.shoppingItemId(),
+                request
+        );
+
+        // then
+        assertThat(result.fridgeItemId()).isNotNull();
+        assertThat(result.productId()).isEqualTo(created.productId());
+        assertThat(result.quantity()).isEqualTo(created.quantity());
+        assertThat(result.expiryDate()).isEqualTo(request.expiryDate());
+        assertThat(result.memo()).isEqualTo(request.memo());
+
+        List<ShoppingItemListResponse> shoppingItems = shoppingItemService.findShoppingItems(email);
+
+        assertThat(shoppingItems)
+                .extracting(ShoppingItemListResponse::shoppingItemId)
+                .doesNotContain(created.shoppingItemId());
     }
 }

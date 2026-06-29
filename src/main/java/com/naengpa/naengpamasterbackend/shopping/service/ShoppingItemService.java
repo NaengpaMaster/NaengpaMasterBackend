@@ -1,5 +1,8 @@
 package com.naengpa.naengpamasterbackend.shopping.service;
 
+import com.naengpa.naengpamasterbackend.fridge.entity.FridgeItem;
+import com.naengpa.naengpamasterbackend.fridge.dto.response.FridgeItemResponse;
+import com.naengpa.naengpamasterbackend.fridge.repository.FridgeItemRepository;
 import com.naengpa.naengpamasterbackend.member.entity.Member;
 import com.naengpa.naengpamasterbackend.member.repository.MemberRepository;
 import com.naengpa.naengpamasterbackend.product.entity.Product;
@@ -7,6 +10,7 @@ import com.naengpa.naengpamasterbackend.product.repository.ProductRepository;
 import com.naengpa.naengpamasterbackend.product.service.ProductService;
 import com.naengpa.naengpamasterbackend.shopping.dto.request.ShoppingItemCheckRequest;
 import com.naengpa.naengpamasterbackend.shopping.dto.request.ShoppingItemCreateRequest;
+import com.naengpa.naengpamasterbackend.shopping.dto.request.ShoppingItemMoveToFridgeRequest;
 import com.naengpa.naengpamasterbackend.shopping.dto.response.ShoppingItemListResponse;
 import com.naengpa.naengpamasterbackend.shopping.dto.response.ShoppingItemResponse;
 import com.naengpa.naengpamasterbackend.shopping.entity.ShoppingItem;
@@ -25,17 +29,20 @@ public class ShoppingItemService {
     private final MemberRepository memberRepository;
     private final ProductService productService;
     private final ProductRepository productRepository;
+    private final FridgeItemRepository fridgeItemRepository;
 
     public ShoppingItemService(
             ShoppingItemRepository shoppingItemRepository,
             MemberRepository memberRepository,
             ProductService productService,
-            ProductRepository productRepository
+            ProductRepository productRepository,
+            FridgeItemRepository fridgeItemRepository
             ) {
         this.shoppingItemRepository = shoppingItemRepository;
         this.memberRepository = memberRepository;
         this.productService = productService;
         this.productRepository = productRepository;
+        this.fridgeItemRepository = fridgeItemRepository;
     }
 
     //회원 인증 공통 로직
@@ -130,6 +137,31 @@ public class ShoppingItemService {
         return ShoppingItemResponse.from(shoppingItem);
     }
 
+    //장보기 항목 냉장고 추가
+    @Transactional
+    public FridgeItemResponse moveShoppingItemToFridge(
+            String email,
+            Long shoppingItemId,
+            ShoppingItemMoveToFridgeRequest request
+    ) {
+        Member member = findMemberByEmail(email);
+
+        ShoppingItem shoppingItem = shoppingItemRepository
+                .findByShoppingItemIdAndMemberIdAndIsDeletedFalse(shoppingItemId, member.getId())
+                .orElseThrow();
+
+        FridgeItem fridgeItem = FridgeItem.create(
+                member.getId(),
+                shoppingItem.getProductId(),
+                shoppingItem.getQuantity(),
+                request.expiryDate(),
+                request.memo()
+        );
+
+        FridgeItem savedFridgeItem = fridgeItemRepository.save(fridgeItem);
+        shoppingItem.delete();
+
+        return FridgeItemResponse.from(savedFridgeItem);
+    }
 
 }
-
