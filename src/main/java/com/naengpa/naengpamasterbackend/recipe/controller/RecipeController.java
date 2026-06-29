@@ -5,6 +5,7 @@ import com.naengpa.naengpamasterbackend.recipe.dto.response.RecipeDetailResponse
 import com.naengpa.naengpamasterbackend.recipe.dto.request.RecipeCreateRequest;
 import com.naengpa.naengpamasterbackend.recipe.dto.request.RecipeUpdateRequest;
 import com.naengpa.naengpamasterbackend.recipe.dto.response.RecipeCreateResponse;
+import com.naengpa.naengpamasterbackend.recipe.dto.response.RecipeLikeResponse;
 import com.naengpa.naengpamasterbackend.recipe.dto.response.RecipeListResponse;
 import com.naengpa.naengpamasterbackend.recipe.service.RecipeCommandService;
 import com.naengpa.naengpamasterbackend.recipe.service.RecipeService;
@@ -76,6 +77,16 @@ public class RecipeController {
                                                           Authentication authentication) {
         recipeCommandService.deleteRecipe(recipeId, authentication.getName(), isAdmin(authentication));
         return ResponseEntity.ok(ApiResponse.success("레시피가 삭제되었습니다.", null));
+    }
+
+    @PostMapping("/{recipeId}/like")
+    public ResponseEntity<ApiResponse<RecipeLikeResponse>> toggleLike(
+            @PathVariable Long recipeId,
+            Authentication authentication
+    ) {
+        RecipeLikeResponse response = recipeCommandService.toggleLike(authentication.getName(), recipeId);
+        String message = response.liked() ? "좋아요 등록 성공" : "좋아요 취소 성공";
+        return ResponseEntity.ok(ApiResponse.success(message, response));
     }
 
     private boolean isAdmin(Authentication authentication) {
