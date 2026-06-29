@@ -1,6 +1,7 @@
 package com.naengpa.naengpamasterbackend.shopping.controller;
 
 import com.naengpa.naengpamasterbackend.global.response.ApiResponse;
+import com.naengpa.naengpamasterbackend.shopping.dto.request.ShoppingItemCheckRequest;
 import com.naengpa.naengpamasterbackend.shopping.dto.request.ShoppingItemCreateRequest;
 import com.naengpa.naengpamasterbackend.shopping.dto.response.ShoppingItemListResponse;
 import com.naengpa.naengpamasterbackend.shopping.dto.response.ShoppingItemResponse;
@@ -56,5 +57,21 @@ public class ShoppingItemController {
         return ResponseEntity.ok(
                 ApiResponse.success("장보기 항목이 삭제되었습니다.", null)
         );
+    }
+
+    //장보기 구매 여부
+    @PatchMapping("/{shoppingItemId}/check")
+    public ResponseEntity<ApiResponse<ShoppingItemResponse>> updateShoppingItemPurchased(
+            Authentication authentication,
+            @PathVariable Long shoppingItemId,
+            @Valid @RequestBody ShoppingItemCheckRequest request
+    ) {
+        ShoppingItemResponse response = shoppingItemService.updateShoppingItemPurchased(
+                authentication.getName(),
+                shoppingItemId,
+                request
+        );
+
+        return ResponseEntity.ok(ApiResponse.success("장보기 항목 체크 상태가 변경되었습니다.", response));
     }
 }

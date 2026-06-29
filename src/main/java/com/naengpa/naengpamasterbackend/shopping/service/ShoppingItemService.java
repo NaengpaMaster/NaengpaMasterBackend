@@ -5,6 +5,7 @@ import com.naengpa.naengpamasterbackend.member.repository.MemberRepository;
 import com.naengpa.naengpamasterbackend.product.entity.Product;
 import com.naengpa.naengpamasterbackend.product.repository.ProductRepository;
 import com.naengpa.naengpamasterbackend.product.service.ProductService;
+import com.naengpa.naengpamasterbackend.shopping.dto.request.ShoppingItemCheckRequest;
 import com.naengpa.naengpamasterbackend.shopping.dto.request.ShoppingItemCreateRequest;
 import com.naengpa.naengpamasterbackend.shopping.dto.response.ShoppingItemListResponse;
 import com.naengpa.naengpamasterbackend.shopping.dto.response.ShoppingItemResponse;
@@ -97,6 +98,7 @@ public class ShoppingItemService {
                 .toList();
     }
 
+    //장바구니 삭제
     @Transactional
     public void deleteShoppingItem(String email, @Valid Long shoppingItemId) {
         Member member = findMemberByEmail(email);
@@ -109,5 +111,25 @@ public class ShoppingItemService {
 
 
     }
+
+    //장바구니 구매 여부
+    @Transactional
+    public ShoppingItemResponse updateShoppingItemPurchased(
+            String email,
+            Long shoppingItemId,
+            ShoppingItemCheckRequest request
+    ) {
+        Member member = findMemberByEmail(email);
+
+        ShoppingItem shoppingItem = shoppingItemRepository
+                .findByShoppingItemIdAndMemberIdAndIsDeletedFalse(shoppingItemId, member.getId())
+                .orElseThrow();
+
+        shoppingItem.updatePurchased(request.isPurchased());
+
+        return ShoppingItemResponse.from(shoppingItem);
+    }
+
+
 }
 

@@ -1,5 +1,6 @@
 package com.naengpa.naengpamasterbackend.shopping;
 
+import com.naengpa.naengpamasterbackend.shopping.dto.request.ShoppingItemCheckRequest;
 import com.naengpa.naengpamasterbackend.shopping.dto.request.ShoppingItemCreateRequest;
 import com.naengpa.naengpamasterbackend.shopping.dto.response.ShoppingItemListResponse;
 import com.naengpa.naengpamasterbackend.shopping.dto.response.ShoppingItemResponse;
@@ -99,5 +100,29 @@ class ShoppingItemServiceTests {
         assertThat(result)
                 .extracting(ShoppingItemListResponse::shoppingItemId)
                 .doesNotContain(created.shoppingItemId());
+    }
+
+    @Test
+    @DisplayName("장보기 항목 체크 시 구매 여부가 true로 변경")
+    void updateShoppingItemPurchased_setsIsPurchasedTrue() {
+        // given
+        String email = "test-user@example.com";
+        ShoppingItemCreateRequest createRequest = new ShoppingItemCreateRequest(
+                1L,
+                "1개"
+        );
+
+        ShoppingItemResponse created = shoppingItemService.createShoppingItem(email, createRequest);
+        ShoppingItemCheckRequest request = new ShoppingItemCheckRequest(true);
+
+        // when
+        ShoppingItemResponse result = shoppingItemService.updateShoppingItemPurchased(
+                email,
+                created.shoppingItemId(),
+                request
+        );
+
+        // then
+        assertThat(result.isPurchased()).isTrue();
     }
 }

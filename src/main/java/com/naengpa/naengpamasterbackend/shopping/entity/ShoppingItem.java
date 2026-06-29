@@ -67,5 +67,11 @@ public class ShoppingItem {
 
     }
 
+    //구매 상태 체크 해제 여부
+    public void updatePurchased(Boolean isPurchased) {
+        this.isPurchased = isPurchased;
+        this.updatedAt = LocalDate.now();
+    }
+
 
 }

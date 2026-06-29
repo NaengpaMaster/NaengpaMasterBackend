@@ -9,10 +9,12 @@ import java.util.Optional;
 
 public interface ShoppingItemRepository extends JpaRepository<ShoppingItem, Long> {
 
+
     List<ShoppingItem> findByMemberIdAndIsDeletedFalse(Long memberId);
 
     Optional<ShoppingItem> findByShoppingItemIdAndMemberIdAndIsDeletedFalse(
             Long shoppingItemId,
             Long memberId
     );
+
 }
