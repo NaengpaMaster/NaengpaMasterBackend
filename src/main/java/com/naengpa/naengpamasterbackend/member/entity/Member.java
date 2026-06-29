@@ -10,6 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -183,5 +184,13 @@ public class Member {
         String noun = NICKNAME_NOUNS[random.nextInt(NICKNAME_NOUNS.length)];
         int suffix = random.nextInt(1000, 10000);
         return prefix + " " + noun + suffix;
+    }
+
+    public void updateStatus(MemberStatus status) {
+        this.status = status;
+    }
+
+    public void updateRole(MemberRole role) {
+        this.role = role;
     }
 }
