@@ -1,6 +1,7 @@
 package com.naengpa.naengpamasterbackend.global.exception;
 
 import com.naengpa.naengpamasterbackend.global.response.ApiResponse;
+import com.naengpa.naengpamasterbackend.product.exception.ProductNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
@@ -103,11 +104,18 @@ public class GlobalExceptionHandler {
                 .body(ApiResponse.fail(exception.getMessage()));
     }
 
+    @ExceptionHandler(ProductNotFoundException.class)
+    public ResponseEntity<ApiResponse<Void>> handleProductNotFoundException(ProductNotFoundException exception) {
+
     @ExceptionHandler(CommentNotFoundException.class)
     public ResponseEntity<ApiResponse<Void>> handleCommentNotFoundException(CommentNotFoundException exception) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(ApiResponse.fail(exception.getMessage()));
     }
+
+    @ExceptionHandler(FoodCategoryNotFoundException.class)
+    public ResponseEntity<ApiResponse<Void>> handleFoodCategoryNotFoundException(FoodCategoryNotFoundException exception) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
 
     @ExceptionHandler(CommentAccessDeniedException.class)
     public ResponseEntity<ApiResponse<Void>> handleCommentAccessDeniedException(CommentAccessDeniedException exception) {
