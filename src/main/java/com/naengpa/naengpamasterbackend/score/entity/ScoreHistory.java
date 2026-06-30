@@ -35,9 +35,6 @@ public class ScoreHistory {
     @Column(name = "score_delta", nullable = false)
     private Integer scoreDelta;
 
-    @Column(name = "description", length = 500)
-    private String description;
-
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
@@ -46,14 +43,13 @@ public class ScoreHistory {
         this.createdAt = LocalDateTime.now();
     }
 
-    public static ScoreHistory create(Long memberId, ScoreReason reason, String targetType, Long targetId, Integer delta, String description){
+    public static ScoreHistory create(Long memberId, ScoreReason reason, String targetType, Long targetId, Integer delta){
         ScoreHistory history = new ScoreHistory();
         history.memberId = memberId;
         history.scoreReason = reason;
         history.targetType = targetType;
         history.targetId = targetId;
         history.scoreDelta = delta;
-        history.description = description;
         return history;
     }
 
