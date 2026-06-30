@@ -20,4 +20,6 @@ public class AdminDashboardController {
     public ResponseEntity<ApiResponse<AdminDashboardResponse>> getDashboard() {
         return ResponseEntity.ok(ApiResponse.success(adminDashboardService.getDashboard()));
     }
+
+
 }

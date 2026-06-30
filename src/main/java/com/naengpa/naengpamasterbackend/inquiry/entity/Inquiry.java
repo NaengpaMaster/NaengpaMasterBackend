@@ -56,4 +56,14 @@ public class Inquiry {
     void preUpdate() {
         updatedAt = LocalDateTime.now();
     }
+
+    public void markAsAnswered() {
+        this.isAnswered = true;
+        this.answeredAt = LocalDateTime.now();
+    }
+
+    public void markAsUnanswered() {
+        this.isAnswered = false;
+        this.answeredAt = null;
+    }
 }
