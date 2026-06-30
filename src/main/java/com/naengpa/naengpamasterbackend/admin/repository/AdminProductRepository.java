@@ -1,4 +1,12 @@
 package com.naengpa.naengpamasterbackend.admin.repository;
 
-public interface AdminProductRepository {
+import com.naengpa.naengpamasterbackend.product.entity.Product;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
+
+public interface AdminProductRepository extends JpaRepository<Product, Long> {
+    List<Product> findAllByOrderByProductIdAsc();
+
+    List<Product> findByIsActiveFalseOrderByProductIdAsc();
 }
