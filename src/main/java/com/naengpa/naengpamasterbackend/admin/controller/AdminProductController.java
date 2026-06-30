@@ -1,13 +1,14 @@
 package com.naengpa.naengpamasterbackend.admin.controller;
 
+import com.naengpa.naengpamasterbackend.admin.dto.request.AdminProductCreateRequest;
 import com.naengpa.naengpamasterbackend.admin.dto.response.AdminProductResponse;
 import com.naengpa.naengpamasterbackend.admin.service.AdminProductService;
 import com.naengpa.naengpamasterbackend.global.response.ApiResponse;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,6 +29,17 @@ public class AdminProductController {
     @GetMapping("/inactive")
     public ResponseEntity<ApiResponse<List<AdminProductResponse>>> findInactiveProducts(){
         return ResponseEntity.ok(ApiResponse.success((adminProductService.findInactiveProducts())));
+    }
+
+    //어드민 사전 재료 추가
+    @PostMapping
+    public ResponseEntity<ApiResponse<AdminProductResponse>> createProduct(
+            @Valid  @RequestBody AdminProductCreateRequest request
+    ) {
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(ApiResponse.success(
+                        "사전 재료가 등록되었습니다.", adminProductService.createProduct(request)
+                ));
     }
 
 }

@@ -1,7 +1,10 @@
 package com.naengpa.naengpamasterbackend.admin.service;
 
+import com.naengpa.naengpamasterbackend.admin.dto.request.AdminProductCreateRequest;
 import com.naengpa.naengpamasterbackend.admin.dto.response.AdminProductResponse;
 import com.naengpa.naengpamasterbackend.admin.repository.AdminProductRepository;
+import com.naengpa.naengpamasterbackend.global.exception.DuplicateProductNameException;
+import com.naengpa.naengpamasterbackend.product.entity.Product;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,6 +34,23 @@ public class AdminProductService {
                 .toList();
     }
 
+    //어드민 사전 재료 추가
+    public AdminProductResponse createProduct(AdminProductCreateRequest request) {
+
+        if (adminProductRepository.existsByName(request.name())) {
+            throw new DuplicateProductNameException();
+        }
+
+        Product product = Product.create(
+                request.productCategoryId(),
+                request.name(),
+                request.defaultExpiryDays()
+        );
+
+        Product savedProduct = adminProductRepository.save(product);
+
+        return AdminProductResponse.from(savedProduct);
+    }
 
 
 }

@@ -9,4 +9,6 @@ public interface AdminProductRepository extends JpaRepository<Product, Long> {
     List<Product> findAllByOrderByProductIdAsc();
 
     List<Product> findByIsActiveFalseOrderByProductIdAsc();
+
+    boolean existsByName(String name);
 }

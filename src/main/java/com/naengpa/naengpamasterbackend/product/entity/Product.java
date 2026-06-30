@@ -35,4 +35,20 @@ public class Product {
 
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
+    // 관리자 사전 재료 추가
+    public static Product create(
+            Long productCategoryId,
+            String name,
+            Integer defaultExpiryDays
+    ) {
+        Product product = new Product();
+        product.productCategoryId = productCategoryId;
+        product.name = name;
+        product.defaultExpiryDays = defaultExpiryDays;
+        product.isActive = true;
+        product.createdAt = LocalDateTime.now();
+        return product;
+    }
 }
+

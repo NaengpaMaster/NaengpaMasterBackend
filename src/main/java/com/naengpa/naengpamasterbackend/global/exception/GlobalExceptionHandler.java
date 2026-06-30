@@ -133,4 +133,10 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.FORBIDDEN)
                 .body(ApiResponse.fail(exception.getMessage()));
     }
+
+    @ExceptionHandler(DuplicateProductNameException.class)
+    public ResponseEntity<ApiResponse<Void>> handleDuplicateProductNameException(DuplicateProductNameException exception) {
+        return ResponseEntity.status(HttpStatus.CONFLICT)
+                .body(ApiResponse.fail(exception.getMessage()));
+    }
 }
