@@ -1,4 +1,4 @@
-package com.naengpa.naengpamasterbackend.recipe.dto.response;
+package com.naengpa.naengpamasterbackend.admin.dto.response;
 
 import com.naengpa.naengpamasterbackend.recipe.entity.Recipe;
 import com.naengpa.naengpamasterbackend.recipe.repository.IngredientView;
