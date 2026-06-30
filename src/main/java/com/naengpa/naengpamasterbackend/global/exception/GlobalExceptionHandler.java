@@ -106,6 +106,9 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(ProductNotFoundException.class)
     public ResponseEntity<ApiResponse<Void>> handleProductNotFoundException(ProductNotFoundException exception) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(ApiResponse.fail(exception.getMessage()));
+    }
 
     @ExceptionHandler(CommentNotFoundException.class)
     public ResponseEntity<ApiResponse<Void>> handleCommentNotFoundException(CommentNotFoundException exception) {
@@ -116,6 +119,8 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(FoodCategoryNotFoundException.class)
     public ResponseEntity<ApiResponse<Void>> handleFoodCategoryNotFoundException(FoodCategoryNotFoundException exception) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(ApiResponse.fail(exception.getMessage()));
+    }
 
     @ExceptionHandler(CommentAccessDeniedException.class)
     public ResponseEntity<ApiResponse<Void>> handleCommentAccessDeniedException(CommentAccessDeniedException exception) {
