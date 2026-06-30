@@ -31,10 +31,12 @@ public class CommentController {
     @GetMapping("/api/v1/recipes/{recipeId}/comments")
     public ResponseEntity<ApiResponse<CommentListResponse>> getComments(
             @PathVariable Long recipeId,
-            @PageableDefault(size = 10, sort = "createdAt", direction = Sort.Direction.ASC) Pageable pageable
+            @PageableDefault(size = 10, sort = "createdAt", direction = Sort.Direction.ASC) Pageable pageable,
+            Authentication authentication
     ) {
+        String email = authentication == null ? null : authentication.getName();
         return ResponseEntity.ok(
-                ApiResponse.success("댓글 목록 조회 성공", commentService.getComments(recipeId, pageable))
+                ApiResponse.success("댓글 목록 조회 성공", commentService.getComments(recipeId, pageable, email))
         );
     }
 

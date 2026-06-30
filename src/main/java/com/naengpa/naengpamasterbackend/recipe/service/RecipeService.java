@@ -2,6 +2,7 @@ package com.naengpa.naengpamasterbackend.recipe.service;
 
 import com.naengpa.naengpamasterbackend.global.exception.RecipeNotFoundException;
 import com.naengpa.naengpamasterbackend.member.entity.Member;
+import com.naengpa.naengpamasterbackend.member.entity.MemberRole;
 import com.naengpa.naengpamasterbackend.member.repository.MemberRepository;
 import com.naengpa.naengpamasterbackend.product.entity.Product;
 import com.naengpa.naengpamasterbackend.product.repository.ProductRepository;
@@ -41,7 +42,10 @@ public class RecipeService {
         Recipe recipe = recipeRepository.findByRecipeIdAndDeletedFalse(recipeId)
                 .orElseThrow(RecipeNotFoundException::new);
 
-        Long memberId = resolveMemberId(email);
+        Member member = resolveMember(email);
+        Long memberId = member == null ? null : member.getId();
+        boolean canManage = member != null
+                && (recipe.isOwnedBy(memberId) || member.getRole() == MemberRole.ADMIN);
 
         long likeCount = recipeFavoriteRepository.countByRecipeId(recipeId);
         Boolean liked = memberId == null
@@ -92,18 +96,17 @@ public class RecipeService {
                 recipe.getDifficulty().name(),
                 likeCount,
                 liked,
+                canManage,
                 ingredients,
                 missingIngredients,
                 steps
         );
     }
 
-    private Long resolveMemberId(String email) {
+    private Member resolveMember(String email) {
         if (!StringUtils.hasText(email)) {
             return null;
         }
-        return memberRepository.findByEmail(email)
-                .map(Member::getId)
-                .orElse(null);
+        return memberRepository.findByEmail(email).orElse(null);
     }
 }
