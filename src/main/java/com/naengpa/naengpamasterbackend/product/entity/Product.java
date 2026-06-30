@@ -50,5 +50,17 @@ public class Product {
         product.createdAt = LocalDateTime.now();
         return product;
     }
+
+    //관리자 사전 재료 수정
+    public void update(
+            Long productCategoryId,
+            String name,
+            Integer defaultExpiryDays
+    ){
+        this.productCategoryId = productCategoryId;
+        this.name = name;
+        this.defaultExpiryDays = defaultExpiryDays;
+        this.updatedAt = LocalDateTime.now();
+    }
 }
 

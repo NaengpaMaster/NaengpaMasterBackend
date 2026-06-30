@@ -1,9 +1,11 @@
 package com.naengpa.naengpamasterbackend.admin;
 
 import com.naengpa.naengpamasterbackend.admin.dto.request.AdminProductCreateRequest;
+import com.naengpa.naengpamasterbackend.admin.dto.request.AdminProductUpdateRequest;
 import com.naengpa.naengpamasterbackend.admin.dto.response.AdminProductResponse;
 import com.naengpa.naengpamasterbackend.admin.service.AdminProductService;
 import com.naengpa.naengpamasterbackend.global.exception.DuplicateProductNameException;
+import com.naengpa.naengpamasterbackend.product.exception.ProductNotFoundException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -125,6 +127,88 @@ class AdminProductServiceTests {
 
         // when
         Throwable thrown = catchThrowable(() -> adminProductService.createProduct(request));
+
+        // then
+        assertThat(thrown).isInstanceOf(DuplicateProductNameException.class);
+    }
+
+    @Test
+    @DisplayName("사전 재료 수정 시 AdminProductResponse를 반환")
+    void updateProduct_returnsAdminProductResponse() {
+        // given
+        String originalName = "수정전재료" + System.nanoTime();
+        String updatedName = "수정후재료" + System.nanoTime();
+
+        AdminProductCreateRequest createRequest = new AdminProductCreateRequest(
+                1L,
+                originalName,
+                3
+        );
+
+        AdminProductResponse created = adminProductService.createProduct(createRequest);
+
+        AdminProductUpdateRequest updateRequest = new AdminProductUpdateRequest(
+                1L,
+                updatedName,
+                5
+        );
+
+        // when
+        AdminProductResponse result = adminProductService.updateProduct(
+                created.productId(),
+                updateRequest
+        );
+
+        // then
+        assertThat(result.productId()).isEqualTo(created.productId());
+        assertThat(result.productCategoryId()).isEqualTo(1L);
+        assertThat(result.name()).isEqualTo(updatedName);
+        assertThat(result.defaultExpiryDays()).isEqualTo(5);
+        assertThat(result.isActive()).isTrue();
+    }
+
+    @Test
+    @DisplayName("없는 사전 재료 수정 시 ProductNotFoundException 발생")
+    void updateProduct_throwsProductNotFoundExceptionWhenProductNotFound() {
+        // given
+        Long productId = 999999999L;
+
+        AdminProductUpdateRequest request = new AdminProductUpdateRequest(
+                1L,
+                "없는재료수정",
+                5
+        );
+
+        // when
+        Throwable thrown = catchThrowable(() -> adminProductService.updateProduct(productId, request));
+
+        // then
+        assertThat(thrown).isInstanceOf(ProductNotFoundException.class);
+    }
+
+    @Test
+    @DisplayName("다른 사전 재료가 사용 중인 이름으로 수정 시 DuplicateProductNameException 발생")
+    void updateProduct_throwsDuplicateProductNameExceptionWhenNameDuplicated() {
+        // given
+        String firstName = "첫번째재료" + System.nanoTime();
+        String secondName = "두번째재료" + System.nanoTime();
+
+        AdminProductResponse first = adminProductService.createProduct(
+                new AdminProductCreateRequest(1L, firstName, 3)
+        );
+
+        AdminProductResponse second = adminProductService.createProduct(
+                new AdminProductCreateRequest(1L, secondName, 3)
+        );
+
+        AdminProductUpdateRequest request = new AdminProductUpdateRequest(
+                1L,
+                second.name(),
+                5
+        );
+
+        // when
+        Throwable thrown = catchThrowable(() -> adminProductService.updateProduct(first.productId(), request));
 
         // then
         assertThat(thrown).isInstanceOf(DuplicateProductNameException.class);

@@ -1,6 +1,7 @@
 package com.naengpa.naengpamasterbackend.admin.controller;
 
 import com.naengpa.naengpamasterbackend.admin.dto.request.AdminProductCreateRequest;
+import com.naengpa.naengpamasterbackend.admin.dto.request.AdminProductUpdateRequest;
 import com.naengpa.naengpamasterbackend.admin.dto.response.AdminProductResponse;
 import com.naengpa.naengpamasterbackend.admin.service.AdminProductService;
 import com.naengpa.naengpamasterbackend.global.response.ApiResponse;
@@ -39,6 +40,17 @@ public class AdminProductController {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(ApiResponse.success(
                         "사전 재료가 등록되었습니다.", adminProductService.createProduct(request)
+                ));
+    }
+
+    //어드민 재료 수정
+    @PatchMapping("/{productId}")
+    public ResponseEntity<ApiResponse<AdminProductResponse>> updateProduct(
+            @PathVariable Long productId,
+            @Valid  @RequestBody AdminProductUpdateRequest request
+    ) {
+        return ResponseEntity.ok(ApiResponse.success(
+                        "사전 재료가 수정되었습니다.", adminProductService.updateProduct(productId, request)
                 ));
     }
 
