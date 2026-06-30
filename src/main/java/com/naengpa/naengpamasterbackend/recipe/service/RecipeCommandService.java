@@ -59,24 +59,8 @@ public class RecipeCommandService {
         );
         Long recipeId = recipe.getRecipeId();
 
-        List<RecipeRequiredProduct> products = request.productIds().stream()
-                .distinct()
-                .map(productId -> RecipeRequiredProduct.builder()
-                        .recipeId(recipeId)
-                        .productId(productId)
-                        .build())
-                .toList();
-        recipeRequiredProductRepository.saveAll(products);
-
-        List<String> stepContents = request.steps();
-        List<RecipeStep> steps = IntStream.range(0, stepContents.size())
-                .mapToObj(i -> RecipeStep.builder()
-                        .recipeId(recipeId)
-                        .stepNo(i + 1)
-                        .content(stepContents.get(i))
-                        .build())
-                .toList();
-        recipeStepRepository.saveAll(steps);
+        saveProducts(recipeId, request.productIds());
+        saveSteps(recipeId, request.steps());
 
         return new RecipeCreateResponse(recipeId);
     }
@@ -96,6 +80,33 @@ public class RecipeCommandService {
 
         recipe.update(category, foodCategory, request.name(), request.description(),
                 request.cookingTime(), request.difficulty());
+
+        recipeRequiredProductRepository.deleteByRecipeId(recipeId);
+        recipeStepRepository.deleteByRecipeId(recipeId);
+        saveProducts(recipeId, request.productIds());
+        saveSteps(recipeId, request.steps());
+    }
+
+    private void saveProducts(Long recipeId, List<Long> productIds) {
+        List<RecipeRequiredProduct> products = productIds.stream()
+                .distinct()
+                .map(productId -> RecipeRequiredProduct.builder()
+                        .recipeId(recipeId)
+                        .productId(productId)
+                        .build())
+                .toList();
+        recipeRequiredProductRepository.saveAll(products);
+    }
+
+    private void saveSteps(Long recipeId, List<String> stepContents) {
+        List<RecipeStep> steps = IntStream.range(0, stepContents.size())
+                .mapToObj(i -> RecipeStep.builder()
+                        .recipeId(recipeId)
+                        .stepNo(i + 1)
+                        .content(stepContents.get(i))
+                        .build())
+                .toList();
+        recipeStepRepository.saveAll(steps);
     }
 
     private FoodCategory resolveFoodCategory(Long foodCategoryId) {
