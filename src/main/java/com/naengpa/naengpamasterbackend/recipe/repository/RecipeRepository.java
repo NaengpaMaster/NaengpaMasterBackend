@@ -14,19 +14,33 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
 
     Optional<Recipe> findByRecipeIdAndDeletedFalse(Long recipeId);
 
-    @Query("""
-            SELECT r FROM Recipe r
+    @Query(value = """
+            SELECT r
+            FROM Recipe r
             JOIN FETCH r.category
             LEFT JOIN FETCH r.foodCategory
             WHERE r.deleted = false
-              AND (:keyword IS NULL
-                   OR r.name LIKE CONCAT('%', :keyword, '%')
-                   OR EXISTS (SELECT 1 FROM RecipeRequiredProduct rrp
-                              JOIN Product p ON p.productId = rrp.productId
-                              WHERE rrp.recipeId = r.recipeId
-                                AND p.name LIKE CONCAT('%', :keyword, '%')))
             """)
-    List<Recipe> findRecommendationCandidates(@Param("keyword") String keyword);
+    List<Recipe> findRecommendationCandidates();
+
+    @Query(value = """
+            SELECT r
+            FROM Recipe r
+            JOIN FETCH r.category
+            LEFT JOIN FETCH r.foodCategory
+            WHERE r.deleted = false
+            AND (
+                LOWER(r.name) LIKE LOWER(CONCAT('%', :keyword, '%'))
+                OR EXISTS (
+                            SELECT 1
+                            FROM RecipeRequiredProduct rrp
+                            JOIN Product p ON p.productId = rrp.productId
+                            WHERE rrp.recipeId = r.recipeId
+                            AND LOWER(p.name) LIKE LOWER(CONCAT('%', :keyword, '%'))
+                            )
+                )
+            """)
+    List<Recipe> searchRecommendationCandidates(@Param("keyword") String keyword);
 
     @Query(value = """
             SELECT r.recipeId AS recipeId,

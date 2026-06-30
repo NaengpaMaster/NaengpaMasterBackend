@@ -16,4 +16,8 @@ public interface RecipeFavoriteRepository extends JpaRepository<RecipeFavorite, 
 
     @Query("SELECT rf.recipeId FROM RecipeFavorite rf WHERE rf.memberId = :memberId")
     List<Long> findRecipeIdsByMemberId(Long memberId);
+
+    @Query("SELECT rf.recipeId AS recipeId, COUNT(rf) AS likeCount FROM RecipeFavorite rf "
+            + "WHERE rf.recipeId IN :recipeIds GROUP BY rf.recipeId")
+    List<RecipeLikeCountProjection> countByRecipeIdIn(List<Long> recipeIds);
 }

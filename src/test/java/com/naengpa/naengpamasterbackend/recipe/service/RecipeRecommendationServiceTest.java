@@ -112,7 +112,7 @@ class RecipeRecommendationServiceTest {
                 List.of(required(15L, 10L), required(15L, 20L), required(15L, 30L));
         List<FridgeItem> fridge = List.of(fridgeItem(10L, null), fridgeItem(20L, null));
         List<Product> products = List.of(product(10L, "김치"), product(20L, "밥"), product(30L, "대파"));
-        given(recipeRepository.findRecommendationCandidates(null)).willReturn(List.of(recipe));
+        given(recipeRepository.findRecommendationCandidates()).willReturn(List.of(recipe));
         given(recipeRequiredProductRepository.findByRecipeIdIn(List.of(15L))).willReturn(required);
         given(fridgeItemRepository.findByMemberIdAndIsDeletedFalse(1L)).willReturn(fridge);
         given(productRepository.findByProductIdInAndIsActiveTrue(anyList())).willReturn(products);
@@ -142,7 +142,7 @@ class RecipeRecommendationServiceTest {
 
         Recipe recipe = recipe(15L, "김치볶음밥", "한식", LocalDateTime.now());
         List<RecipeRequiredProduct> required = List.of(required(15L, 10L), required(15L, 30L));
-        given(recipeRepository.findRecommendationCandidates(null)).willReturn(List.of(recipe));
+        given(recipeRepository.findRecommendationCandidates()).willReturn(List.of(recipe));
         given(recipeRequiredProductRepository.findByRecipeIdIn(List.of(15L))).willReturn(required);
         given(fridgeItemRepository.findByMemberIdAndIsDeletedFalse(1L)).willReturn(List.of());
 
@@ -163,7 +163,7 @@ class RecipeRecommendationServiceTest {
                 required(2L, 10L), required(2L, 30L));
         List<FridgeItem> fridge = List.of(fridgeItem(10L, null), fridgeItem(20L, null));
         List<Product> products = List.of(product(10L, "김치"), product(20L, "밥"), product(30L, "대파"));
-        given(recipeRepository.findRecommendationCandidates(null)).willReturn(List.of(low, high));
+        given(recipeRepository.findRecommendationCandidates()).willReturn(List.of(low, high));
         given(recipeRequiredProductRepository.findByRecipeIdIn(anyList())).willReturn(required);
         given(fridgeItemRepository.findByMemberIdAndIsDeletedFalse(1L)).willReturn(fridge);
         given(productRepository.findByProductIdInAndIsActiveTrue(anyList())).willReturn(products);
@@ -180,7 +180,7 @@ class RecipeRecommendationServiceTest {
     @DisplayName("추천 가능한 레시피가 없으면 RecipeNotFoundException 을 던진다")
     void recommend_throwsWhenEmpty() {
         givenMember(1L);
-        given(recipeRepository.findRecommendationCandidates(null)).willReturn(List.of());
+        given(recipeRepository.findRecommendationCandidates()).willReturn(List.of());
 
         assertThatThrownBy(() -> recipeRecommendationService.recommend(EMAIL, null, false, false, 0, 10))
                 .isInstanceOf(RecipeNotFoundException.class);
@@ -195,7 +195,7 @@ class RecipeRecommendationServiceTest {
         List<RecipeRequiredProduct> required = List.of(required(1L, 10L), required(2L, 10L));
         List<FridgeItem> fridge = List.of(fridgeItem(10L, null));
         List<Product> products = List.of(product(10L, "김치"));
-        given(recipeRepository.findRecommendationCandidates(null)).willReturn(List.of(favorited, other));
+        given(recipeRepository.findRecommendationCandidates()).willReturn(List.of(favorited, other));
         given(recipeFavoriteRepository.findRecipeIdsByMemberId(1L)).willReturn(List.of(1L));
         given(recipeRequiredProductRepository.findByRecipeIdIn(List.of(1L))).willReturn(required);
         given(fridgeItemRepository.findByMemberIdAndIsDeletedFalse(1L)).willReturn(fridge);
@@ -218,7 +218,7 @@ class RecipeRecommendationServiceTest {
                 required(2L, 10L), required(2L, 30L));
         List<FridgeItem> fridge = List.of(fridgeItem(10L, null));
         List<Product> products = List.of(product(10L, "김치"), product(30L, "대파"));
-        given(recipeRepository.findRecommendationCandidates(null)).willReturn(List.of(full, half));
+        given(recipeRepository.findRecommendationCandidates()).willReturn(List.of(full, half));
         given(recipeRequiredProductRepository.findByRecipeIdIn(anyList())).willReturn(required);
         given(fridgeItemRepository.findByMemberIdAndIsDeletedFalse(1L)).willReturn(fridge);
         given(productRepository.findByProductIdInAndIsActiveTrue(anyList())).willReturn(products);
@@ -251,7 +251,7 @@ class RecipeRecommendationServiceTest {
         List<RecipeRequiredProduct> required = List.of(required(15L, 10L));
         List<FridgeItem> fridge = List.of(fridgeItem(10L, null));
         List<Product> products = List.of(product(10L, "김치"));
-        given(recipeRepository.findRecommendationCandidates(null)).willReturn(List.of(recipe));
+        given(recipeRepository.findRecommendationCandidates()).willReturn(List.of(recipe));
         given(recipeRequiredProductRepository.findByRecipeIdIn(List.of(15L))).willReturn(required);
         given(fridgeItemRepository.findByMemberIdAndIsDeletedFalse(1L)).willReturn(fridge);
         given(productRepository.findByProductIdInAndIsActiveTrue(anyList())).willReturn(products);

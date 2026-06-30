@@ -17,6 +17,7 @@ import com.naengpa.naengpamasterbackend.recipe.dto.response.RecipeRecommendation
 import com.naengpa.naengpamasterbackend.recipe.entity.Recipe;
 import com.naengpa.naengpamasterbackend.recipe.entity.RecipeRequiredProduct;
 import com.naengpa.naengpamasterbackend.recipe.repository.RecipeFavoriteRepository;
+import com.naengpa.naengpamasterbackend.recipe.repository.RecipeLikeCountProjection;
 import com.naengpa.naengpamasterbackend.recipe.repository.RecipeRepository;
 import com.naengpa.naengpamasterbackend.recipe.repository.RecipeRequiredProductRepository;
 import lombok.RequiredArgsConstructor;
@@ -61,12 +62,17 @@ public class RecipeRecommendationService {
 
         MemberContext context = loadMemberContext(member);
 
-        List<Recipe> candidates = recipeRepository.findRecommendationCandidates(
-                StringUtils.hasText(keyword) ? keyword : null
-        );
+        List<Recipe> candidates;
+
+        if (StringUtils.hasText(keyword)) {
+            candidates = recipeRepository.searchRecommendationCandidates(keyword);
+        } else {
+            candidates = recipeRepository.findRecommendationCandidates();
+        }
+
+        Set<Long> favoriteRecipeIds = Set.copyOf(recipeFavoriteRepository.findRecipeIdsByMemberId(member.getId()));
 
         if (favoriteOnly) {
-            Set<Long> favoriteRecipeIds = Set.copyOf(recipeFavoriteRepository.findRecipeIdsByMemberId(member.getId()));
             candidates = candidates.stream()
                     .filter(recipe -> favoriteRecipeIds.contains(recipe.getRecipeId()))
                     .toList();
@@ -74,10 +80,12 @@ public class RecipeRecommendationService {
 
         Map<Long, List<RecipeRequiredProduct>> requiredByRecipe = loadRequiredProducts(candidates);
         Map<Long, String> productNames = loadProductNames(requiredByRecipe.values());
+        Map<Long, Long> likeCounts = loadLikeCounts(candidates);
 
         List<RecipeRecommendationResponse> scored = candidates.stream()
                 .map(recipe -> score(recipe, requiredByRecipe.getOrDefault(recipe.getRecipeId(), List.of()),
-                        productNames, context))
+                        productNames, context, likeCounts.getOrDefault(recipe.getRecipeId(), 0L),
+                        favoriteRecipeIds.contains(recipe.getRecipeId())))
                 .filter(java.util.Objects::nonNull)
                 .filter(scoredRecipe -> !match80Only || scoredRecipe.response().matchRate() >= HIGH_MATCH_RATE)
                 .sorted(Comparator
@@ -142,8 +150,17 @@ public class RecipeRecommendationService {
                 .collect(Collectors.toMap(Product::getProductId, Product::getName));
     }
 
+    private Map<Long, Long> loadLikeCounts(List<Recipe> candidates) {
+        if (candidates.isEmpty()) {
+            return Map.of();
+        }
+        List<Long> recipeIds = candidates.stream().map(Recipe::getRecipeId).toList();
+        return recipeFavoriteRepository.countByRecipeIdIn(recipeIds).stream()
+                .collect(Collectors.toMap(RecipeLikeCountProjection::getRecipeId, RecipeLikeCountProjection::getLikeCount));
+    }
+
     private ScoredRecipe score(Recipe recipe, List<RecipeRequiredProduct> required,
-                               Map<Long, String> productNames, MemberContext context) {
+                               Map<Long, String> productNames, MemberContext context, long likeCount, boolean liked) {
         List<Long> requiredProductIds = required.stream()
                 .map(RecipeRequiredProduct::getProductId)
                 .toList();
@@ -190,6 +207,8 @@ public class RecipeRecommendationService {
                 recipe.getDifficulty().getLabel(),
                 recipe.getCookingTime(),
                 matchRate,
+                likeCount,
+                liked,
                 missingIngredients,
                 reasons,
                 List.of()
