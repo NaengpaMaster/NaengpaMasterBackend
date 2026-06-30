@@ -16,6 +16,8 @@ import com.naengpa.naengpamasterbackend.recipe.repository.RecipeFavoriteReposito
 import com.naengpa.naengpamasterbackend.recipe.repository.RecipeRepository;
 import com.naengpa.naengpamasterbackend.recipe.repository.RecipeRequiredProductRepository;
 import com.naengpa.naengpamasterbackend.recipe.repository.RecipeStepRepository;
+import com.naengpa.naengpamasterbackend.score.entity.ScoreReason;
+import com.naengpa.naengpamasterbackend.score.service.ScoreService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -30,12 +32,16 @@ import java.util.stream.IntStream;
 @Transactional
 public class RecipeCommandService {
 
+    private static final String SCORE_TARGET_TYPE_RECIPE = "RECIPE";
+    private static final int RECIPE_CREATED_SCORE = 3;
+
     private final RecipeRepository recipeRepository;
     private final RecipeCategoryRepository recipeCategoryRepository;
     private final RecipeRequiredProductRepository recipeRequiredProductRepository;
     private final RecipeStepRepository recipeStepRepository;
     private final RecipeFavoriteRepository recipeFavoriteRepository;
     private final MemberRepository memberRepository;
+    private final ScoreService scoreService;
 
     public RecipeCreateResponse createRecipe(String email, RecipeCreateRequest request) {
         Long memberId = resolveMemberId(email);
@@ -72,6 +78,9 @@ public class RecipeCommandService {
                         .build())
                 .toList();
         recipeStepRepository.saveAll(steps);
+
+        scoreService.addScore(memberId, ScoreReason.RECIPE_CREATED,
+                SCORE_TARGET_TYPE_RECIPE, recipeId, RECIPE_CREATED_SCORE);
 
         return new RecipeCreateResponse(recipeId);
     }
