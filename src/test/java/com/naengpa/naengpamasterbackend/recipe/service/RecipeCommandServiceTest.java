@@ -2,14 +2,19 @@ package com.naengpa.naengpamasterbackend.recipe.service;
 
 import com.naengpa.naengpamasterbackend.member.entity.Member;
 import com.naengpa.naengpamasterbackend.member.repository.MemberRepository;
+import com.naengpa.naengpamasterbackend.recipe.dto.request.RecipeCreateRequest;
 import com.naengpa.naengpamasterbackend.recipe.dto.request.RecipeUpdateRequest;
+import com.naengpa.naengpamasterbackend.recipe.dto.response.RecipeCreateResponse;
 import com.naengpa.naengpamasterbackend.recipe.entity.Difficulty;
 import com.naengpa.naengpamasterbackend.recipe.entity.Recipe;
 import com.naengpa.naengpamasterbackend.recipe.entity.RecipeCategory;
 import com.naengpa.naengpamasterbackend.recipe.repository.RecipeCategoryRepository;
+import com.naengpa.naengpamasterbackend.recipe.repository.RecipeFavoriteRepository;
 import com.naengpa.naengpamasterbackend.recipe.repository.RecipeRepository;
 import com.naengpa.naengpamasterbackend.recipe.repository.RecipeRequiredProductRepository;
 import com.naengpa.naengpamasterbackend.recipe.repository.RecipeStepRepository;
+import com.naengpa.naengpamasterbackend.score.entity.ScoreReason;
+import com.naengpa.naengpamasterbackend.score.service.ScoreService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -21,11 +26,14 @@ import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)
@@ -35,7 +43,9 @@ class RecipeCommandServiceTest {
     @Mock RecipeCategoryRepository recipeCategoryRepository;
     @Mock RecipeRequiredProductRepository recipeRequiredProductRepository;
     @Mock RecipeStepRepository recipeStepRepository;
+    @Mock RecipeFavoriteRepository recipeFavoriteRepository;
     @Mock MemberRepository memberRepository;
+    @Mock ScoreService scoreService;
 
     @InjectMocks
     RecipeCommandService recipeCommandService;
@@ -122,5 +132,46 @@ class RecipeCommandServiceTest {
         assertThatThrownBy(() -> recipeCommandService.deleteRecipe(1L, "other@test.com", false))
                 .isInstanceOf(ResponseStatusException.class)
                 .hasMessageContaining("403");
+    }
+
+    private static final RecipeCreateRequest CREATE_REQUEST = new RecipeCreateRequest(
+            "김치찌개", "맛있는 찌개", 30, Difficulty.NORMAL, 2L,
+            List.of(10L, 11L), List.of("재료 손질", "끓이기"));
+
+    private void givenRecipeSavedWithId(Long recipeId) {
+        Recipe saved = Mockito.mock(Recipe.class);
+        given(saved.getRecipeId()).willReturn(recipeId);
+        given(recipeRepository.save(Mockito.any(Recipe.class))).willReturn(saved);
+        given(recipeCategoryRepository.findById(2L))
+                .willReturn(Optional.of(Mockito.mock(RecipeCategory.class)));
+    }
+
+    @Test
+    @DisplayName("레시피 등록 시 RECIPE_CREATED 사유로 냉파 점수 +3이 가산된다")
+    void createRecipe_addsScore() {
+        givenMember("writer@test.com", 7L);
+        givenRecipeSavedWithId(100L);
+
+        RecipeCreateResponse response = recipeCommandService.createRecipe("writer@test.com", CREATE_REQUEST);
+
+        assertThat(response.recipeId()).isEqualTo(100L);
+        verify(scoreService).addScore(7L, ScoreReason.RECIPE_CREATED, "RECIPE", 100L, 3);
+    }
+
+    @Test
+    @DisplayName("점수 가산은 레시피/재료/단계 저장 이후 호출된다")
+    void createRecipe_addsScoreAfterPersist() {
+        givenMember("writer@test.com", 7L);
+        givenRecipeSavedWithId(100L);
+
+        recipeCommandService.createRecipe("writer@test.com", CREATE_REQUEST);
+
+        var inOrder = Mockito.inOrder(recipeRepository, recipeRequiredProductRepository,
+                recipeStepRepository, scoreService);
+        inOrder.verify(recipeRepository).save(Mockito.any(Recipe.class));
+        inOrder.verify(recipeRequiredProductRepository).saveAll(anyList());
+        inOrder.verify(recipeStepRepository).saveAll(anyList());
+        inOrder.verify(scoreService).addScore(7L, ScoreReason.RECIPE_CREATED, "RECIPE", 100L, 3);
+
     }
 }
