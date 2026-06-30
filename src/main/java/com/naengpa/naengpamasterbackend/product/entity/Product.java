@@ -62,5 +62,17 @@ public class Product {
         this.defaultExpiryDays = defaultExpiryDays;
         this.updatedAt = LocalDateTime.now();
     }
+
+    // 관리자 사전 재료 비활성화
+    public void deactivate() {
+        this.isActive = false;
+        this.updatedAt = LocalDateTime.now();
+    }
+
+    // 관리자 사전 재료 재활성화
+    public void activate() {
+        this.isActive = true;
+        this.updatedAt = LocalDateTime.now();
+    }
 }
 

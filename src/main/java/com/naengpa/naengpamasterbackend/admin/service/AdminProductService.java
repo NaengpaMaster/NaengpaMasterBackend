@@ -76,5 +76,27 @@ public class AdminProductService {
         return AdminProductResponse.from(product);
     }
 
+    // 어드민 사전 재료 비활성화
+    @Transactional
+    public AdminProductResponse deactivateProduct(Long productId) {
+        Product product = adminProductRepository.findById(productId)
+                .orElseThrow(() -> new ProductNotFoundException(productId));
+
+        product.deactivate();
+
+        return AdminProductResponse.from(product);
+    }
+
+    // 어드민 사전 재료 재활성화
+    @Transactional
+    public AdminProductResponse activateProduct(Long productId) {
+        Product product = adminProductRepository.findById(productId)
+                .orElseThrow(() -> new ProductNotFoundException(productId));
+
+        product.activate();
+
+        return AdminProductResponse.from(product);
+    }
+
 
 }

@@ -214,4 +214,55 @@ class AdminProductServiceTests {
         assertThat(thrown).isInstanceOf(DuplicateProductNameException.class);
     }
 
+    @Test
+    @DisplayName("사전 재료 비활성화 시 isActive가 false로 변경")
+    void deactivateProduct_changesIsActiveFalse() {
+        // given
+        String name = "비활성화재료" + System.nanoTime();
+
+        AdminProductResponse created = adminProductService.createProduct(
+                new AdminProductCreateRequest(1L, name, 3)
+        );
+
+        // when
+        AdminProductResponse result = adminProductService.deactivateProduct(created.productId());
+
+        // then
+        assertThat(result.productId()).isEqualTo(created.productId());
+        assertThat(result.isActive()).isFalse();
+    }
+
+    @Test
+    @DisplayName("사전 재료 재활성화 시 isActive가 true로 변경")
+    void activateProduct_changesIsActiveTrue() {
+        // given
+        String name = "재활성화재료" + System.nanoTime();
+
+        AdminProductResponse created = adminProductService.createProduct(
+                new AdminProductCreateRequest(1L, name, 3)
+        );
+
+        adminProductService.deactivateProduct(created.productId());
+
+        // when
+        AdminProductResponse result = adminProductService.activateProduct(created.productId());
+
+        // then
+        assertThat(result.productId()).isEqualTo(created.productId());
+        assertThat(result.isActive()).isTrue();
+    }
+
+    @Test
+    @DisplayName("없는 사전 재료 비활성화 시 ProductNotFoundException 발생")
+    void deactivateProduct_throwsProductNotFoundExceptionWhenProductNotFound() {
+        // given
+        Long productId = 999999999L;
+
+        // when
+        Throwable thrown = catchThrowable(() -> adminProductService.deactivateProduct(productId));
+
+        // then
+        assertThat(thrown).isInstanceOf(ProductNotFoundException.class);
+    }
+
 }

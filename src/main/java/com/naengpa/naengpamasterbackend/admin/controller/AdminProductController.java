@@ -54,4 +54,26 @@ public class AdminProductController {
                 ));
     }
 
+    // 어드민 사전 재료 비활성화
+    @PatchMapping("/{productId}/deactivate")
+    public ResponseEntity<ApiResponse<AdminProductResponse>> deactivateProduct(
+            @PathVariable Long productId
+    ) {
+        return ResponseEntity.ok(ApiResponse.success(
+                "사전 재료가 비활성화되었습니다.",
+                adminProductService.deactivateProduct(productId)
+        ));
+    }
+
+    // 어드민 사전 재료 재활성화
+    @PatchMapping("/{productId}/activate")
+    public ResponseEntity<ApiResponse<AdminProductResponse>> activateProduct(
+            @PathVariable Long productId
+    ) {
+        return ResponseEntity.ok(ApiResponse.success(
+                "사전 재료가 재활성화되었습니다.",
+                adminProductService.activateProduct(productId)
+        ));
+    }
+
 }
