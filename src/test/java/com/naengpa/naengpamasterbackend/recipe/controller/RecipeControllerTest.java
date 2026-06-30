@@ -55,7 +55,7 @@ class RecipeControllerTest {
 
         String body = """
                 {"name":"김치찌개","description":"맛있다","cookingTime":30,
-                 "difficulty":"EASY","categoryId":2,"productIds":[1,2],"steps":["끓인다"]}
+                 "difficulty":"EASY","categoryId":2,"productIds":[1,2],"steps":["끓인다"], "foodCategoryId":1}
                 """;
 
         mockMvc.perform(post("/api/v1/recipes")
