@@ -6,14 +6,10 @@ import com.naengpa.naengpamasterbackend.recipe.dto.request.RecipeCreateRequest;
 import com.naengpa.naengpamasterbackend.recipe.dto.request.RecipeUpdateRequest;
 import com.naengpa.naengpamasterbackend.recipe.dto.response.RecipeCreateResponse;
 import com.naengpa.naengpamasterbackend.recipe.dto.response.RecipeLikeResponse;
-import com.naengpa.naengpamasterbackend.recipe.dto.response.RecipeListResponse;
 import com.naengpa.naengpamasterbackend.recipe.service.RecipeCommandService;
 import com.naengpa.naengpamasterbackend.recipe.service.RecipeService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -34,13 +30,6 @@ public class RecipeController {
 
     private final RecipeService recipeService;
     private final RecipeCommandService recipeCommandService;
-
-    @GetMapping
-    public ResponseEntity<ApiResponse<RecipeListResponse>> getRecipes(
-            @PageableDefault(size = 20, sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable
-    ) {
-        return ResponseEntity.ok(ApiResponse.success(recipeService.getRecipes(pageable)));
-    }
 
     @GetMapping("/{recipeId}")
     public ResponseEntity<ApiResponse<RecipeDetailResponse>> getRecipeDetail(

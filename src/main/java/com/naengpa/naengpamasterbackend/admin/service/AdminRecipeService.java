@@ -1,11 +1,13 @@
 package com.naengpa.naengpamasterbackend.admin.service;
 
 import com.naengpa.naengpamasterbackend.admin.dto.response.AdminRecipeDetailResponse;
+import com.naengpa.naengpamasterbackend.admin.dto.response.RecipeListResponse;
 import com.naengpa.naengpamasterbackend.recipe.entity.Recipe;
 import com.naengpa.naengpamasterbackend.recipe.repository.RecipeRepository;
 import com.naengpa.naengpamasterbackend.recipe.repository.RecipeRequiredProductRepository;
 import com.naengpa.naengpamasterbackend.recipe.repository.RecipeStepRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,6 +23,10 @@ public class AdminRecipeService {
     private final RecipeRepository recipeRepository;
     private final RecipeStepRepository recipeStepRepository;
     private final RecipeRequiredProductRepository recipeRequiredProductRepository;
+
+    public RecipeListResponse getRecipes(Pageable pageable) {
+        return RecipeListResponse.from(recipeRepository.findRecipeList(pageable));
+    }
 
     public AdminRecipeDetailResponse getRecipeDetail(Long recipeId) {
         Recipe recipe = recipeRepository.findByRecipeIdAndDeletedFalse(recipeId)
