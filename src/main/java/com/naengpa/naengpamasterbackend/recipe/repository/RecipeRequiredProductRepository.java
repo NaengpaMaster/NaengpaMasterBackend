@@ -20,4 +20,6 @@ public interface RecipeRequiredProductRepository extends JpaRepository<RecipeReq
 
     List<RecipeRequiredProduct> findByRecipeIdOrderByRecipeRequiredProductIdAsc(Long recipeId);
 
+    List<RecipeRequiredProduct> findByRecipeIdIn(List<Long> recipeIds);
+
 }

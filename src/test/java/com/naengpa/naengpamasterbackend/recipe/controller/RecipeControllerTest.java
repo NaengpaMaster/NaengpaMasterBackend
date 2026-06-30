@@ -2,6 +2,7 @@ package com.naengpa.naengpamasterbackend.recipe.controller;
 
 import com.naengpa.naengpamasterbackend.recipe.dto.response.RecipeCreateResponse;
 import com.naengpa.naengpamasterbackend.recipe.service.RecipeCommandService;
+import com.naengpa.naengpamasterbackend.recipe.service.RecipeRecommendationService;
 import com.naengpa.naengpamasterbackend.recipe.service.RecipeService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -43,6 +44,9 @@ class RecipeControllerTest {
 
     @MockitoBean
     RecipeCommandService recipeCommandService;
+
+    @MockitoBean
+    RecipeRecommendationService recipeRecommendationService;
 
     @Test
     @DisplayName("레시피 등록 - 201과 생성된 레시피 ID를 반환한다")
