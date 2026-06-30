@@ -1,7 +1,7 @@
-package com.naengpa.naengpamasterbackend.recipe.controller;
+package com.naengpa.naengpamasterbackend.admin.controller;
 
-import com.naengpa.naengpamasterbackend.recipe.dto.response.AdminRecipeDetailResponse;
-import com.naengpa.naengpamasterbackend.recipe.service.RecipeAdminService;
+import com.naengpa.naengpamasterbackend.admin.dto.response.AdminRecipeDetailResponse;
+import com.naengpa.naengpamasterbackend.admin.service.AdminRecipeService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,15 +20,15 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(RecipeAdminController.class)
+@WebMvcTest(AdminRecipeController.class)
 @AutoConfigureMockMvc(addFilters = false)
-class RecipeAdminControllerTest {
+class AdminRecipeControllerTest {
 
     @Autowired
     MockMvc mockMvc;
 
     @MockitoBean
-    RecipeAdminService recipeAdminService;
+    AdminRecipeService adminRecipeService;
 
     @Test
     @DisplayName("관리자 레시피 상세 조회 - 200과 상세 정보를 반환한다")
@@ -46,7 +46,7 @@ class RecipeAdminControllerTest {
                         new AdminRecipeDetailResponse.Step(4, "대파를 넣는다")
                 )
         );
-        given(recipeAdminService.getRecipeDetail(eq(101L))).willReturn(response);
+        given(adminRecipeService.getRecipeDetail(eq(101L))).willReturn(response);
 
         mockMvc.perform(get("/api/v1/admin/recipes/{recipeId}", 101L))
                 .andExpect(status().isOk())
@@ -70,7 +70,7 @@ class RecipeAdminControllerTest {
     @Test
     @DisplayName("관리자 레시피 상세 조회 - 존재하지 않거나 삭제된 레시피면 404를 반환한다")
     void getRecipeDetail_returns404_whenNotFound() throws Exception {
-        given(recipeAdminService.getRecipeDetail(eq(999L)))
+        given(adminRecipeService.getRecipeDetail(eq(999L)))
                 .willThrow(new ResponseStatusException(HttpStatus.NOT_FOUND, "레시피를 찾을 수 없습니다."));
 
         mockMvc.perform(get("/api/v1/admin/recipes/{recipeId}", 999L))

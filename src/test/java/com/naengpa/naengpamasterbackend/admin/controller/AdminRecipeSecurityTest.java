@@ -1,4 +1,4 @@
-package com.naengpa.naengpamasterbackend.recipe.controller;
+package com.naengpa.naengpamasterbackend.admin.controller;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,7 +14,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-class RecipeAdminSecurityTest {
+class AdminRecipeSecurityTest {
 
     @Autowired
     MockMvc mockMvc;
