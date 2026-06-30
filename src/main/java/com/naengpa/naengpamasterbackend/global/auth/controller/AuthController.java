@@ -2,6 +2,7 @@ package com.naengpa.naengpamasterbackend.global.auth.controller;
 
 import com.naengpa.naengpamasterbackend.global.auth.dto.LoginRequest;
 import com.naengpa.naengpamasterbackend.global.auth.dto.LogoutRequest;
+import com.naengpa.naengpamasterbackend.global.auth.dto.RefreshTokenRequest;
 import com.naengpa.naengpamasterbackend.global.auth.dto.TokenResponse;
 import com.naengpa.naengpamasterbackend.global.auth.service.AuthService;
 import com.naengpa.naengpamasterbackend.global.response.ApiResponse;
@@ -33,8 +34,13 @@ public class AuthController {
 
     @PostMapping("/refresh")
     public ResponseEntity<ApiResponse<TokenResponse>> refreshToken(
-            @CookieValue(name = "refreshToken", required = false) String refreshToken
+            @CookieValue(name = "refreshToken", required = false) String refreshTokenCookie,
+            @RequestBody(required = false) RefreshTokenRequest request
     ) {
+        String refreshToken = request == null || request.refreshToken() == null
+                ? refreshTokenCookie
+                : request.refreshToken();
+
         if (refreshToken == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body(ApiResponse.fail("리프레시 토큰이 없습니다."));

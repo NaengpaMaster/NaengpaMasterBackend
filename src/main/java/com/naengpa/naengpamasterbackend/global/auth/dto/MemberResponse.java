@@ -15,7 +15,7 @@ public record MemberResponse(
         MemberRole role,
         HouseholdType householdType,
         List<String> favoriteFoods,
-        List<String> avoidIngredients,
+        List<ProfileProductResponse> avoidIngredients,
         LocalDateTime createdAt,
         LocalDateTime updatedAt,
         LocalDateTime deletedAt,
@@ -23,14 +23,22 @@ public record MemberResponse(
 ) {
 
     public static MemberResponse from(Member member) {
+        return from(member, List.of(), List.of());
+    }
+
+    public static MemberResponse from(
+            Member member,
+            List<String> favoriteFoods,
+            List<ProfileProductResponse> avoidIngredients
+    ) {
         return new MemberResponse(
                 member.getId(),
                 member.getEmail(),
                 member.getNickname(),
                 member.getRole(),
                 member.getHouseholdType(),
-                List.of(),
-                List.of(),
+                favoriteFoods,
+                avoidIngredients,
                 member.getCreatedAt(),
                 member.getUpdatedAt(),
                 member.getDeletedAt(),
