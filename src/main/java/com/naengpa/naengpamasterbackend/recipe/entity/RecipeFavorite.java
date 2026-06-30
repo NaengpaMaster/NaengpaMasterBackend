@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -31,4 +32,16 @@ public class RecipeFavorite {
 
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
+
+    public static RecipeFavorite create(Long recipeId, Long memberId) {
+        RecipeFavorite favorite = new RecipeFavorite();
+        favorite.recipeId = recipeId;
+        favorite.memberId = memberId;
+        return favorite;
+    }
+
+    @PrePersist
+    void prePersist() {
+        createdAt = LocalDateTime.now();
+    }
 }
