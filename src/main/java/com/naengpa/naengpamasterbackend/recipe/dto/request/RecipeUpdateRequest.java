@@ -18,6 +18,8 @@ public record RecipeUpdateRequest(
         Difficulty difficulty,
 
         @NotNull(message = "카테고리를 선택해주세요.")
-        Long categoryId
+        Long categoryId,
+
+        Long foodCategoryId
 ) {
 }

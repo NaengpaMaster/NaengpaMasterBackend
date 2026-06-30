@@ -1,6 +1,8 @@
 package com.naengpa.naengpamasterbackend.recipe.service;
 
 import com.naengpa.naengpamasterbackend.global.exception.RecipeNotFoundException;
+import com.naengpa.naengpamasterbackend.member.entity.FoodCategory;
+import com.naengpa.naengpamasterbackend.member.repository.FoodCategoryRepository;
 import com.naengpa.naengpamasterbackend.member.repository.MemberRepository;
 import com.naengpa.naengpamasterbackend.recipe.dto.request.RecipeCreateRequest;
 import com.naengpa.naengpamasterbackend.recipe.dto.request.RecipeUpdateRequest;
@@ -32,6 +34,7 @@ public class RecipeCommandService {
 
     private final RecipeRepository recipeRepository;
     private final RecipeCategoryRepository recipeCategoryRepository;
+    private final FoodCategoryRepository foodCategoryRepository;
     private final RecipeRequiredProductRepository recipeRequiredProductRepository;
     private final RecipeStepRepository recipeStepRepository;
     private final RecipeFavoriteRepository recipeFavoriteRepository;
@@ -41,10 +44,12 @@ public class RecipeCommandService {
         Long memberId = resolveMemberId(email);
         RecipeCategory category = recipeCategoryRepository.findById(request.categoryId())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "존재하지 않는 카테고리입니다."));
+        FoodCategory foodCategory = resolveFoodCategory(request.foodCategoryId());
 
         Recipe recipe = recipeRepository.save(
                 Recipe.builder()
                         .category(category)
+                        .foodCategory(foodCategory)
                         .createdBy(memberId)
                         .name(request.name())
                         .description(request.description())
@@ -87,9 +92,18 @@ public class RecipeCommandService {
 
         RecipeCategory category = recipeCategoryRepository.findById(request.categoryId())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "존재하지 않는 카테고리입니다."));
+        FoodCategory foodCategory = resolveFoodCategory(request.foodCategoryId());
 
-        recipe.update(category, request.name(), request.description(),
+        recipe.update(category, foodCategory, request.name(), request.description(),
                 request.cookingTime(), request.difficulty());
+    }
+
+    private FoodCategory resolveFoodCategory(Long foodCategoryId) {
+        if (foodCategoryId == null) {
+            return null;
+        }
+        return foodCategoryRepository.findById(foodCategoryId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "존재하지 않는 음식 카테고리입니다."));
     }
 
     public void deleteRecipe(Long recipeId, String email, boolean isAdmin) {

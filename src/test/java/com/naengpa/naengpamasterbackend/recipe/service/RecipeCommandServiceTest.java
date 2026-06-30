@@ -33,6 +33,7 @@ class RecipeCommandServiceTest {
 
     @Mock RecipeRepository recipeRepository;
     @Mock RecipeCategoryRepository recipeCategoryRepository;
+    @Mock com.naengpa.naengpamasterbackend.member.repository.FoodCategoryRepository foodCategoryRepository;
     @Mock RecipeRequiredProductRepository recipeRequiredProductRepository;
     @Mock RecipeStepRepository recipeStepRepository;
     @Mock MemberRepository memberRepository;
@@ -41,7 +42,7 @@ class RecipeCommandServiceTest {
     RecipeCommandService recipeCommandService;
 
     private static final RecipeUpdateRequest REQUEST =
-            new RecipeUpdateRequest("새 이름", "설명", 20, Difficulty.NORMAL, 2L);
+            new RecipeUpdateRequest("새 이름", "설명", 20, Difficulty.NORMAL, 2L, null);
 
     private void givenMember(String email, Long memberId) {
         Member member = Mockito.mock(Member.class);
