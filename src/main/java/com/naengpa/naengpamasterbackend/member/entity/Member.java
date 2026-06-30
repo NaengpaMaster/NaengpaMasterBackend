@@ -193,4 +193,12 @@ public class Member {
     public void updateRole(MemberRole role) {
         this.role = role;
     }
+
+    public void updateHouseholdType(HouseholdType householdType) {
+        this.householdType = householdType == null ? HouseholdType.ETC : householdType;
+    }
+
+    public void updateNickname(String nickname) {
+        this.nickname = nickname;
+    }
 }

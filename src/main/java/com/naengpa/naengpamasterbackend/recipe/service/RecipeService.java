@@ -6,7 +6,6 @@ import com.naengpa.naengpamasterbackend.member.repository.MemberRepository;
 import com.naengpa.naengpamasterbackend.product.entity.Product;
 import com.naengpa.naengpamasterbackend.product.repository.ProductRepository;
 import com.naengpa.naengpamasterbackend.recipe.dto.response.RecipeDetailResponse;
-import com.naengpa.naengpamasterbackend.recipe.dto.response.RecipeListResponse;
 import com.naengpa.naengpamasterbackend.recipe.entity.Recipe;
 import com.naengpa.naengpamasterbackend.recipe.entity.RecipeRequiredProduct;
 import com.naengpa.naengpamasterbackend.recipe.entity.RecipeStep;
@@ -16,7 +15,6 @@ import com.naengpa.naengpamasterbackend.recipe.repository.RecipeRequiredProductR
 import com.naengpa.naengpamasterbackend.recipe.repository.RecipeStepRepository;
 import com.naengpa.naengpamasterbackend.fridge.repository.FridgeItemRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
@@ -38,10 +36,6 @@ public class RecipeService {
     private final ProductRepository productRepository;
     private final FridgeItemRepository fridgeItemRepository;
     private final MemberRepository memberRepository;
-
-    public RecipeListResponse getRecipes(Pageable pageable) {
-        return RecipeListResponse.from(recipeRepository.findRecipeList(pageable));
-    }
 
     public RecipeDetailResponse getRecipeDetail(Long recipeId, String email) {
         Recipe recipe = recipeRepository.findByRecipeIdAndDeletedFalse(recipeId)

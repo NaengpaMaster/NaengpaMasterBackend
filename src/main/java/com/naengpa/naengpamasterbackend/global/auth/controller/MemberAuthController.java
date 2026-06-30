@@ -2,6 +2,7 @@ package com.naengpa.naengpamasterbackend.global.auth.controller;
 
 import com.naengpa.naengpamasterbackend.global.auth.dto.EmailAvailabilityResponse;
 import com.naengpa.naengpamasterbackend.global.auth.dto.MemberResponse;
+import com.naengpa.naengpamasterbackend.global.auth.dto.ProfileUpdateRequest;
 import com.naengpa.naengpamasterbackend.global.auth.dto.SignUpRequest;
 import com.naengpa.naengpamasterbackend.global.auth.service.AuthService;
 import com.naengpa.naengpamasterbackend.global.exception.DuplicateEmailException;
@@ -13,6 +14,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,5 +53,13 @@ public class MemberAuthController {
     @GetMapping("/me/profile")
     public ResponseEntity<ApiResponse<MemberResponse>> profile(Authentication authentication) {
         return ResponseEntity.ok(ApiResponse.success(authService.getMember(authentication.getName())));
+    }
+
+    @PatchMapping("/me/profile")
+    public ResponseEntity<ApiResponse<MemberResponse>> updateProfile(
+            Authentication authentication,
+            @Valid @RequestBody ProfileUpdateRequest request
+    ) {
+        return ResponseEntity.ok(ApiResponse.success("프로필이 저장되었습니다.", authService.updateProfile(authentication.getName(), request)));
     }
 }
