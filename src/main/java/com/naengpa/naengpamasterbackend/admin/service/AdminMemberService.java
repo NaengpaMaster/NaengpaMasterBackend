@@ -4,6 +4,7 @@ import com.naengpa.naengpamasterbackend.admin.dto.request.AdminMemberRoleRequest
 import com.naengpa.naengpamasterbackend.admin.dto.request.AdminMemberStatusRequest;
 import com.naengpa.naengpamasterbackend.admin.dto.response.AdminMemberResponse;
 import com.naengpa.naengpamasterbackend.admin.repository.AdminMemberRepository;
+import com.naengpa.naengpamasterbackend.global.auth.repository.RefreshTokenRepository;
 import com.naengpa.naengpamasterbackend.global.exception.MemberNotFoundException;
 import com.naengpa.naengpamasterbackend.member.entity.Member;
 import com.naengpa.naengpamasterbackend.member.entity.MemberRole;
@@ -14,11 +15,14 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
+
 @Service
 @RequiredArgsConstructor
 public class AdminMemberService {
 
     private final AdminMemberRepository adminMemberRepository;
+    private final RefreshTokenRepository refreshTokenRepository;
 
     @Transactional(readOnly = true)
     public Page<AdminMemberResponse> getMembers(MemberRole role, MemberStatus status, String search, Pageable pageable) {
@@ -31,6 +35,10 @@ public class AdminMemberService {
         Member member = adminMemberRepository.findById(memberId)
                 .orElseThrow(MemberNotFoundException::new);
         member.updateStatus(request.status());
+        if (request.status() == MemberStatus.INACTIVE) {
+            refreshTokenRepository.findAllByMemberAndExpiredAtAfter(member, LocalDateTime.now())
+                    .forEach(refreshToken -> refreshToken.expireNow());
+        }
     }
 
     @Transactional
