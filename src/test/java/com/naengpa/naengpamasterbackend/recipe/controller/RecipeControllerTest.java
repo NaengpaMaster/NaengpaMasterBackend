@@ -116,7 +116,7 @@ class RecipeControllerTest {
         willDoNothing().given(recipeCommandService).updateRecipe(eq(1L), any(), anyBoolean(), any());
 
         String body = """
-                {"name":"수정","difficulty":"NORMAL","categoryId":2}
+                {"name":"수정","difficulty":"NORMAL","categoryId":2,"productIds":[1],"steps":["끓인다"]}
                 """;
 
         mockMvc.perform(patch("/api/v1/recipes/{recipeId}", 1L)
@@ -134,7 +134,7 @@ class RecipeControllerTest {
                 .given(recipeCommandService).updateRecipe(eq(1L), any(), anyBoolean(), any());
 
         String body = """
-                {"name":"수정","difficulty":"NORMAL","categoryId":2}
+                {"name":"수정","difficulty":"NORMAL","categoryId":2,"productIds":[1],"steps":["끓인다"]}
                 """;
 
         mockMvc.perform(patch("/api/v1/recipes/{recipeId}", 1L)

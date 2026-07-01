@@ -69,7 +69,7 @@ public class RecipeCommandService {
         saveSteps(recipeId, request.steps());
 
         scoreService.addScore(memberId, ScoreReason.RECIPE_CREATED,
-                SCORE_TARGET_TYPE_RECIPE, recipeId, RECIPE_CREATED_SCORE);
+                request.name(), recipeId, RECIPE_CREATED_SCORE);
 
         return new RecipeCreateResponse(recipeId);
     }

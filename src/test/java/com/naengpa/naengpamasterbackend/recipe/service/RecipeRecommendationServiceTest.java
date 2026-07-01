@@ -2,7 +2,6 @@ package com.naengpa.naengpamasterbackend.recipe.service;
 
 import com.naengpa.naengpamasterbackend.fridge.entity.FridgeItem;
 import com.naengpa.naengpamasterbackend.fridge.repository.FridgeItemRepository;
-import com.naengpa.naengpamasterbackend.global.exception.RecipeNotFoundException;
 import com.naengpa.naengpamasterbackend.global.response.PageResponse;
 import com.naengpa.naengpamasterbackend.member.entity.Member;
 import com.naengpa.naengpamasterbackend.member.repository.MemberExcludedProductRepository;
@@ -146,9 +145,11 @@ class RecipeRecommendationServiceTest {
         given(recipeRequiredProductRepository.findByRecipeIdIn(List.of(15L))).willReturn(required);
         given(fridgeItemRepository.findByMemberIdAndIsDeletedFalse(1L)).willReturn(List.of());
 
-        assertThatThrownBy(() -> recipeRecommendationService.recommend(EMAIL, null, false, false, 0, 10))
-                .isInstanceOf(RecipeNotFoundException.class)
-                .hasMessage("추천 가능한 레시피가 없습니다.");
+        PageResponse<RecipeRecommendationResponse> result =
+                recipeRecommendationService.recommend(EMAIL, null, false, false, 0, 10);
+
+        assertThat(result.totalElements()).isZero();
+        assertThat(result.content()).isEmpty();
     }
 
     @Test
@@ -177,13 +178,16 @@ class RecipeRecommendationServiceTest {
     }
 
     @Test
-    @DisplayName("추천 가능한 레시피가 없으면 RecipeNotFoundException 을 던진다")
-    void recommend_throwsWhenEmpty() {
+    @DisplayName("추천 가능한 레시피가 없으면 빈 목록을 반환한다")
+    void recommend_returnsEmptyWhenNoCandidates() {
         givenMember(1L);
         given(recipeRepository.findRecommendationCandidates()).willReturn(List.of());
 
-        assertThatThrownBy(() -> recipeRecommendationService.recommend(EMAIL, null, false, false, 0, 10))
-                .isInstanceOf(RecipeNotFoundException.class);
+        PageResponse<RecipeRecommendationResponse> result =
+                recipeRecommendationService.recommend(EMAIL, null, false, false, 0, 10);
+
+        assertThat(result.totalElements()).isZero();
+        assertThat(result.content()).isEmpty();
     }
 
     @Test
