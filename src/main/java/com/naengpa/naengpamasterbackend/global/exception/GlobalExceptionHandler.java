@@ -133,4 +133,16 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.FORBIDDEN)
                 .body(ApiResponse.fail(exception.getMessage()));
     }
+
+    @ExceptionHandler(InquiryNotFoundException.class)
+    public ResponseEntity<ApiResponse<Void>> handleInquiryNotFoundException(InquiryNotFoundException exception) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(ApiResponse.fail(exception.getMessage()));
+    }
+
+    @ExceptionHandler(InquiryAnswerNotFoundException.class)
+    public ResponseEntity<ApiResponse<Void>> handleInquiryAnswerNotFoundException(InquiryAnswerNotFoundException exception) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(ApiResponse.fail(exception.getMessage()));
+    }
 }
