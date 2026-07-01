@@ -15,9 +15,11 @@ public record CommentListResponse(
         int totalPages
 ) {
 
-    public static CommentListResponse from(Page<Comment> page, Map<Long, String> writerNicknames) {
+    public static CommentListResponse from(Page<Comment> page, Map<Long, String> writerNicknames,
+                                           Long currentMemberId, boolean isAdmin) {
         List<CommentItem> items = page.getContent().stream()
-                .map(comment -> CommentItem.of(comment, writerNicknames.get(comment.getMemberId())))
+                .map(comment -> CommentItem.of(comment, writerNicknames.get(comment.getMemberId()),
+                        currentMemberId, isAdmin))
                 .toList();
         return new CommentListResponse(
                 items,
@@ -33,15 +35,20 @@ public record CommentListResponse(
             String writerNickname,
             String content,
             LocalDateTime createdAt,
-            boolean modified
+            boolean modified,
+            boolean canEdit,
+            boolean canDelete
     ) {
-        public static CommentItem of(Comment comment, String writerNickname) {
+        public static CommentItem of(Comment comment, String writerNickname, Long currentMemberId, boolean isAdmin) {
+            boolean isWriter = currentMemberId != null && comment.isWrittenBy(currentMemberId);
             return new CommentItem(
                     comment.getCommentId(),
                     writerNickname,
                     comment.getContent(),
                     comment.getCreatedAt(),
-                    comment.isModified()
+                    comment.isModified(),
+                    isWriter,
+                    isWriter || isAdmin
             );
         }
     }

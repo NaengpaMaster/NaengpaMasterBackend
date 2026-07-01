@@ -1,6 +1,8 @@
 package com.naengpa.naengpamasterbackend.recipe.service;
 
 import com.naengpa.naengpamasterbackend.global.exception.RecipeNotFoundException;
+import com.naengpa.naengpamasterbackend.member.entity.FoodCategory;
+import com.naengpa.naengpamasterbackend.member.repository.FoodCategoryRepository;
 import com.naengpa.naengpamasterbackend.member.repository.MemberRepository;
 import com.naengpa.naengpamasterbackend.recipe.dto.request.RecipeCreateRequest;
 import com.naengpa.naengpamasterbackend.recipe.dto.request.RecipeUpdateRequest;
@@ -32,6 +34,7 @@ public class RecipeCommandService {
 
     private final RecipeRepository recipeRepository;
     private final RecipeCategoryRepository recipeCategoryRepository;
+    private final FoodCategoryRepository foodCategoryRepository;
     private final RecipeRequiredProductRepository recipeRequiredProductRepository;
     private final RecipeStepRepository recipeStepRepository;
     private final RecipeFavoriteRepository recipeFavoriteRepository;
@@ -41,10 +44,12 @@ public class RecipeCommandService {
         Long memberId = resolveMemberId(email);
         RecipeCategory category = recipeCategoryRepository.findById(request.categoryId())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "존재하지 않는 카테고리입니다."));
+        FoodCategory foodCategory = resolveFoodCategory(request.foodCategoryId());
 
         Recipe recipe = recipeRepository.save(
                 Recipe.builder()
                         .category(category)
+                        .foodCategory(foodCategory)
                         .createdBy(memberId)
                         .name(request.name())
                         .description(request.description())
@@ -54,24 +59,8 @@ public class RecipeCommandService {
         );
         Long recipeId = recipe.getRecipeId();
 
-        List<RecipeRequiredProduct> products = request.productIds().stream()
-                .distinct()
-                .map(productId -> RecipeRequiredProduct.builder()
-                        .recipeId(recipeId)
-                        .productId(productId)
-                        .build())
-                .toList();
-        recipeRequiredProductRepository.saveAll(products);
-
-        List<String> stepContents = request.steps();
-        List<RecipeStep> steps = IntStream.range(0, stepContents.size())
-                .mapToObj(i -> RecipeStep.builder()
-                        .recipeId(recipeId)
-                        .stepNo(i + 1)
-                        .content(stepContents.get(i))
-                        .build())
-                .toList();
-        recipeStepRepository.saveAll(steps);
+        saveProducts(recipeId, request.productIds());
+        saveSteps(recipeId, request.steps());
 
         return new RecipeCreateResponse(recipeId);
     }
@@ -87,9 +76,45 @@ public class RecipeCommandService {
 
         RecipeCategory category = recipeCategoryRepository.findById(request.categoryId())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "존재하지 않는 카테고리입니다."));
+        FoodCategory foodCategory = resolveFoodCategory(request.foodCategoryId());
 
-        recipe.update(category, request.name(), request.description(),
+        recipe.update(category, foodCategory, request.name(), request.description(),
                 request.cookingTime(), request.difficulty());
+
+        recipeRequiredProductRepository.deleteByRecipeId(recipeId);
+        recipeStepRepository.deleteByRecipeId(recipeId);
+        saveProducts(recipeId, request.productIds());
+        saveSteps(recipeId, request.steps());
+    }
+
+    private void saveProducts(Long recipeId, List<Long> productIds) {
+        List<RecipeRequiredProduct> products = productIds.stream()
+                .distinct()
+                .map(productId -> RecipeRequiredProduct.builder()
+                        .recipeId(recipeId)
+                        .productId(productId)
+                        .build())
+                .toList();
+        recipeRequiredProductRepository.saveAll(products);
+    }
+
+    private void saveSteps(Long recipeId, List<String> stepContents) {
+        List<RecipeStep> steps = IntStream.range(0, stepContents.size())
+                .mapToObj(i -> RecipeStep.builder()
+                        .recipeId(recipeId)
+                        .stepNo(i + 1)
+                        .content(stepContents.get(i))
+                        .build())
+                .toList();
+        recipeStepRepository.saveAll(steps);
+    }
+
+    private FoodCategory resolveFoodCategory(Long foodCategoryId) {
+        if (foodCategoryId == null) {
+            return null;
+        }
+        return foodCategoryRepository.findById(foodCategoryId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "존재하지 않는 음식 카테고리입니다."));
     }
 
     public void deleteRecipe(Long recipeId, String email, boolean isAdmin) {

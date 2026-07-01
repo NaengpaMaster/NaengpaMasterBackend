@@ -2,6 +2,7 @@ package com.naengpa.naengpamasterbackend.recipe.controller;
 
 import com.naengpa.naengpamasterbackend.recipe.dto.response.RecipeCreateResponse;
 import com.naengpa.naengpamasterbackend.recipe.service.RecipeCommandService;
+import com.naengpa.naengpamasterbackend.recipe.service.RecipeRecommendationService;
 import com.naengpa.naengpamasterbackend.recipe.service.RecipeService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -44,6 +45,9 @@ class RecipeControllerTest {
     @MockitoBean
     RecipeCommandService recipeCommandService;
 
+    @MockitoBean
+    RecipeRecommendationService recipeRecommendationService;
+
     @Test
     @DisplayName("레시피 등록 - 201과 생성된 레시피 ID를 반환한다")
     void createRecipe_returns201() throws Exception {
@@ -51,7 +55,7 @@ class RecipeControllerTest {
 
         String body = """
                 {"name":"김치찌개","description":"맛있다","cookingTime":30,
-                 "difficulty":"EASY","categoryId":2,"productIds":[1,2],"steps":["끓인다"]}
+                 "difficulty":"EASY","categoryId":2,"productIds":[1,2],"steps":["끓인다"], "foodCategoryId":1}
                 """;
 
         mockMvc.perform(post("/api/v1/recipes")
