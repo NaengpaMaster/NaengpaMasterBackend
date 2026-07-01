@@ -44,7 +44,7 @@ public class ExpiredProduct {
             Long productCategoryId,
             String productName,
             String categoryName
-    ){
+    ) {
         ExpiredProduct expiredProduct = new ExpiredProduct();
         expiredProduct.memberId = memberId;
         expiredProduct.productId = productId;
@@ -52,7 +52,7 @@ public class ExpiredProduct {
         expiredProduct.productName = productName;
         expiredProduct.categoryName = categoryName;
         expiredProduct.createdAt = LocalDate.now();
-        
+
         return expiredProduct;
     }
 }
