@@ -1,5 +1,6 @@
 package com.naengpa.naengpamasterbackend.inquiry.entity;
 
+import com.naengpa.naengpamasterbackend.inquiry.dto.request.InquiryRequest;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -44,6 +45,18 @@ public class Inquiry {
 
     @Column(name = "deleted_at")
     private LocalDateTime deletedAt;
+
+    public static Inquiry create(InquiryRequest request) {
+        Inquiry inquiry = new Inquiry();
+        inquiry.title = request.title();
+        inquiry.content = request.content();
+        return inquiry;
+    }
+
+    public static Inquiry update(Inquiry inquiry, InquiryRequest request) {
+        inquiry.title = request.title();
+        inquiry.content = request.content();
+    }
 
     @PrePersist
     void prePersist() {
