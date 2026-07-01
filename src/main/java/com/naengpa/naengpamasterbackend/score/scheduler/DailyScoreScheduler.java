@@ -3,6 +3,7 @@ package com.naengpa.naengpamasterbackend.score.scheduler;
 import com.naengpa.naengpamasterbackend.fridge.dto.response.FridgeItemListResponse;
 import com.naengpa.naengpamasterbackend.fridge.service.FridgeItemService;
 import com.naengpa.naengpamasterbackend.member.entity.Member;
+import com.naengpa.naengpamasterbackend.member.entity.MemberStatus;
 import com.naengpa.naengpamasterbackend.member.repository.MemberRepository;
 import com.naengpa.naengpamasterbackend.product.entity.ProductCategory;
 import com.naengpa.naengpamasterbackend.product.repository.ProductCategoryRepository;
@@ -38,7 +39,7 @@ public class DailyScoreScheduler {
 
         log.info("냉파 점수 일일 스케줄러 시작");
 
-        List<Member> members = memberRepository.findAll();
+        List<Member> members = memberRepository.findAllByStatusAndDeletedAtIsNull(MemberStatus.ACTIVE);
         int successCount = 0;
         int failCount = 0;
 
@@ -51,7 +52,7 @@ public class DailyScoreScheduler {
                         fridgeItemService.findExpiredFridgeItems(member.getEmail());
 
                 if (!expiredItems.isEmpty()) {
-
+                    log.info("만료 재료 1일 보유");
                     for (int j = 0; j < expiredItems.size(); j++) {
 
                         FridgeItemListResponse item = expiredItems.get(j);
@@ -60,6 +61,7 @@ public class DailyScoreScheduler {
                                 .findById(item.productCategoryId())
                                 .orElseThrow();
 
+                        log.info("만료 재료 이력 적재");
                         expiredProductRepository.save(ExpiredProduct.create(
                                 member.getId(),
                                 item.productId(),
@@ -70,6 +72,7 @@ public class DailyScoreScheduler {
                         addScore(member, item.productName(), item.productId(), -2, ScoreReason.EXPIRED_PRODUCT);
                     }
 
+                    log.info("유지기간 0으로 리셋");
                     member.resetMaintenancePeriod();
 
                 } else {
@@ -77,6 +80,7 @@ public class DailyScoreScheduler {
                     member.increaseMaintenancePeriod();
 
                     if (member.getMaintenancePeriod() % 4 == 0) {
+                        log.info("만료 재료 없음 4일 유지");
                         addScore(member, null, null, 5, ScoreReason.NO_EXPIRED_4DAYS);
                     }
                 }
@@ -98,9 +102,11 @@ public class DailyScoreScheduler {
                 .orElseThrow(() -> new IllegalStateException(
                         "점수 정보를 찾을 수 없습니다. memberId=" + member.getId()));
 
+        log.info("점수 업데이트");
         int newScore = Math.max(0, Math.min(100, score.getScore() + delta));
         score.updateScore(newScore);
 
+        log.info("점수 이력 적재");
         scoreHistoryRepository.save(ScoreHistory.create(
                 member.getId(), reason, targetType, targetId, delta
         ));

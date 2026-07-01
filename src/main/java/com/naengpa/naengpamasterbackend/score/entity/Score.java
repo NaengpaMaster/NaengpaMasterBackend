@@ -26,6 +26,10 @@ public class Score {
     @Column(name = "score")
     private int score;
 
+// grade_id 미사용
+//    @Column(name = "grade_id")
+//    private Long grade_id;
+
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
