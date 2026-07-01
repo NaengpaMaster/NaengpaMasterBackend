@@ -188,6 +188,12 @@ public class Member {
 
     public void updateStatus(MemberStatus status) {
         this.status = status;
+        if (status == MemberStatus.INACTIVE && deletedAt == null) {
+            deletedAt = LocalDateTime.now();
+        }
+        if (status == MemberStatus.ACTIVE) {
+            deletedAt = null;
+        }
     }
 
     public void updateRole(MemberRole role) {
