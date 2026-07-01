@@ -64,7 +64,7 @@ public class ScoreServiceImpl implements ScoreService {
         int appliedDelta = score.addScore(delta);
 
         scoreHistoryRepository.save(
-                ScoreHistory.create(memberId, reason, targetType, targetId, appliedDelta, null)
+                ScoreHistory.create(memberId, reason, targetType, targetId, appliedDelta)
         );
     }
 

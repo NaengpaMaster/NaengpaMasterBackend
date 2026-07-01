@@ -45,7 +45,7 @@ public class Score {
     public static Score createInitial(Long memberId) {
         Score score = new Score();
         score.memberId = memberId;
-        score.gradeId = INITIAL_GRADE_ID;
+        //score.gradeId = INITIAL_GRADE_ID;
         score.score = INITIAL_SCORE;
         score.updatedAt = LocalDateTime.now();
         return score;
