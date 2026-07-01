@@ -15,7 +15,6 @@ import java.time.LocalTime;
 @AllArgsConstructor
 public class Score {
 
-    private static final long INITIAL_GRADE_ID = 1L;
     private static final int INITIAL_SCORE = 10;
     private static final int MAX_SCORE = 100;
 
