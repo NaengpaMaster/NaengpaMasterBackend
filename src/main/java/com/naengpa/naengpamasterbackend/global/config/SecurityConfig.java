@@ -58,9 +58,9 @@ public class SecurityConfig {
             "/api/v1/shopping-items",
             "/api/v1/shopping-items/**",
             "/api/v1/inquiries/**",
-            "/api/v1/naengpa-scores",
-            "/api/v1/naengpa-score/**",
-            "/api/v1/naengpa-stats/**",
+            "/api/v1/scores",
+            "/api/v1/scores/**",
+            "/api/v1/member-stats/**",
             "/api/v1/notifications/**"
     };
 
