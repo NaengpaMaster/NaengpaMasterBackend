@@ -194,7 +194,7 @@ CREATE TABLE scores (
                         score_id BIGSERIAL PRIMARY KEY,
 
                         member_id BIGINT NOT NULL,
-                        grade_id BIGINT NOT NULL,
+                        -- grade_id BIGINT NOT NULL,
 
                         score INTEGER NOT NULL DEFAULT 10,
 
@@ -220,7 +220,7 @@ CREATE TABLE score_histories (
 
                                  score_delta INTEGER NOT NULL,
 
-                                 description VARCHAR(500),
+                                 -- description VARCHAR(500),
 
                                  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
