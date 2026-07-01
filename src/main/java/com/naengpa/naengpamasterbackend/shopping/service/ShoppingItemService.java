@@ -20,6 +20,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -150,11 +151,21 @@ public class ShoppingItemService {
                 .findByShoppingItemIdAndMemberIdAndIsDeletedFalse(shoppingItemId, member.getId())
                 .orElseThrow();
 
+        Product product = productRepository
+                .findById(shoppingItem.getProductId())
+                .orElseThrow();
+
+        LocalDate expiryDate= request.expiryDate();
+
+        if(expiryDate == null && product.getDefaultExpiryDays() != null) {
+            expiryDate = LocalDate.now().plusDays(product.getDefaultExpiryDays());
+        }
+
         FridgeItem fridgeItem = FridgeItem.create(
                 member.getId(),
                 shoppingItem.getProductId(),
                 shoppingItem.getQuantity(),
-                request.expiryDate(),
+                expiryDate,
                 request.memo()
         );
 
