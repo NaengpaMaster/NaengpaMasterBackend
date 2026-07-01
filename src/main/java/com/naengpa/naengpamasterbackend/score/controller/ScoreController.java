@@ -22,7 +22,6 @@ public class ScoreController {
 
     private final ScoreService scoreService;
 
-    //점수
     @GetMapping
     public ResponseEntity<ApiResponse<ScoreResponse>> getScores(
             @AuthenticationPrincipal UserDetails userDetails
@@ -34,7 +33,6 @@ public class ScoreController {
         );
     }
 
-    //점수 산정 내역
     @GetMapping("/histories")
     public ResponseEntity<ApiResponse<Page<ScoreHistoryResponse>>> getScoreHistories(
             @AuthenticationPrincipal UserDetails userDetails,
