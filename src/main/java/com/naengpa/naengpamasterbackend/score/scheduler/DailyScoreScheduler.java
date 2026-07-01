@@ -33,7 +33,7 @@ public class DailyScoreScheduler {
     private final ExpiredProductRepository expiredProductRepository;
     private final ProductCategoryRepository productCategoryRepository;
 
-    @Scheduled(cron = "0 9 10 * * *")
+    @Scheduled(cron = "0 0 0 * * *")
     @Transactional
     public void run() {
 
