@@ -27,10 +27,6 @@ public class Score {
     @Column(name = "member_id", nullable = false, unique = true)
     private Long memberId;
 
-    // grade_id 미사용
-    //@Column(name = "grade_id", nullable = false, columnDefinition = "bigint default 1")
-    //private Long gradeId;
-
     @Column(name = "score")
     private int score;
 
@@ -45,7 +41,6 @@ public class Score {
     public static Score createInitial(Long memberId) {
         Score score = new Score();
         score.memberId = memberId;
-        //score.gradeId = INITIAL_GRADE_ID;
         score.score = INITIAL_SCORE;
         score.updatedAt = LocalDateTime.now();
         return score;
