@@ -2,6 +2,7 @@ package com.naengpa.naengpamasterbackend.recipe.repository;
 
 import com.naengpa.naengpamasterbackend.recipe.entity.RecipeRequiredProduct;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -19,5 +20,11 @@ public interface RecipeRequiredProductRepository extends JpaRepository<RecipeReq
     List<IngredientView> findIngredients(@Param("recipeId") Long recipeId);
 
     List<RecipeRequiredProduct> findByRecipeIdOrderByRecipeRequiredProductIdAsc(Long recipeId);
+
+    List<RecipeRequiredProduct> findByRecipeIdIn(List<Long> recipeIds);
+
+    @Modifying
+    @Query("DELETE FROM RecipeRequiredProduct rrp WHERE rrp.recipeId = :recipeId")
+    void deleteByRecipeId(@Param("recipeId") Long recipeId);
 
 }

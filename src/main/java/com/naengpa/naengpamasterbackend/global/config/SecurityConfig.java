@@ -88,7 +88,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, PUBLIC_GET_ENDPOINTS).permitAll()
                         .requestMatchers(HttpMethod.POST, PUBLIC_POST_ENDPOINTS).permitAll()
                         .requestMatchers(RegexRequestMatcher.regexMatcher(HttpMethod.GET, "^/api/v1/recipes/[0-9]+$")).permitAll()
-                        .requestMatchers(RegexRequestMatcher.regexMatcher(HttpMethod.GET, "^/api/v1/recipes/[0-9]+/comments$")).permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/v1/recipes/*/comments").permitAll()
                         .requestMatchers(ADMIN_ENDPOINTS).hasAuthority("ADMIN")
                         .requestMatchers(AUTHENTICATED_ENDPOINTS).hasAnyAuthority("USER", "ADMIN")
                         .anyRequest().authenticated())

@@ -1,19 +1,25 @@
 package com.naengpa.naengpamasterbackend.recipe.controller;
 
 import com.naengpa.naengpamasterbackend.global.response.ApiResponse;
+import com.naengpa.naengpamasterbackend.global.response.PageResponse;
 import com.naengpa.naengpamasterbackend.recipe.dto.response.RecipeDetailResponse;
 import com.naengpa.naengpamasterbackend.recipe.dto.request.RecipeCreateRequest;
 import com.naengpa.naengpamasterbackend.recipe.dto.request.RecipeUpdateRequest;
 import com.naengpa.naengpamasterbackend.recipe.dto.response.RecipeCreateResponse;
 import com.naengpa.naengpamasterbackend.recipe.dto.response.RecipeLikeResponse;
+import com.naengpa.naengpamasterbackend.recipe.dto.response.RecipeRecommendationResponse;
 import com.naengpa.naengpamasterbackend.recipe.service.RecipeCommandService;
+import com.naengpa.naengpamasterbackend.recipe.service.RecipeRecommendationService;
 import com.naengpa.naengpamasterbackend.recipe.service.RecipeService;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -21,15 +27,32 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/v1/recipes")
 @RequiredArgsConstructor
+@Validated
 public class RecipeController {
 
     private final RecipeService recipeService;
     private final RecipeCommandService recipeCommandService;
+    private final RecipeRecommendationService recipeRecommendationService;
+
+    @GetMapping("/recommendations")
+    public ResponseEntity<ApiResponse<PageResponse<RecipeRecommendationResponse>>> getRecommendations(
+            @RequestParam(required = false) String keyword,
+            @RequestParam(defaultValue = "false") boolean favorite,
+            @RequestParam(defaultValue = "false") boolean match80Only,
+            @RequestParam(defaultValue = "0") @Min(0) int page,
+            @RequestParam(defaultValue = "10") @Min(1) @Max(100) int size,
+            Authentication authentication
+    ) {
+        PageResponse<RecipeRecommendationResponse> recommendations = recipeRecommendationService.recommend(
+                authentication.getName(), keyword, favorite, match80Only, page, size);
+        return ResponseEntity.ok(ApiResponse.success("조회되었습니다.", recommendations));
+    }
 
     @GetMapping("/{recipeId}")
     public ResponseEntity<ApiResponse<RecipeDetailResponse>> getRecipeDetail(

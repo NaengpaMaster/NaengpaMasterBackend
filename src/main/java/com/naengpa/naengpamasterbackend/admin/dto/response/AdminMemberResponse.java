@@ -1,5 +1,6 @@
 package com.naengpa.naengpamasterbackend.admin.dto.response;
 
+import com.naengpa.naengpamasterbackend.member.entity.HouseholdType;
 import com.naengpa.naengpamasterbackend.member.entity.Member;
 import com.naengpa.naengpamasterbackend.member.entity.MemberStatus;
 
@@ -8,7 +9,7 @@ import java.time.LocalDateTime;
 public record AdminMemberResponse(Long memberId,
                                   String email,
                                   String nickname,
-                                  String householdType,
+                                  HouseholdType householdType,
                                   MemberStatus status,
                                   LocalDateTime createdAt) {
 
@@ -17,7 +18,7 @@ public record AdminMemberResponse(Long memberId,
                 member.getId(),
                 member.getEmail(),
                 member.getNickname(),
-                member.getHouseholdType().name(),
+                member.getHouseholdType(),
                 member.getStatus(),
                 member.getCreatedAt()
         );

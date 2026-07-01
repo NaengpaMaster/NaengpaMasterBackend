@@ -19,6 +19,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 import java.util.Map;
@@ -33,7 +34,7 @@ public class CommentService {
     private final RecipeRepository recipeRepository;
     private final MemberRepository memberRepository;
 
-    public CommentListResponse getComments(Long recipeId, Pageable pageable) {
+    public CommentListResponse getComments(Long recipeId, Pageable pageable, String email) {
         validateRecipeExists(recipeId);
 
         Page<Comment> comments = commentRepository.findByRecipeIdAndDeletedFalseOrderByCreatedAtAsc(recipeId, pageable);
@@ -48,7 +49,11 @@ public class CommentService {
                 : memberRepository.findAllById(memberIds).stream()
                         .collect(Collectors.toMap(Member::getId, Member::getNickname));
 
-        return CommentListResponse.from(comments, writerNicknames);
+        Member currentMember = StringUtils.hasText(email) ? memberRepository.findByEmail(email).orElse(null) : null;
+        Long currentMemberId = currentMember == null ? null : currentMember.getId();
+        boolean isAdmin = currentMember != null && currentMember.getRole() == MemberRole.ADMIN;
+
+        return CommentListResponse.from(comments, writerNicknames, currentMemberId, isAdmin);
     }
 
     @Transactional

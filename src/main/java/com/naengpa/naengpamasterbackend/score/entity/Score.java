@@ -16,6 +16,7 @@ public class Score {
 
     private static final long INITIAL_GRADE_ID = 1L;
     private static final int INITIAL_SCORE = 10;
+    private static final int MAX_SCORE = 100;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,5 +42,12 @@ public class Score {
         score.score = INITIAL_SCORE;
         score.updatedAt = LocalDateTime.now();
         return score;
+    }
+
+    public int addScore(int delta) {
+        int before = this.score;
+        this.score = Math.min(this.score + delta, MAX_SCORE);
+        this.updatedAt = LocalDateTime.now();
+        return this.score - before;
     }
 }

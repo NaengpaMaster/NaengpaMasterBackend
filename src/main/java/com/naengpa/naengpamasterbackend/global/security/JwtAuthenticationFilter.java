@@ -38,11 +38,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
 
         if ("GET".equals(method)) {
-            // 레시피 상세는 비로그인 조회를 허용하되(SecurityConfig permitAll),
-            // 토큰이 있으면 인증을 채워 liked 등 사용자별 정보를 계산해야 하므로 필터를 건너뛰지 않는다.
+            // 레시피 상세·댓글 목록은 비로그인 조회를 허용하되(SecurityConfig permitAll),
+            // 토큰이 있으면 인증을 채워 liked·수정/삭제 권한 등 사용자별 정보를 계산해야 하므로 필터를 건너뛰지 않는다.
             return "/actuator/health".equals(path)
-                    || "/api/v1/members/check-email".equals(path)
-                    || path.matches("^/api/v1/recipes/[0-9]+/comments$");
+                    || "/api/v1/members/check-email".equals(path);
         }
 
         if ("POST".equals(method)) {
