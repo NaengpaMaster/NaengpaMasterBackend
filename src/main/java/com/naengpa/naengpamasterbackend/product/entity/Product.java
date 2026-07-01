@@ -35,4 +35,44 @@ public class Product {
 
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
+    // 관리자 사전 재료 추가
+    public static Product create(
+            Long productCategoryId,
+            String name,
+            Integer defaultExpiryDays
+    ) {
+        Product product = new Product();
+        product.productCategoryId = productCategoryId;
+        product.name = name;
+        product.defaultExpiryDays = defaultExpiryDays;
+        product.isActive = true;
+        product.createdAt = LocalDateTime.now();
+        return product;
+    }
+
+    //관리자 사전 재료 수정
+    public void update(
+            Long productCategoryId,
+            String name,
+            Integer defaultExpiryDays
+    ){
+        this.productCategoryId = productCategoryId;
+        this.name = name;
+        this.defaultExpiryDays = defaultExpiryDays;
+        this.updatedAt = LocalDateTime.now();
+    }
+
+    // 관리자 사전 재료 비활성화
+    public void deactivate() {
+        this.isActive = false;
+        this.updatedAt = LocalDateTime.now();
+    }
+
+    // 관리자 사전 재료 재활성화
+    public void activate() {
+        this.isActive = true;
+        this.updatedAt = LocalDateTime.now();
+    }
 }
+

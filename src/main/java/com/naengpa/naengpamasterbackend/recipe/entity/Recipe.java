@@ -1,5 +1,6 @@
 package com.naengpa.naengpamasterbackend.recipe.entity;
 
+import com.naengpa.naengpamasterbackend.member.entity.FoodCategory;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -12,6 +13,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -31,6 +33,10 @@ public class Recipe {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "recipe_category_id", nullable = false)
     private RecipeCategory category;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "food_category_id")
+    private FoodCategory foodCategory;
 
     @Column(name = "created_by")
     private Long createdBy;
@@ -59,4 +65,37 @@ public class Recipe {
 
     @Column(name = "deleted_at")
     private LocalDateTime deletedAt;
+
+    @Builder
+    private Recipe(RecipeCategory category, FoodCategory foodCategory, Long createdBy, String name,
+                  String description, Integer cookingTime, Difficulty difficulty) {
+        this.category = category;
+        this.foodCategory = foodCategory;
+        this.createdBy = createdBy;
+        this.name = name;
+        this.description = description;
+        this.cookingTime = cookingTime;
+        this.difficulty = difficulty;
+        this.createdAt = LocalDateTime.now();
+    }
+
+    public boolean isOwnedBy(Long memberId) {
+        return this.createdBy != null && this.createdBy.equals(memberId);
+    }
+
+    public void update(RecipeCategory category, FoodCategory foodCategory, String name, String description,
+                       Integer cookingTime, Difficulty difficulty) {
+        this.category = category;
+        this.foodCategory = foodCategory;
+        this.name = name;
+        this.description = description;
+        this.cookingTime = cookingTime;
+        this.difficulty = difficulty;
+        this.updatedAt = LocalDateTime.now();
+    }
+
+    public void softDelete() {
+        this.deleted = true;
+        this.deletedAt = LocalDateTime.now();
+    }
 }

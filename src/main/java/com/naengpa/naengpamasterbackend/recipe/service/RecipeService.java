@@ -2,11 +2,11 @@ package com.naengpa.naengpamasterbackend.recipe.service;
 
 import com.naengpa.naengpamasterbackend.global.exception.RecipeNotFoundException;
 import com.naengpa.naengpamasterbackend.member.entity.Member;
+import com.naengpa.naengpamasterbackend.member.entity.MemberRole;
 import com.naengpa.naengpamasterbackend.member.repository.MemberRepository;
 import com.naengpa.naengpamasterbackend.product.entity.Product;
 import com.naengpa.naengpamasterbackend.product.repository.ProductRepository;
 import com.naengpa.naengpamasterbackend.recipe.dto.response.RecipeDetailResponse;
-import com.naengpa.naengpamasterbackend.recipe.dto.response.RecipeListResponse;
 import com.naengpa.naengpamasterbackend.recipe.entity.Recipe;
 import com.naengpa.naengpamasterbackend.recipe.entity.RecipeRequiredProduct;
 import com.naengpa.naengpamasterbackend.recipe.entity.RecipeStep;
@@ -16,7 +16,6 @@ import com.naengpa.naengpamasterbackend.recipe.repository.RecipeRequiredProductR
 import com.naengpa.naengpamasterbackend.recipe.repository.RecipeStepRepository;
 import com.naengpa.naengpamasterbackend.fridge.repository.FridgeItemRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
@@ -39,15 +38,14 @@ public class RecipeService {
     private final FridgeItemRepository fridgeItemRepository;
     private final MemberRepository memberRepository;
 
-    public RecipeListResponse getRecipes(Pageable pageable) {
-        return RecipeListResponse.from(recipeRepository.findRecipeList(pageable));
-    }
-
     public RecipeDetailResponse getRecipeDetail(Long recipeId, String email) {
         Recipe recipe = recipeRepository.findByRecipeIdAndDeletedFalse(recipeId)
                 .orElseThrow(RecipeNotFoundException::new);
 
-        Long memberId = resolveMemberId(email);
+        Member member = resolveMember(email);
+        Long memberId = member == null ? null : member.getId();
+        boolean canManage = member != null
+                && (recipe.isOwnedBy(memberId) || member.getRole() == MemberRole.ADMIN);
 
         long likeCount = recipeFavoriteRepository.countByRecipeId(recipeId);
         Boolean liked = memberId == null
@@ -98,18 +96,17 @@ public class RecipeService {
                 recipe.getDifficulty().name(),
                 likeCount,
                 liked,
+                canManage,
                 ingredients,
                 missingIngredients,
                 steps
         );
     }
 
-    private Long resolveMemberId(String email) {
+    private Member resolveMember(String email) {
         if (!StringUtils.hasText(email)) {
             return null;
         }
-        return memberRepository.findByEmail(email)
-                .map(Member::getId)
-                .orElse(null);
+        return memberRepository.findByEmail(email).orElse(null);
     }
 }

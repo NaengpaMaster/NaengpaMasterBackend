@@ -7,6 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -32,4 +33,11 @@ public class RecipeStep {
 
     @Column(name = "is_deleted", nullable = false)
     private boolean deleted;
+
+    @Builder
+    private RecipeStep(Long recipeId, int stepNo, String content) {
+        this.recipeId = recipeId;
+        this.stepNo = stepNo;
+        this.content = content;
+    }
 }

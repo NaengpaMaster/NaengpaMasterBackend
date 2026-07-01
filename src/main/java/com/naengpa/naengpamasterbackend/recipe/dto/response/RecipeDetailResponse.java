@@ -11,6 +11,7 @@ public record RecipeDetailResponse(
         String difficulty,
         long likeCount,
         Boolean liked,
+        boolean canManage,
         List<IngredientItem> ingredients,
         List<String> missingIngredients,
         List<StepItem> steps

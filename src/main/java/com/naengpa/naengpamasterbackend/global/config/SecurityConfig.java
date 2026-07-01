@@ -55,9 +55,8 @@ public class SecurityConfig {
             "/api/v1/auth/logout",
             "/api/v1/recipes/**",
             "/api/v1/comments/**",
-            "/api/v1/shopping-list/items",
-            "/api/v1/shopping-list/items/**",
-            "/api/v1/shopping-list/reflect",
+            "/api/v1/shopping-items",
+            "/api/v1/shopping-items/**",
             "/api/v1/inquiries/**",
             "/api/v1/naengpa-scores",
             "/api/v1/naengpa-score/**",
@@ -89,7 +88,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, PUBLIC_GET_ENDPOINTS).permitAll()
                         .requestMatchers(HttpMethod.POST, PUBLIC_POST_ENDPOINTS).permitAll()
                         .requestMatchers(RegexRequestMatcher.regexMatcher(HttpMethod.GET, "^/api/v1/recipes/[0-9]+$")).permitAll()
-                        .requestMatchers(RegexRequestMatcher.regexMatcher(HttpMethod.GET, "^/api/v1/recipes/[0-9]+/comments$")).permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/v1/recipes/*/comments").permitAll()
                         .requestMatchers(ADMIN_ENDPOINTS).hasAuthority("ADMIN")
                         .requestMatchers(AUTHENTICATED_ENDPOINTS).hasAnyAuthority("USER", "ADMIN")
                         .anyRequest().authenticated())
@@ -114,6 +113,6 @@ public class SecurityConfig {
 
     @Bean
     public Filter jwtAuthenticationFilter() {
-        return new JwtAuthenticationFilter(jwtTokenProvider, userDetailsService);
+        return new JwtAuthenticationFilter(jwtTokenProvider, userDetailsService, restAuthenticationEntryPoint);
     }
 }

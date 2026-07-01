@@ -7,15 +7,15 @@ import com.naengpa.naengpamasterbackend.score.dto.response.ScoreHistoryResponse;
 import com.naengpa.naengpamasterbackend.score.dto.response.ScoreResponse;
 import com.naengpa.naengpamasterbackend.score.entity.Score;
 import com.naengpa.naengpamasterbackend.score.entity.ScoreHistory;
+import com.naengpa.naengpamasterbackend.score.entity.ScoreReason;
 import com.naengpa.naengpamasterbackend.score.repository.ScoreHistoryRepository;
 import com.naengpa.naengpamasterbackend.score.repository.ScoreRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -52,6 +52,20 @@ public class ScoreServiceImpl implements ScoreService {
                         h.getScoreDelta(),
                         h.getCreatedAt()
                 ));
+    }
+
+    @Override
+    @Transactional
+    public void addScore(Long memberId, ScoreReason reason, String targetType, Long targetId, int delta) {
+
+        Score score = scoreRepository.findByMemberId(memberId)
+                .orElseThrow(ScoreNotFoundException::new);
+
+        int appliedDelta = score.addScore(delta);
+
+        scoreHistoryRepository.save(
+                ScoreHistory.create(memberId, reason, targetType, targetId, appliedDelta, null)
+        );
     }
 
 }

@@ -2,18 +2,32 @@ package com.naengpa.naengpamasterbackend.global.auth.service;
 
 import com.naengpa.naengpamasterbackend.global.auth.dto.LoginRequest;
 import com.naengpa.naengpamasterbackend.global.auth.dto.MemberResponse;
+import com.naengpa.naengpamasterbackend.global.auth.dto.ProfileProductResponse;
+import com.naengpa.naengpamasterbackend.global.auth.dto.ProfileUpdateRequest;
 import com.naengpa.naengpamasterbackend.global.auth.dto.SignUpRequest;
 import com.naengpa.naengpamasterbackend.global.auth.dto.TokenResponse;
 import com.naengpa.naengpamasterbackend.global.auth.entity.RefreshToken;
 import com.naengpa.naengpamasterbackend.global.auth.repository.RefreshTokenRepository;
 import com.naengpa.naengpamasterbackend.global.exception.DuplicateEmailException;
 import com.naengpa.naengpamasterbackend.global.exception.DuplicateNicknameException;
+import com.naengpa.naengpamasterbackend.global.exception.FoodCategoryNotFoundException;
 import com.naengpa.naengpamasterbackend.global.exception.NicknameGenerationFailedException;
 import com.naengpa.naengpamasterbackend.global.exception.PasswordMismatchException;
 import com.naengpa.naengpamasterbackend.global.exception.WithdrawnEmailException;
 import com.naengpa.naengpamasterbackend.global.security.JwtTokenProvider;
+import com.naengpa.naengpamasterbackend.member.entity.FoodCategory;
 import com.naengpa.naengpamasterbackend.member.entity.Member;
+import com.naengpa.naengpamasterbackend.member.entity.MemberExcludedProduct;
+import com.naengpa.naengpamasterbackend.member.entity.MemberFavoriteFood;
+import com.naengpa.naengpamasterbackend.member.repository.FoodCategoryRepository;
+import com.naengpa.naengpamasterbackend.member.repository.MemberExcludedProductRepository;
+import com.naengpa.naengpamasterbackend.member.repository.MemberFavoriteFoodRepository;
 import com.naengpa.naengpamasterbackend.member.repository.MemberRepository;
+import com.naengpa.naengpamasterbackend.product.entity.Product;
+import com.naengpa.naengpamasterbackend.product.exception.ProductNotFoundException;
+import com.naengpa.naengpamasterbackend.product.repository.ProductRepository;
+import com.naengpa.naengpamasterbackend.score.entity.Score;
+import com.naengpa.naengpamasterbackend.score.repository.ScoreRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
@@ -21,7 +35,15 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.Collator;
 import java.time.LocalDateTime;
+import java.util.Comparator;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -29,8 +51,14 @@ public class AuthService {
 
     private static final int NANOS_PER_MILLISECOND = 1_000_000;
     private static final int MAX_NICKNAME_GENERATE_ATTEMPTS = 20;
+    private static final Collator KOREAN_COLLATOR = Collator.getInstance(Locale.KOREAN);
 
     private final MemberRepository memberRepository;
+    private final FoodCategoryRepository foodCategoryRepository;
+    private final MemberFavoriteFoodRepository memberFavoriteFoodRepository;
+    private final MemberExcludedProductRepository memberExcludedProductRepository;
+    private final ProductRepository productRepository;
+    private final ScoreRepository scoreRepository;
     private final RefreshTokenRepository refreshTokenRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtTokenProvider jwtTokenProvider;
@@ -55,7 +83,9 @@ public class AuthService {
                 resolveNickname(request.nickname()),
                 request.householdType()
         );
-        return MemberResponse.from(memberRepository.save(member));
+        Member savedMember = memberRepository.save(member);
+        scoreRepository.save(Score.createInitial(savedMember.getId()));
+        return MemberResponse.from(savedMember);
     }
 
     @Transactional
@@ -93,8 +123,7 @@ public class AuthService {
             throw new DisabledException("탈퇴 처리된 회원입니다. 관리자에게 문의해주세요.");
         }
 
-        storedToken.expireNow();
-        return issueTokens(member);
+        return issueAccessToken(member, storedToken.getRefreshToken());
     }
 
     @Transactional
@@ -113,7 +142,20 @@ public class AuthService {
     public MemberResponse getMember(String email) {
         Member member = memberRepository.findByEmail(email)
                 .orElseThrow(() -> new BadCredentialsException("회원을 찾을 수 없습니다."));
-        return MemberResponse.from(member);
+        return toMemberResponse(member);
+    }
+
+    @Transactional
+    public MemberResponse updateProfile(String email, ProfileUpdateRequest request) {
+        Member member = memberRepository.findByEmail(email)
+                .orElseThrow(() -> new BadCredentialsException("회원을 찾을 수 없습니다."));
+
+        updateNickname(member, request.nickname());
+        member.updateHouseholdType(request.householdType());
+        replaceFavoriteFoods(member, request.favoriteFoods());
+        replaceExcludedProducts(member, request.avoidProductIds());
+
+        return toMemberResponse(member);
     }
 
     private TokenResponse issueTokens(Member member) {
@@ -129,6 +171,19 @@ public class AuthService {
                         .plusNanos(jwtTokenProvider.getRefreshExpiration() * NANOS_PER_MILLISECOND))
                 .build();
         refreshTokenRepository.save(tokenEntity);
+
+        return new TokenResponse(
+                member.getId(),
+                member.getEmail(),
+                member.getNickname(),
+                member.getRole(),
+                accessToken,
+                refreshToken
+        );
+    }
+
+    private TokenResponse issueAccessToken(Member member, String refreshToken) {
+        String accessToken = jwtTokenProvider.createAccessToken(member.getEmail(), member.getRole().name());
 
         return new TokenResponse(
                 member.getId(),
@@ -163,5 +218,107 @@ public class AuthService {
         }
 
         throw new NicknameGenerationFailedException();
+    }
+
+    private MemberResponse toMemberResponse(Member member) {
+        List<String> favoriteFoods = memberFavoriteFoodRepository.findAllByMemberOrderByIdAsc(member)
+                .stream()
+                .map(memberFavoriteFood -> memberFavoriteFood.getFoodCategory().getName())
+                .toList();
+        List<ProfileProductResponse> avoidIngredients = memberExcludedProductRepository.findAllByMemberWithProduct(member)
+                .stream()
+                .map(MemberExcludedProduct::getProduct)
+                .sorted(Comparator.comparing(Product::getName, KOREAN_COLLATOR))
+                .map(ProfileProductResponse::from)
+                .toList();
+
+        return MemberResponse.from(member, favoriteFoods, avoidIngredients);
+    }
+
+    private void updateNickname(Member member, String nickname) {
+        String trimmedNickname = nickname.trim();
+        if (member.getNickname().equals(trimmedNickname)) {
+            return;
+        }
+        if (memberRepository.existsByNickname(trimmedNickname)) {
+            throw new DuplicateNicknameException();
+        }
+        member.updateNickname(trimmedNickname);
+    }
+
+    private void replaceFavoriteFoods(Member member, List<String> favoriteFoods) {
+        memberFavoriteFoodRepository.deleteAllByMember(member);
+        memberFavoriteFoodRepository.flush();
+
+        uniqueFoodCategories(favoriteFoods).stream()
+                .map(foodCategory -> MemberFavoriteFood.create(member, foodCategory))
+                .forEach(memberFavoriteFoodRepository::save);
+    }
+
+    private void replaceExcludedProducts(Member member, List<Long> productIds) {
+        memberExcludedProductRepository.deleteAllByMember(member);
+        memberExcludedProductRepository.flush();
+
+        List<Long> uniqueProductIds = uniqueLongs(productIds);
+        if (uniqueProductIds.isEmpty()) {
+            return;
+        }
+
+        List<Product> products = productRepository.findByProductIdInAndIsActiveTrue(uniqueProductIds);
+        if (products.size() != uniqueProductIds.size()) {
+            throw new ProductNotFoundException(null);
+        }
+
+        products.stream()
+                .map(product -> MemberExcludedProduct.create(member, product))
+                .forEach(memberExcludedProductRepository::save);
+    }
+
+    private List<String> uniqueTrimmedStrings(List<String> values) {
+        if (values == null) {
+            return List.of();
+        }
+
+        Set<String> uniqueValues = new LinkedHashSet<>();
+        for (String value : values) {
+            if (value == null || value.isBlank()) {
+                continue;
+            }
+            uniqueValues.add(value.trim());
+        }
+        return List.copyOf(uniqueValues);
+    }
+
+    private List<FoodCategory> uniqueFoodCategories(List<String> foodNames) {
+        List<String> uniqueFoodNames = uniqueTrimmedStrings(foodNames);
+        if (uniqueFoodNames.isEmpty()) {
+            return List.of();
+        }
+
+        List<FoodCategory> savedCategories = foodCategoryRepository.findByNameIn(uniqueFoodNames);
+        if (savedCategories.size() != uniqueFoodNames.size()) {
+            throw new FoodCategoryNotFoundException();
+        }
+
+        Map<String, FoodCategory> categoryByName = savedCategories.stream()
+                .collect(Collectors.toMap(FoodCategory::getName, category -> category));
+
+        return uniqueFoodNames.stream()
+                .map(categoryByName::get)
+                .toList();
+    }
+
+    private List<Long> uniqueLongs(List<Long> values) {
+        if (values == null) {
+            return List.of();
+        }
+
+        Set<Long> uniqueValues = new LinkedHashSet<>();
+        for (Long value : values) {
+            if (value != null) {
+                uniqueValues.add(value);
+            }
+        }
+        return List.copyOf(uniqueValues);
     }
 }
