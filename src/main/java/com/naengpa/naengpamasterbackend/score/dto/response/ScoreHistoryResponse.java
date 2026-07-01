@@ -8,7 +8,6 @@ public record ScoreHistoryResponse(
         ScoreReason scoreReason,
         String targetType,
         Integer scoreDelta,
-        String description,
         LocalDateTime createdAt
 ) {
 }

@@ -50,7 +50,6 @@ public class ScoreServiceImpl implements ScoreService {
                         h.getScoreReason(),
                         h.getTargetType(),
                         h.getScoreDelta(),
-                        h.getDescription(),
                         h.getCreatedAt()
                 ));
     }

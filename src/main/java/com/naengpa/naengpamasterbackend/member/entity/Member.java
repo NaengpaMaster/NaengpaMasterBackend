@@ -201,4 +201,12 @@ public class Member {
     public void updateNickname(String nickname) {
         this.nickname = nickname;
     }
+
+    public void increaseMaintenancePeriod() {
+        this.maintenancePeriod += 1;
+    }
+
+    public void resetMaintenancePeriod() {
+        this.maintenancePeriod = 0;
+    }
 }

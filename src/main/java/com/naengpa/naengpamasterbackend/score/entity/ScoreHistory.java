@@ -35,28 +35,22 @@ public class ScoreHistory {
     @Column(name = "score_delta", nullable = false)
     private Integer scoreDelta;
 
-    @Column(name = "description", length = 500)
-    private String description;
-
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
-    public static ScoreHistory create(Long memberId, ScoreReason scoreReason,
-                                      String targetType, Long targetId,
-                                      Integer scoreDelta, String description) {
-        ScoreHistory history = new ScoreHistory();
-        history.memberId = memberId;
-        history.scoreReason = scoreReason;
-        history.targetType = targetType;
-        history.targetId = targetId;
-        history.scoreDelta = scoreDelta;
-        history.description = description;
-        return history;
-    }
-
     @PrePersist
     void prePersist() {
-        createdAt = LocalDateTime.now();
+        this.createdAt = LocalDateTime.now();
+    }
+
+    public static ScoreHistory create(Long memberId, ScoreReason reason, String targetType, Long targetId, Integer delta){
+        ScoreHistory history = new ScoreHistory();
+        history.memberId = memberId;
+        history.scoreReason = reason;
+        history.targetType = targetType;
+        history.targetId = targetId;
+        history.scoreDelta = delta;
+        return history;
     }
 
 }
