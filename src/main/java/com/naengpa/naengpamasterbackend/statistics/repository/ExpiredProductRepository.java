@@ -12,6 +12,7 @@ import java.util.List;
 
 public interface ExpiredProductRepository extends JpaRepository<ExpiredProduct, Long> {
 
+    //가장 많이 만료된 재료 TOP 5
     @Query("""
             SELECT new com.naengpa.naengpamasterbackend.statistics.dto.response.TopIngredientQueryResult(
                         e.productName, COUNT(e.productName)
@@ -24,7 +25,7 @@ public interface ExpiredProductRepository extends JpaRepository<ExpiredProduct, 
             """)
     List<TopIngredientQueryResult> findTop5ExpiredProductByMemberId(@Param("memberId") Long memberId);
 
-
+    //카테고리별 만료량
     @Query("""
             SELECT new com.naengpa.naengpamasterbackend.statistics.dto.response.ExpiredProductCategoryResponse(
                         e.categoryName, COUNT(e.categoryName)
@@ -36,7 +37,7 @@ public interface ExpiredProductRepository extends JpaRepository<ExpiredProduct, 
             """)
     List<ExpiredProductCategoryResponse> findExpiredCategoriesByMemberId(@Param("memberId") Long memberId);
 
-
+    //최근 만료 기록
     @Query("""
                         SELECT new com.naengpa.naengpamasterbackend.statistics.dto.response.ExpiredRecordResponse(
                             e.productName, e.createdAt)
