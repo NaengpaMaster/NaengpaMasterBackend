@@ -6,8 +6,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface InquiryRepository extends JpaRepository<Inquiry, Long> {
 
-    Page<Inquiry> findByMemberIdAndIsDeletedFalse(Long memberId, Boolean isDeleted, Pageable pageable);
+    Page<Inquiry> findByMemberIdAndIsDeletedFalse(Long memberId, Pageable pageable);
+
+    Optional<Inquiry> findByIdAndIsDeletedFalse(Long inquiryId);
 }

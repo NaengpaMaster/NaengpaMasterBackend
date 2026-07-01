@@ -46,16 +46,22 @@ public class Inquiry {
     @Column(name = "deleted_at")
     private LocalDateTime deletedAt;
 
-    public static Inquiry create(InquiryRequest request) {
+    public static Inquiry create(InquiryRequest request, Long memberId) {
         Inquiry inquiry = new Inquiry();
+        inquiry.memberId = memberId;
         inquiry.title = request.title();
         inquiry.content = request.content();
         return inquiry;
     }
 
-    public static Inquiry update(Inquiry inquiry, InquiryRequest request) {
-        inquiry.title = request.title();
-        inquiry.content = request.content();
+    public void update(InquiryRequest request) {
+        this.title = request.title();
+        this.content = request.content();
+    }
+
+    public void delete() {
+        this.isDeleted = true;
+        this.deletedAt = LocalDateTime.now();
     }
 
     @PrePersist

@@ -23,7 +23,7 @@ public record InquiryDetailResponse(
                 inquiry.getIsAnswered(),
                 inquiry.getCreatedAt(),
                 inquiryAnswer != null ? inquiryAnswer.getContent() : null,
-                inquiryAnswer != null ? inquiryAnswer.getCreatedAt() : null
+                inquiry.getAnsweredAt()
         );
     }
 }

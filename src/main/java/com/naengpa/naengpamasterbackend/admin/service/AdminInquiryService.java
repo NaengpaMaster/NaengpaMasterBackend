@@ -12,7 +12,6 @@ import com.naengpa.naengpamasterbackend.inquiry.entity.Inquiry;
 import com.naengpa.naengpamasterbackend.inquiry.entity.InquiryAnswer;
 import com.naengpa.naengpamasterbackend.member.entity.Member;
 import com.naengpa.naengpamasterbackend.member.repository.MemberRepository;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -83,7 +82,7 @@ public class AdminInquiryService {
             throw new InquiryNotFoundException();
         }
 
-        InquiryAnswer.update(inquiryAnswer, request.content(), adminId);
+        inquiryAnswer.update(request.content(), adminId);
     }
 
     @Transactional
@@ -95,7 +94,7 @@ public class AdminInquiryService {
             throw new InquiryNotFoundException();
         }
 
-        InquiryAnswer.delete(inquiryAnswer);
+        inquiryAnswer.delete();
         inquiry.markAsUnanswered();
     }
 
