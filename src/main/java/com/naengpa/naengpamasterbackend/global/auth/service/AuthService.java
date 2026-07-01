@@ -71,7 +71,7 @@ public class AuthService {
 
         memberRepository.findByEmail(request.email())
                 .ifPresent(member -> {
-                    if (member.getDeletedAt() != null) {
+                    if (member.isInactive()) {
                         throw new WithdrawnEmailException();
                     }
                     throw new DuplicateEmailException();
