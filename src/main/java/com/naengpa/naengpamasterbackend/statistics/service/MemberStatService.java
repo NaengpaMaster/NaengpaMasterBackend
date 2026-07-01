@@ -22,6 +22,7 @@ public class MemberStatService {
     private final ExpiredProductRepository expiredProductRepository;
     private final MemberRepository memberRepository;
 
+    //가장 많이 만료된 재료 TOP 5
     public List<TopIngredientResponse> getTop5Ingredients(String email) {
         Member member = memberRepository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("회원을 찾을 수 없습니다."));
@@ -44,14 +45,14 @@ public class MemberStatService {
         return topIngredientResponses;
     }
 
-
+    //카테고리별 만료량
     public List<ExpiredProductCategoryResponse> getExpiredProductCategories(String email) {
         Member member = memberRepository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("회원을 찾을 수 없습니다."));
         return expiredProductRepository.findExpiredCategoriesByMemberId(member.getId());
     }
 
-
+    //최근 만료 기록
     public List<ExpiredRecordResponse> getExpiredRecords(String email) {
         Member member = memberRepository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("회원을 찾을 수 없습니다."));

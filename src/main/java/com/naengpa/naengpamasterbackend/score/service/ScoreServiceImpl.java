@@ -25,6 +25,7 @@ public class ScoreServiceImpl implements ScoreService {
     private final MemberRepository memberRepository;
     private final ScoreHistoryRepository scoreHistoryRepository;
 
+    //점수
     @Override
     public ScoreResponse getScore(String email) {
 
@@ -37,6 +38,7 @@ public class ScoreServiceImpl implements ScoreService {
         return new ScoreResponse(score.getScore());
     }
 
+    //점수 산정 내역
     @Override
     public Page<ScoreHistoryResponse> getScoreHistories(String email, Pageable pageable) {
 

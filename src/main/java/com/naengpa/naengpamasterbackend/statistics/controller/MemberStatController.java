@@ -24,6 +24,7 @@ public class MemberStatController {
 
     private final MemberStatService memberStatService;
 
+    //가장 많이 만료된 재료 TOP 5
     @GetMapping("/top-ingredients")
     public ResponseEntity<ApiResponse<List<TopIngredientResponse>>>
     getTop5Ingredients(@AuthenticationPrincipal UserDetails userDetails
@@ -32,7 +33,7 @@ public class MemberStatController {
         return ResponseEntity.ok(ApiResponse.success("가장 많이 만료된 재료 TOP5 조회에 성공 했습니다.", data));
     }
 
-
+    //카테고리별 만료량
     @GetMapping("/expired-categories")
     public ResponseEntity<ApiResponse<List<ExpiredProductCategoryResponse>>> getExpiredProductCategories(
             @AuthenticationPrincipal UserDetails userDetails
@@ -41,6 +42,7 @@ public class MemberStatController {
         return ResponseEntity.ok(ApiResponse.success("카테고리별 만료량 조회에 성공 했습니다.", data));
     }
 
+    //최근 만료 기록
     @GetMapping("/expired-records")
     public ResponseEntity<ApiResponse<List<ExpiredRecordResponse>>> getExpiredRecords(
             @AuthenticationPrincipal UserDetails userDetails
