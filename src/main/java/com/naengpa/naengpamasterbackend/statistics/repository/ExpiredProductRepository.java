@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface ExpiredProductRepository extends JpaRepository<ExpiredProduct, Long> {
@@ -19,11 +20,13 @@ public interface ExpiredProductRepository extends JpaRepository<ExpiredProduct, 
             )
             FROM ExpiredProduct e
             WHERE e.memberId = :memberId
+            AND e.createdAt >= :startDate            
             GROUP BY e.productName
             ORDER BY COUNT(e.productName) DESC 
             LIMIT 5          
             """)
-    List<TopIngredientQueryResult> findTop5ExpiredProductByMemberId(@Param("memberId") Long memberId);
+    List<TopIngredientQueryResult> findTop5ExpiredProductByMemberId(@Param("memberId") Long memberId,
+                                                                    @Param("startDate") LocalDate startDate);
 
     //카테고리별 만료량
     @Query("""
@@ -32,10 +35,12 @@ public interface ExpiredProductRepository extends JpaRepository<ExpiredProduct, 
             )
             FROM ExpiredProduct e
             WHERE e.memberId = :memberId
+            AND e.createdAt >= :startDate
             GROUP BY e.categoryName
             ORDER BY COUNT(e.categoryName) DESC         
             """)
-    List<ExpiredProductCategoryResponse> findExpiredCategoriesByMemberId(@Param("memberId") Long memberId);
+    List<ExpiredProductCategoryResponse> findExpiredCategoriesByMemberId(@Param("memberId") Long memberId,
+                                                                         @Param("startDate") LocalDate startDate);
 
     //최근 만료 기록
     @Query("""
@@ -43,7 +48,9 @@ public interface ExpiredProductRepository extends JpaRepository<ExpiredProduct, 
                             e.productName, e.createdAt)
                         FROM ExpiredProduct  e
                         WHERE e.memberId = :memberId
+                        AND e.createdAt >= :startDate
                         ORDER BY e.createdAt DESC                              
             """)
-    List<ExpiredRecordResponse> findExpiredRecordsByMemberId(@Param("memberId") Long memberId);
+    List<ExpiredRecordResponse> findExpiredRecordsByMemberId(@Param("memberId") Long memberId,
+                                                             @Param("startDate") LocalDate startDate);
 }

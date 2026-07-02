@@ -12,6 +12,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,12 +24,13 @@ public class MemberStatService {
     private final MemberRepository memberRepository;
 
     //가장 많이 만료된 재료 TOP 5
-    public List<TopIngredientResponse> getTop5Ingredients(String email) {
+    public List<TopIngredientResponse> getTop5Ingredients(String email, int days) {
         Member member = memberRepository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("회원을 찾을 수 없습니다."));
 
+        LocalDate startDate = LocalDate.now().minusDays(days);
         List<TopIngredientQueryResult> topIngredientQueryResults =
-                expiredProductRepository.findTop5ExpiredProductByMemberId(member.getId());
+                expiredProductRepository.findTop5ExpiredProductByMemberId(member.getId(), startDate);
 
         List<TopIngredientResponse> topIngredientResponses = new ArrayList<>();
 
@@ -46,18 +48,21 @@ public class MemberStatService {
     }
 
     //카테고리별 만료량
-    public List<ExpiredProductCategoryResponse> getExpiredProductCategories(String email) {
+    public List<ExpiredProductCategoryResponse> getExpiredProductCategories(String email, int days) {
         Member member = memberRepository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("회원을 찾을 수 없습니다."));
-        return expiredProductRepository.findExpiredCategoriesByMemberId(member.getId());
+
+        LocalDate startDate = LocalDate.now().minusDays(days);
+        return expiredProductRepository.findExpiredCategoriesByMemberId(member.getId(), startDate);
     }
 
     //최근 만료 기록
-    public List<ExpiredRecordResponse> getExpiredRecords(String email) {
+    public List<ExpiredRecordResponse> getExpiredRecords(String email, int days) {
         Member member = memberRepository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("회원을 찾을 수 없습니다."));
 
-        return expiredProductRepository.findExpiredRecordsByMemberId(member.getId());
+        LocalDate startDate = LocalDate.now().minusDays(days);
+        return expiredProductRepository.findExpiredRecordsByMemberId(member.getId(), startDate);
     }
 
 }
