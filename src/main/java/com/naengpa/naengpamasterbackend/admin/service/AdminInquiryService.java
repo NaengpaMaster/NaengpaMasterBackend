@@ -47,10 +47,10 @@ public class AdminInquiryService {
 
     @Transactional(readOnly = true)
     public AdminInquiryDetailResponse getInquiryDetail(Long inquiryId) {
-        Inquiry inquiry = adminInquiryRepository.findById(inquiryId)
+        Inquiry inquiry = adminInquiryRepository.findByIdAndIsDeletedFalse(inquiryId)
                 .orElseThrow(InquiryNotFoundException::new);
 
-        InquiryAnswer inquiryAnswer = adminInquiryAnswerRepository.findByInquiryId(inquiryId).orElse(null);
+        InquiryAnswer inquiryAnswer = adminInquiryAnswerRepository.findByInquiryIdAndIsDeletedFalse(inquiryId).orElse(null);
 
         Member member = memberRepository.findById(inquiry.getMemberId()).orElse(null);
         String nickname = member != null ? member.getNickname() : null;
@@ -59,7 +59,7 @@ public class AdminInquiryService {
 
     @Transactional
     public void createInquiryAnswer(Long inquiryId, AdminAnswerRequest request, String email) {
-        Inquiry inquiry = adminInquiryRepository.findById(inquiryId)
+        Inquiry inquiry = adminInquiryRepository.findByIdAndIsDeletedFalse(inquiryId)
                 .orElseThrow(InquiryNotFoundException::new);
 
         Long adminId = resolveAdminIdOrThrow(email);
@@ -74,9 +74,9 @@ public class AdminInquiryService {
         InquiryAnswer inquiryAnswer = adminInquiryAnswerRepository.findById(answerId)
                 .orElseThrow(InquiryAnswerNotFoundException::new);
 
-        Long adminId = resolveAdminIdOrThrow(email);
+        Inquiry inquiry = adminInquiryRepository.findByIdAndIsDeletedFalse(inquiryId).orElseThrow(InquiryNotFoundException::new);
 
-        Inquiry inquiry = adminInquiryRepository.findById(inquiryId).orElseThrow(InquiryNotFoundException::new);
+        Long adminId = resolveAdminIdOrThrow(email);
 
         if (!inquiryAnswer.getInquiryId().equals(inquiry.getId())) {
             throw new InquiryNotFoundException();
@@ -87,7 +87,7 @@ public class AdminInquiryService {
 
     @Transactional
     public void deleteInquiryAnswer(Long inquiryId, Long answerId) {
-        Inquiry inquiry = adminInquiryRepository.findById(inquiryId).orElseThrow(InquiryNotFoundException::new);
+        Inquiry inquiry = adminInquiryRepository.findByIdAndIsDeletedFalse(inquiryId).orElseThrow(InquiryNotFoundException::new);
         InquiryAnswer inquiryAnswer = adminInquiryAnswerRepository.findById(answerId).orElseThrow(InquiryAnswerNotFoundException::new);
 
         if (!inquiryAnswer.getInquiryId().equals(inquiry.getId())) {
@@ -98,6 +98,17 @@ public class AdminInquiryService {
         inquiry.markAsUnanswered();
     }
 
+    @Transactional
+    public void deleteInquiry(Long inquiryId) {
+        Inquiry inquiry = adminInquiryRepository.findByIdAndIsDeletedFalse(inquiryId)
+                .orElseThrow(InquiryNotFoundException::new);
+
+        adminInquiryAnswerRepository.findByInquiryId(inquiryId)
+                .ifPresent(InquiryAnswer::delete);
+
+        inquiry.delete();
+    }
+
     private Long resolveAdminIdOrThrow(String email) {
         if (!StringUtils.hasText(email)) {
             throw new MemberNotFoundException();
@@ -106,5 +117,4 @@ public class AdminInquiryService {
                 .map(Member::getId)
                 .orElseThrow(MemberNotFoundException::new);
     }
-
 }

@@ -85,4 +85,5 @@ public class Inquiry {
         this.isAnswered = false;
         this.answeredAt = null;
     }
+
 }

@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface AdminInquiryRepository extends JpaRepository<Inquiry, Long> {
 
@@ -16,4 +18,6 @@ public interface AdminInquiryRepository extends JpaRepository<Inquiry, Long> {
     Page<Inquiry> findByIsDeleted(Boolean isDeleted, Pageable pageable);
 
     Page<Inquiry> findByIsAnsweredAndIsDeleted(Boolean isAnswered, Boolean isDeleted, Pageable pageable);
+
+    Optional<Inquiry> findByIdAndIsDeletedFalse(Long inquiryId);
 }
