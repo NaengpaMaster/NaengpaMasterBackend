@@ -4,5 +4,5 @@ import java.time.LocalDate;
 
 public record AdminExpiredCountResponse(Long thisWeekCount,
                                         Long lastWeekCount,
-                                        LocalDate weekChangePct) {
+                                        Double weekChangePct) {
 }
