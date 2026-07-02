@@ -66,4 +66,9 @@ public class Inquiry {
         this.isAnswered = false;
         this.answeredAt = null;
     }
+
+    public void markAsDeleted() {
+        this.isDeleted = true;
+        this.deletedAt = LocalDateTime.now();
+    }
 }
