@@ -278,10 +278,13 @@ CREATE TABLE notifications (
 
                                member_id BIGINT NOT NULL,
 
+                               type VARCHAR(50) NOT NULL,
                                title VARCHAR(200) NOT NULL,
                                content VARCHAR(1000) NOT NULL,
 
-                               expiry_date BOOLEAN NOT NULL DEFAULT FALSE,
+                               target_type VARCHAR(50),
+                               target_id BIGINT,
+                               target_expiry_date DATE,
                                read_at TIMESTAMP,
 
                                created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP

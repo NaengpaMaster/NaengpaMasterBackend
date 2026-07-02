@@ -12,6 +12,7 @@ import com.naengpa.naengpamasterbackend.inquiry.entity.Inquiry;
 import com.naengpa.naengpamasterbackend.inquiry.entity.InquiryAnswer;
 import com.naengpa.naengpamasterbackend.member.entity.Member;
 import com.naengpa.naengpamasterbackend.member.repository.MemberRepository;
+import com.naengpa.naengpamasterbackend.notification.service.NotificationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -26,6 +27,7 @@ public class AdminInquiryService {
     private final AdminInquiryRepository adminInquiryRepository;
     private final AdminInquiryAnswerRepository adminInquiryAnswerRepository;
     private final MemberRepository memberRepository;
+    private final NotificationService notificationService;
 
     @Transactional(readOnly = true)
     public Page<AdminInquiryResponse> getInquiries(Boolean isAnswered, Pageable pageable) {
@@ -67,6 +69,7 @@ public class AdminInquiryService {
         InquiryAnswer inquiryAnswer = InquiryAnswer.create(inquiryId, request.content(), adminId);
         adminInquiryAnswerRepository.save(inquiryAnswer);
         inquiry.markAsAnswered();
+        notificationService.createInquiryAnsweredNotification(inquiry.getMemberId(), inquiry.getId());
     }
 
     @Transactional
