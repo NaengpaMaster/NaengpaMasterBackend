@@ -218,6 +218,8 @@ CREATE TABLE score_histories (
                                  target_type VARCHAR(100),
                                  target_id BIGINT,
 
+                                 product_category_id BIGINT,
+
                                  score_delta INTEGER NOT NULL,
 
                                  -- description VARCHAR(500),
