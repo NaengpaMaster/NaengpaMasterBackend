@@ -167,4 +167,34 @@ class ShoppingItemServiceTests {
                 .extracting(ShoppingItemListResponse::shoppingItemId)
                 .doesNotContain(created.shoppingItemId());
     }
+
+    @Test
+    @DisplayName("장보기 항목 냉장고 반영 시 유통기한 요청값이 없으면 상품 기본 유통기한을 적용")
+    void moveShoppingItemToFridge_usesDefaultExpiryDaysWhenExpiryDateIsNull() {
+        // given
+        String email = "test-user@example.com";
+
+        ShoppingItemCreateRequest createRequest = new ShoppingItemCreateRequest(
+                1L,
+                "1개"
+        );
+
+        ShoppingItemResponse created = shoppingItemService.createShoppingItem(email, createRequest);
+
+        ShoppingItemMoveToFridgeRequest request = new ShoppingItemMoveToFridgeRequest(
+                null,
+                "장보기에서 냉장고로 추가"
+        );
+
+        // when
+        FridgeItemResponse result = shoppingItemService.moveShoppingItemToFridge(
+                email,
+                created.shoppingItemId(),
+                request
+        );
+
+        // then
+        assertThat(result.expiryDate()).isEqualTo(LocalDate.now().plusDays(180));
+        assertThat(result.memo()).isEqualTo(request.memo());
+    }
 }
