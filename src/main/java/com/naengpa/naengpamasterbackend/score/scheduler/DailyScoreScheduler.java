@@ -5,6 +5,7 @@ import com.naengpa.naengpamasterbackend.fridge.service.FridgeItemService;
 import com.naengpa.naengpamasterbackend.member.entity.Member;
 import com.naengpa.naengpamasterbackend.member.entity.MemberStatus;
 import com.naengpa.naengpamasterbackend.member.repository.MemberRepository;
+import com.naengpa.naengpamasterbackend.notification.service.NotificationService;
 import com.naengpa.naengpamasterbackend.product.entity.ProductCategory;
 import com.naengpa.naengpamasterbackend.product.repository.ProductCategoryRepository;
 import com.naengpa.naengpamasterbackend.score.entity.Score;
@@ -32,6 +33,7 @@ public class DailyScoreScheduler {
     private final ScoreHistoryRepository scoreHistoryRepository;
     private final ExpiredProductRepository expiredProductRepository;
     private final ProductCategoryRepository productCategoryRepository;
+    private final NotificationService notificationService;
 
     @Scheduled(cron = "0 0 0 * * *")
     @Transactional
@@ -48,6 +50,8 @@ public class DailyScoreScheduler {
             Member member = members.get(i);
 
             try {
+                notificationService.createExpiryNotifications(member.getId());
+
                 List<FridgeItemListResponse> expiredItems =
                         fridgeItemService.findExpiredFridgeItems(member.getEmail());
 
