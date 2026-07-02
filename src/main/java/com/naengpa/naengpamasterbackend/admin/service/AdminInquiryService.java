@@ -99,6 +99,12 @@ public class AdminInquiryService {
         inquiry.markAsUnanswered();
     }
 
+    @Transactional
+    public void deleteInquiry(Long inquiryId) {
+        Inquiry inquiry = adminInquiryRepository.findById(inquiryId).orElseThrow(InquiryNotFoundException::new);
+        inquiry.markAsDeleted();
+    }
+
     private Long resolveAdminIdOrThrow(String email) {
         if (!StringUtils.hasText(email)) {
             throw new MemberNotFoundException();
@@ -107,5 +113,4 @@ public class AdminInquiryService {
                 .map(Member::getId)
                 .orElseThrow(MemberNotFoundException::new);
     }
-
 }

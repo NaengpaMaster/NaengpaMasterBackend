@@ -78,4 +78,13 @@ public class AdminInquiriesController {
         adminInquiryService.deleteInquiryAnswer(inquiryId, answerId);
         return ResponseEntity.ok(ApiResponse.success(null));
     }
+
+    // 문의 삭제 API
+    @DeleteMapping("/{inquiryId}")
+    public ResponseEntity<ApiResponse<Void>> deleteInquiry(
+            @PathVariable Long inquiryId
+    ) {
+        adminInquiryService.deleteInquiry(inquiryId);
+        return ResponseEntity.ok(ApiResponse.success(null));
+    }
 }
