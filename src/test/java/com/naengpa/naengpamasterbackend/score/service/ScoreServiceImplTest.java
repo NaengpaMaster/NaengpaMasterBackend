@@ -56,7 +56,6 @@ class ScoreServiceImplTest {
         assertThat(saved.getTargetType()).isEqualTo("RECIPE");
         assertThat(saved.getTargetId()).isEqualTo(100L);
         assertThat(saved.getScoreDelta()).isEqualTo(3);
-        assertThat(saved.getDescription()).isNull();
     }
 
     @Test

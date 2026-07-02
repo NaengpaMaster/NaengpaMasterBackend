@@ -52,7 +52,8 @@ class RecipeCommandServiceTest {
     RecipeCommandService recipeCommandService;
 
     private static final RecipeUpdateRequest REQUEST =
-            new RecipeUpdateRequest("새 이름", "설명", 20, Difficulty.NORMAL, 2L, null);
+            new RecipeUpdateRequest("새 이름", "설명", 20, Difficulty.NORMAL, 2L, null,
+                    List.of(10L), List.of("단계1"));
 
     private void givenMember(String email, Long memberId) {
         Member member = Mockito.mock(Member.class);
@@ -136,7 +137,7 @@ class RecipeCommandServiceTest {
     }
 
     private static final RecipeCreateRequest CREATE_REQUEST = new RecipeCreateRequest(
-            "김치찌개", "맛있는 찌개", 30, Difficulty.NORMAL, 2L,
+            "김치찌개", "맛있는 찌개", 30, Difficulty.NORMAL, 2L, null,
             List.of(10L, 11L), List.of("재료 손질", "끓이기"));
 
     private void givenRecipeSavedWithId(Long recipeId) {
@@ -156,7 +157,7 @@ class RecipeCommandServiceTest {
         RecipeCreateResponse response = recipeCommandService.createRecipe("writer@test.com", CREATE_REQUEST);
 
         assertThat(response.recipeId()).isEqualTo(100L);
-        verify(scoreService).addScore(7L, ScoreReason.RECIPE_CREATED, "RECIPE", 100L, 3);
+        verify(scoreService).addScore(7L, ScoreReason.RECIPE_CREATED, CREATE_REQUEST.name(), 100L, 3);
     }
 
     @Test
@@ -172,7 +173,7 @@ class RecipeCommandServiceTest {
         inOrder.verify(recipeRepository).save(Mockito.any(Recipe.class));
         inOrder.verify(recipeRequiredProductRepository).saveAll(anyList());
         inOrder.verify(recipeStepRepository).saveAll(anyList());
-        inOrder.verify(scoreService).addScore(7L, ScoreReason.RECIPE_CREATED, "RECIPE", 100L, 3);
+        inOrder.verify(scoreService).addScore(7L, ScoreReason.RECIPE_CREATED, CREATE_REQUEST.name(), 100L, 3);
 
     }
 }

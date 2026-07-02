@@ -2,7 +2,6 @@ package com.naengpa.naengpamasterbackend.recipe.service;
 
 import com.naengpa.naengpamasterbackend.fridge.entity.FridgeItem;
 import com.naengpa.naengpamasterbackend.fridge.repository.FridgeItemRepository;
-import com.naengpa.naengpamasterbackend.global.exception.RecipeNotFoundException;
 import com.naengpa.naengpamasterbackend.global.response.PageResponse;
 import com.naengpa.naengpamasterbackend.member.entity.FoodCategory;
 import com.naengpa.naengpamasterbackend.member.entity.Member;
@@ -94,10 +93,6 @@ public class RecipeRecommendationService {
                                 Comparator.reverseOrder()))
                 .map(ScoredRecipe::response)
                 .toList();
-
-        if (scored.isEmpty()) {
-            throw new RecipeNotFoundException("추천 가능한 레시피가 없습니다.");
-        }
 
         List<RecipeRecommendationResponse> content = paginate(scored, page, size);
         return PageResponse.of(content, page, size, scored.size());
