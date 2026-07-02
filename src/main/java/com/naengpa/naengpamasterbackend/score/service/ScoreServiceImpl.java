@@ -49,6 +49,7 @@ public class ScoreServiceImpl implements ScoreService {
         return histories.map(h -> new ScoreHistoryResponse(
                         h.getScoreReason(),
                         h.getTargetType(),
+                        h.getProductCategoryId(), // 추가
                         h.getScoreDelta(),
                         h.getCreatedAt()
                 ));
@@ -64,7 +65,7 @@ public class ScoreServiceImpl implements ScoreService {
         int appliedDelta = score.addScore(delta);
 
         scoreHistoryRepository.save(
-                ScoreHistory.create(memberId, reason, targetType, targetId, appliedDelta)
+                ScoreHistory.create(memberId, reason, targetType, targetId, null, appliedDelta)
         );
     }
 

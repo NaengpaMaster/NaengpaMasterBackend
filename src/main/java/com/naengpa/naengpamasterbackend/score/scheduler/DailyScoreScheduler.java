@@ -73,7 +73,7 @@ public class DailyScoreScheduler {
                                 item.productName(),
                                 category.getName()
                         ));
-                        addScore(member, item.productName(), item.productId(), -2, ScoreReason.EXPIRED_PRODUCT);
+                        addScore(member, item.productName(), item.productId(), item.productCategoryId(), -2, ScoreReason.EXPIRED_PRODUCT);
                     }
 
                     log.info("유지기간 0으로 리셋");
@@ -85,7 +85,7 @@ public class DailyScoreScheduler {
 
                     if (member.getMaintenancePeriod() % 4 == 0) {
                         log.info("만료 재료 없음 4일 유지");
-                        addScore(member, null, null, 5, ScoreReason.NO_EXPIRED_4DAYS);
+                        addScore(member, null, null, null, 5, ScoreReason.NO_EXPIRED_4DAYS);
                     }
                 }
 
@@ -100,7 +100,7 @@ public class DailyScoreScheduler {
         log.info("냉파 점수 일일 스케줄러 종료 (성공: {}, 실패: {})", successCount, failCount);
     }
 
-    private void addScore(Member member, String targetType, Long targetId, int delta, ScoreReason reason) {
+    private void addScore(Member member, String targetType, Long targetId, Long productCategoryId, int delta, ScoreReason reason) {
 
         Score score = scoreRepository.findByMemberId(member.getId())
                 .orElseThrow(() -> new IllegalStateException(
@@ -112,7 +112,7 @@ public class DailyScoreScheduler {
 
         log.info("점수 이력 적재");
         scoreHistoryRepository.save(ScoreHistory.create(
-                member.getId(), reason, targetType, targetId, delta
+                member.getId(), reason, targetType, targetId, productCategoryId, delta
         ));
     }
 }
