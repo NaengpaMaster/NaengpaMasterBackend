@@ -1,6 +1,5 @@
 package com.naengpa.naengpamasterbackend.inquiry.entity;
 
-import com.naengpa.naengpamasterbackend.admin.dto.request.AdminAnswerRequest;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -62,13 +61,13 @@ public class InquiryAnswer {
         return inquiryAnswer;
     }
 
-    public static void update(InquiryAnswer inquiryAnswer, String content, Long adminId) {
-        inquiryAnswer.content = content;
-        inquiryAnswer.updatedBy = adminId;
+    public void update(String content, Long adminId) {
+        this.content = content;
+        this.updatedBy = adminId;
     }
 
-    public static void delete(InquiryAnswer inquiryAnswer) {
-        inquiryAnswer.isDeleted = true;
-        inquiryAnswer.deletedAt = LocalDateTime.now();
+    public void delete() {
+        this.isDeleted = true;
+        this.deletedAt = LocalDateTime.now();
     }
 }

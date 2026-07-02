@@ -47,4 +47,5 @@ public class AdminMemberService {
                 .orElseThrow(MemberNotFoundException::new)
                 .updateRole(request.role());
     }
+
 }
