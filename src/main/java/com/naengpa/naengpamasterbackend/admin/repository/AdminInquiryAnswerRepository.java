@@ -10,4 +10,6 @@ import java.util.Optional;
 public interface AdminInquiryAnswerRepository extends JpaRepository<InquiryAnswer, Long> {
 
     Optional<InquiryAnswer> findByInquiryId(Long inquiryId);
+
+    Optional<InquiryAnswer> findByInquiryIdAndIsDeletedFalse(Long inquiryId);
 }
