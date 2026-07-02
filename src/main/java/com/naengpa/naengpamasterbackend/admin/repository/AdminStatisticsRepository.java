@@ -23,7 +23,7 @@ public interface AdminStatisticsRepository extends JpaRepository<ExpiredProduct,
 
     // TOP5 재료 (최근 30일)
     @Query("SELECT ep.productName, COUNT(ep) as cnt FROM ExpiredProduct ep WHERE ep.createdAt >= :startDate GROUP BY ep.productName ORDER BY cnt DESC")
-    List<Object[]> findTopExpiredIngredients(@Param("startDate") LocalDate startDate, Pageable pageable);
+    List<Object[]> findTop5ExpiredIngredients(@Param("startDate") LocalDate startDate, Pageable pageable);
 
     // 카테고리별 만료량 조회
     @Query("SELECT ep.categoryName, COUNT(ep) FROM ExpiredProduct ep " +
