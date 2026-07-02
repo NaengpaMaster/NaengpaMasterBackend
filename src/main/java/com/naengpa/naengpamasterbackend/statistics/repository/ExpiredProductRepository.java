@@ -45,7 +45,7 @@ public interface ExpiredProductRepository extends JpaRepository<ExpiredProduct, 
     //최근 만료 기록
     @Query("""
                         SELECT new com.naengpa.naengpamasterbackend.statistics.dto.response.ExpiredRecordResponse(
-                            e.productName, e.createdAt)
+                            e.productName, e.productCategoryId, e.createdAt)
                         FROM ExpiredProduct  e
                         WHERE e.memberId = :memberId
                         AND e.createdAt >= :startDate
