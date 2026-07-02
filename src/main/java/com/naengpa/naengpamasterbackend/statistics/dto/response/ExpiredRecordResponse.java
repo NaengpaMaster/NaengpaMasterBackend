@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 public record ExpiredRecordResponse(
         String ingredientName,
+        Long productCategoryId,
         LocalDate expiredDate
 ) {
 }
