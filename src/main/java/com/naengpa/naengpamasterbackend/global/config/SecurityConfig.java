@@ -37,7 +37,9 @@ public class SecurityConfig {
     private static final String[] PUBLIC_POST_ENDPOINTS = {
             "/api/v1/members",
             "/api/v1/auth/login",
-            "/api/v1/auth/refresh"
+            "/api/v1/auth/refresh",
+            "/api/v1/auth/email-verifications",
+            "/api/v1/auth/email-verifications/**"
     };
 
     private static final String[] ADMIN_ENDPOINTS = {

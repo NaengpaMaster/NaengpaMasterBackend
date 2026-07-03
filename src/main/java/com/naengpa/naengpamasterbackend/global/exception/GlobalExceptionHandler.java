@@ -2,6 +2,8 @@ package com.naengpa.naengpamasterbackend.global.exception;
 
 import com.naengpa.naengpamasterbackend.global.response.ApiResponse;
 import com.naengpa.naengpamasterbackend.product.exception.ProductNotFoundException;
+import jakarta.persistence.NonUniqueResultException;
+import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
@@ -68,10 +70,25 @@ public class GlobalExceptionHandler {
                 .body(ApiResponse.fail(exception.getMessage()));
     }
 
+    @ExceptionHandler(EmailVerificationException.class)
+    public ResponseEntity<ApiResponse<Void>> handleEmailVerificationException(EmailVerificationException exception) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(ApiResponse.fail(exception.getMessage()));
+    }
+
     @ExceptionHandler(BadCredentialsException.class)
     public ResponseEntity<ApiResponse<Void>> handleBadCredentialsException(BadCredentialsException exception) {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                 .body(ApiResponse.fail(exception.getMessage()));
+    }
+
+    @ExceptionHandler({
+            NonUniqueResultException.class,
+            IncorrectResultSizeDataAccessException.class
+    })
+    public ResponseEntity<ApiResponse<Void>> handleNonUniqueResultException(Exception exception) {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                .body(ApiResponse.fail("리프레시 토큰 상태가 올바르지 않습니다. 다시 로그인해주세요."));
     }
 
     @ExceptionHandler(DisabledException.class)
@@ -154,6 +171,12 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(InquiryAlreadyAnsweredException.class)
     public ResponseEntity<ApiResponse<Void>> handleInquiryAlreadyAnsweredException(InquiryAlreadyAnsweredException exception) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(ApiResponse.fail(exception.getMessage()));
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<ApiResponse<Void>> handleIllegalArgumentException(IllegalArgumentException exception) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body(ApiResponse.fail(exception.getMessage()));
     }

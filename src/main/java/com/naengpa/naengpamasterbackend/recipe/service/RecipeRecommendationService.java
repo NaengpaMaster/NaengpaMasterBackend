@@ -217,6 +217,7 @@ public class RecipeRecommendationService {
                 recipe.getDifficulty().getLabel(),
                 recipe.getCookingTime(),
                 matchRate,
+                usesExpiring,
                 likeCount,
                 liked,
                 missingIngredients,

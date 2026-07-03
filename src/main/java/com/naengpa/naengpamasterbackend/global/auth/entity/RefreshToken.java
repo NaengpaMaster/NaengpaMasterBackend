@@ -34,7 +34,7 @@ public class RefreshToken {
     @JoinColumn(name = "member_id", nullable = false)
     private Member member;
 
-    @Column(name = "refresh_token", nullable = false, length = 1000)
+    @Column(name = "refresh_token", nullable = false, unique = true, length = 1000)
     private String refreshToken;
 
     @Column(name = "expired_at", nullable = false)
