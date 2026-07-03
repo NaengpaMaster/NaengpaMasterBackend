@@ -18,7 +18,6 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
             SELECT r
             FROM Recipe r
             JOIN FETCH r.category
-            LEFT JOIN FETCH r.foodCategory
             WHERE r.deleted = false
             """)
     List<Recipe> findRecommendationCandidates();
@@ -27,7 +26,6 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
             SELECT r
             FROM Recipe r
             JOIN FETCH r.category
-            LEFT JOIN FETCH r.foodCategory
             WHERE r.deleted = false
             AND (
                 LOWER(r.name) LIKE LOWER(CONCAT('%', :keyword, '%'))

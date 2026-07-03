@@ -11,10 +11,12 @@ import com.naengpa.naengpamasterbackend.recipe.dto.response.RecipeLikeResponse;
 import com.naengpa.naengpamasterbackend.recipe.entity.Recipe;
 import com.naengpa.naengpamasterbackend.recipe.entity.RecipeCategory;
 import com.naengpa.naengpamasterbackend.recipe.entity.RecipeFavorite;
+import com.naengpa.naengpamasterbackend.recipe.entity.RecipeFoodCategory;
 import com.naengpa.naengpamasterbackend.recipe.entity.RecipeRequiredProduct;
 import com.naengpa.naengpamasterbackend.recipe.entity.RecipeStep;
 import com.naengpa.naengpamasterbackend.recipe.repository.RecipeCategoryRepository;
 import com.naengpa.naengpamasterbackend.recipe.repository.RecipeFavoriteRepository;
+import com.naengpa.naengpamasterbackend.recipe.repository.RecipeFoodCategoryRepository;
 import com.naengpa.naengpamasterbackend.recipe.repository.RecipeRepository;
 import com.naengpa.naengpamasterbackend.recipe.repository.RecipeRequiredProductRepository;
 import com.naengpa.naengpamasterbackend.recipe.repository.RecipeStepRepository;
@@ -39,6 +41,7 @@ public class RecipeCommandService {
 
     private final RecipeRepository recipeRepository;
     private final RecipeCategoryRepository recipeCategoryRepository;
+    private final RecipeFoodCategoryRepository recipeFoodCategoryRepository;
     private final FoodCategoryRepository foodCategoryRepository;
     private final RecipeRequiredProductRepository recipeRequiredProductRepository;
     private final RecipeStepRepository recipeStepRepository;
@@ -55,7 +58,6 @@ public class RecipeCommandService {
         Recipe recipe = recipeRepository.save(
                 Recipe.builder()
                         .category(category)
-                        .foodCategory(foodCategory)
                         .createdBy(memberId)
                         .name(request.name())
                         .description(request.description())
@@ -67,6 +69,7 @@ public class RecipeCommandService {
 
         saveProducts(recipeId, request.productIds());
         saveSteps(recipeId, request.steps());
+        saveFoodCategory(recipeId, foodCategory);
 
         scoreService.addScore(memberId, ScoreReason.RECIPE_CREATED,
                 request.name(), recipeId, RECIPE_CREATED_SCORE);
@@ -87,13 +90,25 @@ public class RecipeCommandService {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "존재하지 않는 카테고리입니다."));
         FoodCategory foodCategory = resolveFoodCategory(request.foodCategoryId());
 
-        recipe.update(category, foodCategory, request.name(), request.description(),
+        recipe.update(category, request.name(), request.description(),
                 request.cookingTime(), request.difficulty());
 
         recipeRequiredProductRepository.deleteByRecipeId(recipeId);
         recipeStepRepository.deleteByRecipeId(recipeId);
+        recipeFoodCategoryRepository.deleteByRecipeId(recipeId);
         saveProducts(recipeId, request.productIds());
         saveSteps(recipeId, request.steps());
+        saveFoodCategory(recipeId, foodCategory);
+    }
+
+    private void saveFoodCategory(Long recipeId, FoodCategory foodCategory) {
+        if (foodCategory == null) {
+            return;
+        }
+        recipeFoodCategoryRepository.save(RecipeFoodCategory.builder()
+                .recipeId(recipeId)
+                .foodCategoryId(foodCategory.getId())
+                .build());
     }
 
     private void saveProducts(Long recipeId, List<Long> productIds) {

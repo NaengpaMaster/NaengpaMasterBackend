@@ -441,6 +441,21 @@ COMMENT ON TABLE recipe_steps IS '레시피 조리 순서';
 CREATE INDEX idx_recipe_steps_recipe
     ON recipe_steps(recipe_id);
 
+CREATE TABLE recipe_food_categories (
+                                        recipe_food_category_id BIGSERIAL PRIMARY KEY,
+
+                                        recipe_id        BIGINT NOT NULL,
+                                        food_category_id BIGINT NOT NULL,
+
+                                        CONSTRAINT uk_recipe_food_categories_recipe
+                                            UNIQUE(recipe_id)
+);
+
+COMMENT ON TABLE recipe_food_categories IS '레시피-음식카테고리 매핑 (레시피당 1개, recipe_id UNIQUE)';
+
+CREATE INDEX idx_recipe_food_categories_food_category
+    ON recipe_food_categories(food_category_id);
+
 -- =========================================
 -- pg_trgm + GIN index
 -- =========================================

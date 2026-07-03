@@ -1,6 +1,5 @@
 package com.naengpa.naengpamasterbackend.recipe.entity;
 
-import com.naengpa.naengpamasterbackend.member.entity.FoodCategory;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -34,10 +33,6 @@ public class Recipe {
     @JoinColumn(name = "recipe_category_id", nullable = false)
     private RecipeCategory category;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "food_category_id")
-    private FoodCategory foodCategory;
-
     @Column(name = "created_by")
     private Long createdBy;
 
@@ -67,10 +62,9 @@ public class Recipe {
     private LocalDateTime deletedAt;
 
     @Builder
-    private Recipe(RecipeCategory category, FoodCategory foodCategory, Long createdBy, String name,
+    private Recipe(RecipeCategory category, Long createdBy, String name,
                   String description, Integer cookingTime, Difficulty difficulty) {
         this.category = category;
-        this.foodCategory = foodCategory;
         this.createdBy = createdBy;
         this.name = name;
         this.description = description;
@@ -83,10 +77,9 @@ public class Recipe {
         return this.createdBy != null && this.createdBy.equals(memberId);
     }
 
-    public void update(RecipeCategory category, FoodCategory foodCategory, String name, String description,
+    public void update(RecipeCategory category, String name, String description,
                        Integer cookingTime, Difficulty difficulty) {
         this.category = category;
-        this.foodCategory = foodCategory;
         this.name = name;
         this.description = description;
         this.cookingTime = cookingTime;
