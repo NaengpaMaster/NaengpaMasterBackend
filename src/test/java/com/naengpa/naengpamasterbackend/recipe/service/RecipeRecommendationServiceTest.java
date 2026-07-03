@@ -13,8 +13,10 @@ import com.naengpa.naengpamasterbackend.recipe.dto.response.RecipeRecommendation
 import com.naengpa.naengpamasterbackend.recipe.entity.Difficulty;
 import com.naengpa.naengpamasterbackend.recipe.entity.Recipe;
 import com.naengpa.naengpamasterbackend.recipe.entity.RecipeCategory;
+import com.naengpa.naengpamasterbackend.recipe.entity.RecipeFoodCategory;
 import com.naengpa.naengpamasterbackend.recipe.entity.RecipeRequiredProduct;
 import com.naengpa.naengpamasterbackend.recipe.repository.RecipeFavoriteRepository;
+import com.naengpa.naengpamasterbackend.recipe.repository.RecipeFoodCategoryRepository;
 import com.naengpa.naengpamasterbackend.recipe.repository.RecipeRepository;
 import com.naengpa.naengpamasterbackend.recipe.repository.RecipeRequiredProductRepository;
 import org.junit.jupiter.api.DisplayName;
@@ -47,6 +49,7 @@ class RecipeRecommendationServiceTest {
 
     @Mock RecipeRepository recipeRepository;
     @Mock RecipeRequiredProductRepository recipeRequiredProductRepository;
+    @Mock RecipeFoodCategoryRepository recipeFoodCategoryRepository;
     @Mock RecipeFavoriteRepository recipeFavoriteRepository;
     @Mock ProductRepository productRepository;
     @Mock FridgeItemRepository fridgeItemRepository;
@@ -85,6 +88,13 @@ class RecipeRecommendationServiceTest {
         given(rrp.getRecipeId()).willReturn(recipeId);
         given(rrp.getProductId()).willReturn(productId);
         return rrp;
+    }
+
+    private RecipeFoodCategory recipeFoodCategory(Long recipeId, Long foodCategoryId) {
+        RecipeFoodCategory rfc = Mockito.mock(RecipeFoodCategory.class);
+        given(rfc.getRecipeId()).willReturn(recipeId);
+        given(rfc.getFoodCategoryId()).willReturn(foodCategoryId);
+        return rfc;
     }
 
     private FridgeItem fridgeItem(Long productId, LocalDate expiryDate) {
@@ -248,10 +258,10 @@ class RecipeRecommendationServiceTest {
         given(memberFavoriteFoodRepository.findAllByMemberOrderByIdAsc(member)).willReturn(List.of(favorite));
 
         Recipe recipe = recipe(15L, "김치볶음밥", "한식", LocalDateTime.now());
-        com.naengpa.naengpamasterbackend.member.entity.FoodCategory recipeFood =
-                Mockito.mock(com.naengpa.naengpamasterbackend.member.entity.FoodCategory.class);
-        given(recipeFood.getId()).willReturn(5L);
-        given(recipe.getFoodCategory()).willReturn(recipeFood);
+        // 레시피의 음식 카테고리(id=5)는 중간테이블 매핑으로 조회한다
+        RecipeFoodCategory recipeFoodCategory = recipeFoodCategory(15L, 5L);
+        given(recipeFoodCategoryRepository.findByRecipeIdIn(List.of(15L)))
+                .willReturn(List.of(recipeFoodCategory));
         List<RecipeRequiredProduct> required = List.of(required(15L, 10L));
         List<FridgeItem> fridge = List.of(fridgeItem(10L, null));
         List<Product> products = List.of(product(10L, "김치"));

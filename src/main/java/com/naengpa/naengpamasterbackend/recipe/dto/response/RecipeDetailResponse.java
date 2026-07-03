@@ -7,6 +7,8 @@ public record RecipeDetailResponse(
         String recipeName,
         String description,
         String category,
+        Long foodCategoryId,
+        String foodCategoryName,
         Integer cookTime,
         String difficulty,
         long likeCount,

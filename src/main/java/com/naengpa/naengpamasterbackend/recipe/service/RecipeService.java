@@ -1,16 +1,20 @@
 package com.naengpa.naengpamasterbackend.recipe.service;
 
 import com.naengpa.naengpamasterbackend.global.exception.RecipeNotFoundException;
+import com.naengpa.naengpamasterbackend.member.entity.FoodCategory;
 import com.naengpa.naengpamasterbackend.member.entity.Member;
 import com.naengpa.naengpamasterbackend.member.entity.MemberRole;
+import com.naengpa.naengpamasterbackend.member.repository.FoodCategoryRepository;
 import com.naengpa.naengpamasterbackend.member.repository.MemberRepository;
 import com.naengpa.naengpamasterbackend.product.entity.Product;
 import com.naengpa.naengpamasterbackend.product.repository.ProductRepository;
 import com.naengpa.naengpamasterbackend.recipe.dto.response.RecipeDetailResponse;
 import com.naengpa.naengpamasterbackend.recipe.entity.Recipe;
+import com.naengpa.naengpamasterbackend.recipe.entity.RecipeFoodCategory;
 import com.naengpa.naengpamasterbackend.recipe.entity.RecipeRequiredProduct;
 import com.naengpa.naengpamasterbackend.recipe.entity.RecipeStep;
 import com.naengpa.naengpamasterbackend.recipe.repository.RecipeFavoriteRepository;
+import com.naengpa.naengpamasterbackend.recipe.repository.RecipeFoodCategoryRepository;
 import com.naengpa.naengpamasterbackend.recipe.repository.RecipeRepository;
 import com.naengpa.naengpamasterbackend.recipe.repository.RecipeRequiredProductRepository;
 import com.naengpa.naengpamasterbackend.recipe.repository.RecipeStepRepository;
@@ -33,8 +37,10 @@ public class RecipeService {
     private final RecipeRepository recipeRepository;
     private final RecipeStepRepository recipeStepRepository;
     private final RecipeRequiredProductRepository recipeRequiredProductRepository;
+    private final RecipeFoodCategoryRepository recipeFoodCategoryRepository;
     private final RecipeFavoriteRepository recipeFavoriteRepository;
     private final ProductRepository productRepository;
+    private final FoodCategoryRepository foodCategoryRepository;
     private final FridgeItemRepository fridgeItemRepository;
     private final MemberRepository memberRepository;
 
@@ -51,6 +57,15 @@ public class RecipeService {
         Boolean liked = memberId == null
                 ? null
                 : recipeFavoriteRepository.existsByRecipeIdAndMemberId(recipeId, memberId);
+
+        Long foodCategoryId = recipeFoodCategoryRepository.findByRecipeId(recipeId)
+                .map(RecipeFoodCategory::getFoodCategoryId)
+                .orElse(null);
+        String foodCategoryName = foodCategoryId == null
+                ? null
+                : foodCategoryRepository.findById(foodCategoryId)
+                        .map(FoodCategory::getName)
+                        .orElse(null);
 
         List<RecipeRequiredProduct> requiredProducts =
                 recipeRequiredProductRepository.findByRecipeIdOrderByRecipeRequiredProductIdAsc(recipeId);
@@ -92,6 +107,8 @@ public class RecipeService {
                 recipe.getName(),
                 recipe.getDescription(),
                 recipe.getCategory().getName(),
+                foodCategoryId,
+                foodCategoryName,
                 recipe.getCookingTime(),
                 recipe.getDifficulty().name(),
                 likeCount,
