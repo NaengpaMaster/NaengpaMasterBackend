@@ -7,6 +7,7 @@ public record ScoreHistoryResponse(
 
         ScoreReason scoreReason,
         String targetType,
+        Long productCategoryId,
         Integer scoreDelta,
         LocalDateTime createdAt
 ) {
