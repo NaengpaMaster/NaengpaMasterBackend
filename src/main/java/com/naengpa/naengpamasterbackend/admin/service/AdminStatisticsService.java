@@ -14,7 +14,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -29,6 +31,12 @@ public class AdminStatisticsService {
     public AdminScoreAverageResponse getScoreAverage() {
         Long activeUserCount = adminMemberRepository.countByStatusAndRole(MemberStatus.ACTIVE, MemberRole.USER);
         Double scoreAverage = adminScoreRepository.findScoreAverage();
+
+        if (scoreAverage == null) {
+            scoreAverage = 0.0;
+        } else {
+            scoreAverage = Math.round(scoreAverage * 10) / 10.0; // 소수점 첫째 자리까지 반올림
+        }
 
         return new AdminScoreAverageResponse(scoreAverage, activeUserCount);
     }
@@ -48,6 +56,44 @@ public class AdminStatisticsService {
         Double weekChangePct = lastWeekCount == 0 ? null : Math.round(((double) (thisWeekCount - lastWeekCount) / lastWeekCount) * 100 * 10) / 10.0;
 
         return new AdminExpiredCountResponse(thisWeekCount, lastWeekCount, weekChangePct);
+    }
+
+    // 카테고리별 만료량 조회
+    @Transactional(readOnly = true)
+    public List<AdminCategoryStatResponse> getExpiredCountByCategory(Integer period) {
+        LocalDate startDate = switch (period) {
+            case 7   -> LocalDate.now().minusDays(7);
+            case 30 -> LocalDate.now().minusDays(30);
+            default -> throw new IllegalArgumentException("period값은 7 또는 30이어야 합니다.");
+        };
+
+        return adminStatisticsRepository.findExpiredCountByCategory(startDate)
+                .stream()
+                .map(row -> new AdminCategoryStatResponse(
+                        (String) row[0],
+                        (Long) row[1]
+                ))
+                .toList();
+    }
+
+    // top 5 유통기한 만료 재료 조회
+    @Transactional(readOnly = true)
+    public List<AdminTopWastedIngredientResponse> getTop5Ingredients() {
+        LocalDate thisWeekStart = LocalDate.now().with(DayOfWeek.MONDAY);
+        LocalDate thisWeekEnd = LocalDate.now();
+
+        LocalDate lastWeekStart = thisWeekStart.minusWeeks(1);
+        LocalDate lastWeekEnd = thisWeekStart.minusDays(1);
+
+        // 이번주 TOP5
+        List<Object[]> thisWeek = adminStatisticsRepository
+                .findTop5ExpiredIngredientsBetween(thisWeekStart, thisWeekEnd, PageRequest.of(0, 5));
+
+        // 지난주 TOP5 → 순위 Map
+        List<Object[]> lastWeek = adminStatisticsRepository
+                .findTop5ExpiredIngredientsBetween(lastWeekStart, lastWeekEnd, PageRequest.of(0, 5));
+
+        return getAdminTopWastedIngredientResponses(lastWeek, thisWeek);
     }
 
     // 주간 만료 추이 (날짜별 만료 건수)
@@ -72,35 +118,30 @@ public class AdminStatisticsService {
        return new AdminWeeklyTrendResponse(weeks);
     }
 
-    // top 5 유통기한 만료 재료 조회
-    @Transactional(readOnly = true)
-    public List<AdminTopWastedIngredientResponse> getTop5Ingredients() {
-        LocalDate startDate = LocalDate.now().minusDays(30);
+    private List<AdminTopWastedIngredientResponse> getAdminTopWastedIngredientResponses(List<Object[]> lastWeek, List<Object[]> thisWeek) {
+        Map<String, Integer> lastWeekRankMap = new HashMap<>();
+        for (int i = 0; i < lastWeek.size(); i++) {
+            lastWeekRankMap.put((String) lastWeek.get(i)[0], i + 1);
+        }
 
-        return adminStatisticsRepository.findTop5ExpiredIngredients(startDate, PageRequest.of(0, 5))
-                .stream()
-                .map(record -> new AdminTopWastedIngredientResponse(
-                        (Integer) record[0],
-                        (Long) record[1],
-                        (String) record[3],
-                        (Long) record[4],
-                        (Integer) record[5]
-                ))
-                .toList();
+        // 이번주 순위 + rankChange 계산
+        List<AdminTopWastedIngredientResponse> list = new ArrayList<>();
+        for (int i = 0; i < thisWeek.size(); i++) {
+            String productName = (String) thisWeek.get(i)[0];
+            Long count = (Long) thisWeek.get(i)[1];
+            int currentRank = i + 1;
+
+            Integer lastRank = lastWeekRankMap.get(productName);
+            Integer rankChange = lastRank != null ? lastRank - currentRank : null;
+
+            list.add(new AdminTopWastedIngredientResponse(
+                    currentRank,
+                    productName,
+                    count,
+                    rankChange
+            ));
+        }
+        return list;
     }
 
-    // 카테고리별 만료량 조회
-    @Transactional(readOnly = true)
-    public List<AdminCategoryStatResponse> getExpiredCountByCategory() {
-        LocalDate startDate = LocalDate.now().minusDays(30);
-
-        return adminStatisticsRepository.findExpiredCountByCategory(startDate)
-                .stream()
-                .map(row -> new AdminCategoryStatResponse(
-                        (Long) row[0],
-                        (String) row[1],
-                        (Long) row[3]
-                ))
-                .toList();
-    }
 }
