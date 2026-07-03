@@ -50,6 +50,22 @@ class JwtAuthenticationFilterTest {
     }
 
     @Test
+    void publicEmailVerificationRequestSkipsJwtFilterEvenWithAuthorizationHeader() {
+        MockHttpServletRequest request = new MockHttpServletRequest("POST", "/api/v1/auth/email-verifications");
+        request.addHeader("Authorization", "Bearer expired-token");
+
+        assertThat(filter.shouldNotFilter(request)).isTrue();
+    }
+
+    @Test
+    void publicEmailVerificationConfirmRequestSkipsJwtFilterEvenWithAuthorizationHeader() {
+        MockHttpServletRequest request = new MockHttpServletRequest("POST", "/api/v1/auth/email-verifications/confirm");
+        request.addHeader("Authorization", "Bearer expired-token");
+
+        assertThat(filter.shouldNotFilter(request)).isTrue();
+    }
+
+    @Test
     void authenticatedRequestUsesJwtFilter() {
         MockHttpServletRequest request = new MockHttpServletRequest("GET", "/api/v1/members/me");
 

@@ -60,6 +60,7 @@ public class AuthService {
     private final ProductRepository productRepository;
     private final ScoreRepository scoreRepository;
     private final RefreshTokenRepository refreshTokenRepository;
+    private final EmailVerificationService emailVerificationService;
     private final PasswordEncoder passwordEncoder;
     private final JwtTokenProvider jwtTokenProvider;
 
@@ -76,6 +77,7 @@ public class AuthService {
                     }
                     throw new DuplicateEmailException();
                 });
+        emailVerificationService.validateVerifiedEmail(request.email());
 
         Member member = Member.createUser(
                 request.email(),
