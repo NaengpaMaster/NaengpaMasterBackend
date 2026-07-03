@@ -14,8 +14,10 @@ import com.naengpa.naengpamasterbackend.product.entity.Product;
 import com.naengpa.naengpamasterbackend.product.repository.ProductRepository;
 import com.naengpa.naengpamasterbackend.recipe.dto.response.RecipeRecommendationResponse;
 import com.naengpa.naengpamasterbackend.recipe.entity.Recipe;
+import com.naengpa.naengpamasterbackend.recipe.entity.RecipeFoodCategory;
 import com.naengpa.naengpamasterbackend.recipe.entity.RecipeRequiredProduct;
 import com.naengpa.naengpamasterbackend.recipe.repository.RecipeFavoriteRepository;
+import com.naengpa.naengpamasterbackend.recipe.repository.RecipeFoodCategoryRepository;
 import com.naengpa.naengpamasterbackend.recipe.repository.RecipeLikeCountProjection;
 import com.naengpa.naengpamasterbackend.recipe.repository.RecipeRepository;
 import com.naengpa.naengpamasterbackend.recipe.repository.RecipeRequiredProductRepository;
@@ -46,6 +48,7 @@ public class RecipeRecommendationService {
 
     private final RecipeRepository recipeRepository;
     private final RecipeRequiredProductRepository recipeRequiredProductRepository;
+    private final RecipeFoodCategoryRepository recipeFoodCategoryRepository;
     private final RecipeFavoriteRepository recipeFavoriteRepository;
     private final ProductRepository productRepository;
     private final FridgeItemRepository fridgeItemRepository;
@@ -80,11 +83,13 @@ public class RecipeRecommendationService {
         Map<Long, List<RecipeRequiredProduct>> requiredByRecipe = loadRequiredProducts(candidates);
         Map<Long, String> productNames = loadProductNames(requiredByRecipe.values());
         Map<Long, Long> likeCounts = loadLikeCounts(candidates);
+        Map<Long, Long> foodCategoryIds = loadFoodCategoryIds(candidates);
 
         List<RecipeRecommendationResponse> scored = candidates.stream()
                 .map(recipe -> score(recipe, requiredByRecipe.getOrDefault(recipe.getRecipeId(), List.of()),
                         productNames, context, likeCounts.getOrDefault(recipe.getRecipeId(), 0L),
-                        favoriteRecipeIds.contains(recipe.getRecipeId())))
+                        favoriteRecipeIds.contains(recipe.getRecipeId()),
+                        foodCategoryIds.get(recipe.getRecipeId())))
                 .filter(java.util.Objects::nonNull)
                 .filter(scoredRecipe -> !match80Only || scoredRecipe.response().matchRate() >= HIGH_MATCH_RATE)
                 .sorted(Comparator
@@ -154,8 +159,18 @@ public class RecipeRecommendationService {
                 .collect(Collectors.toMap(RecipeLikeCountProjection::getRecipeId, RecipeLikeCountProjection::getLikeCount));
     }
 
+    private Map<Long, Long> loadFoodCategoryIds(List<Recipe> candidates) {
+        if (candidates.isEmpty()) {
+            return Map.of();
+        }
+        List<Long> recipeIds = candidates.stream().map(Recipe::getRecipeId).toList();
+        return recipeFoodCategoryRepository.findByRecipeIdIn(recipeIds).stream()
+                .collect(Collectors.toMap(RecipeFoodCategory::getRecipeId, RecipeFoodCategory::getFoodCategoryId));
+    }
+
     private ScoredRecipe score(Recipe recipe, List<RecipeRequiredProduct> required,
-                               Map<Long, String> productNames, MemberContext context, long likeCount, boolean liked) {
+                               Map<Long, String> productNames, MemberContext context, long likeCount, boolean liked,
+                               Long foodCategoryId) {
         List<Long> requiredProductIds = required.stream()
                 .map(RecipeRequiredProduct::getProductId)
                 .toList();
@@ -177,8 +192,8 @@ public class RecipeRecommendationService {
 
         boolean usesExpiring = requiredProductIds.stream()
                 .anyMatch(context.expiringProductIds()::contains);
-        boolean matchesPreference = recipe.getFoodCategory() != null
-                && context.favoriteFoodCategoryIds().contains(recipe.getFoodCategory().getId());
+        boolean matchesPreference = foodCategoryId != null
+                && context.favoriteFoodCategoryIds().contains(foodCategoryId);
 
         List<String> reasons = new ArrayList<>();
         reasons.add("보유 재료 " + matchRate + "%");

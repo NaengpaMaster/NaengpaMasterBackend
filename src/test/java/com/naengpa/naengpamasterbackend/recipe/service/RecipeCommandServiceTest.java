@@ -10,6 +10,7 @@ import com.naengpa.naengpamasterbackend.recipe.entity.Recipe;
 import com.naengpa.naengpamasterbackend.recipe.entity.RecipeCategory;
 import com.naengpa.naengpamasterbackend.recipe.repository.RecipeCategoryRepository;
 import com.naengpa.naengpamasterbackend.recipe.repository.RecipeFavoriteRepository;
+import com.naengpa.naengpamasterbackend.recipe.repository.RecipeFoodCategoryRepository;
 import com.naengpa.naengpamasterbackend.recipe.repository.RecipeRepository;
 import com.naengpa.naengpamasterbackend.recipe.repository.RecipeRequiredProductRepository;
 import com.naengpa.naengpamasterbackend.recipe.repository.RecipeStepRepository;
@@ -41,6 +42,7 @@ class RecipeCommandServiceTest {
 
     @Mock RecipeRepository recipeRepository;
     @Mock RecipeCategoryRepository recipeCategoryRepository;
+    @Mock RecipeFoodCategoryRepository recipeFoodCategoryRepository;
     @Mock com.naengpa.naengpamasterbackend.member.repository.FoodCategoryRepository foodCategoryRepository;
     @Mock RecipeRequiredProductRepository recipeRequiredProductRepository;
     @Mock RecipeStepRepository recipeStepRepository;
