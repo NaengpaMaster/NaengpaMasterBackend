@@ -1,9 +1,11 @@
 package com.naengpa.naengpamasterbackend.global.security;
 
+import com.naengpa.naengpamasterbackend.global.auth.entity.EmailVerification;
 import com.naengpa.naengpamasterbackend.member.entity.Member;
 import com.naengpa.naengpamasterbackend.member.entity.MemberRole;
 import com.naengpa.naengpamasterbackend.member.entity.MemberStatus;
 import com.naengpa.naengpamasterbackend.global.auth.entity.RefreshToken;
+import com.naengpa.naengpamasterbackend.global.auth.repository.EmailVerificationRepository;
 import com.naengpa.naengpamasterbackend.global.auth.repository.RefreshTokenRepository;
 import com.naengpa.naengpamasterbackend.member.repository.MemberRepository;
 import com.naengpa.naengpamasterbackend.score.entity.Score;
@@ -42,6 +44,9 @@ class SecurityAuthorizationTest {
 
     @Autowired
     private RefreshTokenRepository refreshTokenRepository;
+
+    @Autowired
+    private EmailVerificationRepository emailVerificationRepository;
 
     @Autowired
     private ScoreRepository scoreRepository;
@@ -131,7 +136,8 @@ class SecurityAuthorizationTest {
     void adminCanDeactivateMemberWithoutDeletingData() throws Exception {
         Member admin = findOrCreateAdmin("security-status-admin@example.com", "상태변경관리자");
         Member target = findOrCreateUser("security-status-inactive@example.com", "탈퇴처리대상");
-        scoreRepository.save(Score.createInitial(target.getId()));
+        scoreRepository.findByMemberId(target.getId())
+                .orElseGet(() -> scoreRepository.save(Score.createInitial(target.getId())));
         String refreshToken = jwtTokenProvider.createRefreshToken(target.getEmail(), "USER");
         refreshTokenRepository.save(RefreshToken.builder()
                 .member(target)
@@ -238,6 +244,7 @@ class SecurityAuthorizationTest {
     void signupCreatesInitialScore() throws Exception {
         String suffix = String.valueOf(System.nanoTime());
         String email = "security-score-signup-" + suffix + "@example.com";
+        saveVerifiedEmail(email);
 
         mockMvc.perform(post("/api/v1/members")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -256,6 +263,16 @@ class SecurityAuthorizationTest {
         Score score = scoreRepository.findByMemberId(member.getId()).orElseThrow();
 
         assertThat(score.getScore()).isEqualTo(10);
+    }
+
+    private void saveVerifiedEmail(String email) {
+        EmailVerification emailVerification = EmailVerification.create(
+                email,
+                "123456",
+                LocalDateTime.now().plusMinutes(10)
+        );
+        emailVerification.verify(LocalDateTime.now());
+        emailVerificationRepository.save(emailVerification);
     }
 
     @Test
