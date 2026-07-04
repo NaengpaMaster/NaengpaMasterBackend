@@ -10,6 +10,7 @@ import com.naengpa.naengpamasterbackend.fridge.repository.FridgeItemRepository;
 import com.naengpa.naengpamasterbackend.member.entity.Member;
 import com.naengpa.naengpamasterbackend.member.repository.MemberRepository;
 import com.naengpa.naengpamasterbackend.product.entity.Product;
+import com.naengpa.naengpamasterbackend.product.exception.ProductNotFoundException;
 import com.naengpa.naengpamasterbackend.product.repository.ProductRepository;
 import com.naengpa.naengpamasterbackend.product.service.ProductService;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -83,7 +84,7 @@ public class FridgeItemService {
     public List<FridgeItemListResponse> findFridgeItemsByCategory(String email, Long categoryId) {
         Member member = findMemberByEmail(email);
 
-        List<Long> productIds = productRepository.findByProductCategoryIdAndIsActiveTrue(categoryId)
+        List<Long> productIds = productRepository.findByProductCategoryId(categoryId)
                 .stream()
                 .map(Product::getProductId)
                 .toList();
@@ -103,14 +104,14 @@ public class FridgeItemService {
                 .map(FridgeItem::getProductId)
                 .toList();
 
-        List<Product> products = productRepository.findByProductIdInAndIsActiveTrue(productIds);
+        List<Product> products = productRepository.findByProductIdIn(productIds);
 
         return fridgeItems.stream()
                 .map(fridgeItem -> {
                     Product product = products.stream()
                             .filter(p -> p.getProductId().equals(fridgeItem.getProductId()))
                             .findFirst()
-                            .orElseThrow();
+                            .orElseThrow(() -> new ProductNotFoundException(fridgeItem.getProductId()));
 
                     return new FridgeItemListResponse(
                             fridgeItem.getFridgeItemId(),

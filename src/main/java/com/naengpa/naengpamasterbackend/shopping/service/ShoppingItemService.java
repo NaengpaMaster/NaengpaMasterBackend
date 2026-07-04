@@ -3,9 +3,11 @@ package com.naengpa.naengpamasterbackend.shopping.service;
 import com.naengpa.naengpamasterbackend.fridge.entity.FridgeItem;
 import com.naengpa.naengpamasterbackend.fridge.dto.response.FridgeItemResponse;
 import com.naengpa.naengpamasterbackend.fridge.repository.FridgeItemRepository;
+import com.naengpa.naengpamasterbackend.global.exception.ShoppingItemNotFoundException;
 import com.naengpa.naengpamasterbackend.member.entity.Member;
 import com.naengpa.naengpamasterbackend.member.repository.MemberRepository;
 import com.naengpa.naengpamasterbackend.product.entity.Product;
+import com.naengpa.naengpamasterbackend.product.exception.ProductNotFoundException;
 import com.naengpa.naengpamasterbackend.product.repository.ProductRepository;
 import com.naengpa.naengpamasterbackend.product.service.ProductService;
 import com.naengpa.naengpamasterbackend.shopping.dto.request.ShoppingItemCheckRequest;
@@ -53,6 +55,11 @@ public class ShoppingItemService {
                 .orElseThrow(() -> new BadCredentialsException("회원을 찾을 수 없습니다."));
     }
 
+    private ShoppingItem findOwnedShoppingItem(Long shoppingItemId, Long memberId) {
+        return shoppingItemRepository.findByShoppingItemIdAndMemberIdAndIsDeletedFalse(shoppingItemId, memberId)
+                .orElseThrow(ShoppingItemNotFoundException::new);
+    }
+
     //장보기 등록
     public ShoppingItemResponse createShoppingItem(String email , @Valid ShoppingItemCreateRequest request) {
         Member member = findMemberByEmail(email);
@@ -86,14 +93,14 @@ public class ShoppingItemService {
                 .map(ShoppingItem::getProductId)
                 .toList();
 
-        List<Product> products = productRepository.findByProductIdInAndIsActiveTrue(productIds);
+        List<Product> products = productRepository.findByProductIdIn(productIds);
 
         return shoppingItems.stream()
                 .map(shoppingItem -> {
                     Product product = products.stream()
                             .filter(p -> p.getProductId().equals(shoppingItem.getProductId()))
                             .findFirst()
-                            .orElseThrow();
+                            .orElseThrow(() -> new ProductNotFoundException(shoppingItem.getProductId()));
 
                     return new ShoppingItemListResponse(
                             shoppingItem.getShoppingItemId(),
@@ -112,9 +119,7 @@ public class ShoppingItemService {
     public void deleteShoppingItem(String email, @Valid Long shoppingItemId) {
         Member member = findMemberByEmail(email);
 
-        ShoppingItem shoppingItem = shoppingItemRepository
-                .findByShoppingItemIdAndMemberIdAndIsDeletedFalse(shoppingItemId, member.getId())
-                .orElseThrow();
+        ShoppingItem shoppingItem = findOwnedShoppingItem(shoppingItemId, member.getId());
 
         shoppingItem.delete();
 
@@ -130,9 +135,7 @@ public class ShoppingItemService {
     ) {
         Member member = findMemberByEmail(email);
 
-        ShoppingItem shoppingItem = shoppingItemRepository
-                .findByShoppingItemIdAndMemberIdAndIsDeletedFalse(shoppingItemId, member.getId())
-                .orElseThrow();
+        ShoppingItem shoppingItem = findOwnedShoppingItem(shoppingItemId, member.getId());
 
         shoppingItem.updatePurchased(request.isPurchased());
 
@@ -147,9 +150,7 @@ public class ShoppingItemService {
     ) {
         Member member = findMemberByEmail(email);
 
-        ShoppingItem shoppingItem = shoppingItemRepository
-                .findByShoppingItemIdAndMemberIdAndIsDeletedFalse(shoppingItemId, member.getId())
-                .orElseThrow();
+        ShoppingItem shoppingItem = findOwnedShoppingItem(shoppingItemId, member.getId());
 
         shoppingItem.updateQuantity(request.quantity());
 
@@ -165,13 +166,11 @@ public class ShoppingItemService {
     ) {
         Member member = findMemberByEmail(email);
 
-        ShoppingItem shoppingItem = shoppingItemRepository
-                .findByShoppingItemIdAndMemberIdAndIsDeletedFalse(shoppingItemId, member.getId())
-                .orElseThrow();
+        ShoppingItem shoppingItem = findOwnedShoppingItem(shoppingItemId, member.getId());
 
         Product product = productRepository
                 .findById(shoppingItem.getProductId())
-                .orElseThrow();
+                .orElseThrow(() -> new ProductNotFoundException(shoppingItem.getProductId()));
 
         LocalDate expiryDate= request.expiryDate();
 

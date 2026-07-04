@@ -169,6 +169,12 @@ public class GlobalExceptionHandler {
                 .body(ApiResponse.fail(exception.getMessage()));
     }
 
+    @ExceptionHandler(ShoppingItemNotFoundException.class)
+    public ResponseEntity<ApiResponse<Void>> handleShoppingItemNotFoundException(ShoppingItemNotFoundException exception) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(ApiResponse.fail(exception.getMessage()));
+    }
+
     @ExceptionHandler(InquiryAlreadyAnsweredException.class)
     public ResponseEntity<ApiResponse<Void>> handleInquiryAlreadyAnsweredException(InquiryAlreadyAnsweredException exception) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)

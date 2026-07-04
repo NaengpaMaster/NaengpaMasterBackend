@@ -5,10 +5,12 @@ import com.naengpa.naengpamasterbackend.fridge.dto.request.FridgeItemUpdateReque
 import com.naengpa.naengpamasterbackend.fridge.dto.request.FridgeItemUsePartialRequest;
 import com.naengpa.naengpamasterbackend.fridge.dto.response.FridgeItemListResponse;
 import com.naengpa.naengpamasterbackend.fridge.dto.response.FridgeItemResponse;
-import com.naengpa.naengpamasterbackend.fridge.entity.FridgeItem;
 import com.naengpa.naengpamasterbackend.fridge.repository.FridgeItemRepository;
 import com.naengpa.naengpamasterbackend.fridge.service.FridgeItemService;
+import com.naengpa.naengpamasterbackend.member.entity.HouseholdType;
 import com.naengpa.naengpamasterbackend.member.entity.Member;
+import com.naengpa.naengpamasterbackend.member.repository.MemberRepository;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,20 @@ class FridgeItemServiceTests {
     private FridgeItemService fridgeItemService;
     @Autowired
     private FridgeItemRepository fridgeItemRepository;
+    @Autowired
+    private MemberRepository memberRepository;
+
+    @BeforeEach
+    void setUp() {
+        if (!memberRepository.existsByEmail("test-user@example.com")) {
+            memberRepository.save(Member.createUser(
+                    "test-user@example.com",
+                    "password",
+                    "테스트유저",
+                    HouseholdType.ONE_PERSON
+            ));
+        }
+    }
 
     @Test
     @DisplayName("냉장고 재료 등록 시 FridgeItemResponse 반환")
@@ -54,15 +70,20 @@ class FridgeItemServiceTests {
     void findFridgeItemByProductId_returnsFridgeItemResponse() {
         //given
         String email = "test-user@example.com";
+        FridgeItemCreateRequest request = new FridgeItemCreateRequest(
+                1L,
+                "1개",
+                LocalDate.now().plusDays(7),
+                "목록 조회 테스트"
+        );
+        FridgeItemResponse created = fridgeItemService.createFridgeItem(email, request);
 
         //when
         List<FridgeItemListResponse> result = fridgeItemService.findFridgeItem(email);
         //then
-        assertThat(result).isNotEmpty();
-        assertThat(result.get(0).fridgeItemId()).isNotNull();
-        assertThat(result.get(0).productId()).isNotNull();
-        assertThat(result.get(0).productName()).isNotBlank();
-        assertThat(result.get(0).productCategoryId()).isNotNull();
+        assertThat(result)
+                .extracting(FridgeItemListResponse::fridgeItemId)
+                .contains(created.fridgeItemId());
     }
 
     @Test

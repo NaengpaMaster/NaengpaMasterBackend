@@ -7,6 +7,7 @@ import com.naengpa.naengpamasterbackend.admin.repository.AdminProductRepository;
 import com.naengpa.naengpamasterbackend.global.exception.DuplicateProductNameException;
 import com.naengpa.naengpamasterbackend.product.entity.Product;
 import com.naengpa.naengpamasterbackend.product.exception.ProductNotFoundException;
+import com.naengpa.naengpamasterbackend.product.repository.ProductCategoryRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,9 +17,20 @@ import java.util.List;
 public class AdminProductService {
 
     private final AdminProductRepository adminProductRepository;
+    private final ProductCategoryRepository productCategoryRepository;
 
-    public AdminProductService(AdminProductRepository adminProductRepository) {
+    public AdminProductService(
+            AdminProductRepository adminProductRepository,
+            ProductCategoryRepository productCategoryRepository
+    ) {
         this.adminProductRepository = adminProductRepository;
+        this.productCategoryRepository = productCategoryRepository;
+    }
+
+    private void validateCategory(Long productCategoryId) {
+        if (!productCategoryRepository.existsById(productCategoryId)) {
+            throw new IllegalArgumentException("존재하지 않는 카테고리입니다.");
+        }
     }
 
     //어드민 사전 재료 전체 조회
@@ -39,6 +51,8 @@ public class AdminProductService {
 
     //어드민 사전 재료 추가
     public AdminProductResponse createProduct(AdminProductCreateRequest request) {
+
+        validateCategory(request.productCategoryId());
 
         if (adminProductRepository.existsByName(request.name())) {
             throw new DuplicateProductNameException();
@@ -61,6 +75,8 @@ public class AdminProductService {
 
         Product product = adminProductRepository.findById(productId)
                 .orElseThrow(() -> new ProductNotFoundException(productId));
+
+        validateCategory(request.productCategoryId());
 
         if (!product.getName().equals(request.name())
                 && adminProductRepository.existsByName(request.name())) {
