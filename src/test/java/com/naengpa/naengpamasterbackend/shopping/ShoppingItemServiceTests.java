@@ -4,6 +4,7 @@ import com.naengpa.naengpamasterbackend.fridge.dto.response.FridgeItemResponse;
 import com.naengpa.naengpamasterbackend.shopping.dto.request.ShoppingItemCheckRequest;
 import com.naengpa.naengpamasterbackend.shopping.dto.request.ShoppingItemCreateRequest;
 import com.naengpa.naengpamasterbackend.shopping.dto.request.ShoppingItemMoveToFridgeRequest;
+import com.naengpa.naengpamasterbackend.shopping.dto.request.ShoppingItemUpdateRequest;
 import com.naengpa.naengpamasterbackend.shopping.dto.response.ShoppingItemListResponse;
 import com.naengpa.naengpamasterbackend.shopping.dto.response.ShoppingItemResponse;
 import com.naengpa.naengpamasterbackend.shopping.service.ShoppingItemService;
@@ -127,6 +128,32 @@ class ShoppingItemServiceTests {
 
         // then
         assertThat(result.isPurchased()).isTrue();
+    }
+
+    @Test
+    @DisplayName("장보기 항목 수정 시 수량이 변경")
+    void updateShoppingItem_changesQuantity() {
+        // given
+        String email = "test-user@example.com";
+        ShoppingItemCreateRequest createRequest = new ShoppingItemCreateRequest(
+                1L,
+                "1개"
+        );
+
+        ShoppingItemResponse created = shoppingItemService.createShoppingItem(email, createRequest);
+        ShoppingItemUpdateRequest request = new ShoppingItemUpdateRequest("2개");
+
+        // when
+        ShoppingItemResponse result = shoppingItemService.updateShoppingItem(
+                email,
+                created.shoppingItemId(),
+                request
+        );
+
+        // then
+        assertThat(result.shoppingItemId()).isEqualTo(created.shoppingItemId());
+        assertThat(result.productId()).isEqualTo(created.productId());
+        assertThat(result.quantity()).isEqualTo("2개");
     }
 
     @Test

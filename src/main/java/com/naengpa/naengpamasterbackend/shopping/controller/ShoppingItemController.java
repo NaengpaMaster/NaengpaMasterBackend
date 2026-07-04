@@ -5,6 +5,7 @@ import com.naengpa.naengpamasterbackend.global.response.ApiResponse;
 import com.naengpa.naengpamasterbackend.shopping.dto.request.ShoppingItemCheckRequest;
 import com.naengpa.naengpamasterbackend.shopping.dto.request.ShoppingItemCreateRequest;
 import com.naengpa.naengpamasterbackend.shopping.dto.request.ShoppingItemMoveToFridgeRequest;
+import com.naengpa.naengpamasterbackend.shopping.dto.request.ShoppingItemUpdateRequest;
 import com.naengpa.naengpamasterbackend.shopping.dto.response.ShoppingItemListResponse;
 import com.naengpa.naengpamasterbackend.shopping.dto.response.ShoppingItemResponse;
 import com.naengpa.naengpamasterbackend.shopping.service.ShoppingItemService;
@@ -75,6 +76,22 @@ public class ShoppingItemController {
         );
 
         return ResponseEntity.ok(ApiResponse.success("장보기 항목 체크 상태가 변경되었습니다.", response));
+    }
+
+    //장보기 항목 수정
+    @PatchMapping("/{shoppingItemId}")
+    public ResponseEntity<ApiResponse<ShoppingItemResponse>> updateShoppingItem(
+            Authentication authentication,
+            @PathVariable Long shoppingItemId,
+            @Valid @RequestBody ShoppingItemUpdateRequest request
+    ) {
+        ShoppingItemResponse response = shoppingItemService.updateShoppingItem(
+                authentication.getName(),
+                shoppingItemId,
+                request
+        );
+
+        return ResponseEntity.ok(ApiResponse.success("장보기 항목이 수정되었습니다.", response));
     }
 
     //장보기 항목 냉장고 추가

@@ -73,5 +73,9 @@ public class ShoppingItem {
         this.updatedAt = LocalDate.now();
     }
 
+    public void updateQuantity(String quantity) {
+        this.quantity = quantity;
+        this.updatedAt = LocalDate.now();
+    }
 
 }

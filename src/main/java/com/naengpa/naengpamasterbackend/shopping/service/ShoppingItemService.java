@@ -11,6 +11,7 @@ import com.naengpa.naengpamasterbackend.product.service.ProductService;
 import com.naengpa.naengpamasterbackend.shopping.dto.request.ShoppingItemCheckRequest;
 import com.naengpa.naengpamasterbackend.shopping.dto.request.ShoppingItemCreateRequest;
 import com.naengpa.naengpamasterbackend.shopping.dto.request.ShoppingItemMoveToFridgeRequest;
+import com.naengpa.naengpamasterbackend.shopping.dto.request.ShoppingItemUpdateRequest;
 import com.naengpa.naengpamasterbackend.shopping.dto.response.ShoppingItemListResponse;
 import com.naengpa.naengpamasterbackend.shopping.dto.response.ShoppingItemResponse;
 import com.naengpa.naengpamasterbackend.shopping.entity.ShoppingItem;
@@ -134,6 +135,23 @@ public class ShoppingItemService {
                 .orElseThrow();
 
         shoppingItem.updatePurchased(request.isPurchased());
+
+        return ShoppingItemResponse.from(shoppingItem);
+    }
+
+    @Transactional
+    public ShoppingItemResponse updateShoppingItem(
+            String email,
+            Long shoppingItemId,
+            ShoppingItemUpdateRequest request
+    ) {
+        Member member = findMemberByEmail(email);
+
+        ShoppingItem shoppingItem = shoppingItemRepository
+                .findByShoppingItemIdAndMemberIdAndIsDeletedFalse(shoppingItemId, member.getId())
+                .orElseThrow();
+
+        shoppingItem.updateQuantity(request.quantity());
 
         return ShoppingItemResponse.from(shoppingItem);
     }
