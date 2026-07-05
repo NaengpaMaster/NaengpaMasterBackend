@@ -12,7 +12,7 @@ public class DailyScoreSchedulerRealDBTest {
     private DailyScoreScheduler dailyScoreScheduler;
 
     @Test
-    @DisplayName("스케줄러를 시간 기다리지 않고 수동 실행 한다. *실제 DB에 연결*")
+    @DisplayName("스케줄러 수동 실행 (실제 DB 연결)")
     void schedulerManualRun() {
         dailyScoreScheduler.run();
     }
