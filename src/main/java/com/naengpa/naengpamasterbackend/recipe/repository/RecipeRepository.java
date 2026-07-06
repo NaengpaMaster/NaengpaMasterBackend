@@ -28,13 +28,13 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
             JOIN FETCH r.category
             WHERE r.deleted = false
             AND (
-                LOWER(r.name) LIKE LOWER(CONCAT('%', :keyword, '%'))
+                r.name LIKE CONCAT('%', :keyword, '%')
                 OR EXISTS (
                             SELECT 1
                             FROM RecipeRequiredProduct rrp
                             JOIN Product p ON p.productId = rrp.productId
                             WHERE rrp.recipeId = r.recipeId
-                            AND LOWER(p.name) LIKE LOWER(CONCAT('%', :keyword, '%'))
+                            AND p.name LIKE CONCAT('%', :keyword, '%')
                             )
                 )
             """)
@@ -51,10 +51,13 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
             FROM Recipe r
             JOIN r.category c
             WHERE r.deleted = false
+            AND (CAST(:search AS string) IS NULL OR r.name LIKE CONCAT('%', CAST(:search AS string), '%'))
             """,
             countQuery = """
-                    SELECT COUNT(r) FROM Recipe r WHERE r.deleted = false
+                    SELECT COUNT(r) FROM Recipe r
+                    WHERE r.deleted = false
+                    AND (CAST(:search AS string) IS NULL OR r.name LIKE CONCAT('%', CAST(:search AS string), '%'))
                     """)
-    Page<RecipeListProjection> findRecipeList(Pageable pageable);
+    Page<RecipeListProjection> findRecipeList(@Param("search") String search, Pageable pageable);
 
 }
