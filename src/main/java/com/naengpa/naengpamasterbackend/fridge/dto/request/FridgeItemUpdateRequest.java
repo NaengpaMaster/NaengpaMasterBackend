@@ -6,10 +6,10 @@ import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 public record FridgeItemUpdateRequest(
-        @NotNull
+        @NotNull(message = "재료를 선택해주세요.")
         Long productId,
 
-        @NotBlank
+        @NotBlank(message = "수량을 입력해주세요.")
         String quantity,
 
         LocalDate expiryDate,

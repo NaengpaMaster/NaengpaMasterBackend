@@ -1,12 +1,17 @@
 package com.naengpa.naengpamasterbackend.shopping;
 
 import com.naengpa.naengpamasterbackend.fridge.dto.response.FridgeItemResponse;
+import com.naengpa.naengpamasterbackend.member.entity.HouseholdType;
+import com.naengpa.naengpamasterbackend.member.entity.Member;
+import com.naengpa.naengpamasterbackend.member.repository.MemberRepository;
 import com.naengpa.naengpamasterbackend.shopping.dto.request.ShoppingItemCheckRequest;
 import com.naengpa.naengpamasterbackend.shopping.dto.request.ShoppingItemCreateRequest;
 import com.naengpa.naengpamasterbackend.shopping.dto.request.ShoppingItemMoveToFridgeRequest;
+import com.naengpa.naengpamasterbackend.shopping.dto.request.ShoppingItemUpdateRequest;
 import com.naengpa.naengpamasterbackend.shopping.dto.response.ShoppingItemListResponse;
 import com.naengpa.naengpamasterbackend.shopping.dto.response.ShoppingItemResponse;
 import com.naengpa.naengpamasterbackend.shopping.service.ShoppingItemService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +27,20 @@ class ShoppingItemServiceTests {
 
     @Autowired
     private ShoppingItemService shoppingItemService;
+    @Autowired
+    private MemberRepository memberRepository;
+
+    @BeforeEach
+    void setUp() {
+        if (!memberRepository.existsByEmail("test-user@example.com")) {
+            memberRepository.save(Member.createUser(
+                    "test-user@example.com",
+                    "password",
+                    "테스트유저",
+                    HouseholdType.ONE_PERSON
+            ));
+        }
+    }
 
     @Test
     @DisplayName("장보기 항목 추가 시 ShoppingItemResponse를 반환")
@@ -127,6 +146,32 @@ class ShoppingItemServiceTests {
 
         // then
         assertThat(result.isPurchased()).isTrue();
+    }
+
+    @Test
+    @DisplayName("장보기 항목 수정 시 수량이 변경")
+    void updateShoppingItem_changesQuantity() {
+        // given
+        String email = "test-user@example.com";
+        ShoppingItemCreateRequest createRequest = new ShoppingItemCreateRequest(
+                1L,
+                "1개"
+        );
+
+        ShoppingItemResponse created = shoppingItemService.createShoppingItem(email, createRequest);
+        ShoppingItemUpdateRequest request = new ShoppingItemUpdateRequest("2개");
+
+        // when
+        ShoppingItemResponse result = shoppingItemService.updateShoppingItem(
+                email,
+                created.shoppingItemId(),
+                request
+        );
+
+        // then
+        assertThat(result.shoppingItemId()).isEqualTo(created.shoppingItemId());
+        assertThat(result.productId()).isEqualTo(created.productId());
+        assertThat(result.quantity()).isEqualTo("2개");
     }
 
     @Test
