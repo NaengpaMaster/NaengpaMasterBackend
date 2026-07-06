@@ -26,8 +26,8 @@ public class ScoreHistory {
     @Column(name = "score_reason", length = 100)
     private ScoreReason scoreReason;
 
-    @Column(name = "target_type", length = 100)
-    private String targetType;
+    @Column(name = "target_name", length = 100)
+    private String targetName;
 
     @Column(name = "target_id")
     private Long targetId;
@@ -46,11 +46,11 @@ public class ScoreHistory {
         this.createdAt = LocalDateTime.now();
     }
 
-    public static ScoreHistory create(Long memberId, ScoreReason reason, String targetType, Long targetId, Long productCategoryId, Integer delta){
+    public static ScoreHistory create(Long memberId, ScoreReason reason, String targetName, Long targetId, Long productCategoryId, Integer delta){
         ScoreHistory history = new ScoreHistory();
         history.memberId = memberId;
         history.scoreReason = reason;
-        history.targetType = targetType;
+        history.targetName = targetName;
         history.targetId = targetId;
         history.productCategoryId = productCategoryId;
         history.scoreDelta = delta;

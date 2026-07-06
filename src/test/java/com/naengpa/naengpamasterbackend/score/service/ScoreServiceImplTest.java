@@ -53,7 +53,7 @@ class ScoreServiceImplTest {
         ScoreHistory saved = captor.getValue();
         assertThat(saved.getMemberId()).isEqualTo(7L);
         assertThat(saved.getScoreReason()).isEqualTo(ScoreReason.RECIPE_CREATED);
-        assertThat(saved.getTargetType()).isEqualTo("RECIPE");
+        assertThat(saved.getTargetName()).isEqualTo("RECIPE");
         assertThat(saved.getTargetId()).isEqualTo(100L);
         assertThat(saved.getScoreDelta()).isEqualTo(3);
     }

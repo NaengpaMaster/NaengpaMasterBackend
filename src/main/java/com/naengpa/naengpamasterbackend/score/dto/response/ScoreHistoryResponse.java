@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 public record ScoreHistoryResponse(
 
         ScoreReason scoreReason,
-        String targetType,
+        String targetName,
         Long productCategoryId,
         Integer scoreDelta,
         LocalDateTime createdAt
