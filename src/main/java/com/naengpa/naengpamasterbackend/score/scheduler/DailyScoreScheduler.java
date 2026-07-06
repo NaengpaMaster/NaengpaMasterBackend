@@ -48,22 +48,24 @@ public class DailyScoreScheduler {
         for (int i = 0; i < members.size(); i++) {
 
             Member member = members.get(i);
-
+            log.info("회원 : memberId={}", member.getId());
             try {
                 notificationService.createExpiryNotifications(member.getId());
 
                 List<FridgeItemListResponse> expiredItems =
                         fridgeItemService.findExpiredFridgeItems(member.getEmail());
+                List<FridgeItemListResponse> activeItems = fridgeItemService.findFridgeItem(member.getEmail());
 
                 if (!expiredItems.isEmpty()) {
-                    log.info("만료 재료 1일 보유");
+                    log.info("만료 재료 1일 보유 - EXPIRED_PRODUCT");
                     for (int j = 0; j < expiredItems.size(); j++) {
 
                         FridgeItemListResponse item = expiredItems.get(j);
 
                         ProductCategory category = productCategoryRepository
                                 .findById(item.productCategoryId())
-                                .orElseThrow();
+                                .orElseThrow(() -> new IllegalStateException(
+                                        "카테고리ID를 찾을 수 없습니다. productCategoryId=" + item.productCategoryId()));
 
                         log.info("만료 재료 이력 적재");
                         expiredProductRepository.save(ExpiredProduct.create(
@@ -79,20 +81,21 @@ public class DailyScoreScheduler {
                     log.info("유지기간 0으로 리셋");
                     member.resetMaintenancePeriod();
 
-                } else {
-
+                } else if(!activeItems.isEmpty()) {
                     member.increaseMaintenancePeriod();
 
                     if (member.getMaintenancePeriod() % 4 == 0) {
-                        log.info("만료 재료 없음 4일 유지");
+                        log.info("만료 재료 없음 && 활성 재료 보유 상태 4일 유지 - NO_EXPIRED_4DAYS");
                         addScore(member, null, null, null, 5, ScoreReason.NO_EXPIRED_4DAYS);
                     }
+                } else {
+                    log.info("만료된 재료 없음 || 활성 재료 없음(빈 냉장고) 상태 - 점수 미변동");
                 }
 
                 successCount++;
             } catch (Exception e) {
                 failCount++;
-                log.error("회원 처리 중 에러 발생 : memberId={}, email={}, message={}",
+                log.error("회원 처리 중 에러 발생 - memberId: {}, email: {}, message: {}",
                         member.getId(), member.getEmail(), e.getMessage(), e);
             }
         }
