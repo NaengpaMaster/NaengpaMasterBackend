@@ -246,7 +246,7 @@ CREATE TABLE score_histories (
 
                                  score_reason VARCHAR(100) NOT NULL,
 
-                                 target_type VARCHAR(100),
+                                 target_name VARCHAR(100),
                                  target_id BIGINT,
 
                                  product_category_id BIGINT,

@@ -11,6 +11,6 @@ public interface ScoreService {
     ScoreResponse getScore(String email);
     Page<ScoreHistoryResponse> getScoreHistories(String email, Pageable pageable);
 
-    void addScore(Long memberId, ScoreReason reason, String targetType, Long targetId, int delta);
+    void addScore(Long memberId, ScoreReason reason, String targetName, Long targetId, int delta);
 
 }

@@ -36,7 +36,7 @@ import java.util.stream.IntStream;
 @Transactional
 public class RecipeCommandService {
 
-    private static final String SCORE_TARGET_TYPE_RECIPE = "RECIPE";
+    private static final String SCORE_TARGET_NAME_RECIPE = "RECIPE";
     private static final int RECIPE_CREATED_SCORE = 3;
 
     private final RecipeRepository recipeRepository;

@@ -48,7 +48,7 @@ public class ScoreServiceImpl implements ScoreService {
 
         return histories.map(h -> new ScoreHistoryResponse(
                         h.getScoreReason(),
-                        h.getTargetType(),
+                        h.getTargetName(),
                         h.getProductCategoryId(), // 추가
                         h.getScoreDelta(),
                         h.getCreatedAt()
@@ -57,7 +57,7 @@ public class ScoreServiceImpl implements ScoreService {
 
     @Override
     @Transactional
-    public void addScore(Long memberId, ScoreReason reason, String targetType, Long targetId, int delta) {
+    public void addScore(Long memberId, ScoreReason reason, String targetName, Long targetId, int delta) {
 
         Score score = scoreRepository.findByMemberId(memberId)
                 .orElseThrow(ScoreNotFoundException::new);
@@ -65,7 +65,7 @@ public class ScoreServiceImpl implements ScoreService {
         int appliedDelta = score.addScore(delta);
 
         scoreHistoryRepository.save(
-                ScoreHistory.create(memberId, reason, targetType, targetId, null, appliedDelta)
+                ScoreHistory.create(memberId, reason, targetName, targetId, null, appliedDelta)
         );
     }
 

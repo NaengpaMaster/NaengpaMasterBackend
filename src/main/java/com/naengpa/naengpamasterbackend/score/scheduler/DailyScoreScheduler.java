@@ -103,7 +103,7 @@ public class DailyScoreScheduler {
         log.info("냉파 점수 일일 스케줄러 종료 (성공: {}, 실패: {})", successCount, failCount);
     }
 
-    private void addScore(Member member, String targetType, Long targetId, Long productCategoryId, int delta, ScoreReason reason) {
+    private void addScore(Member member, String targetName, Long targetId, Long productCategoryId, int delta, ScoreReason reason) {
 
         Score score = scoreRepository.findByMemberId(member.getId())
                 .orElseThrow(() -> new IllegalStateException(
@@ -115,7 +115,7 @@ public class DailyScoreScheduler {
 
         log.info("점수 이력 적재");
         scoreHistoryRepository.save(ScoreHistory.create(
-                member.getId(), reason, targetType, targetId, productCategoryId, delta
+                member.getId(), reason, targetName, targetId, productCategoryId, delta
         ));
     }
 }

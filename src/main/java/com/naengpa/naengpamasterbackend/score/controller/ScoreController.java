@@ -3,6 +3,7 @@ package com.naengpa.naengpamasterbackend.score.controller;
 import com.naengpa.naengpamasterbackend.global.response.ApiResponse;
 import com.naengpa.naengpamasterbackend.score.dto.response.ScoreHistoryResponse;
 import com.naengpa.naengpamasterbackend.score.dto.response.ScoreResponse;
+import com.naengpa.naengpamasterbackend.score.scheduler.DailyScoreScheduler;
 import com.naengpa.naengpamasterbackend.score.service.ScoreService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -12,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -43,5 +45,6 @@ public class ScoreController {
                 ApiResponse.success("회원 점수 산정 내역 조회에 성공 했습니다.", scoreService.getScoreHistories(email, pageable))
         );
     }
+
 
 }
