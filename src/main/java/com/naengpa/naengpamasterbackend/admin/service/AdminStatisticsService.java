@@ -64,7 +64,8 @@ public class AdminStatisticsService {
         LocalDate startDate = switch (period) {
             case 7   -> LocalDate.now().minusDays(7);
             case 30 -> LocalDate.now().minusDays(30);
-            default -> throw new IllegalArgumentException("period값은 7 또는 30이어야 합니다.");
+            case 0  -> LocalDate.of(1970, 1, 1); // 전체 기간
+            default -> throw new IllegalArgumentException("period값은 7, 30, 0(전체) 중 하나여야 합니다.");
         };
 
         return adminStatisticsRepository.findExpiredCountByCategory(startDate)
