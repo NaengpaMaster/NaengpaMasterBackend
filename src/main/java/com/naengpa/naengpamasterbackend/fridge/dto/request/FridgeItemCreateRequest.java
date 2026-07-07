@@ -3,6 +3,7 @@ package com.naengpa.naengpamasterbackend.fridge.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import java.time.LocalDate;
 
 public record FridgeItemCreateRequest (
@@ -12,6 +13,7 @@ public record FridgeItemCreateRequest (
     @NotBlank(message = "수량을 입력해주세요.")
     String quantity,
     LocalDate expiryDate,
+    @Size(max = 1000, message = "메모는 1000자 이하여야 합니다.")
     String memo
 ) {
 
