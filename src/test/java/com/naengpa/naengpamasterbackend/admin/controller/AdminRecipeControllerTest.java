@@ -34,7 +34,7 @@ class AdminRecipeControllerTest {
     @DisplayName("관리자 레시피 상세 조회 - 200과 상세 정보를 반환한다")
     void getRecipeDetail_returns200() throws Exception {
         AdminRecipeDetailResponse response = new AdminRecipeDetailResponse(
-                101L, "된장찌개", "구수한 된장찌개", "찌개", 20, "EASY",
+                101L, "된장찌개", "구수한 된장찌개", "찌개", 20, "EASY", 42L,
                 List.of(
                         new AdminRecipeDetailResponse.Ingredient(1L, "두부"),
                         new AdminRecipeDetailResponse.Ingredient(2L, "된장")
@@ -58,6 +58,7 @@ class AdminRecipeControllerTest {
                 .andExpect(jsonPath("$.data.category").value("찌개"))
                 .andExpect(jsonPath("$.data.cookTime").value(20))
                 .andExpect(jsonPath("$.data.difficulty").value("EASY"))
+                .andExpect(jsonPath("$.data.likeCount").value(42))
                 .andExpect(jsonPath("$.data.ingredients.length()").value(2))
                 .andExpect(jsonPath("$.data.ingredients[0].ingredientId").value(1))
                 .andExpect(jsonPath("$.data.ingredients[0].ingredientName").value("두부"))

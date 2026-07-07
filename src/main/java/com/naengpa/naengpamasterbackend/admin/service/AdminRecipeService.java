@@ -4,6 +4,7 @@ import com.naengpa.naengpamasterbackend.admin.dto.response.AdminRecipeDetailResp
 import com.naengpa.naengpamasterbackend.admin.dto.response.RecipeListItem;
 import com.naengpa.naengpamasterbackend.global.response.PageResponse;
 import com.naengpa.naengpamasterbackend.recipe.entity.Recipe;
+import com.naengpa.naengpamasterbackend.recipe.repository.RecipeFavoriteRepository;
 import com.naengpa.naengpamasterbackend.recipe.repository.RecipeListProjection;
 import com.naengpa.naengpamasterbackend.recipe.repository.RecipeRepository;
 import com.naengpa.naengpamasterbackend.recipe.repository.RecipeRequiredProductRepository;
@@ -26,6 +27,7 @@ public class AdminRecipeService {
     private final RecipeRepository recipeRepository;
     private final RecipeStepRepository recipeStepRepository;
     private final RecipeRequiredProductRepository recipeRequiredProductRepository;
+    private final RecipeFavoriteRepository recipeFavoriteRepository;
 
     public PageResponse<RecipeListItem> getRecipes(String search, Pageable pageable) {
         Page<RecipeListProjection> page = recipeRepository.findRecipeList(search, pageable);
@@ -46,6 +48,7 @@ public class AdminRecipeService {
 
         return AdminRecipeDetailResponse.of(
                 recipe,
+                recipeFavoriteRepository.countByRecipeId(recipeId),
                 recipeRequiredProductRepository.findIngredients(recipeId),
                 steps
         );

@@ -12,11 +12,13 @@ public record AdminRecipeDetailResponse(
         String category,
         Integer cookTime,
         String difficulty,
+        long likeCount,
         List<Ingredient> ingredients,
         List<Step> steps
 ) {
 
     public static AdminRecipeDetailResponse of(Recipe recipe,
+                                               long likeCount,
                                                List<IngredientView> ingredients,
                                                List<Step> steps) {
         return new AdminRecipeDetailResponse(
@@ -26,6 +28,7 @@ public record AdminRecipeDetailResponse(
                 recipe.getCategory().getName(),
                 recipe.getCookingTime(),
                 recipe.getDifficulty().name(),
+                likeCount,
                 ingredients.stream()
                         .map(i -> new Ingredient(i.getProductId(), i.getName()))
                         .toList(),
