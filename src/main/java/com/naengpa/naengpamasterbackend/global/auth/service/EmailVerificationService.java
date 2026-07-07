@@ -4,6 +4,7 @@ import com.naengpa.naengpamasterbackend.global.auth.entity.EmailVerification;
 import com.naengpa.naengpamasterbackend.global.auth.repository.EmailVerificationRepository;
 import com.naengpa.naengpamasterbackend.global.exception.DuplicateEmailException;
 import com.naengpa.naengpamasterbackend.global.exception.EmailVerificationException;
+import com.naengpa.naengpamasterbackend.global.exception.WithdrawnEmailException;
 import com.naengpa.naengpamasterbackend.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.mail.SimpleMailMessage;
@@ -31,9 +32,13 @@ public class EmailVerificationService {
     @Transactional
     public void sendVerificationCode(String email) {
         String normalizedEmail = normalizeEmail(email);
-        if (memberRepository.existsByEmail(normalizedEmail)) {
-            throw new DuplicateEmailException();
-        }
+        memberRepository.findByEmail(normalizedEmail)
+                .ifPresent(member -> {
+                    if (member.isInactive()) {
+                        throw new WithdrawnEmailException();
+                    }
+                    throw new DuplicateEmailException();
+                });
 
         String code = generateCode();
         EmailVerification emailVerification = EmailVerification.create(
@@ -59,8 +64,11 @@ public class EmailVerificationService {
             throw new EmailVerificationException("인증 코드 입력 횟수를 초과했습니다. 다시 발송해주세요.");
         }
 
-        emailVerification.increaseAttemptCount();
         if (!emailVerification.matches(code)) {
+            emailVerification.increaseAttemptCount();
+            if (!emailVerification.canRetry()) {
+                throw new EmailVerificationException("인증 코드 입력 횟수를 초과했습니다. 다시 발송해주세요.");
+            }
             throw new EmailVerificationException("인증 코드가 일치하지 않습니다.");
         }
 

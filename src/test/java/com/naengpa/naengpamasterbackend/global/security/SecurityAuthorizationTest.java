@@ -1,6 +1,7 @@
 package com.naengpa.naengpamasterbackend.global.security;
 
 import com.naengpa.naengpamasterbackend.global.auth.entity.EmailVerification;
+import com.naengpa.naengpamasterbackend.member.entity.HouseholdType;
 import com.naengpa.naengpamasterbackend.member.entity.Member;
 import com.naengpa.naengpamasterbackend.member.entity.MemberRole;
 import com.naengpa.naengpamasterbackend.member.entity.MemberStatus;
@@ -192,7 +193,7 @@ class SecurityAuthorizationTest {
                                 }
                                 """))
                 .andExpect(status().isConflict())
-                .andExpect(content().string(containsString("탈퇴한 이메일은 재가입할 수 없습니다.")));
+                .andExpect(content().string(containsString("가입 이력이 있는 이메일입니다. 관리자에게 문의해주세요.")));
     }
 
     @Test
@@ -426,6 +427,27 @@ class SecurityAuthorizationTest {
     }
 
     @Test
+    void memberProfileDefaultsHouseholdTypeToEtcWhenNotSelected() throws Exception {
+        Member user = findOrCreateUser("security-profile-household-default@example.com", "가구유형기본값");
+        user.updateHouseholdType(HouseholdType.ONE_PERSON);
+        memberRepository.save(user);
+        String accessToken = jwtTokenProvider.createAccessToken(user.getEmail(), "USER");
+
+        mockMvc.perform(patch("/api/v1/members/me/profile")
+                        .header("Authorization", "Bearer " + accessToken)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {
+                                  "nickname": "가구유형기본값수정",
+                                  "favoriteFoods": [],
+                                  "avoidProductIds": []
+                                }
+                                """))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("\"householdType\":\"ETC\"")));
+    }
+
+    @Test
     void memberProfileRejectsDuplicateNickname() throws Exception {
         Member user = findOrCreateUser("security-profile-nickname@example.com", "프로필닉네임테스트");
         findOrCreateUser("security-profile-other@example.com", "이미있는닉네임");
@@ -444,6 +466,26 @@ class SecurityAuthorizationTest {
                                 """))
                 .andExpect(status().isConflict())
                 .andExpect(content().string(containsString("이미 사용 중인 닉네임입니다.")));
+    }
+
+    @Test
+    void memberProfileRejectsNicknameWithSpecialCharacters() throws Exception {
+        Member user = findOrCreateUser("security-profile-invalid-nickname@example.com", "닉네임형식예외");
+        String accessToken = jwtTokenProvider.createAccessToken(user.getEmail(), "USER");
+
+        mockMvc.perform(patch("/api/v1/members/me/profile")
+                        .header("Authorization", "Bearer " + accessToken)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {
+                                  "nickname": "@@@안뇽?###>^^&&",
+                                  "householdType": "ONE_PERSON",
+                                  "favoriteFoods": [],
+                                  "avoidProductIds": []
+                                }
+                                """))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().string(containsString("닉네임은 한글, 영문, 숫자, 공백만 사용할 수 있습니다.")));
     }
 
     @Test
