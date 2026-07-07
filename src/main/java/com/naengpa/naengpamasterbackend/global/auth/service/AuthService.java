@@ -44,6 +44,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.regex.Pattern;
 
 @Service
 @RequiredArgsConstructor
@@ -52,6 +53,8 @@ public class AuthService {
     private static final int NANOS_PER_MILLISECOND = 1_000_000;
     private static final int MAX_NICKNAME_GENERATE_ATTEMPTS = 20;
     private static final Collator KOREAN_COLLATOR = Collator.getInstance(Locale.KOREAN);
+    private static final Pattern NICKNAME_PATTERN = Pattern.compile("^[가-힣A-Za-z0-9 ]+$");
+    private static final String INVALID_NICKNAME_MESSAGE = "닉네임은 한글, 영문, 숫자, 공백만 사용할 수 있습니다.";
 
     private final MemberRepository memberRepository;
     private final FoodCategoryRepository foodCategoryRepository;
@@ -206,6 +209,7 @@ public class AuthService {
     private String resolveNickname(String nickname) {
         if (nickname != null && !nickname.isBlank()) {
             String trimmedNickname = nickname.trim();
+            validateNickname(trimmedNickname);
             if (memberRepository.existsByNickname(trimmedNickname)) {
                 throw new DuplicateNicknameException();
             }
@@ -239,6 +243,7 @@ public class AuthService {
 
     private void updateNickname(Member member, String nickname) {
         String trimmedNickname = nickname.trim();
+        validateNickname(trimmedNickname);
         if (member.getNickname().equals(trimmedNickname)) {
             return;
         }
@@ -246,6 +251,12 @@ public class AuthService {
             throw new DuplicateNicknameException();
         }
         member.updateNickname(trimmedNickname);
+    }
+
+    private void validateNickname(String nickname) {
+        if (!NICKNAME_PATTERN.matcher(nickname).matches()) {
+            throw new IllegalArgumentException(INVALID_NICKNAME_MESSAGE);
+        }
     }
 
     private void replaceFavoriteFoods(Member member, List<String> favoriteFoods) {
