@@ -26,7 +26,7 @@ public class InquiryController {
     @GetMapping
     public ResponseEntity<ApiResponse<Page<InquiryResponse>>> getInquiries(
             @AuthenticationPrincipal UserDetails userDetails,
-            @PageableDefault(size = 10, sort = "createdAt") Pageable pageable
+            @PageableDefault(sort = "createdAt") Pageable pageable
     ) {
         String email = userDetails.getUsername();
         return ResponseEntity.ok(ApiResponse.success(inquiryService.getInquiries(email, pageable)));

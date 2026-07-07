@@ -2,6 +2,7 @@ package com.naengpa.naengpamasterbackend.fridge.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
 
@@ -14,6 +15,7 @@ public record FridgeItemUpdateRequest(
 
         LocalDate expiryDate,
 
+        @Size(max = 1000, message = "메모는 1000자 이하여야 합니다.")
         String memo
 ) {
 }

@@ -21,6 +21,7 @@ public record SignUpRequest(
         @NotBlank(message = "비밀번호 확인은 공백일 수 없습니다.")
         String passwordConfirm,
 
+        @Pattern(regexp = "^[가-힣A-Za-z0-9 ]*$", message = "닉네임은 한글, 영문, 숫자, 공백만 사용할 수 있습니다.")
         @Size(max = 50)
         String nickname,
 

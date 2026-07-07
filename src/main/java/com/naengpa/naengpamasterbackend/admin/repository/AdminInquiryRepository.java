@@ -15,9 +15,9 @@ public interface AdminInquiryRepository extends JpaRepository<Inquiry, Long> {
     @Query("SELECT COUNT(i) FROM Inquiry i WHERE i.isAnswered = false AND i.isDeleted = false")
     Long countPendingInquiries();
 
-    Page<Inquiry> findByIsDeletedFalseOrderByCreatedAtDesc(Pageable pageable);
+    Page<Inquiry> findByIsAnsweredAndIsDeletedFalseOrderByAnsweredAtDesc(Boolean isAnswered, Pageable pageable);
 
-    Page<Inquiry> findByIsAnsweredAndIsDeletedFalseOrderByCreatedAtDesc(Boolean isAnswered, Pageable pageable);
+    Page<Inquiry> findByIsAnsweredAndIsDeletedFalseOrderByCreatedAtAsc(Boolean isAnswered, Pageable pageable);
 
     Optional<Inquiry> findByIdAndIsDeletedFalse(Long inquiryId);
 }

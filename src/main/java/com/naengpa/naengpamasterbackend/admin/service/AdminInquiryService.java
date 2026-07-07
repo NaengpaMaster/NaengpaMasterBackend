@@ -31,15 +31,16 @@ public class AdminInquiryService {
 
     @Transactional(readOnly = true)
     public Page<AdminInquiryResponse> getInquiries(Boolean isAnswered, Pageable pageable) {
-        if (isAnswered == null) {
-            return adminInquiryRepository.findByIsDeletedFalseOrderByCreatedAtDesc(pageable).map(inquiry -> {
-                Member member = memberRepository.findById(inquiry.getMemberId()).orElse(null);
-                String nickname = member != null ? member.getNickname() : null;
-                return AdminInquiryResponse.from(inquiry, nickname);
-            });
+        if (isAnswered) {
+            return adminInquiryRepository.findByIsAnsweredAndIsDeletedFalseOrderByAnsweredAtDesc(isAnswered, pageable)
+                    .map(inquiry -> {
+                        Member member = memberRepository.findById(inquiry.getMemberId()).orElse(null);
+                        String nickname = member != null ? member.getNickname() : null;
+                        return AdminInquiryResponse.from(inquiry, nickname);
+                    });
         }
 
-        return adminInquiryRepository.findByIsAnsweredAndIsDeletedFalseOrderByCreatedAtDesc(isAnswered, pageable)
+        return adminInquiryRepository.findByIsAnsweredAndIsDeletedFalseOrderByCreatedAtAsc(isAnswered, pageable)
                 .map(inquiry -> {
                     Member member = memberRepository.findById(inquiry.getMemberId()).orElse(null);
                     String nickname = member != null ? member.getNickname() : null;
