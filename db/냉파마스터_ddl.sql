@@ -32,1409 +32,1805 @@ INSERT INTO grades (name, min_score, max_score) VALUES
     ('냉파 마스터',  90, 100)
 ON CONFLICT (name) DO NOTHING;
 
-INSERT INTO products (product_id, product_category_id, name, default_expiry_days, is_active) VALUES
-    (1, 7, '연두부', NULL, TRUE),
-    (2, 4, '칵테일새우', NULL, TRUE),
-    (3, 5, '달걀', NULL, TRUE),
-    (4, 5, '생크림', NULL, TRUE),
-    (5, 8, '설탕', NULL, TRUE),
-    (6, 5, '버터', NULL, TRUE),
-    (7, 1, '시금치', NULL, TRUE),
-    (8, 1, '조선부추', NULL, TRUE),
-    (9, 6, '날콩가루', NULL, TRUE),
-    (10, 8, '간장', NULL, TRUE),
-    (11, 1, '대파', NULL, TRUE),
-    (12, 1, '마늘', NULL, TRUE),
-    (13, 8, '고춧가루', NULL, TRUE),
-    (14, 10, '요리당', NULL, TRUE),
-    (15, 8, '참기름', NULL, TRUE),
-    (16, 7, '참깨', NULL, TRUE),
-    (17, 1, '방울토마토', NULL, TRUE),
-    (18, 1, '양파', NULL, TRUE),
-    (19, 1, '부추', NULL, TRUE),
-    (20, 4, '멸치액젓', NULL, TRUE),
-    (21, 10, '매실액', NULL, TRUE),
-    (22, 7, '통깨', NULL, TRUE),
-    (23, 1, '오이', NULL, TRUE),
-    (24, 7, '땅콩', NULL, TRUE),
-    (25, 7, '순두부', NULL, TRUE),
-    (26, 2, '사과', NULL, TRUE),
-    (27, 10, '북어채', NULL, TRUE),
-    (28, 4, '새우', NULL, TRUE),
-    (29, 1, '표고버섯', NULL, TRUE),
-    (30, 10, '황태', NULL, TRUE),
-    (31, 1, '콩나물', NULL, TRUE),
-    (32, 1, '무', NULL, TRUE),
-    (33, 8, '된장', NULL, TRUE),
-    (34, 1, '청양고추', NULL, TRUE),
-    (35, 7, '두부', NULL, TRUE),
-    (36, 1, '애느타리버섯', NULL, TRUE),
-    (37, 1, '감자', NULL, TRUE),
-    (38, 4, '멸치', NULL, TRUE),
-    (39, 10, '다시마', NULL, TRUE),
-    (40, 1, '표고버섯 기둥', NULL, TRUE),
-    (41, 8, '국간장', NULL, TRUE),
-    (42, 10, '청경채', NULL, TRUE),
-    (43, 10, '치커리', NULL, TRUE),
-    (44, 1, '적양배추', NULL, TRUE),
-    (45, 1, '당근', NULL, TRUE),
-    (46, 8, '올리브유', NULL, TRUE),
-    (47, 8, '식초', NULL, TRUE),
-    (48, 10, '딸기', NULL, TRUE),
-    (49, 5, '플레인요거트', NULL, TRUE),
-    (50, 1, '양상추', NULL, TRUE),
-    (51, 10, '메추리알', NULL, TRUE),
-    (52, 10, '블루베리', NULL, TRUE),
-    (53, 8, '소금', NULL, TRUE),
-    (54, 1, '시금치우유', NULL, TRUE),
-    (55, 10, '아몬드', NULL, TRUE),
-    (56, 2, '크랜베리', NULL, TRUE),
-    (57, 5, '우유', NULL, TRUE),
-    (58, 1, '새송이버섯', NULL, TRUE),
-    (59, 1, '오이피클', NULL, TRUE),
-    (60, 10, '레몬즙', NULL, TRUE),
-    (61, 10, '머스터드', NULL, TRUE),
-    (62, 8, '꿀', NULL, TRUE),
-    (63, 10, '흰 후추', NULL, TRUE),
-    (64, 1, '가지', NULL, TRUE),
-    (65, 1, '호박', NULL, TRUE),
-    (66, 8, '발사믹크레마', NULL, TRUE),
-    (67, 1, '빨강 파프리카', NULL, TRUE),
-    (68, 1, '노랑 파프리카', NULL, TRUE),
-    (69, 1, '청피망', NULL, TRUE),
-    (70, 1, '브로콜리', NULL, TRUE),
-    (71, 10, '컬리플라워', NULL, TRUE),
-    (72, 1, '적양파', NULL, TRUE),
-    (73, 7, '강낭콩', NULL, TRUE),
-    (74, 2, '건포도', NULL, TRUE),
-    (75, 7, '호두', NULL, TRUE),
-    (76, 8, '두유', NULL, TRUE),
-    (77, 10, '오렌지', NULL, TRUE),
-    (78, 6, '소면', NULL, TRUE),
-    (79, 10, '석류', NULL, TRUE),
-    (80, 10, '잣', NULL, TRUE),
-    (81, 10, '해바라기씨', NULL, TRUE),
-    (82, 1, '호박씨', NULL, TRUE),
-    (83, 9, '실곤약', NULL, TRUE),
-    (84, 7, '검은콩', NULL, TRUE),
-    (85, 10, '흑임자', NULL, TRUE),
-    (86, 1, '토마토', NULL, TRUE),
-    (87, 10, '만두피', NULL, TRUE),
-    (88, 10, '숙주', NULL, TRUE),
-    (89, 10, '닭 가슴살', NULL, TRUE),
-    (90, 8, '후춧가루', NULL, TRUE),
-    (91, 10, '함초', NULL, TRUE),
-    (92, 1, '노루궁뎅이버섯', NULL, TRUE),
-    (93, 10, '파', NULL, TRUE),
-    (94, 10, '모시조개', NULL, TRUE),
-    (95, 10, '냉이', NULL, TRUE),
-    (96, 1, '청고추', NULL, TRUE),
-    (97, 1, '실고추', NULL, TRUE),
-    (98, 6, '쌀뜨물', NULL, TRUE),
-    (99, 3, '돼지고기', NULL, TRUE),
-    (100, 1, '김치', NULL, TRUE),
-    (101, 1, '홍고추', NULL, TRUE),
-    (102, 6, '떡국 떡', NULL, TRUE),
-    (103, 10, '스팸', NULL, TRUE),
-    (104, 10, '소시지', NULL, TRUE),
-    (105, 10, '우민찌', NULL, TRUE),
-    (106, 10, '베이컨', NULL, TRUE),
-    (107, 1, '양배추', NULL, TRUE),
-    (108, 6, '부침가루', NULL, TRUE),
-    (109, 8, '식용유', NULL, TRUE),
-    (110, 10, '오렌지즙', NULL, TRUE),
-    (111, 10, '돌나물', NULL, TRUE),
-    (112, 1, '미니새송이버섯', NULL, TRUE),
-    (113, 8, '마요네즈', NULL, TRUE),
-    (114, 1, '배추', NULL, TRUE),
-    (115, 10, '석류즙', NULL, TRUE),
-    (116, 1, '미나리', NULL, TRUE),
-    (117, 1, '쪽파', NULL, TRUE),
-    (118, 1, '생강', NULL, TRUE),
-    (119, 4, '새우젓국', NULL, TRUE),
-    (120, 10, '대구살', NULL, TRUE),
-    (121, 1, '홍파프리카', NULL, TRUE),
-    (122, 1, '황파프리카', NULL, TRUE),
-    (123, 1, '청파프리카', NULL, TRUE),
-    (124, 1, '황금팽이버섯', NULL, TRUE),
-    (125, 6, '밀가루', NULL, TRUE),
-    (126, 2, '유자청', NULL, TRUE),
-    (127, 8, '발사믹식초', NULL, TRUE),
-    (128, 10, '화이트와인', NULL, TRUE),
-    (129, 1, '자색고구마', NULL, TRUE),
-    (130, 2, '배', NULL, TRUE),
-    (131, 6, '멥쌀', NULL, TRUE),
-    (132, 10, '물엿', NULL, TRUE),
-    (133, 1, '애호박', NULL, TRUE),
-    (134, 1, '양송이버섯', NULL, TRUE),
-    (135, 10, '살라미', NULL, TRUE),
-    (136, 10, '바질', NULL, TRUE),
-    (137, 1, '고추장', NULL, TRUE),
-    (138, 10, '민들레 잎', NULL, TRUE),
-    (139, 1, '비트', NULL, TRUE),
-    (140, 1, '무순', NULL, TRUE),
-    (141, 2, '배춧잎', NULL, TRUE),
-    (142, 6, '쌀', NULL, TRUE),
-    (143, 10, '우렁이', NULL, TRUE),
-    (144, 3, '소고기', NULL, TRUE),
-    (145, 10, '대추', NULL, TRUE),
-    (146, 1, '단호박', NULL, TRUE),
-    (147, 1, '파프리카', NULL, TRUE),
-    (148, 10, '인삼', NULL, TRUE),
-    (149, 10, '양송이', NULL, TRUE),
-    (150, 1, '배추잎', NULL, TRUE),
-    (151, 3, '닭고기', NULL, TRUE),
-    (152, 10, '가시오가피', NULL, TRUE),
-    (153, 4, '건새우', NULL, TRUE),
-    (154, 6, '치자가루', NULL, TRUE),
-    (155, 8, '겨자가루', NULL, TRUE),
-    (156, 1, '호박잎', NULL, TRUE),
-    (157, 6, '찹쌀', NULL, TRUE),
-    (158, 10, '황태채', NULL, TRUE),
-    (159, 9, '곤약', NULL, TRUE),
-    (160, 10, '건미역', NULL, TRUE),
-    (161, 6, '들깨가루', NULL, TRUE),
-    (162, 10, '액젓', NULL, TRUE),
-    (163, 3, '오리고기', NULL, TRUE),
-    (164, 8, '발사믹', NULL, TRUE),
-    (165, 10, '파슬리', NULL, TRUE),
-    (166, 10, '레디쉬', NULL, TRUE),
-    (167, 10, '로즈마리', NULL, TRUE),
-    (168, 4, '전복', NULL, TRUE),
-    (169, 10, '해초', NULL, TRUE),
-    (170, 10, '레몬', NULL, TRUE),
-    (171, 10, '녹말', NULL, TRUE),
-    (172, 10, '식용꽃', NULL, TRUE),
-    (173, 6, '메밀면', NULL, TRUE),
-    (174, 10, '산마', NULL, TRUE),
-    (175, 10, '참나물', NULL, TRUE),
-    (176, 3, '돈나물', NULL, TRUE),
-    (177, 10, '어린잎', NULL, TRUE),
-    (178, 10, '닭가슴살', NULL, TRUE),
-    (179, 1, '느타리버섯', NULL, TRUE),
-    (180, 1, '고추', NULL, TRUE),
-    (181, 8, '청주', NULL, TRUE),
-    (182, 1, '붉은 고추', NULL, TRUE),
-    (183, 4, '새우젓', NULL, TRUE),
-    (184, 3, '쇠고기', NULL, TRUE),
-    (185, 1, '풋고추', NULL, TRUE),
-    (186, 1, '백김치', NULL, TRUE),
-    (187, 7, '콩비지', NULL, TRUE),
-    (188, 4, '오징어', NULL, TRUE),
-    (189, 1, '팽이버섯', NULL, TRUE),
-    (190, 1, '고구마', NULL, TRUE),
-    (191, 10, '쑥갓', NULL, TRUE),
-    (192, 7, '들깻가루', NULL, TRUE),
-    (193, 10, '주꾸미', NULL, TRUE),
-    (194, 2, '배즙', NULL, TRUE),
-    (195, 6, '당면', NULL, TRUE),
-    (196, 6, '조랭이떡', NULL, TRUE),
-    (197, 1, '고기완자 생강즙', NULL, TRUE),
-    (198, 1, '깻잎', NULL, TRUE),
-    (199, 3, '완자 돼지고기', NULL, TRUE),
-    (200, 10, '사골육수', NULL, TRUE),
-    (201, 10, '당귀', NULL, TRUE),
-    (202, 10, '오가피', NULL, TRUE),
-    (203, 6, '콩가루', NULL, TRUE),
-    (204, 6, '쌀겨', NULL, TRUE),
-    (205, 10, '굴', NULL, TRUE),
-    (206, 7, '콩', NULL, TRUE),
-    (207, 4, '바지락', NULL, TRUE),
-    (208, 1, '표고버섯 밑동', NULL, TRUE),
-    (209, 6, '찹쌀가루', NULL, TRUE),
-    (210, 10, '토란', NULL, TRUE),
-    (211, 10, '백합', NULL, TRUE),
-    (212, 1, '홀토마토', NULL, TRUE),
-    (213, 6, '먹물파스타', NULL, TRUE),
-    (214, 5, '치즈', NULL, TRUE),
-    (215, 6, '파슬리가루', NULL, TRUE),
-    (216, 8, '함초소금', NULL, TRUE),
-    (217, 1, '물김치국물', NULL, TRUE),
-    (218, 10, '탄산수', NULL, TRUE),
-    (219, 8, '어간장', NULL, TRUE),
-    (220, 1, '미니파프리카', NULL, TRUE),
-    (221, 8, '올리고당', NULL, TRUE),
-    (222, 6, '현미', NULL, TRUE),
-    (223, 10, '후르츠칵테일', NULL, TRUE),
-    (224, 1, '생강청', NULL, TRUE),
-    (225, 3, '쇠고기등심', NULL, TRUE),
-    (226, 10, '건바질', NULL, TRUE),
-    (227, 10, '르네디종 홀그레인머스터', NULL, TRUE),
-    (228, 10, '옥수수', NULL, TRUE),
-    (229, 6, '귀리밥', NULL, TRUE),
-    (230, 1, '피망', NULL, TRUE),
-    (231, 6, '카레가루', NULL, TRUE),
-    (232, 10, '흰후추', NULL, TRUE),
-    (233, 3, '소고기 우둔살', NULL, TRUE),
-    (234, 1, '꽈리고추', NULL, TRUE),
-    (235, 8, '맛간장', NULL, TRUE),
-    (236, 3, '소고기우둔살', NULL, TRUE),
-    (237, 10, '샐러리', NULL, TRUE),
-    (238, 4, '삼치', NULL, TRUE),
-    (239, 10, '커피', NULL, TRUE),
-    (240, 10, '삼겹살', NULL, TRUE),
-    (241, 1, '마늘기름', NULL, TRUE),
-    (242, 10, '통후추', NULL, TRUE),
-    (243, 1, '아욱', NULL, TRUE),
-    (244, 10, '백일송이', NULL, TRUE),
-    (245, 5, '치즈가루', NULL, TRUE),
-    (246, 1, '버섯마늘소금', NULL, TRUE),
-    (247, 10, '전분', NULL, TRUE),
-    (248, 1, '오이고추', NULL, TRUE),
-    (249, 1, '영양부추', NULL, TRUE),
-    (250, 1, '연근', NULL, TRUE),
-    (251, 4, '해물육수', NULL, TRUE),
-    (252, 1, '생강즙', NULL, TRUE),
-    (253, 10, '느타리', NULL, TRUE),
-    (254, 10, '누룽지', NULL, TRUE),
-    (255, 8, '튀김기름', NULL, TRUE),
-    (256, 10, '육수', NULL, TRUE),
-    (257, 10, '광어', NULL, TRUE),
-    (258, 5, '모짜렐라치즈', NULL, TRUE),
-    (259, 6, '빵가루', NULL, TRUE),
-    (260, 10, '코코넛밀크', NULL, TRUE),
-    (261, 10, '브로컬리', NULL, TRUE),
-    (262, 6, '강황가루', NULL, TRUE),
-    (263, 10, '새송이', NULL, TRUE),
-    (264, 8, '하얀된장', NULL, TRUE),
-    (265, 3, '닭고기살', NULL, TRUE),
-    (266, 6, '백년초국수', NULL, TRUE),
-    (267, 6, '뽕잎국수', NULL, TRUE),
-    (268, 6, '치자국수', NULL, TRUE),
-    (269, 8, '연유', NULL, TRUE),
-    (270, 10, '와인', NULL, TRUE),
-    (271, 10, '아스파라거스', NULL, TRUE),
-    (272, 10, '통삼겹살', NULL, TRUE),
-    (273, 6, '함초가루', NULL, TRUE),
-    (274, 10, '쌈장', NULL, TRUE),
-    (275, 10, '펜네', NULL, TRUE),
-    (276, 10, '월계수잎', NULL, TRUE),
-    (277, 10, '또띠아', NULL, TRUE),
-    (278, 4, '통오징어', NULL, TRUE),
-    (279, 7, '견과류', NULL, TRUE),
-    (280, 10, '연어', NULL, TRUE),
-    (281, 1, '통마늘', NULL, TRUE),
-    (282, 10, '스파게티', NULL, TRUE),
-    (283, 10, '콜리플라워', NULL, TRUE),
-    (284, 10, '와사비', NULL, TRUE),
-    (285, 10, '천일염', NULL, TRUE),
-    (286, 6, '계피가루', NULL, TRUE),
-    (287, 1, '도라지', NULL, TRUE),
-    (288, 10, '청포묵', NULL, TRUE),
-    (289, 1, '쌈무', NULL, TRUE),
-    (290, 10, '라이스페이퍼', NULL, TRUE),
-    (291, 10, '오곡', NULL, TRUE),
-    (292, 10, '디종머스터드', NULL, TRUE),
-    (293, 10, '콜라비', NULL, TRUE),
-    (294, 2, '오미자', NULL, TRUE),
-    (295, 1, '무화과', NULL, TRUE),
-    (296, 10, '고수', NULL, TRUE),
-    (297, 6, '찬밥', NULL, TRUE),
-    (298, 10, '닭다리살', NULL, TRUE),
-    (299, 4, '국멸치', NULL, TRUE),
-    (300, 10, '건다시마', NULL, TRUE),
-    (301, 10, '민어', NULL, TRUE),
-    (302, 3, '쇠고기 양지', NULL, TRUE),
-    (303, 1, '풋 고추', NULL, TRUE),
-    (304, 1, '간 홍고추', NULL, TRUE),
-    (305, 1, '간 양파', NULL, TRUE),
-    (306, 8, '맛술', NULL, TRUE),
-    (307, 10, '닭뼈', NULL, TRUE),
-    (308, 1, '양송이버섯 밑동', NULL, TRUE),
-    (309, 4, '새우가루', NULL, TRUE),
-    (310, 10, '달래', NULL, TRUE),
-    (311, 10, '동태포', NULL, TRUE),
-    (312, 1, '새싹채소', NULL, TRUE),
-    (313, 3, '콩고기', NULL, TRUE),
-    (314, 10, '아보카도', NULL, TRUE),
-    (315, 2, '바나나', NULL, TRUE),
-    (316, 8, '허브오일 소금', NULL, TRUE),
-    (317, 10, '수박껍질', NULL, TRUE),
-    (318, 10, '퀴노아', NULL, TRUE),
-    (319, 5, '리코타치즈', NULL, TRUE),
-    (320, 5, '플레인 요구르트', NULL, TRUE),
-    (321, 1, '어린잎채소', NULL, TRUE),
-    (322, 10, '복분자', NULL, TRUE),
-    (323, 6, '바질가루', NULL, TRUE),
-    (324, 5, '휘핑크림', NULL, TRUE),
-    (325, 6, '스파게티면', NULL, TRUE),
-    (326, 10, '신선초', NULL, TRUE),
-    (327, 10, '취나물', NULL, TRUE),
-    (328, 8, '적겨자', NULL, TRUE),
-    (329, 6, '쌀파스타면', NULL, TRUE),
-    (330, 6, '파스타 된장', NULL, TRUE),
-    (331, 9, '청국장', NULL, TRUE),
-    (332, 8, '들기름', NULL, TRUE),
-    (333, 10, '황태포', NULL, TRUE),
-    (334, 10, '이태리시즈닝', NULL, TRUE),
-    (335, 6, '라면', NULL, TRUE),
-    (336, 1, '고추기름', NULL, TRUE),
-    (337, 10, '두반장', NULL, TRUE),
-    (338, 6, '라면스프', NULL, TRUE),
-    (339, 10, '조개', NULL, TRUE),
-    (340, 4, '홍합', NULL, TRUE),
-    (341, 10, '정향', NULL, TRUE),
-    (342, 5, '파르메산 치즈가루', NULL, TRUE),
-    (343, 10, '파인애플', NULL, TRUE),
-    (344, 10, '레드와인', NULL, TRUE),
-    (345, 10, '매실청', NULL, TRUE),
-    (346, 1, '쇠고기 장 생강즙', NULL, TRUE),
-    (347, 10, '가다랑어포', NULL, TRUE),
-    (348, 8, '조림 간장', NULL, TRUE),
-    (349, 8, '흑설탕', NULL, TRUE),
-    (350, 10, '케일', NULL, TRUE),
-    (351, 10, '비타민', NULL, TRUE),
-    (352, 2, '유자 식초', NULL, TRUE),
-    (353, 10, '조기', NULL, TRUE),
-    (354, 10, '허브크러스트', NULL, TRUE),
-    (355, 1, '마늘오일', NULL, TRUE),
-    (356, 10, '돼지머리', NULL, TRUE),
-    (357, 6, '우동면', NULL, TRUE),
-    (358, 8, '일본 된장', NULL, TRUE),
-    (359, 1, '빨간파프리카', NULL, TRUE),
-    (360, 8, '레몬소금', NULL, TRUE),
-    (361, 2, '밤', NULL, TRUE),
-    (362, 10, '코다리', NULL, TRUE),
-    (363, 8, '간편어간장', NULL, TRUE),
-    (364, 8, '연겨자', NULL, TRUE),
-    (365, 10, '우엉', NULL, TRUE),
-    (366, 8, '일본된장', NULL, TRUE),
-    (367, 7, '땅콩잼', NULL, TRUE),
-    (368, 2, '풋사과', NULL, TRUE),
-    (369, 6, '거피한 들깨가루', NULL, TRUE),
-    (370, 2, '참외', NULL, TRUE),
-    (371, 1, '말린 토마토', NULL, TRUE),
-    (372, 2, '감식초', NULL, TRUE),
-    (373, 10, '논우렁', NULL, TRUE),
-    (374, 5, '플레인요구르트', NULL, TRUE),
-    (375, 1, '백일송이버섯', NULL, TRUE),
-    (376, 5, '요거트', NULL, TRUE),
-    (377, 6, '튀김가루', NULL, TRUE),
-    (378, 10, '오렌지주스', NULL, TRUE),
-    (379, 1, '노랑파프리카', NULL, TRUE),
-    (380, 4, '생선살', NULL, TRUE),
-    (381, 5, '요구르트', NULL, TRUE),
-    (382, 6, '현미쌀', NULL, TRUE),
-    (383, 1, '미니버섯', NULL, TRUE),
-    (384, 8, '홍초', NULL, TRUE),
-    (385, 10, '물녹말', NULL, TRUE),
-    (386, 5, '화이트크림', NULL, TRUE),
-    (387, 10, '옥수수콘', NULL, TRUE),
-    (388, 10, '새싹', NULL, TRUE),
-    (389, 10, '치자', NULL, TRUE),
-    (390, 10, '귤병', NULL, TRUE),
-    (391, 10, '날치알', NULL, TRUE),
-    (392, 6, '포카치아빵', NULL, TRUE),
-    (393, 1, '무장아찌', NULL, TRUE),
-    (394, 5, '생치즈', NULL, TRUE),
-    (395, 10, '루꼴라', NULL, TRUE),
-    (396, 10, '더덕', NULL, TRUE),
-    (397, 10, '두릅', NULL, TRUE),
-    (398, 5, '크림치즈', NULL, TRUE),
-    (399, 10, '대하', NULL, TRUE),
-    (400, 7, '완두콩', NULL, TRUE),
-    (401, 10, '수삼', NULL, TRUE),
-    (402, 9, '생청국장', NULL, TRUE),
-    (403, 6, '볶음밥 쌀', NULL, TRUE),
-    (404, 10, '문어', NULL, TRUE),
-    (405, 4, '새우살', NULL, TRUE),
-    (406, 1, '토마토페이스트', NULL, TRUE),
-    (407, 1, '파프리카가루', NULL, TRUE),
-    (408, 10, '생김', NULL, TRUE),
-    (409, 1, '톳 무침 설탕', NULL, TRUE),
-    (410, 6, '찹쌀현미밥', NULL, TRUE),
-    (411, 10, '닭봉', NULL, TRUE),
-    (412, 1, '주키니호박', NULL, TRUE),
-    (413, 10, '시래기', NULL, TRUE),
-    (414, 7, '부순 참깨', NULL, TRUE),
-    (415, 10, '봄동', NULL, TRUE),
-    (416, 4, '낙지 다리', NULL, TRUE),
-    (417, 10, '꼬막살', NULL, TRUE),
-    (418, 1, '깻잎장아찌', NULL, TRUE),
-    (419, 10, '김', NULL, TRUE),
-    (420, 1, '허브타르타르 양파', NULL, TRUE),
-    (421, 10, '피클', NULL, TRUE),
-    (422, 8, '머스터드 설탕', NULL, TRUE),
-    (423, 4, '참치', NULL, TRUE),
-    (424, 2, '사과 식초', NULL, TRUE),
-    (425, 2, '굵게 사과', NULL, TRUE),
-    (426, 10, '데리야키', NULL, TRUE),
-    (427, 8, '오리엔탈 식초', NULL, TRUE),
-    (428, 4, '오징어 몸통', NULL, TRUE),
-    (429, 5, '달걀지단', NULL, TRUE),
-    (430, 3, '닭고기 삶는 된장', NULL, TRUE),
-    (431, 8, '비빔 간장', NULL, TRUE),
-    (432, 10, '족발', NULL, TRUE),
-    (433, 10, '맥주', NULL, TRUE),
-    (434, 3, '갈은 소고기', NULL, TRUE),
-    (435, 3, '갈은 돼지고기', NULL, TRUE),
-    (436, 10, '다시마물', NULL, TRUE),
-    (437, 10, '통삼겹', NULL, TRUE),
-    (438, 10, '천연다시다', NULL, TRUE),
-    (439, 8, '겨자', NULL, TRUE),
-    (440, 7, '깨', NULL, TRUE),
-    (441, 1, '표고', NULL, TRUE),
-    (442, 6, '파스타면', NULL, TRUE),
-    (443, 1, '열무김치', NULL, TRUE),
-    (444, 1, '청홍고추', NULL, TRUE),
-    (445, 8, '생들기름', NULL, TRUE),
-    (446, 10, '찜갈비', NULL, TRUE),
-    (447, 1, '미역줄기', NULL, TRUE),
-    (448, 10, '건곤드레', NULL, TRUE),
-    (449, 10, '건조미역', NULL, TRUE),
-    (450, 3, '쇠고기구이용', NULL, TRUE),
-    (451, 1, '알마늘', NULL, TRUE),
-    (452, 8, '허브식초', NULL, TRUE),
-    (453, 10, '도토리묵', NULL, TRUE),
-    (454, 10, '올방개묵', NULL, TRUE),
-    (455, 7, '검정깨묵', NULL, TRUE),
-    (456, 1, '미니 단호박', NULL, TRUE),
-    (457, 10, '크린베리', NULL, TRUE),
-    (458, 10, '소 채끝살', NULL, TRUE),
-    (459, 10, '레드와인 망고', NULL, TRUE),
-    (460, 9, '딸기잼', NULL, TRUE),
-    (461, 6, '식빵', NULL, TRUE),
-    (462, 5, '어린이치즈', NULL, TRUE),
-    (463, 10, '삼색분말', NULL, TRUE),
-    (464, 1, '나무막대기', NULL, TRUE),
-    (465, 10, '소등심', NULL, TRUE),
-    (466, 10, '라이스페퍼', NULL, TRUE),
-    (467, 1, '시금치가루', NULL, TRUE),
-    (468, 1, '호박가루', NULL, TRUE),
-    (469, 6, '백년초가루', NULL, TRUE),
-    (470, 6, '떡볶이떡', NULL, TRUE),
-    (471, 10, '돼지등심', NULL, TRUE),
-    (472, 6, '파스리가루', NULL, TRUE),
-    (473, 6, '보리쌀', NULL, TRUE),
-    (474, 1, '토마토페스트', NULL, TRUE),
-    (475, 10, '케첩', NULL, TRUE),
-    (476, 10, '빠금장', NULL, TRUE),
-    (477, 9, '블루베리잼', NULL, TRUE),
-    (478, 3, '소 쇠고기', NULL, TRUE),
-    (479, 6, '가래떡', NULL, TRUE),
-    (480, 10, '관자', NULL, TRUE),
-    (481, 7, '검은깨', NULL, TRUE),
-    (482, 1, '죽순', NULL, TRUE),
-    (483, 8, '진간장', NULL, TRUE),
-    (484, 10, '차돌박이', NULL, TRUE),
-    (485, 10, '가다랑어장국', NULL, TRUE),
-    (486, 10, '닭다리', NULL, TRUE),
-    (487, 1, '붉은피망', NULL, TRUE),
-    (488, 10, '크렌베리', NULL, TRUE),
-    (489, 5, '파마산치즈', NULL, TRUE),
-    (490, 1, '대파뿌리', NULL, TRUE),
-    (491, 4, '바지락살', NULL, TRUE),
-    (492, 10, '냉동고등어', NULL, TRUE),
-    (493, 1, '율무', NULL, TRUE),
-    (494, 10, '수수', NULL, TRUE),
-    (495, 7, '혼합견과', NULL, TRUE),
-    (496, 8, '기름', NULL, TRUE),
-    (497, 10, '절임물', NULL, TRUE),
-    (498, 6, '파마산가루', NULL, TRUE),
-    (499, 1, '마늘칩', NULL, TRUE),
-    (500, 10, '미역', NULL, TRUE),
-    (501, 1, '고추냉이', NULL, TRUE),
-    (502, 10, '당귀잎', NULL, TRUE),
-    (503, 1, '알배추', NULL, TRUE),
-    (504, 10, '흰앙금', NULL, TRUE),
-    (505, 10, '한천', NULL, TRUE),
-    (506, 10, '장어', NULL, TRUE),
-    (507, 10, '팽이', NULL, TRUE),
-    (508, 10, '슬라이스햄', NULL, TRUE),
-    (509, 6, '청국장가루', NULL, TRUE),
-    (510, 10, '증편', NULL, TRUE),
-    (511, 10, '망고', NULL, TRUE),
-    (512, 1, '홍피망', NULL, TRUE),
-    (513, 10, '판젤라틴', NULL, TRUE),
-    (514, 6, '보리', NULL, TRUE),
-    (515, 4, '게맛살', NULL, TRUE),
-    (516, 10, '미니새송이', NULL, TRUE),
-    (517, 6, '뽕잎가루', NULL, TRUE),
-    (518, 8, '칠리', NULL, TRUE),
-    (519, 2, '키위', NULL, TRUE),
-    (520, 1, '목이버섯', NULL, TRUE),
-    (521, 5, '사워크림', NULL, TRUE),
-    (522, 10, '체리', NULL, TRUE),
-    (523, 10, '화이트 초콜릿', NULL, TRUE),
-    (524, 10, '피스타치오', NULL, TRUE),
-    (525, 10, '헤이즐넛', NULL, TRUE),
-    (526, 10, '캐슈넛', NULL, TRUE),
-    (527, 10, '라즈베리', NULL, TRUE),
-    (528, 10, '애플민트', NULL, TRUE),
-    (529, 6, '미숫가루', NULL, TRUE),
-    (530, 10, '망고퓨레', NULL, TRUE),
-    (531, 1, '줄기토마토', NULL, TRUE),
-    (532, 10, '소라', NULL, TRUE),
-    (533, 10, '홍시', NULL, TRUE),
-    (534, 10, '계피', NULL, TRUE),
-    (535, 2, '곶감', NULL, TRUE),
-    (536, 10, '자몽', NULL, TRUE),
-    (537, 10, '요리술', NULL, TRUE),
-    (538, 1, '말린 매생이', NULL, TRUE),
-    (539, 10, '까나리액젓', NULL, TRUE),
-    (540, 10, '오레가노', NULL, TRUE),
-    (541, 2, '사과식초', NULL, TRUE),
-    (542, 10, '식용 꽃', NULL, TRUE),
-    (543, 10, '석류 원액', NULL, TRUE),
-    (544, 6, '레시틴가루', NULL, TRUE),
-    (545, 10, '레드치커리', NULL, TRUE),
-    (546, 10, '보라로즈케일', NULL, TRUE),
-    (547, 10, '흰로즈케일', NULL, TRUE),
-    (548, 2, '오미자물', NULL, TRUE),
-    (549, 10, '꼬막', NULL, TRUE),
-    (550, 2, '사과즙', NULL, TRUE),
-    (551, 1, '마늘종', NULL, TRUE),
-    (552, 7, '검정깨', NULL, TRUE),
-    (553, 10, '꽃게', NULL, TRUE),
-    (554, 10, '아귀', NULL, TRUE),
-    (555, 10, '녹말물', NULL, TRUE),
-    (556, 10, '가자미', NULL, TRUE),
-    (557, 10, '치킨스톡', NULL, TRUE),
-    (558, 10, '코코넛 밀크', NULL, TRUE),
-    (559, 10, '셀러리', NULL, TRUE),
-    (560, 10, '닭육수', NULL, TRUE),
-    (561, 4, '멸치다시마육수', NULL, TRUE),
-    (562, 10, '대구', NULL, TRUE),
-    (563, 6, '쑥가루', NULL, TRUE),
-    (564, 10, '북어', NULL, TRUE),
-    (565, 3, '쇠고기육수', NULL, TRUE),
-    (566, 1, '다시마 대파', NULL, TRUE),
-    (567, 1, '무말랭이', NULL, TRUE),
-    (568, 10, '곁들임', NULL, TRUE),
-    (569, 8, '카놀라유', NULL, TRUE),
-    (570, 6, '땅콩가루', NULL, TRUE),
-    (571, 1, '단배추', NULL, TRUE),
-    (572, 1, '표고버섯가루', NULL, TRUE),
-    (573, 7, '검은콩두부', NULL, TRUE),
-    (574, 6, '된장 콩가루', NULL, TRUE),
-    (575, 1, '얼갈이배추', NULL, TRUE),
-    (576, 4, '보리새우', NULL, TRUE),
-    (577, 10, '메밀묵', NULL, TRUE),
-    (578, 1, '미니양배추', NULL, TRUE),
-    (579, 10, '래디시', NULL, TRUE),
-    (580, 8, '미소된장', NULL, TRUE),
-    (581, 10, '우삼겹', NULL, TRUE),
-    (582, 10, '곤드레나물', NULL, TRUE),
-    (583, 1, '고구마순', NULL, TRUE),
-    (584, 1, '굴림만두 새송이버섯', NULL, TRUE),
-    (585, 1, '고사리', NULL, TRUE),
-    (586, 10, '우렁', NULL, TRUE),
-    (587, 1, '베이비채소', NULL, TRUE),
-    (588, 1, '표고버섯 근대', NULL, TRUE),
-    (589, 10, '뒤포리', NULL, TRUE),
-    (590, 6, '쌀밥', NULL, TRUE),
-    (591, 1, '배추김치', NULL, TRUE),
-    (592, 10, '슬라이스연어', NULL, TRUE),
-    (593, 10, '매실원액', NULL, TRUE),
-    (594, 10, '젤라틴', NULL, TRUE),
-    (595, 10, '석박지', NULL, TRUE),
-    (596, 10, '세발나물', NULL, TRUE),
-    (597, 10, '통계피', NULL, TRUE),
-    (598, 10, '조청', NULL, TRUE),
-    (599, 8, '허브소금', NULL, TRUE),
-    (600, 10, '멜론', NULL, TRUE),
-    (601, 1, '건고추', NULL, TRUE),
-    (602, 1, '로즈마리 마늘기름', NULL, TRUE),
-    (603, 6, '곤약국수', NULL, TRUE),
-    (604, 10, '그라놀라', NULL, TRUE),
-    (605, 6, '찰보리', NULL, TRUE),
-    (606, 1, '건조토마토', NULL, TRUE),
-    (607, 10, '귀리', NULL, TRUE),
-    (608, 6, '녹차가루', NULL, TRUE),
-    (609, 10, '아몬드슬라이스', NULL, TRUE),
-    (610, 10, '천연조미료', NULL, TRUE),
-    (611, 8, '간편 어간장', NULL, TRUE),
-    (612, 1, '매생이', NULL, TRUE),
-    (613, 6, '보리된장', NULL, TRUE),
-    (614, 8, '겨자분말', NULL, TRUE),
-    (615, 10, '실치', NULL, TRUE),
-    (616, 10, '다시마 육수', NULL, TRUE),
-    (617, 7, '스테이크 두부', NULL, TRUE),
-    (618, 1, '청국장 양송이버섯', NULL, TRUE),
-    (619, 10, '다시마육수', NULL, TRUE),
-    (620, 8, '유 자청', NULL, TRUE),
-    (621, 2, '바나나식초', NULL, TRUE),
-    (622, 2, '배사과 배', NULL, TRUE),
-    (623, 10, '꽁치살', NULL, TRUE),
-    (624, 8, '홍초물 설탕', NULL, TRUE),
-    (625, 1, '아귀찜 양파', NULL, TRUE),
-    (626, 2, '말린 자두', NULL, TRUE),
-    (627, 10, '명태', NULL, TRUE),
-    (628, 3, '소불고기', NULL, TRUE),
-    (629, 1, '야채육수', NULL, TRUE),
-    (630, 4, '자숙새우', NULL, TRUE),
-    (631, 10, '소라살', NULL, TRUE),
-    (632, 1, '멕시코고추', NULL, TRUE),
-    (633, 10, '백미', NULL, TRUE),
-    (634, 7, '검은콩두유', NULL, TRUE),
-    (635, 5, '저지방우유', NULL, TRUE),
-    (636, 10, '건조체리', NULL, TRUE),
-    (637, 10, '바케트', NULL, TRUE),
-    (638, 8, '일식된장', NULL, TRUE),
-    (639, 8, '녹차소금', NULL, TRUE),
-    (640, 4, '멸치육수', NULL, TRUE),
-    (641, 5, '유기농 아기치즈', NULL, TRUE),
-    (642, 1, '생 표고버섯', NULL, TRUE),
-    (643, 1, '마늘튀김', NULL, TRUE),
-    (644, 10, '홀그레인머스터드', NULL, TRUE),
-    (645, 1, '어린채소', NULL, TRUE),
-    (646, 10, '등갈비', NULL, TRUE),
-    (647, 5, '크림', NULL, TRUE),
-    (648, 10, '꼬치', NULL, TRUE),
-    (649, 10, '동치미', NULL, TRUE),
-    (650, 6, '국수', NULL, TRUE),
-    (651, 6, '파스타', NULL, TRUE),
-    (652, 10, '어린싹', NULL, TRUE),
-    (653, 4, '흰살생선', NULL, TRUE),
-    (654, 2, '라임주스', NULL, TRUE),
-    (655, 10, '피클링스파이스', NULL, TRUE),
-    (656, 10, '먹물', NULL, TRUE),
-    (657, 10, '고등어', NULL, TRUE),
-    (658, 10, '묵은지', NULL, TRUE),
-    (659, 1, '만송이버섯', NULL, TRUE),
-    (660, 2, '라임', NULL, TRUE),
-    (661, 8, '유부', NULL, TRUE),
-    (662, 1, '쥬키니호박', NULL, TRUE),
-    (663, 10, '막걸리', NULL, TRUE),
-    (664, 10, '가쓰오부시', NULL, TRUE),
-    (665, 1, '새송이 버섯', NULL, TRUE),
-    (666, 1, '빨간 파프리카', NULL, TRUE),
-    (667, 1, '얼갈이 배추', NULL, TRUE),
-    (668, 7, '깨소금', NULL, TRUE),
-    (669, 10, '실파', NULL, TRUE),
-    (670, 5, '플레인 요거트', NULL, TRUE),
-    (671, 10, '얼린 홍시', NULL, TRUE),
-    (672, 1, '빨강파프리카', NULL, TRUE),
-    (673, 1, '토마토케첩', NULL, TRUE),
-    (674, 10, '옥수수알', NULL, TRUE),
-    (675, 7, '완두콩알', NULL, TRUE),
-    (676, 5, '호상요구르트', NULL, TRUE),
-    (677, 6, '쌀가루', NULL, TRUE),
-    (678, 4, '홍합살', NULL, TRUE),
-    (679, 6, '현미유', NULL, TRUE),
-    (680, 1, '김장김치', NULL, TRUE),
-    (681, 4, '새우젓국물', NULL, TRUE),
-    (682, 10, '물파래', NULL, TRUE),
-    (683, 7, '노란콩', NULL, TRUE),
-    (684, 6, '우리밀가루', NULL, TRUE),
-    (685, 8, '물 간장', NULL, TRUE),
-    (686, 10, '카스텔라', NULL, TRUE),
-    (687, 10, '젓갈', NULL, TRUE),
-    (688, 1, '통생강', NULL, TRUE),
-    (689, 8, '씨겨자', NULL, TRUE),
-    (690, 6, '울금가루', NULL, TRUE),
-    (691, 1, '건조미역줄기', NULL, TRUE),
-    (692, 7, '혼합견과류', NULL, TRUE),
-    (693, 3, '소고기 양지', NULL, TRUE),
-    (694, 10, '소주', NULL, TRUE),
-    (695, 6, '유기농 밀가루', NULL, TRUE),
-    (696, 10, '루콜라', NULL, TRUE),
-    (697, 1, '건 표고버섯', NULL, TRUE),
-    (698, 1, '노란색 파프리카', NULL, TRUE),
-    (699, 6, '덧밀가루', NULL, TRUE),
-    (700, 10, '미더덕', NULL, TRUE),
-    (701, 4, '건멸치', NULL, TRUE),
-    (702, 10, '치킨육수', NULL, TRUE),
-    (703, 10, '양지육', NULL, TRUE),
-    (704, 4, '칵텔새우', NULL, TRUE),
-    (705, 6, '커리가루', NULL, TRUE),
-    (706, 10, '쌈채', NULL, TRUE),
-    (707, 8, '맛소금', NULL, TRUE),
-    (708, 10, '레몬제스트', NULL, TRUE),
-    (709, 10, '머윗대', NULL, TRUE),
-    (710, 10, '푸실리', NULL, TRUE),
-    (711, 10, '다시마국물', NULL, TRUE),
-    (712, 10, '토막 낸 닭', NULL, TRUE),
-    (713, 1, '건표고버섯', NULL, TRUE),
-    (714, 1, '건표고버섯 불릴', NULL, TRUE),
-    (715, 1, '건청양고추', NULL, TRUE),
-    (716, 6, '건당면', NULL, TRUE),
-    (717, 8, '황설탕', NULL, TRUE),
-    (718, 8, '노두유', NULL, TRUE),
-    (719, 3, '돼지고기 목심', NULL, TRUE),
-    (720, 10, '수박', NULL, TRUE),
-    (721, 10, '병어', NULL, TRUE),
-    (722, 10, '비름나물', NULL, TRUE),
-    (723, 7, '콩기름', NULL, TRUE),
-    (724, 10, '머위대', NULL, TRUE),
-    (725, 6, '거피들깨가루', NULL, TRUE),
-    (726, 10, '수박 속껍질', NULL, TRUE),
-    (727, 2, '포도씨유', NULL, TRUE),
-    (728, 1, '우무묵', NULL, TRUE),
-    (729, 2, '얼린포도알', NULL, TRUE),
-    (730, 2, '오미자액', NULL, TRUE),
-    (731, 7, '깐호두', NULL, TRUE),
-    (732, 4, '전복살', NULL, TRUE),
-    (733, 1, '양송이 버섯', NULL, TRUE),
-    (734, 10, '근대', NULL, TRUE),
-    (735, 4, '잔멸치', NULL, TRUE),
-    (736, 10, '건로즈마리', NULL, TRUE),
-    (737, 10, '다시마 사방 x', NULL, TRUE),
-    (738, 10, '건조 미역', NULL, TRUE),
-    (739, 1, '양파 빵가루', NULL, TRUE),
-    (740, 2, '오미자청', NULL, TRUE),
-    (741, 10, '훈제연어', NULL, TRUE),
-    (742, 10, '오렌지 주스', NULL, TRUE),
-    (743, 8, '스위트칠리', NULL, TRUE),
-    (744, 1, '토마토 페스트', NULL, TRUE),
-    (745, 3, '돈가스', NULL, TRUE),
-    (746, 1, '편마늘', NULL, TRUE),
-    (747, 1, '정종 양배추', NULL, TRUE),
-    (748, 1, '표고버섯 당근', NULL, TRUE),
-    (749, 1, '참기름 마늘', NULL, TRUE),
-    (750, 10, '동치미국물', NULL, TRUE),
-    (751, 10, '돼지갈비', NULL, TRUE),
-    (752, 10, '골뱅이', NULL, TRUE),
-    (753, 10, '황도', NULL, TRUE),
-    (754, 10, '흑미', NULL, TRUE),
-    (755, 10, '미니', NULL, TRUE),
-    (756, 10, '블랙올리브', NULL, TRUE),
-    (757, 1, '고추피클', NULL, TRUE),
-    (758, 10, '석류주스', NULL, TRUE),
-    (759, 8, '엿기름', NULL, TRUE),
-    (760, 10, '백년초', NULL, TRUE),
-    (761, 10, '다슬기살', NULL, TRUE),
-    (762, 10, '적채', NULL, TRUE),
-    (763, 1, '무청시래기', NULL, TRUE),
-    (764, 10, '참다래', NULL, TRUE),
-    (765, 10, '가자미살', NULL, TRUE),
-    (766, 10, '크래커', NULL, TRUE),
-    (767, 4, '칵테일 새우', NULL, TRUE),
-    (768, 1, '단호박가루', NULL, TRUE),
-    (769, 4, '어묵', NULL, TRUE),
-    (770, 3, '소고기등심', NULL, TRUE),
-    (771, 2, '포도주스', NULL, TRUE),
-    (772, 10, '조개살', NULL, TRUE),
-    (773, 10, '우동', NULL, TRUE),
-    (774, 10, '가쯔오부시', NULL, TRUE),
-    (775, 10, '돼지목살', NULL, TRUE),
-    (776, 1, '미니단호박', NULL, TRUE),
-    (777, 10, 'L A갈비', NULL, TRUE),
-    (778, 10, '닭살', NULL, TRUE),
-    (779, 10, '은행', NULL, TRUE),
-    (780, 6, '강황쌀', NULL, TRUE),
-    (781, 1, '대파 마늘', NULL, TRUE),
-    (782, 10, '갈치', NULL, TRUE),
-    (783, 1, '양파 껍질', NULL, TRUE),
-    (784, 10, '미소', NULL, TRUE),
-    (785, 10, '다시마 국물', NULL, TRUE),
-    (786, 4, '낙지', NULL, TRUE),
-    (787, 1, '양파 고추장', NULL, TRUE),
-    (788, 3, '돼지고기 등심', NULL, TRUE),
-    (789, 8, '올리 브유', NULL, TRUE),
-    (790, 10, '건도토리묵', NULL, TRUE),
-    (791, 3, '쇠고기 등심', NULL, TRUE),
-    (792, 1, '말린 청양고추', NULL, TRUE),
-    (793, 3, '돼지고기사태', NULL, TRUE),
-    (794, 1, '후춧가루 양파', NULL, TRUE),
-    (795, 2, '배 식초', NULL, TRUE),
-    (796, 1, '명이김치', NULL, TRUE),
-    (797, 10, '안심', NULL, TRUE),
-    (798, 2, '포도주', NULL, TRUE),
-    (799, 1, '토마토홀', NULL, TRUE),
-    (800, 10, '바질잎', NULL, TRUE),
-    (801, 10, '쪽갈비', NULL, TRUE),
-    (802, 10, '건 로즈마리', NULL, TRUE),
-    (803, 10, '레몬껍질', NULL, TRUE),
-    (804, 10, '홀그레인 머스터즈', NULL, TRUE),
-    (805, 10, '백후추', NULL, TRUE),
-    (806, 10, '청경재', NULL, TRUE),
-    (807, 1, '채소국물', NULL, TRUE),
-    (808, 4, '멸치간장', NULL, TRUE),
-    (809, 10, '잣 바질페이', NULL, TRUE),
-    (810, 1, '드라이토마토', NULL, TRUE),
-    (811, 10, '명란젓', NULL, TRUE),
-    (812, 10, '흰추후', NULL, TRUE),
-    (813, 3, '돼기고기', NULL, TRUE),
-    (814, 10, '홀스레디쉬', NULL, TRUE),
-    (815, 1, '야채국물', NULL, TRUE),
-    (816, 10, '건조다시마 사방', NULL, TRUE),
-    (817, 8, '잎녹차', NULL, TRUE),
-    (818, 10, '수제조미료', NULL, TRUE),
-    (819, 8, '발사믹 식초', NULL, TRUE),
-    (820, 10, '닭날개', NULL, TRUE),
-    (821, 10, '건대추', NULL, TRUE),
-    (822, 1, '깐마늘', NULL, TRUE),
-    (823, 10, '마카다미아', NULL, TRUE),
-    (824, 8, '대두유', NULL, TRUE),
-    (825, 1, '흑마늘진액', NULL, TRUE),
-    (826, 10, '타피오카 전분', NULL, TRUE),
-    (827, 1, '비트가루', NULL, TRUE),
-    (828, 10, '르뱅 발효종', NULL, TRUE),
-    (829, 10, '그린치커리', NULL, TRUE),
-    (830, 10, '라디치오', NULL, TRUE),
-    (831, 10, '옥수수전분', NULL, TRUE),
-    (832, 6, '통밀가루', NULL, TRUE),
-    (833, 10, '강력분', NULL, TRUE),
-    (834, 10, '전립분', NULL, TRUE),
-    (835, 10, '드라이이스트', NULL, TRUE),
-    (836, 10, '베이킹파우더', NULL, TRUE),
-    (837, 10, '박력분', NULL, TRUE),
-    (838, 2, '건크랜베리', NULL, TRUE),
-    (839, 10, '이스트', NULL, TRUE),
-    (840, 6, '호밀가루', NULL, TRUE),
-    (841, 6, '검은콩가루', NULL, TRUE),
-    (842, 10, '셀러리 줄기', NULL, TRUE),
-    (843, 2, '과일', NULL, TRUE),
-    (844, 2, '라임즙', NULL, TRUE),
-    (845, 8, '아가베 시럽', NULL, TRUE),
-    (846, 5, '스트링치즈', NULL, TRUE),
-    (847, 2, '사과주스', NULL, TRUE),
-    (848, 6, '두부면', NULL, TRUE),
-    (849, 5, '슬라이스 체더치즈', NULL, TRUE),
-    (850, 1, '청상추', NULL, TRUE),
-    (851, 10, '아몬드 슬라이스', NULL, TRUE),
-    (852, 10, '인스턴트 드라이 이스트', NULL, TRUE),
-    (853, 2, '사과종', NULL, TRUE),
-    (854, 1, '말린 방울토마토', NULL, TRUE),
-    (855, 7, '볶음 참깨', NULL, TRUE),
-    (856, 1, '적파프리카', NULL, TRUE),
-    (857, 6, '깐들깨가루', NULL, TRUE),
-    (858, 1, '통배추', NULL, TRUE),
-    (859, 10, '시판 크루통', NULL, TRUE),
-    (860, 1, '아삭이고추', NULL, TRUE),
-    (861, 10, '블랙올리브 파우더', NULL, TRUE),
-    (862, 10, '페페론치노', NULL, TRUE),
-    (863, 5, '달걀물', NULL, TRUE),
-    (864, 10, '크래미', NULL, TRUE),
-    (865, 6, '누들 떡볶이 떡', NULL, TRUE),
-    (866, 6, '떡볶이 파우더', NULL, TRUE),
-    (867, 7, '쌈두부', NULL, TRUE),
-    (868, 5, '리코타 치즈', NULL, TRUE),
-    (869, 10, '레몬청 과육', NULL, TRUE),
-    (870, 10, '락교', NULL, TRUE),
-    (871, 6, '현미찹쌀', NULL, TRUE),
-    (872, 1, '주황파프리카', NULL, TRUE),
-    (873, 10, '파래김', NULL, TRUE),
-    (874, 10, '미향', NULL, TRUE),
-    (875, 1, '조선무', NULL, TRUE),
-    (876, 1, '깐양파', NULL, TRUE),
-    (877, 1, '두절콩나물', NULL, TRUE),
-    (878, 1, '깐대파', NULL, TRUE),
-    (879, 10, '새뱅이', NULL, TRUE),
-    (880, 10, '황태머리', NULL, TRUE),
-    (881, 10, '매실엑기스', NULL, TRUE),
-    (882, 10, '미림', NULL, TRUE),
-    (883, 10, '인스턴트 이스트', NULL, TRUE),
-    (884, 5, '따뜻한 우유', NULL, TRUE),
-    (885, 10, '코코넛 오일', NULL, TRUE),
-    (886, 6, '박력 쌀가루', NULL, TRUE),
-    (887, 9, '냉동 곤약', NULL, TRUE),
-    (888, 1, '납작 마늘', NULL, TRUE),
-    (889, 1, '채소 육수', NULL, TRUE),
-    (890, 1, '간 마늘', NULL, TRUE),
-    (891, 1, '토마토 페이스트', NULL, TRUE),
-    (892, 5, '그라나파다노 치즈', NULL, TRUE),
-    (893, 10, '우목심', NULL, TRUE),
-    (894, 1, '베트남 건고추', NULL, TRUE),
-    (895, 1, '편 마늘', NULL, TRUE),
-    (896, 10, '시판 누룽지', NULL, TRUE),
-    (897, 10, '다시팩', NULL, TRUE),
-    (898, 3, '양고기', NULL, TRUE),
-    (899, 10, '바질럽드', NULL, TRUE),
-    (900, 10, '바질페스토', NULL, TRUE),
-    (901, 10, '홀그레인 머스터드', NULL, TRUE),
-    (902, 10, '쌈추', NULL, TRUE),
-    (903, 10, '적근대', NULL, TRUE),
-    (904, 1, '토마토 홀', NULL, TRUE),
-    (905, 10, '바질 잎', NULL, TRUE),
-    (906, 10, '알룰로스', NULL, TRUE),
-    (907, 5, '초코크림', NULL, TRUE),
-    (908, 6, '아몬드가루', NULL, TRUE),
-    (909, 1, '무가당 코코아가루', NULL, TRUE),
-    (910, 10, '반 죽', NULL, TRUE),
-    (911, 5, '땅콩버터', NULL, TRUE),
-    (912, 10, '겉절이', NULL, TRUE),
-    (913, 1, '찐 감자', NULL, TRUE),
-    (914, 10, '사이다', NULL, TRUE),
-    (915, 1, '밤고구마', NULL, TRUE),
-    (916, 2, '바나나슬라이스', NULL, TRUE),
-    (917, 10, '블루베리 발효원종', NULL, TRUE),
-    (918, 10, '코코넛워터', NULL, TRUE),
-    (919, 6, '현미밥', NULL, TRUE),
-    (920, 5, '그릭요거트', NULL, TRUE),
-    (921, 5, '모차렐라치즈', NULL, TRUE),
-    (922, 5, '그라나파다노치즈', NULL, TRUE),
-    (923, 10, '아몬드 플레이크', NULL, TRUE),
-    (924, 10, '탈리아텔레', NULL, TRUE),
-    (925, 10, '핑크 페퍼', NULL, TRUE),
-    (926, 10, '바게트', NULL, TRUE),
-    (927, 5, '식물성 생크림', NULL, TRUE),
-    (928, 5, '모차렐라 치즈', NULL, TRUE),
-    (929, 1, '완숙 토마토', NULL, TRUE),
-    (930, 3, '소고기 육', NULL, TRUE),
-    (931, 10, '화이트 와인', NULL, TRUE),
-    (932, 10, '월계수 잎', NULL, TRUE),
-    (933, 10, '닭안심살', NULL, TRUE),
-    (934, 4, '다시멸치', NULL, TRUE),
-    (935, 4, '잘게 새우젓', NULL, TRUE),
-    (936, 5, '녹인 버터', NULL, TRUE),
-    (937, 10, '건로즈메리', NULL, TRUE),
-    (938, 10, '로메인', NULL, TRUE),
-    (939, 10, '대패삼겹살', NULL, TRUE),
-    (940, 10, '치아바타', NULL, TRUE),
-    (941, 5, '플레인 요거트 + 꿀', NULL, TRUE),
-    (942, 7, '건두부', NULL, TRUE),
-    (943, 5, '슈레드 모차렐라치즈', NULL, TRUE),
-    (944, 2, '라임청', NULL, TRUE),
-    (945, 6, '양장피 면', NULL, TRUE),
-    (946, 1, '건목이버섯', NULL, TRUE),
-    (947, 10, '볶음', NULL, TRUE),
-    (948, 10, '크레미', NULL, TRUE),
-    (949, 7, '콩국물', NULL, TRUE),
-    (950, 10, '잡곡', NULL, TRUE),
-    (951, 10, '그린빈스', NULL, TRUE),
-    (952, 1, '무우', NULL, TRUE),
-    (953, 10, '대추슬라이스', NULL, TRUE),
-    (954, 2, '깐밤', NULL, TRUE),
-    (955, 1, '깐생강', NULL, TRUE),
-    (956, 10, '크래비', NULL, TRUE),
-    (957, 4, '냉동 새우살', NULL, TRUE),
-    (958, 10, '냉동 아보카도', NULL, TRUE),
-    (959, 10, '절임 올리브', NULL, TRUE),
-    (960, 5, '간 파르메산치즈', NULL, TRUE),
-    (961, 10, '요플레', NULL, TRUE),
-    (962, 10, '게살', NULL, TRUE),
-    (963, 10, '닭다릿살', NULL, TRUE),
-    (964, 10, '방아잎', NULL, TRUE),
-    (965, 5, '파르메산 치즈', NULL, TRUE),
-    (966, 1, '무가당 아보카도 마요네즈', NULL, TRUE),
-    (967, 10, '스테이크 시즈닝', NULL, TRUE),
-    (968, 10, '황태 머리', NULL, TRUE),
-    (969, 1, 'l고추장', NULL, TRUE),
-    (970, 1, '생강가루', NULL, TRUE),
-    (971, 10, '부챗살', NULL, TRUE),
-    (972, 4, '익힌 전복내장', NULL, TRUE),
-    (973, 10, '사각 라이스페이퍼', NULL, TRUE),
-    (974, 1, '버섯가루', NULL, TRUE),
-    (975, 10, '스테비아', NULL, TRUE),
-    (976, 1, '훈제 파프리카파우더', NULL, TRUE),
-    (977, 10, '카옌 페퍼', NULL, TRUE),
-    (978, 10, '커민', NULL, TRUE),
-    (979, 10, '명태포', NULL, TRUE),
-    (980, 10, '커리', NULL, TRUE),
-    (981, 4, '홍새우 튀김', NULL, TRUE),
-    (982, 1, '감자튀김', NULL, TRUE),
-    (983, 1, '순무', NULL, TRUE),
-    (984, 10, '로즈메리', NULL, TRUE),
-    (985, 1, '백목이버섯', NULL, TRUE),
-    (986, 10, '머스타드', NULL, TRUE),
-    (987, 7, '부침두부', NULL, TRUE),
-    (988, 2, '포도', NULL, TRUE),
-    (989, 2, '미니사과', NULL, TRUE),
-    (990, 10, '디포리', NULL, TRUE),
-    (991, 3, '한돈', NULL, TRUE),
-    (992, 10, '구기자', NULL, TRUE),
-    (993, 2, '오미자엑기스', NULL, TRUE),
-    (994, 10, '훈제 오리', NULL, TRUE),
-    (995, 6, '겨잣가루', NULL, TRUE),
-    (996, 1, '홍토마토', NULL, TRUE),
-    (997, 10, '타임', NULL, TRUE),
-    (998, 3, '닭고기가슴살', NULL, TRUE),
-    (999, 6, '젖은 찹쌀가루', NULL, TRUE),
-    (1000, 6, '잣가루', NULL, TRUE),
-    (1001, 10, '와사미', NULL, TRUE),
-    (1002, 1, '알감자', NULL, TRUE),
-    (1003, 1, '미나리잎', NULL, TRUE),
-    (1004, 1, '마늘가루', NULL, TRUE),
-    (1005, 10, '케찹', NULL, TRUE),
-    (1006, 3, '돈민찌', NULL, TRUE),
-    (1007, 8, '누룩소금', NULL, TRUE),
-    (1008, 4, '생새우', NULL, TRUE),
-    (1009, 10, '가람마살라', NULL, TRUE),
-    (1010, 10, '코리앤더파우더', NULL, TRUE),
-    (1011, 10, '커민파우더', NULL, TRUE),
-    (1012, 4, '흰다리새우', NULL, TRUE),
-    (1013, 1, '생표고버섯', NULL, TRUE),
-    (1014, 1, '돼지감자가루', NULL, TRUE),
-    (1015, 6, '현미쌀가루', NULL, TRUE),
-    (1016, 8, '밀푀유', NULL, TRUE),
-    (1017, 6, '박력 밀가루', NULL, TRUE),
-    (1018, 6, '강력 밀가루', NULL, TRUE),
-    (1019, 7, '땅콩 분태', NULL, TRUE),
-    (1020, 5, '크림 스프레드', NULL, TRUE),
-    (1021, 7, '땅콩 스프레드', NULL, TRUE),
-    (1022, 10, '키엔페퍼', NULL, TRUE),
-    (1023, 1, '양파가루', NULL, TRUE),
-    (1024, 6, '흰후춧가루', NULL, TRUE),
-    (1025, 10, '머스터드 씨드', NULL, TRUE),
-    (1026, 10, '코리앤더 씨드', NULL, TRUE),
-    (1027, 1, '양파즙', NULL, TRUE),
-    (1028, 3, '돼지고기 삼겹살', NULL, TRUE),
-    (1029, 1, '청 홍고추', NULL, TRUE),
-    (1030, 1, '흰목이버섯', NULL, TRUE),
-    (1031, 10, '쭈꾸미', NULL, TRUE),
-    (1032, 6, '생면', NULL, TRUE),
-    (1033, 6, '매운고춧가루', NULL, TRUE),
-    (1034, 10, '도미', NULL, TRUE),
-    (1035, 10, '올리브', NULL, TRUE),
-    (1036, 10, '케이퍼', NULL, TRUE),
-    (1037, 10, '패주', NULL, TRUE),
-    (1038, 10, '샐러리잎', NULL, TRUE),
-    (1039, 1, '백만송이버섯', NULL, TRUE),
-    (1040, 5, '피넷버터', NULL, TRUE),
-    (1041, 10, '타비스코', NULL, TRUE),
-    (1042, 1, '고추가루', NULL, TRUE),
-    (1043, 1, '깐연근', NULL, TRUE),
-    (1044, 10, '스리라차', NULL, TRUE),
-    (1045, 6, '해조국수', NULL, TRUE),
-    (1046, 5, '파르메산치즈가루', NULL, TRUE),
-    (1047, 10, '강황', NULL, TRUE),
-    (1048, 6, '코리앤더가루', NULL, TRUE),
-    (1049, 10, '레드크러쉬드 페퍼', NULL, TRUE),
-    (1050, 6, '오레가노가루', NULL, TRUE),
-    (1051, 2, '감태', NULL, TRUE),
-    (1052, 1, '만가닥버섯', NULL, TRUE),
-    (1053, 10, '파인애플청', NULL, TRUE),
-    (1054, 10, '금태', NULL, TRUE),
-    (1055, 10, '꽁치', NULL, TRUE),
-    (1056, 6, '매운 고춧가루', NULL, TRUE),
-    (1057, 10, '쌈다시마', NULL, TRUE),
-    (1058, 6, '흰후춧가루 레몬즙', NULL, TRUE),
-    (1059, 10, '조미술', NULL, TRUE),
-    (1060, 1, '마늘즙', NULL, TRUE),
-    (1061, 4, '물오징어', NULL, TRUE),
-    (1062, 10, '조갯살', NULL, TRUE),
-    (1063, 10, '훈재연어', NULL, TRUE),
-    (1064, 10, '래디쉬', NULL, TRUE),
-    (1065, 10, '파인애플 국물', NULL, TRUE),
-    (1066, 4, '갑오징어', NULL, TRUE),
-    (1067, 1, '상추', NULL, TRUE),
-    (1068, 4, '백새우', NULL, TRUE),
-    (1069, 10, '할라피뇨', NULL, TRUE),
-    (1070, 10, '훈제 닭가슴살', NULL, TRUE),
-    (1071, 6, '찰깨빵', NULL, TRUE),
-    (1072, 10, '연어 필레', NULL, TRUE),
-    (1073, 10, '게살냉동', NULL, TRUE),
-    (1074, 10, '민트', NULL, TRUE),
-    (1075, 8, '올리브유엑스트라버전', NULL, TRUE),
-    (1076, 10, '자몽주수', NULL, TRUE),
-    (1077, 10, '복숭아', NULL, TRUE),
-    (1078, 10, '식혜', NULL, TRUE),
-    (1079, 8, '설탕시럽', NULL, TRUE),
-    (1080, 10, '천도복숭아', NULL, TRUE),
-    (1081, 2, '자두', NULL, TRUE),
-    (1082, 10, '산딸기', NULL, TRUE),
-    (1083, 1, '토마토콩카세', NULL, TRUE),
-    (1084, 10, '실파송송', NULL, TRUE),
-    (1085, 10, '알토란', NULL, TRUE),
-    (1086, 1, '깻잎순', NULL, TRUE),
-    (1087, 9, '판곤약', NULL, TRUE),
-    (1088, 4, '대왕오징어채', NULL, TRUE),
-    (1089, 8, '양조식초', NULL, TRUE),
-    (1090, 6, '백후춧가루', NULL, TRUE),
-    (1091, 6, '잡곡밥', NULL, TRUE),
-    (1092, 1, '열무', NULL, TRUE),
-    (1093, 10, '슈가파우더', NULL, TRUE),
-    (1094, 5, '쑥크림', NULL, TRUE),
-    (1095, 6, '좁쌀', NULL, TRUE),
-    (1096, 3, '돼지고기목살', NULL, TRUE),
-    (1097, 7, '땅콩기름', NULL, TRUE),
-    (1098, 10, '물전분', NULL, TRUE),
-    (1099, 6, '버거빵', NULL, TRUE),
-    (1100, 6, '옥수수가루플렌타가루', NULL, TRUE),
-    (1101, 5, '모짜렐라 치즈', NULL, TRUE),
-    (1102, 10, '춘권피', NULL, TRUE),
-    (1103, 4, '참치살', NULL, TRUE),
-    (1104, 5, '슬라이스치즈', NULL, TRUE),
-    (1105, 5, '에멘탈 치즈', NULL, TRUE),
-    (1106, 10, '넉맥', NULL, TRUE),
-    (1107, 6, '바케트빵', NULL, TRUE),
-    (1108, 5, '발사믹크림', NULL, TRUE),
-    (1109, 10, '우육', NULL, TRUE),
-    (1110, 3, '돈육', NULL, TRUE),
-    (1111, 2, '단감', NULL, TRUE),
-    (1112, 10, '삼계탕 육수', NULL, TRUE),
-    (1113, 10, '파채', NULL, TRUE),
-    (1114, 1, '양파채', NULL, TRUE),
-    (1115, 1, '당근채', NULL, TRUE),
-    (1116, 6, '흰 후춧가루', NULL, TRUE),
-    (1117, 4, '멸치 육수', NULL, TRUE),
-    (1118, 6, '펜넬파스타', NULL, TRUE),
-    (1119, 10, '믹서에 갈아줌', NULL, TRUE),
-    (1120, 10, '도미살', NULL, TRUE),
-    (1121, 10, '슬라이스 햄', NULL, TRUE),
-    (1122, 5, '슬라이스 치즈', NULL, TRUE),
-    (1123, 10, '닭 육수', NULL, TRUE),
-    (1124, 8, '식물성기름', NULL, TRUE),
-    (1125, 7, '검은 깨', NULL, TRUE),
-    (1126, 10, '레몬주스', NULL, TRUE),
-    (1127, 4, '새우 살', NULL, TRUE),
-    (1128, 6, '알파벳파스타', NULL, TRUE),
-    (1129, 4, '찐 어묵', NULL, TRUE),
-    (1130, 4, '찰어묵', NULL, TRUE),
-    (1131, 1, '전분 마늘', NULL, TRUE),
-    (1132, 5, '까망베르치즈', NULL, TRUE),
-    (1133, 3, '앞다리살 돈육', NULL, TRUE),
-    (1134, 10, '건취나물', NULL, TRUE),
-    (1135, 6, '곤약쌀', NULL, TRUE),
-    (1136, 10, '토르티야', NULL, TRUE),
-    (1137, 10, '할라피뇨 피클', NULL, TRUE),
-    (1138, 10, '살사', NULL, TRUE),
-    (1139, 1, '무가당 플레인 요거트', NULL, TRUE),
-    (1140, 5, '코코넛우유', NULL, TRUE),
-    (1141, 10, '머랭', NULL, TRUE),
-    (1142, 6, '알룰로스 가루', NULL, TRUE),
-    (1143, 6, '허브가루', NULL, TRUE),
-    (1144, 2, '생밤', NULL, TRUE),
-    (1145, 6, '백련초가루', NULL, TRUE),
-    (1146, 5, '아이스크림', NULL, TRUE),
-    (1147, 10, '냉동홍시', NULL, TRUE),
-    (1148, 6, '메밀가루', NULL, TRUE),
-    (1149, 5, '피자치즈', NULL, TRUE),
-    (1150, 1, '청 피망', NULL, TRUE),
-    (1151, 1, '홍 피망', NULL, TRUE),
-    (1152, 4, '잔새우살', NULL, TRUE),
-    (1153, 10, '차이브', NULL, TRUE),
-    (1154, 6, '쌀국수', NULL, TRUE),
-    (1155, 6, '밀가루중력분', NULL, TRUE),
-    (1156, 10, '따뜻한물', NULL, TRUE),
-    (1157, 3, '돈등심', NULL, TRUE),
-    (1158, 6, '다시마가루', NULL, TRUE),
-    (1159, 8, '매실식초', NULL, TRUE),
-    (1160, 10, '드라이 이스트', NULL, TRUE),
-    (1161, 10, '바닐라 에센스', NULL, TRUE),
-    (1162, 5, '두부크림', NULL, TRUE),
-    (1163, 3, '쇠고기샄코기', NULL, TRUE),
-    (1164, 2, '물밤', NULL, TRUE),
-    (1165, 10, '리치', NULL, TRUE),
-    (1166, 10, '올ㄹ브오일', NULL, TRUE),
-    (1167, 10, '오트밀', NULL, TRUE),
-    (1168, 10, '또띠아 인치', NULL, TRUE),
-    (1169, 1, '파프리카 가루', NULL, TRUE),
-    (1170, 10, '디존 머스타드', NULL, TRUE),
-    (1171, 10, '워터크레스', NULL, TRUE),
-    (1172, 10, '레몬주수', NULL, TRUE),
-    (1173, 4, '생선육수', NULL, TRUE),
-    (1174, 1, '양파작게', NULL, TRUE),
-    (1175, 8, '레드와인식초', NULL, TRUE),
-    (1176, 10, '데미글라스', NULL, TRUE),
-    (1177, 10, '우스터', NULL, TRUE),
-    (1178, 10, '케이엔페퍼', NULL, TRUE),
-    (1179, 10, '귤 즙', NULL, TRUE),
-    (1180, 10, '혼다랑어가쓰오부시', NULL, TRUE),
-    (1181, 10, '레몬쥬스', NULL, TRUE),
-    (1182, 2, '배 양조식초', NULL, TRUE),
-    (1183, 5, '계란 후추', NULL, TRUE),
-    (1184, 10, '딸기쨈', NULL, TRUE),
-    (1185, 2, '감귤', NULL, TRUE),
-    (1186, 7, '병아리콩', NULL, TRUE),
-    (1187, 10, '생이스트', NULL, TRUE),
-    (1188, 10, '파인소프트 T', NULL, TRUE),
-    (1189, 10, '파인소프트 C', NULL, TRUE),
-    (1190, 8, '분유', NULL, TRUE),
-    (1191, 10, '아몬드 분말', NULL, TRUE),
-    (1192, 10, '바질 페스토', NULL, TRUE),
-    (1193, 1, '고구마 다이스', NULL, TRUE),
-    (1194, 10, '손질된 고등어', NULL, TRUE),
-    (1195, 7, '검은콩 두유', NULL, TRUE),
-    (1196, 10, '애플민트잎', NULL, TRUE),
-    (1197, 3, '쇠고기사태', NULL, TRUE),
-    (1198, 10, '낫토', NULL, TRUE),
-    (1199, 10, '레드어니언', NULL, TRUE),
-    (1200, 10, 'strong', NULL, TRUE),
-    (1201, 10, '새송이벗서', NULL, TRUE),
-    (1202, 7, '들깨', NULL, TRUE),
-    (1203, 10, '그린비타민', NULL, TRUE),
-    (1204, 10, '훈제오리가슴살', NULL, TRUE),
-    (1205, 6, '백년초 가루', NULL, TRUE),
-    (1206, 3, '돼지고기살코기', NULL, TRUE),
-    (1207, 10, '브러컬리', NULL, TRUE),
-    (1208, 8, '유산지', NULL, TRUE),
-    (1209, 1, '무청', NULL, TRUE),
-    (1210, 10, '홀그레인', NULL, TRUE),
-    (1211, 1, '로메인상추', NULL, TRUE),
-    (1212, 10, '건함초', NULL, TRUE),
-    (1213, 10, '수란', NULL, TRUE),
-    (1214, 6, '김가루', NULL, TRUE),
-    (1215, 10, '코코넛오일', NULL, TRUE),
-    (1216, 2, '유자필', NULL, TRUE),
-    (1217, 2, '감태가루', NULL, TRUE),
-    (1218, 10, '앙 금', NULL, TRUE),
-    (1219, 2, '유자앙금', NULL, TRUE),
-    (1220, 6, '검은콩튀밥', NULL, TRUE),
-    (1221, 6, '쌀튀밥', NULL, TRUE),
-    (1222, 6, '메닐튀밥', NULL, TRUE),
-    (1223, 6, '현미가루', NULL, TRUE),
-    (1224, 5, '달걀 노른자', NULL, TRUE),
-    (1225, 7, '흰깨', NULL, TRUE),
-    (1226, 10, '참마', NULL, TRUE),
-    (1227, 10, '슬라이스아몬드', NULL, TRUE),
-    (1228, 10, '건타임', NULL, TRUE),
-    (1229, 6, '칼국수면', NULL, TRUE),
-    (1230, 10, '포항초', NULL, TRUE),
-    (1231, 4, '손질된 흰살생선', NULL, TRUE),
-    (1232, 6, '넛맥가루', NULL, TRUE),
-    (1233, 10, '피칸', NULL, TRUE),
-    (1234, 6, '클로렐라가루', NULL, TRUE),
-    (1235, 5, '아몬드우유', NULL, TRUE),
-    (1236, 10, '대추채', NULL, TRUE),
-    (1237, 8, '카카오닙스', NULL, TRUE),
-    (1238, 10, '초콜릿', NULL, TRUE),
-    (1239, 8, '카카오매스', NULL, TRUE),
-    (1240, 10, '다크초콜릿', NULL, TRUE),
-    (1241, 10, '허니머스터드', NULL, TRUE),
-    (1242, 10, '과메기', NULL, TRUE),
-    (1243, 10, '매실장아찌', NULL, TRUE),
-    (1244, 1, '마늘 고추장', NULL, TRUE),
-    (1245, 8, '물 황설탕', NULL, TRUE),
-    (1246, 10, '깍두기', NULL, TRUE),
-    (1247, 4, '멸치다시마국물', NULL, TRUE),
-    (1248, 10, '돼지등갈비', NULL, TRUE),
-    (1249, 2, '적포도주', NULL, TRUE),
-    (1250, 6, '오곡밥', NULL, TRUE),
-    (1251, 10, '데쳐서 취나물', NULL, TRUE),
-    (1252, 6, '누룽지가루', NULL, TRUE),
-    (1253, 10, '와사비 갠', NULL, TRUE),
-    (1254, 1, '건홍고추', NULL, TRUE),
-    (1255, 4, '맛살', NULL, TRUE),
-    (1256, 5, '치즈슬라이스', NULL, TRUE),
-    (1257, 10, '느타리벗서', NULL, TRUE),
-    (1258, 4, '흰살 생선', NULL, TRUE),
-    (1259, 3, '쇠고기살코기', NULL, TRUE),
-    (1260, 10, '통아몬드', NULL, TRUE),
-    (1261, 10, '오릴브오일', NULL, TRUE),
-    (1262, 1, '돼지호박', NULL, TRUE),
-    (1263, 10, '파래', NULL, TRUE),
-    (1264, 6, '떡볶이 떡', NULL, TRUE),
-    (1265, 10, '멍게살', NULL, TRUE),
-    (1266, 10, '키조개관자', NULL, TRUE),
-    (1267, 10, '곰피', NULL, TRUE),
-    (1268, 2, '오미자 액기스', NULL, TRUE),
-    (1269, 10, '피쉬', NULL, TRUE),
-    (1270, 10, '민들레', NULL, TRUE),
-    (1271, 10, '참취', NULL, TRUE),
-    (1272, 1, '풋마늘', NULL, TRUE),
-    (1273, 10, '절편', NULL, TRUE),
-    (1274, 10, '거피녹두', NULL, TRUE),
-    (1275, 10, '진달래꽃', NULL, TRUE),
-    (1276, 10, '참께', NULL, TRUE),
-    (1277, 3, '쇠고기안심', NULL, TRUE),
-    (1278, 10, '앤쵸비', NULL, TRUE),
-    (1279, 5, '파마산 치즈', NULL, TRUE),
-    (1280, 1, '당근주스', NULL, TRUE),
-    (1281, 10, '그린 샐러드', NULL, TRUE),
-    (1282, 10, '타바스코', NULL, TRUE),
-    (1283, 4, '낙지다리', NULL, TRUE),
-    (1284, 8, '참기름 두릎', NULL, TRUE),
-    (1285, 7, '참깨 두부강된장 참기름', NULL, TRUE),
-    (1286, 1, '붉은고추', NULL, TRUE),
-    (1287, 10, '머스터드조스', NULL, TRUE),
-    (1288, 10, '영콘', NULL, TRUE),
-    (1289, 10, '호이트와인', NULL, TRUE),
-    (1290, 1, '쳥양고추', NULL, TRUE),
-    (1291, 6, '카스텔라가루', NULL, TRUE),
-    (1292, 6, '쌀떡', NULL, TRUE),
-    (1293, 5, '기버터', NULL, TRUE),
-    (1294, 6, '현미휴', NULL, TRUE),
-    (1295, 10, '대추고', NULL, TRUE),
-    (1296, 9, '곤약미', NULL, TRUE),
-    (1297, 10, '중력분', NULL, TRUE),
-    (1298, 10, '물필요량', NULL, TRUE),
-    (1299, 6, '조랭이 떡', NULL, TRUE),
-    (1300, 10, '서리태', NULL, TRUE),
-    (1301, 10, '앤다이브', NULL, TRUE),
-    (1302, 2, '사과쥬스', NULL, TRUE),
-    (1303, 2, '청포도', NULL, TRUE),
-    (1304, 10, '베이킹 파우더', NULL, TRUE),
-    (1305, 10, '카엔페퍼', NULL, TRUE),
-    (1306, 5, '에벤탈치즈', NULL, TRUE),
-    (1307, 1, '삼색파프리카', NULL, TRUE),
-    (1308, 10, '페이스트', NULL, TRUE),
-    (1309, 10, '레몬그라스', NULL, TRUE),
-    (1310, 5, '파마산치즈가루', NULL, TRUE),
-    (1311, 5, '생모짜렐라치즈', NULL, TRUE),
-    (1312, 6, '현미튀밥', NULL, TRUE),
-    (1313, 10, '머스터드파우더', NULL, TRUE),
-    (1314, 8, '메이플시럽', NULL, TRUE),
-    (1315, 1, '감자녹말가루', NULL, TRUE),
-    (1316, 10, '각종 새싹', NULL, TRUE),
-    (1317, 10, '파인애플주스', NULL, TRUE),
-    (1318, 2, '포도식초', NULL, TRUE),
-    (1319, 10, '넛맥', NULL, TRUE),
-    (1320, 10, '매실농축액', NULL, TRUE),
-    (1321, 10, '진미채', NULL, TRUE),
-    (1322, 8, '탈지분유', NULL, TRUE),
-    (1323, 6, '제빵개량제', NULL, TRUE),
-    (1324, 2, '감말랭이', NULL, TRUE),
-    (1325, 6, '보릿가루', NULL, TRUE),
-    (1326, 10, '냉동딸기', NULL, TRUE),
-    (1327, 1, '땅콩호박', NULL, TRUE),
-    (1328, 10, '바닐라빈', NULL, TRUE),
-    (1329, 10, '블랙초콜릿', NULL, TRUE),
-    (1330, 1, '당근퓨레', NULL, TRUE),
-    (1331, 7, '팥앙금', NULL, TRUE),
-    (1332, 10, '베이킹소다', NULL, TRUE),
-    (1333, 10, '해선장', NULL, TRUE),
-    (1334, 10, '그린빈', NULL, TRUE),
-    (1335, 1, '말린 홍고추', NULL, TRUE),
-    (1336, 10, '등심', NULL, TRUE),
-    (1337, 1, '호부추', NULL, TRUE),
-    (1338, 1, '고추자', NULL, TRUE),
-    (1339, 10, '큐민파우더', NULL, TRUE),
-    (1340, 10, '카엔패퍼', NULL, TRUE),
-    (1341, 1, '마늘쫑', NULL, TRUE),
-    (1342, 6, '옥수수가루', NULL, TRUE),
-    (1343, 10, '코코넛슬라이스', NULL, TRUE),
-    (1344, 10, '카스테라', NULL, TRUE),
-    (1345, 10, '바닐라향', NULL, TRUE),
-    (1346, 10, '타가토스', NULL, TRUE),
-    (1347, 5, '마스카르포네치즈', NULL, TRUE),
-    (1348, 8, '코코넛설탕', NULL, TRUE),
-    (1349, 7, '렌틸콩', NULL, TRUE),
-    (1350, 1, '호박고구마', NULL, TRUE),
-    (1351, 10, '푸룬', NULL, TRUE),
-    (1352, 10, '대두', NULL, TRUE),
-    (1353, 10, '시레기', NULL, TRUE),
-    (1354, 6, '도토리가루', NULL, TRUE),
-    (1355, 10, '바닐라에센스', NULL, TRUE),
-    (1356, 7, '단팥', NULL, TRUE),
-    (1357, 6, '멥쌀가루', NULL, TRUE),
-    (1358, 10, '백앙금', NULL, TRUE),
-    (1359, 2, '말린오미자', NULL, TRUE),
-    (1360, 10, '생수', NULL, TRUE),
-    (1361, 10, '각얼음', NULL, TRUE),
-    (1362, 2, '유자', NULL, TRUE),
-    (1363, 7, '메주콩', NULL, TRUE),
-    (1364, 10, '민트잎', NULL, TRUE),
-    (1365, 1, '무첨가두유', NULL, TRUE),
-    (1366, 1, '고구마칩', NULL, TRUE),
-    (1367, 10, '건블루베리', NULL, TRUE),
-    (1368, 10, '가츠오부시', NULL, TRUE),
-    (1369, 1, '톳나물', NULL, TRUE),
-    (1370, 1, '무가당 휘핑크림', NULL, TRUE),
-    (1371, 1, '알비트', NULL, TRUE),
-    (1372, 8, '녹차', NULL, TRUE),
-    (1373, 7, '검정콩', NULL, TRUE),
-    (1374, 1, '통도라지', NULL, TRUE),
-    (1375, 10, '골파', NULL, TRUE),
-    (1376, 10, '전분물', NULL, TRUE),
-    (1377, 10, '코코아', NULL, TRUE),
-    (1378, 10, '파트 페레멘테', NULL, TRUE),
-    (1379, 8, '카카오 닙스', NULL, TRUE),
-    (1380, 6, '강력밀가루', NULL, TRUE),
-    (1381, 10, '레몬 제스트', NULL, TRUE),
-    (1382, 6, '쌀소면', NULL, TRUE),
-    (1383, 7, '포두부', NULL, TRUE),
-    (1384, 1, '참느타리버섯', NULL, TRUE),
-    (1385, 6, '강력 쌀가루', NULL, TRUE),
-    (1386, 6, '한천가루', NULL, TRUE),
-    (1387, 10, '피클링 스파이스', NULL, TRUE),
-    (1388, 7, '흰강낭콩', NULL, TRUE),
-    (1389, 10, '쑥 파우더', NULL, TRUE),
-    (1390, 1, '찐 고구마', NULL, TRUE),
-    (1391, 6, '곤약면', NULL, TRUE),
-    (1392, 1, '건무화과', NULL, TRUE),
-    (1393, 4, '블랙타이거새우', NULL, TRUE),
-    (1394, 1, '무가당 두유', NULL, TRUE),
-    (1395, 10, '동태살', NULL, TRUE),
-    (1396, 6, '먹물 가루', NULL, TRUE),
-    (1397, 1, '무가당 코코아 파우더', NULL, TRUE),
-    (1398, 6, '현미식초', NULL, TRUE),
-    (1399, 10, '미역 줄기', NULL, TRUE),
-    (1400, 8, '아보카도유', NULL, TRUE),
-    (1401, 5, '체더치즈', NULL, TRUE),
-    (1402, 1, '새우 고추기름', NULL, TRUE)
+INSERT INTO public.products (product_category_id,name,default_expiry_days,is_active,created_at,updated_at) VALUES
+    (10,'황파프리카',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'아욱',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'통후추',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'코다리',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (2,'멜론',10,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'건당면',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'건청양고추',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'강력분',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'물오징어',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (5,'기버터',60,true,'2026-06-26 02:12:10.686847',NULL),
+    (5,'체더치즈',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'유자앙금',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'로메인상추',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'백년초 가루',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'고구마 다이스',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (2,'딸기쨈',10,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'케이엔페퍼',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'말린오미자',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'대두',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (5,'마스카르포네치즈',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'등심',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'당근퓨레',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'제빵개량제',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'연두부',180,true,'2026-06-26 02:12:10.686847','2026-07-06 22:27:43.46772'),
+    (1,'표고버섯 기둥',7,true,'2026-06-26 02:12:10.686847','2026-07-06 16:06:48.545652'),
+    (3,'염소고기',3,true,'2026-07-01 12:00:00','2026-07-06 16:18:51.497105'),
+    (8,'새우 고추기름',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'아보카도유',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'미역 줄기',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'현미식초',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'무가당 코코아 파우더',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'먹물 가루',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'동태살',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (5,'무가당 두유',14,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'블랙타이거새우',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'건무화과',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'곤약면',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'찐 고구마',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'쑥 파우더',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'흰강낭콩',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'피클링 스파이스',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'한천가루',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'강력 쌀가루',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'참느타리버섯',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'포두부',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'쌀소면',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'레몬 제스트',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'강력밀가루',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'카카오 닙스',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'파트 페레멘테',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'코코아',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'전분물',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'골파',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'통도라지',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'검정콩',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'녹차',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'알비트',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'무가당 휘핑크림',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'톳나물',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'가츠오부시',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'건블루베리',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'고구마칩',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'무첨가두유',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'민트잎',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'메주콩',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'유자',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'각얼음',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'생수',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'백앙금',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'멥쌀가루',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'단팥',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'바닐라에센스',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'도토리가루',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'시레기',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'푸룬',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'호박고구마',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'렌틸콩',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'코코넛설탕',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'타가토스',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'바닐라향',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'카스테라',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'코코넛슬라이스',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'옥수수가루',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'마늘쫑',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'카엔패퍼',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'큐민파우더',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'고추자',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'호부추',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'말린 홍고추',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'그린빈',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'해선장',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'베이킹소다',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'팥앙금',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'블랙초콜릿',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'바닐라빈',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'땅콩호박',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (2,'냉동딸기',10,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'보릿가루',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'감말랭이',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'탈지분유',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'진미채',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'매실농축액',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'넛맥',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'포도식초',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'파인애플주스',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'각종 새싹',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'감자녹말가루',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'메이플시럽',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'머스터드파우더',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'현미튀밥',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (5,'생모짜렐라치즈',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (5,'파마산치즈가루',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'레몬그라스',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'페이스트',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'삼색파프리카',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (5,'에벤탈치즈',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'카엔페퍼',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'베이킹 파우더',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (2,'청포도',10,true,'2026-06-26 02:12:10.686847',NULL),
+    (2,'사과쥬스',10,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'앤다이브',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'서리태',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'조랭이 떡',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'물필요량',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'중력분',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'곤약미',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'대추고',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'현미휴',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'쌀떡',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'카스텔라가루',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'쳥양고추',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'호이트와인',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'영콘',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'머스터드조스',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'붉은고추',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'참깨 두부강된장 참기름',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'참기름 두릎',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'낙지다리',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'타바스코',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'그린 샐러드',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'당근주스',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (5,'파마산 치즈',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'앤쵸비',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (3,'쇠고기안심',3,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'참께',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'진달래꽃',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'거피녹두',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'절편',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'풋마늘',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'참취',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'민들레',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'피쉬',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'오미자 액기스',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'곰피',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'키조개관자',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'멍게살',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'떡볶이 떡',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'파래',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'돼지호박',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'오릴브오일',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'통아몬드',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (3,'쇠고기살코기',3,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'흰살 생선',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'느타리벗서',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (5,'치즈슬라이스',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'맛살',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'건홍고추',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'와사비 갠',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'누룽지가루',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'데쳐서 취나물',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'오곡밥',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (2,'적포도주',10,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'돼지등갈비',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'멸치다시마국물',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (9,'깍두기',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'물 황설탕',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'마늘 고추장',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'매실장아찌',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'과메기',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'허니머스터드',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (9,'다크초콜릿',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'카카오매스',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'초콜릿',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'카카오닙스',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'대추채',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (5,'아몬드우유',14,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'클로렐라가루',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'피칸',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'넛맥가루',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'손질된 흰살생선',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'포항초',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'칼국수면',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'건타임',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'슬라이스아몬드',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'참마',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'흰깨',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (5,'달걀 노른자',21,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'현미가루',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'메닐튀밥',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'쌀튀밥',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'검은콩튀밥',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'앙 금',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'감태가루',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'유자필',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'코코넛오일',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'김가루',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'수란',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'건함초',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'홀그레인',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'무청',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'유산지',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'브러컬리',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (3,'돼지고기살코기',3,true,'2026-06-26 02:12:10.686847',NULL),
+    (3,'훈제오리가슴살',3,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'그린비타민',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'들깨',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'새송이벗서',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'레드어니언',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'낫토',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (3,'쇠고기사태',3,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'애플민트잎',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'검은콩 두유',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'손질된 고등어',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'바질 페스토',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'아몬드 분말',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'분유',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'생이스트',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'병아리콩',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'감귤',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (5,'계란 후추',21,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'배 양조식초',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'레몬쥬스',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'혼다랑어가쓰오부시',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'귤 즙',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'우스터',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'데미글라스',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'레드와인식초',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'양파작게',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'생선육수',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'레몬주수',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'워터크레스',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'디존 머스타드',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'파프리카 가루',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'또띠아 인치',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'오트밀',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'올ㄹ브오일',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (2,'리치',10,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'물밤',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (3,'쇠고기샄코기',3,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'두부크림',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'바닐라 에센스',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'드라이 이스트',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'매실식초',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'다시마가루',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'돈등심',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'따뜻한물',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'밀가루중력분',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'쌀국수',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'차이브',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'잔새우살',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'홍 피망',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'청 피망',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (5,'피자치즈',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'메밀가루',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'냉동홍시',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'아이스크림',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'백련초가루',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'생밤',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'허브가루',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'알룰로스 가루',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'머랭',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (5,'코코넛우유',14,true,'2026-06-26 02:12:10.686847',NULL),
+    (5,'무가당 플레인 요거트',14,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'살사',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (9,'할라피뇨 피클',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'토르티야',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'곤약쌀',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'건취나물',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'앞다리살 돈육',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (5,'까망베르치즈',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'전분 마늘',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'찰어묵',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'찐 어묵',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'알파벳파스타',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'새우 살',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'레몬주스',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'검은 깨',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'식물성기름',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'닭 육수',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (5,'슬라이스 치즈',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'슬라이스 햄',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'도미살',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'믹서에 갈아줌',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'펜넬파스타',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'멸치 육수',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'흰 후춧가루',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'당근채',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'양파채',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'파채',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'삼계탕 육수',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'단감',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'돈육',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'우육',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'발사믹크림',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'바케트빵',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'넉맥',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (5,'에멘탈 치즈',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (5,'슬라이스치즈',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'참치살',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'춘권피',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (5,'모짜렐라 치즈',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'옥수수가루플렌타가루',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'버거빵',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'물전분',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'땅콩기름',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (3,'돼지고기목살',3,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'좁쌀',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'쑥크림',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'슈가파우더',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'열무',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'잡곡밥',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'백후춧가루',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'양조식초',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'대왕오징어채',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'판곤약',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'깻잎순',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'알토란',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'실파송송',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'토마토콩카세',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (2,'산딸기',10,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'자두',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (2,'천도복숭아',10,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'설탕시럽',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'식혜',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'복숭아',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'자몽주수',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'올리브유엑스트라버전',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'민트',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'게살냉동',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'연어 필레',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'찰깨빵',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (3,'훈제 닭가슴살',3,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'할라피뇨',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'백새우',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'상추',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'갑오징어',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'파인애플 국물',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'래디쉬',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'훈재연어',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'조갯살',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'마늘즙',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'조미술',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'흰후춧가루 레몬즙',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'쌈다시마',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'매운 고춧가루',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'꽁치',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'금태',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'파인애플청',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'만가닥버섯',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'감태',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'오레가노가루',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'레드크러쉬드 페퍼',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'코리앤더가루',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'강황',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (5,'파르메산치즈가루',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'해조국수',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'스리라차',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'깐연근',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'고추가루',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'타비스코',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (5,'피넷버터',60,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'백만송이버섯',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'샐러리잎',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'패주',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'케이퍼',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'올리브',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'도미',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'꿀',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'매운고춧가루',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'생면',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'쭈꾸미',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'흰목이버섯',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'청 홍고추',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (3,'돼지고기 삼겹살',3,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'양파즙',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'코리앤더 씨드',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'머스터드 씨드',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'흰후춧가루',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'양파가루',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'키엔페퍼',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'땅콩 스프레드',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'크림 스프레드',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'땅콩 분태',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'강력 밀가루',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'박력 밀가루',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'밀푀유',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'현미쌀가루',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'돼지감자가루',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'생표고버섯',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'흰다리새우',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'커민파우더',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'코리앤더파우더',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'가람마살라',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'생새우',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'누룩소금',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'돈민찌',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'케찹',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'마늘가루',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'미나리잎',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'알감자',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'와사미',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'잣가루',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'젖은 찹쌀가루',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (3,'닭고기가슴살',3,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'타임',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'홍토마토',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'겨잣가루',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (3,'훈제 오리',3,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'오미자엑기스',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'구기자',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'한돈',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'디포리',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (2,'미니사과',10,true,'2026-06-26 02:12:10.686847',NULL),
+    (2,'포도',10,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'부침두부',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'머스타드',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'백목이버섯',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'로즈메리',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'순무',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'감자튀김',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'홍새우 튀김',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'커리',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'명태포',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'커민',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'카옌 페퍼',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'훈제 파프리카파우더',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'스테비아',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'버섯가루',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'사각 라이스페이퍼',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'익힌 전복내장',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'부챗살',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'생강가루',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'황태 머리',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'스테이크 시즈닝',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'무가당 아보카도 마요네즈',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (5,'파르메산 치즈',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'방아잎',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (3,'닭다릿살',3,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'게살',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'요플레',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (5,'간 파르메산치즈',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'절임 올리브',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'냉동 아보카도',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'냉동 새우살',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'크래비',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'깐생강',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'깐밤',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'대추슬라이스',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'무우',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'그린빈스',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'잡곡',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'콩국물',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'크레미',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'볶음',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'건목이버섯',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'양장피 면',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'라임청',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (5,'슈레드 모차렐라치즈',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'건두부',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (5,'플레인 요거트 + 꿀',14,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'치아바타',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (3,'대패삼겹살',3,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'로메인',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'건로즈메리',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (5,'녹인 버터',60,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'잘게 새우젓',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'다시멸치',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (3,'닭안심살',3,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'월계수 잎',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'화이트 와인',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (3,'소고기 육',3,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'완숙 토마토',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (9,'선식',180,true,'2026-07-01 12:00:00',NULL),
+    (5,'모차렐라 치즈',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'식물성 생크림',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'바게트',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'핑크 페퍼',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'탈리아텔레',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'아몬드 플레이크',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (5,'그라나파다노치즈',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (5,'모차렐라치즈',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (5,'그릭요거트',14,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'현미밥',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'코코넛워터',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'블루베리 발효원종',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (2,'바나나슬라이스',10,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'밤고구마',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'사이다',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'찐 감자',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'겉절이',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'땅콩버터',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'반 죽',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'무가당 코코아가루',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'아몬드가루',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'초코크림',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'알룰로스',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'바질 잎',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'토마토 홀',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'적근대',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'쌈추',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'홀그레인 머스터드',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'바질페스토',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'바질럽드',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (3,'양고기',3,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'다시팩',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'시판 누룽지',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'편 마늘',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'베트남 건고추',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'우목심',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (5,'그라나파다노 치즈',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'토마토 페이스트',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'간 마늘',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'채소 육수',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'납작 마늘',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'냉동 곤약',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'박력 쌀가루',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'코코넛 오일',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (5,'따뜻한 우유',14,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'인스턴트 이스트',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'미림',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'매실엑기스',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'황태머리',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'새뱅이',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'깐대파',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'두절콩나물',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'깐양파',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'조선무',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'미향',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'파래김',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'주황파프리카',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'현미찹쌀',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'락교',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'레몬청 과육',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (5,'리코타 치즈',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'쌈두부',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'떡볶이 파우더',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'누들 떡볶이 떡',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (9,'크래미',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (5,'달걀물',21,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'페페론치노',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'블랙올리브 파우더',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'아삭이고추',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'시판 크루통',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (2,'통배추',10,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'깐들깨가루',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'적파프리카',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'볶음 참깨',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'말린 방울토마토',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (2,'사과종',10,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'인스턴트 드라이 이스트',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'아몬드 슬라이스',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'청상추',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (5,'슬라이스 체더치즈',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'두부면',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (2,'사과주스',10,true,'2026-06-26 02:12:10.686847',NULL),
+    (5,'스트링치즈',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'아가베 시럽',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'라임즙',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'과일',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'셀러리 줄기',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'검은콩가루',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'호밀가루',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'이스트',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'건크랜베리',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'박력분',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'베이킹파우더',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'드라이이스트',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'전립분',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'통밀가루',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'옥수수전분',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'라디치오',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'그린치커리',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'르뱅 발효종',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'비트가루',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'타피오카 전분',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'흑마늘진액',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'대두유',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'마카다미아',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'깐마늘',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'건대추',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (3,'닭날개',3,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'발사믹 식초',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'수제조미료',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'잎녹차',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'건조다시마 사방',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'야채국물',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'홀스레디쉬',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (3,'돼기고기',3,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'흰추후',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'명란젓',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'드라이토마토',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'잣 바질페이',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'멸치간장',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'채소국물',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'청경재',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'백후추',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'홀그레인 머스터즈',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'레몬껍질',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'건 로즈마리',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'쪽갈비',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'바질잎',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'토마토홀',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (2,'포도주',10,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'안심',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'명이김치',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'배 식초',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'후춧가루 양파',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (3,'돼지고기사태',3,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'말린 청양고추',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (3,'쇠고기 등심',3,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'건도토리묵',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'올리 브유',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (3,'돼지고기 등심',3,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'양파 고추장',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'낙지',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'다시마 국물',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'미소',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'양파 껍질',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'갈치',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'대파 마늘',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'강황쌀',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'은행',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (3,'닭살',3,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'미니단호박',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (3,'돼지목살',3,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'가쯔오부시',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'우동',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'조개살',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (2,'포도주스',10,true,'2026-06-26 02:12:10.686847',NULL),
+    (3,'소고기등심',3,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'어묵',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'단호박가루',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'칵테일 새우',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'크래커',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'가자미살',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'참다래',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'무청시래기',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'적채',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'다슬기살',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'백년초',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'엿기름',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'석류주스',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'고추피클',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'블랙올리브',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'미니',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'흑미',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (2,'황도',10,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'골뱅이',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'돼지갈비',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'동치미국물',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'참기름 마늘',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'표고버섯 당근',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (2,'정종 양배추',10,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'편마늘',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (9,'돈가스',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'토마토 페스트',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'스위트칠리',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'오렌지 주스',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'훈제연어',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'오미자청',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'양파 빵가루',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'건조 미역',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'건로즈마리',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'잔멸치',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'근대',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'양송이 버섯',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'전복살',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'깐호두',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'오미자액',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (2,'얼린포도알',10,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'우무묵',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (2,'포도씨유',10,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'수박 속껍질',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'거피들깨가루',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'머위대',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'콩기름',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'비름나물',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'병어',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'수박',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (3,'돼지고기 목심',3,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'노두유',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'황설탕',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'건표고버섯 불릴',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'건표고버섯',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (3,'토막 낸 닭',3,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'다시마국물',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'푸실리',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'머윗대',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'레몬제스트',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'맛소금',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'쌈채',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'커리가루',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'칵텔새우',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'양지육',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'치킨육수',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'건멸치',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'미더덕',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'덧밀가루',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'노란색 파프리카',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'건 표고버섯',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'루콜라',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'유기농 밀가루',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'소주',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (3,'소고기 양지',3,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'혼합견과류',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'건조미역줄기',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'울금가루',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'씨겨자',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'통생강',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'젓갈',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'카스텔라',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'물 간장',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'우리밀가루',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'노란콩',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'물파래',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'새우젓국물',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'김장김치',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'현미유',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'홍합살',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'쌀가루',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'호상요구르트',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'완두콩알',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'옥수수알',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'토마토케첩',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'빨강파프리카',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'얼린 홍시',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (5,'플레인 요거트',14,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'실파',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'깨소금',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (2,'얼갈이 배추',10,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'빨간 파프리카',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'새송이 버섯',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'가쓰오부시',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'막걸리',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'쥬키니호박',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'유부',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'라임',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'만송이버섯',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'묵은지',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'고등어',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'먹물',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'피클링스파이스',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'라임주스',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'흰살생선',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'어린싹',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'파스타',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'국수',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'동치미',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'꼬치',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'크림',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'등갈비',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'어린채소',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'홀그레인머스터드',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'마늘튀김',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'생 표고버섯',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (5,'유기농 아기치즈',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'멸치육수',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'녹차소금',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'일식된장',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'바케트',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'건조체리',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (5,'저지방우유',14,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'검은콩두유',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'백미',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'멕시코고추',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'소라살',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'자숙새우',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'야채육수',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (3,'소불고기',3,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'명태',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'말린 자두',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'아귀찜 양파',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'홍초물 설탕',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'꽁치살',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (2,'배사과 배',10,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'바나나식초',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'유 자청',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'다시마육수',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'청국장 양송이버섯',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'스테이크 두부',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'다시마 육수',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'실치',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'겨자분말',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'보리된장',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'매생이',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'간편 어간장',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'천연조미료',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'아몬드슬라이스',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'녹차가루',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'귀리',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'건조토마토',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'찰보리',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'그라놀라',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'곤약국수',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'로즈마리 마늘기름',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'건고추',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'허브소금',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'조청',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'통계피',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'세발나물',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'석박지',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'젤라틴',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'매실원액',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'슬라이스연어',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (2,'배추김치',10,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'쌀밥',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'뒤포리',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'표고버섯 근대',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'베이비채소',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'우렁',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'고사리',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'굴림만두 새송이버섯',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'고구마순',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'곤드레나물',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (3,'우삼겹',3,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'미소된장',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'래디시',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (2,'미니양배추',10,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'메밀묵',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'보리새우',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (2,'얼갈이배추',10,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'된장 콩가루',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'검은콩두부',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'표고버섯가루',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (2,'단배추',10,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'땅콩가루',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'카놀라유',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'곁들임',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'무말랭이',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'다시마 대파',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'쇠고기육수',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'북어',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'쑥가루',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'대구',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'멸치다시마육수',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'닭육수',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'셀러리',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (5,'코코넛 밀크',14,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'치킨스톡',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'가자미',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'녹말물',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'아귀',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'꽃게',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'검정깨',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'마늘종',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (2,'사과즙',10,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'꼬막',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'오미자물',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'흰로즈케일',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'보라로즈케일',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'레드치커리',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'레시틴가루',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'석류 원액',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'식용 꽃',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'사과식초',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'오레가노',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'까나리액젓',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'말린 매생이',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'요리술',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'자몽',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'곶감',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'계피',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'홍시',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'소라',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'줄기토마토',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (2,'망고퓨레',10,true,'2026-06-26 02:12:10.686847',NULL),
+    (9,'미숫가루',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'애플민트',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (2,'라즈베리',10,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'캐슈넛',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'헤이즐넛',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'피스타치오',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (9,'화이트 초콜릿',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'체리',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (5,'사워크림',14,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'목이버섯',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (2,'키위',10,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'칠리',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'뽕잎가루',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'미니새송이',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'게맛살',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'보리',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'판젤라틴',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'홍피망',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (2,'망고',10,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'증편',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'청국장가루',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'슬라이스햄',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'팽이',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'장어',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'한천',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'흰앙금',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'알배추',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'당귀잎',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'고추냉이',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'미역',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'마늘칩',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'파마산가루',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'절임물',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'기름',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'혼합견과',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'수수',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'율무',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'냉동고등어',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'바지락살',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'대파뿌리',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (5,'파마산치즈',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'크렌베리',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'붉은피망',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (3,'닭다리',3,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'가다랑어장국',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'차돌박이',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'진간장',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'죽순',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'검은깨',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'관자',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'가래떡',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (3,'소 쇠고기',3,true,'2026-06-26 02:12:10.686847',NULL),
+    (9,'블루베리잼',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'빠금장',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'케첩',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'토마토페스트',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'보리쌀',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'파스리가루',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (3,'돼지등심',3,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'떡볶이떡',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'백년초가루',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'호박가루',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'시금치가루',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'라이스페퍼',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (3,'소등심',3,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'나무막대기',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'삼색분말',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (5,'어린이치즈',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'식빵',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (9,'딸기잼',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (2,'레드와인 망고',10,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'소 채끝살',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'크린베리',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'미니 단호박',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'검정깨묵',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'올방개묵',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'도토리묵',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'허브식초',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'알마늘',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (3,'쇠고기구이용',3,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'건조미역',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'건곤드레',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'미역줄기',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'찜갈비',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'생들기름',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'청홍고추',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (9,'열무김치',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'파스타면',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'표고',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'깨',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'겨자',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'천연다시다',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (3,'통삼겹',3,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'다시마물',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (3,'갈은 돼지고기',3,true,'2026-06-26 02:12:10.686847',NULL),
+    (3,'갈은 소고기',3,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'맥주',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'족발',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'비빔 간장',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (3,'닭고기 삶는 된장',3,true,'2026-06-26 02:12:10.686847',NULL),
+    (5,'달걀지단',21,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'오징어 몸통',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'오리엔탈 식초',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'데리야키',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'굵게 사과',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'사과 식초',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'참치',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'머스터드 설탕',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'피클',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'허브타르타르 양파',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'김',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'깻잎장아찌',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'꼬막살',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'낙지 다리',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'봄동',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'부순 참깨',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'시래기',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'주키니호박',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (3,'닭봉',3,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'찹쌀현미밥',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'톳 무침 설탕',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'생김',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'파프리카가루',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'토마토페이스트',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'새우살',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'문어',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'볶음밥 쌀',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'생청국장',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'수삼',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'완두콩',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'대하',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (5,'크림치즈',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'두릅',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'더덕',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'루꼴라',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (5,'생치즈',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'무장아찌',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'포카치아빵',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'날치알',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'귤병',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'치자',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'새싹',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'옥수수콘',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'화이트크림',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'물녹말',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'홍초',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'미니버섯',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'현미쌀',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'요구르트',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'생선살',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'노랑파프리카',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'오렌지주스',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'튀김가루',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (5,'요거트',14,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'백일송이버섯',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'플레인요구르트',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'논우렁',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'감식초',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'말린 토마토',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'참외',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'거피한 들깨가루',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (2,'풋사과',10,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'땅콩잼',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'일본된장',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'우엉',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'연겨자',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'간편어간장',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'밤',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'레몬소금',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'빨간파프리카',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'일본 된장',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'우동면',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'돼지머리',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'마늘오일',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'허브크러스트',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'조기',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'유자 식초',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'비타민',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'케일',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'흑설탕',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'조림 간장',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'가다랑어포',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (3,'쇠고기 장 생강즙',3,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'매실청',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'레드와인',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'파인애플',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (5,'파르메산 치즈가루',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'정향',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'홍합',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'조개',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'라면스프',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'두반장',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'고추기름',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'라면',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'이태리시즈닝',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'황태포',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'들기름',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'청국장',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'파스타 된장',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'쌀파스타면',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'적겨자',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'취나물',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'신선초',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'스파게티면',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (5,'휘핑크림',14,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'바질가루',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'복분자',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'어린잎채소',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'플레인 요구르트',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (5,'리코타치즈',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'퀴노아',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'수박껍질',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'허브오일 소금',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (2,'바나나',10,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'아보카도',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (3,'콩고기',3,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'새싹채소',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'동태포',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'달래',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'새우가루',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'양송이버섯 밑동',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (3,'닭뼈',3,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'맛술',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'간 양파',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'간 홍고추',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'풋 고추',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (3,'쇠고기 양지',3,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'민어',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'건다시마',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'국멸치',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (3,'닭다리살',3,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'찬밥',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'고수',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (2,'무화과',10,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'오미자',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'콜라비',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'디종머스터드',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'오곡',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'라이스페이퍼',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'쌈무',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'청포묵',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'도라지',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'계피가루',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'천일염',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'와사비',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'콜리플라워',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'스파게티',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'통마늘',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'연어',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'견과류',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'통오징어',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'또띠아',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'월계수잎',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'펜네',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'쌈장',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'함초가루',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (3,'통삼겹살',3,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'아스파라거스',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'와인',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'연유',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'치자국수',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'뽕잎국수',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'백년초국수',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (3,'닭고기살',3,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'하얀된장',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'새송이',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'강황가루',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'브로컬리',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (5,'코코넛밀크',14,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'빵가루',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (5,'모짜렐라치즈',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'광어',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'육수',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'튀김기름',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'누룽지',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'느타리',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'생강즙',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'해물육수',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'연근',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'영양부추',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'오이고추',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'전분',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'버섯마늘소금',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (5,'치즈가루',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'백일송이',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'마늘기름',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (3,'삼겹살',3,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'커피',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'삼치',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'샐러리',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (3,'소고기우둔살',3,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'맛간장',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'꽈리고추',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (3,'소고기 우둔살',3,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'흰후추',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'카레가루',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'피망',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'귀리밥',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'옥수수',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'르네디종 홀그레인머스터',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'건바질',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (3,'쇠고기등심',3,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'생강청',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'후르츠칵테일',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'현미',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'올리고당',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'미니파프리카',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'어간장',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'탄산수',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'물김치국물',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'함초소금',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'파슬리가루',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (5,'치즈',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'먹물파스타',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'홀토마토',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'백합',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'토란',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'찹쌀가루',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'표고버섯 밑동',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'바지락',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'콩',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'굴',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'쌀겨',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'콩가루',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'오가피',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'당귀',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'사골육수',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (3,'완자 돼지고기',3,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'깻잎',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (3,'고기완자 생강즙',3,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'조랭이떡',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'당면',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (2,'배즙',10,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'주꾸미',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'들깻가루',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'쑥갓',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'고구마',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'팽이버섯',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'오징어',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'콩비지',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (9,'백김치',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'풋고추',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (3,'쇠고기',3,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'새우젓',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'붉은 고추',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'청주',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'고추',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'느타리버섯',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (3,'닭가슴살',3,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'어린잎',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'돈나물',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'참나물',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'산마',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'메밀면',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'식용꽃',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'녹말',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'레몬',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'해초',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'전복',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'로즈마리',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'레디쉬',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'파슬리',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'발사믹',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (3,'오리고기',3,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'액젓',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'들깨가루',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'건미역',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'곤약',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'황태채',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'찹쌀',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'호박잎',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'겨자가루',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'치자가루',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'건새우',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'가시오가피',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (3,'닭고기',3,true,'2026-06-26 02:12:10.686847',NULL),
+    (2,'배추잎',10,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'양송이',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'인삼',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'파프리카',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'단호박',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'대추',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (3,'소고기',3,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'우렁이',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'쌀',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (2,'배춧잎',10,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'무순',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'비트',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'민들레 잎',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'고추장',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'바질',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (3,'살라미',3,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'양송이버섯',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'애호박',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'물엿',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'멥쌀',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (2,'배',10,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'자색고구마',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'화이트와인',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'발사믹식초',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'유자청',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'밀가루',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'황금팽이버섯',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'청파프리카',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'홍파프리카',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'대구살',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'새우젓국',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'생강',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'쪽파',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'미나리',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'석류즙',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (2,'배추',10,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'마요네즈',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'미니새송이버섯',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'돌나물',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'오렌지즙',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'식용유',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'부침가루',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (2,'양배추',10,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'베이컨',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'우민찌',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'소시지',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'스팸',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'떡국 떡',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'홍고추',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'김치',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (3,'돼지고기',3,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'쌀뜨물',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'실고추',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'청고추',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'냉이',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'모시조개',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'파',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'노루궁뎅이버섯',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'함초',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'후춧가루',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (3,'닭 가슴살',3,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'숙주',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'만두피',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'토마토',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'흑임자',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'검은콩',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'실곤약',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'호박씨',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'해바라기씨',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'잣',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (2,'석류',10,true,'2026-06-26 02:12:10.686847',NULL),
+    (6,'소면',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'오렌지',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'두유',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'호두',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (2,'건포도',10,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'강낭콩',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'적양파',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'컬리플라워',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'브로콜리',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'청피망',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'노랑 파프리카',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'빨강 파프리카',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'발사믹크레마',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'호박',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'가지',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'흰 후추',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'머스터드',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'레몬즙',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (9,'오이피클',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'새송이버섯',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (5,'우유',14,true,'2026-06-26 02:12:10.686847',NULL),
+    (2,'크랜베리',10,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'아몬드',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (5,'시금치우유',14,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'소금',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'블루베리',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (5,'메추리알',21,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'양상추',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (5,'플레인요거트',14,true,'2026-06-26 02:12:10.686847',NULL),
+    (2,'딸기',10,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'식초',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'올리브유',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'당근',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'적양배추',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'치커리',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'청경채',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'국간장',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'다시마',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'멸치',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'감자',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'애느타리버섯',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'두부',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'청양고추',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'된장',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'무',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'콩나물',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'황태',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'표고버섯',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'새우',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'북어채',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (2,'사과',10,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'순두부',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'땅콩',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'오이',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'통깨',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'매실액',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'멸치액젓',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'부추',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'양파',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'방울토마토',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'참깨',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'참기름',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'요리당',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'고춧가루',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'마늘',7,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'대파',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'간장',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (7,'날콩가루',180,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'조선부추',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (10,'시금치',30,true,'2026-06-26 02:12:10.686847',NULL),
+    (5,'버터',60,true,'2026-06-26 02:12:10.686847',NULL),
+    (8,'설탕',365,true,'2026-06-26 02:12:10.686847',NULL),
+    (5,'생크림',14,true,'2026-06-26 02:12:10.686847',NULL),
+    (5,'달걀',21,true,'2026-06-26 02:12:10.686847',NULL),
+    (4,'칵테일새우',2,true,'2026-06-26 02:12:10.686847',NULL),
+    (1,'적상추',7,true,'2026-07-01 12:00:00',NULL),
+    (1,'방울양배추',7,true,'2026-07-01 12:00:00',NULL),
+    (1,'비타민채',7,true,'2026-07-01 12:00:00',NULL),
+    (1,'돌미나리',7,true,'2026-07-01 12:00:00',NULL),
+    (1,'딜',7,true,'2026-07-01 12:00:00',NULL),
+    (1,'세이지',7,true,'2026-07-01 12:00:00',NULL),
+    (1,'샬롯',7,true,'2026-07-01 12:00:00',NULL),
+    (1,'미니당근',7,true,'2026-07-01 12:00:00',NULL),
+    (1,'총각무',7,true,'2026-07-01 12:00:00',NULL),
+    (1,'마',7,true,'2026-07-01 12:00:00',NULL),
+    (1,'돼지감자',7,true,'2026-07-01 12:00:00',NULL),
+    (1,'야콘',7,true,'2026-07-01 12:00:00',NULL),
+    (1,'카사바',7,true,'2026-07-01 12:00:00',NULL),
+    (1,'백오이',7,true,'2026-07-01 12:00:00',NULL),
+    (1,'가시오이',7,true,'2026-07-01 12:00:00',NULL),
+    (1,'노각',7,true,'2026-07-01 12:00:00',NULL),
+    (1,'주키니',7,true,'2026-07-01 12:00:00',NULL),
+    (1,'늙은호박',7,true,'2026-07-01 12:00:00',NULL),
+    (1,'풋호박',7,true,'2026-07-01 12:00:00',NULL),
+    (1,'대추방울토마토',7,true,'2026-07-01 12:00:00',NULL),
+    (1,'씀바귀',7,true,'2026-07-01 12:00:00',NULL),
+    (1,'엄나무순',7,true,'2026-07-01 12:00:00',NULL),
+    (1,'방풍나물',7,true,'2026-07-01 12:00:00',NULL),
+    (1,'숙주나물',7,true,'2026-07-01 12:00:00',NULL),
+    (1,'배추김치용배추',7,true,'2026-07-01 12:00:00',NULL),
+    (1,'송이버섯',7,true,'2026-07-01 12:00:00',NULL),
+    (1,'능이버섯',7,true,'2026-07-01 12:00:00',NULL),
+    (1,'포르치니버섯',7,true,'2026-07-01 12:00:00',NULL),
+    (1,'트러플',7,true,'2026-07-01 12:00:00',NULL),
+    (1,'버터헤드레터스',7,true,'2026-07-01 12:00:00',NULL),
+    (1,'엔다이브',7,true,'2026-07-01 12:00:00',NULL),
+    (1,'비름',7,true,'2026-07-01 12:00:00',NULL),
+    (1,'아티초크',7,true,'2026-07-01 12:00:00',NULL),
+    (1,'펜넬',7,true,'2026-07-01 12:00:00',NULL),
+    (1,'오크라',7,true,'2026-07-01 12:00:00',NULL),
+    (1,'루타바가',7,true,'2026-07-01 12:00:00',NULL),
+    (1,'파스닙',7,true,'2026-07-01 12:00:00',NULL),
+    (1,'물냉이',7,true,'2026-07-01 12:00:00',NULL),
+    (1,'스위스차드',7,true,'2026-07-01 12:00:00',NULL),
+    (1,'레디시',7,true,'2026-07-01 12:00:00',NULL),
+    (1,'겨자잎',7,true,'2026-07-01 12:00:00',NULL),
+    (1,'갓',7,true,'2026-07-01 12:00:00',NULL),
+    (1,'유채나물',7,true,'2026-07-01 12:00:00',NULL),
+    (1,'메밀순',7,true,'2026-07-01 12:00:00',NULL),
+    (1,'보리순',7,true,'2026-07-01 12:00:00',NULL),
+    (1,'완두순',7,true,'2026-07-01 12:00:00',NULL),
+    (1,'양하',7,true,'2026-07-01 12:00:00',NULL),
+    (1,'명이나물',7,true,'2026-07-01 12:00:00',NULL),
+    (1,'고들빼기',7,true,'2026-07-01 12:00:00',NULL),
+    (1,'질경이',7,true,'2026-07-01 12:00:00',NULL),
+    (1,'깻순',7,true,'2026-07-01 12:00:00',NULL),
+    (1,'고춧잎',7,true,'2026-07-01 12:00:00',NULL),
+    (1,'고구마잎',7,true,'2026-07-01 12:00:00',NULL),
+    (1,'당근잎',7,true,'2026-07-01 12:00:00',NULL),
+    (1,'비트잎',7,true,'2026-07-01 12:00:00',NULL),
+    (2,'아오리사과',10,true,'2026-07-01 12:00:00',NULL),
+    (2,'신고배',10,true,'2026-07-01 12:00:00',NULL),
+    (2,'원황배',10,true,'2026-07-01 12:00:00',NULL),
+    (2,'천혜향',10,true,'2026-07-01 12:00:00',NULL),
+    (2,'레드향',10,true,'2026-07-01 12:00:00',NULL),
+    (2,'황금향',10,true,'2026-07-01 12:00:00',NULL),
+    (2,'블러드오렌지',10,true,'2026-07-01 12:00:00',NULL),
+    (2,'금귤',10,true,'2026-07-01 12:00:00',NULL),
+    (2,'애플망고',10,true,'2026-07-01 12:00:00',NULL),
+    (2,'그린망고',10,true,'2026-07-01 12:00:00',NULL),
+    (2,'파파야',10,true,'2026-07-01 12:00:00',NULL),
+    (2,'구아바',10,true,'2026-07-01 12:00:00',NULL),
+    (2,'패션프루트',10,true,'2026-07-01 12:00:00',NULL),
+    (2,'람부탄',10,true,'2026-07-01 12:00:00',NULL),
+    (2,'망고스틴',10,true,'2026-07-01 12:00:00',NULL),
+    (2,'용과',10,true,'2026-07-01 12:00:00',NULL),
+    (2,'두리안',10,true,'2026-07-01 12:00:00',NULL),
+    (2,'잭프루트',10,true,'2026-07-01 12:00:00',NULL),
+    (2,'스타프루트',10,true,'2026-07-01 12:00:00',NULL),
+    (2,'골드키위',10,true,'2026-07-01 12:00:00',NULL),
+    (2,'그린키위',10,true,'2026-07-01 12:00:00',NULL),
+    (2,'애플수박',10,true,'2026-07-01 12:00:00',NULL),
+    (2,'머스크멜론',10,true,'2026-07-01 12:00:00',NULL),
+    (2,'허니듀멜론',10,true,'2026-07-01 12:00:00',NULL),
+    (2,'칸탈루프',10,true,'2026-07-01 12:00:00',NULL),
+    (2,'블랙베리',10,true,'2026-07-01 12:00:00',NULL),
+    (2,'아로니아',10,true,'2026-07-01 12:00:00',NULL),
+    (2,'앵두',10,true,'2026-07-01 12:00:00',NULL),
+    (2,'거봉',10,true,'2026-07-01 12:00:00',NULL),
+    (2,'샤인머스캣',10,true,'2026-07-01 12:00:00',NULL),
+    (2,'캠벨포도',10,true,'2026-07-01 12:00:00',NULL),
+    (2,'머루',10,true,'2026-07-01 12:00:00',NULL),
+    (2,'백도',10,true,'2026-07-01 12:00:00',NULL),
+    (2,'플럼',10,true,'2026-07-01 12:00:00',NULL),
+    (2,'넥타린',10,true,'2026-07-01 12:00:00',NULL),
+    (2,'생대추',10,true,'2026-07-01 12:00:00',NULL),
+    (2,'말린대추',10,true,'2026-07-01 12:00:00',NULL),
+    (2,'코코넛',10,true,'2026-07-01 12:00:00',NULL),
+    (2,'오디',10,true,'2026-07-01 12:00:00',NULL),
+    (2,'보리수',10,true,'2026-07-01 12:00:00',NULL),
+    (2,'구스베리',10,true,'2026-07-01 12:00:00',NULL),
+    (2,'블랙커런트',10,true,'2026-07-01 12:00:00',NULL),
+    (2,'레드커런트',10,true,'2026-07-01 12:00:00',NULL),
+    (2,'엘더베리',10,true,'2026-07-01 12:00:00',NULL),
+    (2,'클레멘타인',10,true,'2026-07-01 12:00:00',NULL),
+    (2,'만다린',10,true,'2026-07-01 12:00:00',NULL),
+    (2,'플루오트',10,true,'2026-07-01 12:00:00',NULL),
+    (2,'카람볼라',10,true,'2026-07-01 12:00:00',NULL),
+    (2,'롱간',10,true,'2026-07-01 12:00:00',NULL),
+    (2,'청귤',10,true,'2026-07-01 12:00:00',NULL),
+    (2,'건자두',10,true,'2026-07-01 12:00:00',NULL),
+    (2,'말린무화과',10,true,'2026-07-01 12:00:00',NULL),
+    (2,'말린망고',10,true,'2026-07-01 12:00:00',NULL),
+    (3,'한우소고기',3,true,'2026-07-01 12:00:00',NULL),
+    (3,'수입소고기',3,true,'2026-07-01 12:00:00',NULL),
+    (3,'소안심',3,true,'2026-07-01 12:00:00',NULL),
+    (3,'소채끝',3,true,'2026-07-01 12:00:00',NULL),
+    (3,'소갈빗살',3,true,'2026-07-01 12:00:00',NULL),
+    (3,'소부채살',3,true,'2026-07-01 12:00:00',NULL),
+    (3,'소살치살',3,true,'2026-07-01 12:00:00',NULL),
+    (3,'소토시살',3,true,'2026-07-01 12:00:00',NULL),
+    (3,'소치마살',3,true,'2026-07-01 12:00:00',NULL),
+    (3,'소업진살',3,true,'2026-07-01 12:00:00',NULL),
+    (3,'소우둔',3,true,'2026-07-01 12:00:00',NULL),
+    (3,'소홍두깨',3,true,'2026-07-01 12:00:00',NULL),
+    (3,'소목심',3,true,'2026-07-01 12:00:00',NULL),
+    (3,'소앞다리',3,true,'2026-07-01 12:00:00',NULL),
+    (3,'소다짐육',3,true,'2026-07-01 12:00:00',NULL),
+    (3,'소꼬리',3,true,'2026-07-01 12:00:00',NULL),
+    (3,'소족',3,true,'2026-07-01 12:00:00',NULL),
+    (3,'소간',3,true,'2026-07-01 12:00:00',NULL),
+    (3,'소곱창',3,true,'2026-07-01 12:00:00',NULL),
+    (3,'소대창',3,true,'2026-07-01 12:00:00',NULL),
+    (3,'소막창',3,true,'2026-07-01 12:00:00',NULL),
+    (3,'소양',3,true,'2026-07-01 12:00:00',NULL),
+    (3,'소염통',3,true,'2026-07-01 12:00:00',NULL),
+    (3,'돼지삼겹살',3,true,'2026-07-01 12:00:00',NULL),
+    (3,'돼지앞다리살',3,true,'2026-07-01 12:00:00',NULL),
+    (3,'돼지뒷다리살',3,true,'2026-07-01 12:00:00',NULL),
+    (3,'돼지안심',3,true,'2026-07-01 12:00:00',NULL),
+    (3,'돼지갈매기살',3,true,'2026-07-01 12:00:00',NULL),
+    (3,'돼지항정살',3,true,'2026-07-01 12:00:00',NULL),
+    (3,'돼지가브리살',3,true,'2026-07-01 12:00:00',NULL),
+    (3,'돼지다짐육',3,true,'2026-07-01 12:00:00',NULL),
+    (3,'돼지족발',3,true,'2026-07-01 12:00:00',NULL),
+    (3,'돼지간',3,true,'2026-07-01 12:00:00',NULL),
+    (3,'돼지곱창',3,true,'2026-07-01 12:00:00',NULL),
+    (3,'돼지막창',3,true,'2026-07-01 12:00:00',NULL),
+    (3,'돼지껍데기',3,true,'2026-07-01 12:00:00',NULL),
+    (3,'닭안심',3,true,'2026-07-01 12:00:00',NULL),
+    (3,'닭윙',3,true,'2026-07-01 12:00:00',NULL),
+    (3,'닭근위',3,true,'2026-07-01 12:00:00',NULL),
+    (3,'닭목살',3,true,'2026-07-01 12:00:00',NULL),
+    (3,'닭다짐육',3,true,'2026-07-01 12:00:00',NULL),
+    (3,'오리가슴살',3,true,'2026-07-01 12:00:00',NULL),
+    (3,'오리다리살',3,true,'2026-07-01 12:00:00',NULL),
+    (3,'양갈비',3,true,'2026-07-01 12:00:00',NULL),
+    (3,'양등심',3,true,'2026-07-01 12:00:00',NULL),
+    (3,'양어깨살',3,true,'2026-07-01 12:00:00',NULL),
+    (3,'양다리살',3,true,'2026-07-01 12:00:00',NULL),
+    (3,'양다짐육',3,true,'2026-07-01 12:00:00',NULL),
+    (3,'토끼고기',3,true,'2026-07-01 12:00:00',NULL),
+    (3,'칠면조고기',3,true,'2026-07-01 12:00:00',NULL),
+    (3,'칠면조가슴살',3,true,'2026-07-01 12:00:00',NULL),
+    (3,'말고기',3,true,'2026-07-01 12:00:00',NULL),
+    (3,'사슴고기',3,true,'2026-07-01 12:00:00',NULL),
+    (3,'메추리고기',3,true,'2026-07-01 12:00:00',NULL),
+    (3,'거위고기',3,true,'2026-07-01 12:00:00',NULL),
+    (3,'프랑크소시지',3,true,'2026-07-01 12:00:00',NULL),
+    (3,'비엔나소시지',3,true,'2026-07-01 12:00:00',NULL),
+    (3,'초리조',3,true,'2026-07-01 12:00:00',NULL),
+    (3,'프로슈토',3,true,'2026-07-01 12:00:00',NULL),
+    (3,'판체타',3,true,'2026-07-01 12:00:00',NULL),
+    (4,'정어리',2,true,'2026-07-01 12:00:00',NULL),
+    (4,'대멸치',2,true,'2026-07-01 12:00:00',NULL),
+    (4,'중멸치',2,true,'2026-07-01 12:00:00',NULL),
+    (4,'생태',2,true,'2026-07-01 12:00:00',NULL),
+    (4,'동태',2,true,'2026-07-01 12:00:00',NULL),
+    (4,'참가자미',2,true,'2026-07-01 12:00:00',NULL),
+    (4,'도다리',2,true,'2026-07-01 12:00:00',NULL),
+    (4,'참돔',2,true,'2026-07-01 12:00:00',NULL),
+    (4,'감성돔',2,true,'2026-07-01 12:00:00',NULL),
+    (4,'굴비',2,true,'2026-07-01 12:00:00',NULL),
+    (4,'임연수어',2,true,'2026-07-01 12:00:00',NULL),
+    (4,'열기',2,true,'2026-07-01 12:00:00',NULL),
+    (4,'볼락',2,true,'2026-07-01 12:00:00',NULL),
+    (4,'부시리',2,true,'2026-07-01 12:00:00',NULL),
+    (4,'전어',2,true,'2026-07-01 12:00:00',NULL),
+    (4,'청어',2,true,'2026-07-01 12:00:00',NULL),
+    (4,'전갱이',2,true,'2026-07-01 12:00:00',NULL),
+    (4,'숭어',2,true,'2026-07-01 12:00:00',NULL),
+    (4,'황새치',2,true,'2026-07-01 12:00:00',NULL),
+    (4,'청새치',2,true,'2026-07-01 12:00:00',NULL),
+    (4,'민물장어',2,true,'2026-07-01 12:00:00',NULL),
+    (4,'바닷장어',2,true,'2026-07-01 12:00:00',NULL),
+    (4,'홍어',2,true,'2026-07-01 12:00:00',NULL),
+    (4,'삼식이',2,true,'2026-07-01 12:00:00',NULL),
+    (4,'새꼬막',2,true,'2026-07-01 12:00:00',NULL),
+    (4,'피꼬막',2,true,'2026-07-01 12:00:00',NULL),
+    (4,'백합조개',2,true,'2026-07-01 12:00:00',NULL),
+    (4,'동죽조개',2,true,'2026-07-01 12:00:00',NULL),
+    (4,'석화',2,true,'2026-07-01 12:00:00',NULL),
+    (4,'가리비',2,true,'2026-07-01 12:00:00',NULL),
+    (4,'키조개',2,true,'2026-07-01 12:00:00',NULL),
+    (4,'맛조개',2,true,'2026-07-01 12:00:00',NULL),
+    (4,'대합',2,true,'2026-07-01 12:00:00',NULL),
+    (4,'재첩',2,true,'2026-07-01 12:00:00',NULL),
+    (4,'꽃새우',2,true,'2026-07-01 12:00:00',NULL),
+    (4,'민물새우',2,true,'2026-07-01 12:00:00',NULL),
+    (4,'대게',2,true,'2026-07-01 12:00:00',NULL),
+    (4,'홍게',2,true,'2026-07-01 12:00:00',NULL),
+    (4,'킹크랩',2,true,'2026-07-01 12:00:00',NULL),
+    (4,'랍스터',2,true,'2026-07-01 12:00:00',NULL),
+    (4,'한치',2,true,'2026-07-01 12:00:00',NULL),
+    (4,'해삼',2,true,'2026-07-01 12:00:00',NULL),
+    (4,'멍게',2,true,'2026-07-01 12:00:00',NULL),
+    (4,'성게알',2,true,'2026-07-01 12:00:00',NULL),
+    (4,'오만둥이',2,true,'2026-07-01 12:00:00',NULL),
+    (4,'생미역',2,true,'2026-07-01 12:00:00',NULL),
+    (4,'톳',2,true,'2026-07-01 12:00:00',NULL),
+    (4,'돌김',2,true,'2026-07-01 12:00:00',NULL),
+    (4,'구운김',2,true,'2026-07-01 12:00:00',NULL),
+    (4,'청각',2,true,'2026-07-01 12:00:00',NULL),
+    (4,'모자반',2,true,'2026-07-01 12:00:00',NULL),
+    (4,'우뭇가사리',2,true,'2026-07-01 12:00:00',NULL),
+    (5,'무지방우유',14,true,'2026-07-01 12:00:00',NULL),
+    (5,'멸균우유',14,true,'2026-07-01 12:00:00',NULL),
+    (5,'산양유',14,true,'2026-07-01 12:00:00',NULL),
+    (5,'염소우유',14,true,'2026-07-01 12:00:00',NULL),
+    (5,'무가당두유',14,true,'2026-07-01 12:00:00',NULL),
+    (5,'아몬드밀크',14,true,'2026-07-01 12:00:00',NULL),
+    (5,'오트밀크',14,true,'2026-07-01 12:00:00',NULL),
+    (5,'고다치즈',30,true,'2026-07-01 12:00:00',NULL),
+    (5,'브리치즈',30,true,'2026-07-01 12:00:00',NULL),
+    (5,'카망베르치즈',30,true,'2026-07-01 12:00:00',NULL),
+    (5,'페타치즈',30,true,'2026-07-01 12:00:00',NULL),
+    (5,'블루치즈',30,true,'2026-07-01 12:00:00',NULL),
+    (5,'에멘탈치즈',30,true,'2026-07-01 12:00:00',NULL),
+    (5,'그뤼에르치즈',30,true,'2026-07-01 12:00:00',NULL),
+    (5,'콜비잭치즈',30,true,'2026-07-01 12:00:00',NULL),
+    (5,'몬터레이잭치즈',30,true,'2026-07-01 12:00:00',NULL),
+    (5,'마스카포네치즈',30,true,'2026-07-01 12:00:00',NULL),
+    (5,'코티지치즈',30,true,'2026-07-01 12:00:00',NULL),
+    (5,'케피어',14,true,'2026-07-01 12:00:00',NULL),
+    (5,'무염버터',60,true,'2026-07-01 12:00:00',NULL),
+    (5,'가염버터',60,true,'2026-07-01 12:00:00',NULL),
+    (5,'마가린',14,true,'2026-07-01 12:00:00',NULL),
+    (5,'유정란',14,true,'2026-07-01 12:00:00',NULL),
+    (5,'오리알',21,true,'2026-07-01 12:00:00',NULL),
+    (5,'거위알',21,true,'2026-07-01 12:00:00',NULL),
+    (5,'난황',14,true,'2026-07-01 12:00:00',NULL),
+    (5,'난백',14,true,'2026-07-01 12:00:00',NULL),
+    (5,'액상계란',21,true,'2026-07-01 12:00:00',NULL),
+    (6,'늘보리',180,true,'2026-07-01 12:00:00',NULL),
+    (6,'기장',180,true,'2026-07-01 12:00:00',NULL),
+    (6,'조',180,true,'2026-07-01 12:00:00',NULL),
+    (6,'메밀',180,true,'2026-07-01 12:00:00',NULL),
+    (6,'아마란스',180,true,'2026-07-01 12:00:00',NULL),
+    (6,'쿠스쿠스',180,true,'2026-07-01 12:00:00',NULL),
+    (6,'불거',180,true,'2026-07-01 12:00:00',NULL),
+    (6,'파로',180,true,'2026-07-01 12:00:00',NULL),
+    (6,'스펠트',180,true,'2026-07-01 12:00:00',NULL),
+    (6,'카무트',180,true,'2026-07-01 12:00:00',NULL),
+    (6,'찰옥수수',180,true,'2026-07-01 12:00:00',NULL),
+    (6,'감자전분',180,true,'2026-07-01 12:00:00',NULL),
+    (6,'고구마전분',180,true,'2026-07-01 12:00:00',NULL),
+    (6,'타피오카전분',180,true,'2026-07-01 12:00:00',NULL),
+    (6,'중면',180,true,'2026-07-01 12:00:00',NULL),
+    (6,'라면사리',180,true,'2026-07-01 12:00:00',NULL),
+    (6,'녹두당면',180,true,'2026-07-01 12:00:00',NULL),
+    (6,'링귀니',180,true,'2026-07-01 12:00:00',NULL),
+    (6,'페투치네',180,true,'2026-07-01 12:00:00',NULL),
+    (6,'마카로니',180,true,'2026-07-01 12:00:00',NULL),
+    (6,'라자냐',180,true,'2026-07-01 12:00:00',NULL),
+    (6,'리가토니',180,true,'2026-07-01 12:00:00',NULL),
+    (6,'오르조',180,true,'2026-07-01 12:00:00',NULL),
+    (6,'카펠리니',180,true,'2026-07-01 12:00:00',NULL),
+    (6,'통밀빵',180,true,'2026-07-01 12:00:00',NULL),
+    (6,'호밀빵',180,true,'2026-07-01 12:00:00',NULL),
+    (6,'베이글',180,true,'2026-07-01 12:00:00',NULL),
+    (6,'크루아상',180,true,'2026-07-01 12:00:00',NULL),
+    (6,'모닝빵',180,true,'2026-07-01 12:00:00',NULL),
+    (6,'난',180,true,'2026-07-01 12:00:00',NULL),
+    (6,'피타브레드',180,true,'2026-07-01 12:00:00',NULL),
+    (6,'잉글리시머핀',180,true,'2026-07-01 12:00:00',NULL),
+    (6,'떡국떡',180,true,'2026-07-01 12:00:00',NULL),
+    (6,'백설기',180,true,'2026-07-01 12:00:00',NULL),
+    (6,'인절미',180,true,'2026-07-01 12:00:00',NULL),
+    (7,'찌개두부',180,true,'2026-07-01 12:00:00',NULL),
+    (7,'백태',180,true,'2026-07-01 12:00:00',NULL),
+    (7,'녹두',180,true,'2026-07-01 12:00:00',NULL),
+    (7,'적두',180,true,'2026-07-01 12:00:00',NULL),
+    (7,'작두콩',180,true,'2026-07-01 12:00:00',NULL),
+    (7,'동부콩',180,true,'2026-07-01 12:00:00',NULL),
+    (7,'리마콩',180,true,'2026-07-01 12:00:00',NULL),
+    (7,'핀토빈',180,true,'2026-07-01 12:00:00',NULL),
+    (7,'키드니빈',180,true,'2026-07-01 12:00:00',NULL),
+    (7,'병아리콩통조림',180,true,'2026-07-01 12:00:00',NULL),
+    (7,'브라질너트',180,true,'2026-07-01 12:00:00',NULL),
+    (7,'치아씨드',180,true,'2026-07-01 12:00:00',NULL),
+    (7,'아마씨',180,true,'2026-07-01 12:00:00',NULL),
+    (7,'햄프씨드',180,true,'2026-07-01 12:00:00',NULL),
+    (7,'타히니',180,true,'2026-07-01 12:00:00',NULL),
+    (7,'아몬드버터',180,true,'2026-07-01 12:00:00',NULL),
+    (8,'꽃소금',365,true,'2026-07-01 12:00:00',NULL),
+    (8,'구운소금',365,true,'2026-07-01 12:00:00',NULL),
+    (8,'백설탕',365,true,'2026-07-01 12:00:00',NULL),
+    (8,'원당',365,true,'2026-07-01 12:00:00',NULL),
+    (8,'아카시아꿀',365,true,'2026-07-01 12:00:00',NULL),
+    (8,'밤꿀',365,true,'2026-07-01 12:00:00',NULL),
+    (8,'조림간장',365,true,'2026-07-01 12:00:00',NULL),
+    (8,'화이트와인식초',365,true,'2026-07-01 12:00:00',NULL),
+    (8,'엑스트라버진올리브오일',365,true,'2026-07-01 12:00:00',NULL),
+    (8,'해바라기유',365,true,'2026-07-01 12:00:00',NULL),
+    (8,'옥수수유',365,true,'2026-07-01 12:00:00',NULL),
+    (8,'아보카도오일',365,true,'2026-07-01 12:00:00',NULL),
+    (8,'굴소스',365,true,'2026-07-01 12:00:00',NULL),
+    (8,'피시소스',365,true,'2026-07-01 12:00:00',NULL),
+    (8,'참치액',365,true,'2026-07-01 12:00:00',NULL),
+    (8,'갈치속젓',365,true,'2026-07-01 12:00:00',NULL),
+    (8,'오징어젓',365,true,'2026-07-01 12:00:00',NULL),
+    (8,'창난젓',365,true,'2026-07-01 12:00:00',NULL),
+    (8,'스리라차소스',365,true,'2026-07-01 12:00:00',NULL),
+    (8,'타바스코소스',365,true,'2026-07-01 12:00:00',NULL),
+    (8,'우스터소스',365,true,'2026-07-01 12:00:00',NULL),
+    (8,'데리야키소스',365,true,'2026-07-01 12:00:00',NULL),
+    (8,'돈가스소스',365,true,'2026-07-01 12:00:00',NULL),
+    (8,'칠리소스',365,true,'2026-07-01 12:00:00',NULL),
+    (8,'핫소스',365,true,'2026-07-01 12:00:00',NULL),
+    (8,'고운고춧가루',365,true,'2026-07-01 12:00:00',NULL),
+    (8,'굵은고춧가루',365,true,'2026-07-01 12:00:00',NULL),
+    (8,'산초가루',365,true,'2026-07-01 12:00:00',NULL),
+    (8,'제피가루',365,true,'2026-07-01 12:00:00',NULL),
+    (8,'시나몬',365,true,'2026-07-01 12:00:00',NULL),
+    (8,'육두구',365,true,'2026-07-01 12:00:00',NULL),
+    (8,'카다멈',365,true,'2026-07-01 12:00:00',NULL),
+    (8,'타임가루',365,true,'2026-07-01 12:00:00',NULL),
+    (8,'로즈마리가루',365,true,'2026-07-01 12:00:00',NULL),
+    (8,'비프스톡',365,true,'2026-07-01 12:00:00',NULL),
+    (8,'채소스톡',365,true,'2026-07-01 12:00:00',NULL),
+    (9,'총각김치',180,true,'2026-07-01 12:00:00',NULL),
+    (9,'갓김치',180,true,'2026-07-01 12:00:00',NULL),
+    (9,'파김치',180,true,'2026-07-01 12:00:00',NULL),
+    (9,'오이소박이',180,true,'2026-07-01 12:00:00',NULL),
+    (9,'할라피뇨피클',180,true,'2026-07-01 12:00:00',NULL),
+    (9,'올리브절임',180,true,'2026-07-01 12:00:00',NULL),
+    (9,'고등어캔',180,true,'2026-07-01 12:00:00',NULL),
+    (9,'꽁치캔',180,true,'2026-07-01 12:00:00',NULL),
+    (9,'골뱅이캔',180,true,'2026-07-01 12:00:00',NULL),
+    (9,'옥수수캔',180,true,'2026-07-01 12:00:00',NULL),
+    (9,'토마토캔',180,true,'2026-07-01 12:00:00',NULL),
+    (9,'콩통조림',180,true,'2026-07-01 12:00:00',NULL),
+    (9,'햄통조림',180,true,'2026-07-01 12:00:00',NULL),
+    (9,'런천미트',180,true,'2026-07-01 12:00:00',NULL),
+    (9,'사각어묵',180,true,'2026-07-01 12:00:00',NULL),
+    (9,'봉어묵',180,true,'2026-07-01 12:00:00',NULL),
+    (9,'고기만두',180,true,'2026-07-01 12:00:00',NULL),
+    (9,'김치만두',180,true,'2026-07-01 12:00:00',NULL),
+    (9,'물만두',180,true,'2026-07-01 12:00:00',NULL),
+    (9,'군만두',180,true,'2026-07-01 12:00:00',NULL),
+    (9,'너겟',180,true,'2026-07-01 12:00:00',NULL),
+    (9,'치킨너겟',180,true,'2026-07-01 12:00:00',NULL),
+    (9,'생선가스',180,true,'2026-07-01 12:00:00',NULL),
+    (9,'핫도그',180,true,'2026-07-01 12:00:00',NULL),
+    (9,'짜장라면',180,true,'2026-07-01 12:00:00',NULL),
+    (9,'비빔면',180,true,'2026-07-01 12:00:00',NULL),
+    (9,'즉석밥',180,true,'2026-07-01 12:00:00',NULL),
+    (9,'카레루',180,true,'2026-07-01 12:00:00',NULL),
+    (9,'하이라이스루',180,true,'2026-07-01 12:00:00',NULL),
+    (9,'짜장분말',180,true,'2026-07-01 12:00:00',NULL),
+    (9,'사과잼',180,true,'2026-07-01 12:00:00',NULL),
+    (9,'마멀레이드',180,true,'2026-07-01 12:00:00',NULL),
+    (9,'밀크초콜릿',180,true,'2026-07-01 12:00:00',NULL),
+    (9,'화이트초콜릿',180,true,'2026-07-01 12:00:00',NULL),
+    (9,'비스킷',180,true,'2026-07-01 12:00:00',NULL),
+    (9,'콘플레이크',180,true,'2026-07-01 12:00:00',NULL),
+    (10,'코코아가루',30,true,'2026-07-01 12:00:00',NULL),
+    (10,'말차가루',30,true,'2026-07-01 12:00:00',NULL),
+    (10,'홍차잎',30,true,'2026-07-01 12:00:00',NULL),
+    (10,'커피원두',30,true,'2026-07-01 12:00:00',NULL),
+    (10,'원두커피',30,true,'2026-07-01 12:00:00',NULL),
+    (10,'인스턴트커피',30,true,'2026-07-01 12:00:00',NULL),
+    (10,'보리차',30,true,'2026-07-01 12:00:00',NULL),
+    (10,'둥굴레차',30,true,'2026-07-01 12:00:00',NULL),
+    (10,'결명자차',30,true,'2026-07-01 12:00:00',NULL),
+    (10,'루이보스',30,true,'2026-07-01 12:00:00',NULL),
+    (10,'히비스커스',30,true,'2026-07-01 12:00:00',NULL),
+    (10,'카모마일',30,true,'2026-07-01 12:00:00',NULL),
+    (10,'라벤더',30,true,'2026-07-01 12:00:00',NULL),
+    (10,'로즈힙',30,true,'2026-07-01 12:00:00',NULL),
+    (10,'감초',30,true,'2026-07-01 12:00:00',NULL),
+    (10,'홍삼',30,true,'2026-07-01 12:00:00',NULL),
+    (10,'마카분말',30,true,'2026-07-01 12:00:00',NULL),
+    (10,'스피루리나',30,true,'2026-07-01 12:00:00',NULL),
+    (10,'클로렐라',30,true,'2026-07-01 12:00:00',NULL),
+    (10,'프로폴리스',30,true,'2026-07-01 12:00:00',NULL),
+    (10,'타피오카펄',30,true,'2026-07-01 12:00:00',NULL),
+    (10,'우무',30,true,'2026-07-01 12:00:00',NULL),
+    (10,'차가버섯',30,true,'2026-07-01 12:00:00',NULL),
+    (10,'콜라겐분말',30,true,'2026-07-01 12:00:00',NULL),
+    (10,'코코넛칩',30,true,'2026-07-01 12:00:00',NULL),
+    (10,'건조코코넛',30,true,'2026-07-01 12:00:00',NULL),
+    (10,'바닐라익스트랙',30,true,'2026-07-01 12:00:00',NULL),
+    (10,'판한천',30,true,'2026-07-01 12:00:00',NULL),
+    (10,'식용색소',30,true,'2026-07-01 12:00:00',NULL)
 ON CONFLICT (product_id) DO NOTHING;
 
 INSERT INTO recipes (recipe_id, recipe_category_id, name, cooking_time, difficulty, description) VALUES
@@ -21580,3210 +21976,6 @@ INSERT INTO recipe_required_products (recipe_required_product_id, recipe_id, pro
     (12331, 1146, 920)
 ON CONFLICT (recipe_required_product_id) DO NOTHING;
 
--- product_id 1412~1447 테스트 데이터 삭제
-DELETE FROM products WHERE product_id BETWEEN 1412 AND 1447;
-
--- 전체 상품 기본 유통기한 업데이트
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1402;
-UPDATE products SET default_expiry_days = 30 WHERE product_id = 1401;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1400;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1399;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1398;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1397;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1396;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 1395;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 1394;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 1393;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1392;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1391;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 1390;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1389;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1388;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1387;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1386;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1385;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 1384;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 1383;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1382;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 1381;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1380;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1379;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 1378;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1377;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1376;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 1375;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 1374;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1373;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1372;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 1371;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 1370;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 1369;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1368;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1367;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 1366;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 1365;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 1364;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1363;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 1362;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1361;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1360;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1359;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1358;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1357;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1356;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1355;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1354;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1353;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1352;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1351;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 1350;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1349;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1348;
-UPDATE products SET default_expiry_days = 30 WHERE product_id = 1347;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1346;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1345;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1344;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 1343;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1342;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 1341;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1340;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1339;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 1338;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 1337;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 1336;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1335;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1334;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1333;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1332;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1331;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 1330;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1329;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1328;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1327;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 1326;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1325;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 1324;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1323;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1322;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1321;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1320;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1319;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1318;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 1317;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 1316;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1315;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1314;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1313;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1312;
-UPDATE products SET default_expiry_days = 30 WHERE product_id = 1311;
-UPDATE products SET default_expiry_days = 30 WHERE product_id = 1310;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 1309;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1308;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 1307;
-UPDATE products SET default_expiry_days = 30 WHERE product_id = 1306;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1305;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1304;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1303;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 1302;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1301;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1300;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1299;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1298;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1297;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1296;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 1295;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1294;
-UPDATE products SET default_expiry_days = 30 WHERE product_id = 1293;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1292;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1291;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 1290;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1289;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1288;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1287;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 1286;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 1285;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1284;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 1283;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1282;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 1281;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 1280;
-UPDATE products SET default_expiry_days = 30 WHERE product_id = 1279;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1278;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 1277;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1276;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1275;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1274;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1273;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 1272;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1271;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1270;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1269;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1268;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1267;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 1266;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 1265;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1264;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1263;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 1262;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1261;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1260;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 1259;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 1258;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 1257;
-UPDATE products SET default_expiry_days = 30 WHERE product_id = 1256;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 1255;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1254;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1253;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1252;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 1251;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 1250;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 1249;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 1248;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1247;
-UPDATE products SET default_expiry_days = 30 WHERE product_id = 1246;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1245;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1244;
-UPDATE products SET default_expiry_days = 30 WHERE product_id = 1243;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1242;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1241;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1240;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1239;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1238;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1237;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 1236;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 1235;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1234;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1233;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1232;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 1231;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1230;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1229;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1228;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1227;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 1226;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1225;
-UPDATE products SET default_expiry_days = 21 WHERE product_id = 1224;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1223;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 1222;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1221;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1220;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 1219;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1218;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1217;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 1216;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1215;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1214;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1213;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1212;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 1211;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1210;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1209;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1208;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1207;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 1206;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1205;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 1204;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1203;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1202;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 1201;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1199;
-UPDATE products SET default_expiry_days = 30 WHERE product_id = 1198;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 1197;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 1196;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 1195;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 1194;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 1193;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1192;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1191;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1190;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1187;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1186;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 1185;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1184;
-UPDATE products SET default_expiry_days = 21 WHERE product_id = 1183;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1182;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 1181;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1180;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 1179;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1178;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1177;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1176;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1175;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 1174;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 1173;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 1172;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1171;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1170;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1169;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1168;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1167;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1166;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1165;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 1164;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 1163;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 1162;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1161;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1160;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1159;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1158;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 1157;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1156;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1155;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1154;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1153;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 1152;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 1151;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1150;
-UPDATE products SET default_expiry_days = 30 WHERE product_id = 1149;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1148;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1147;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 1146;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1145;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 1144;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1143;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1142;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1141;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 1140;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 1139;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1138;
-UPDATE products SET default_expiry_days = 30 WHERE product_id = 1137;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1136;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1135;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1134;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 1133;
-UPDATE products SET default_expiry_days = 30 WHERE product_id = 1132;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1131;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 1130;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 1129;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1128;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 1127;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 1126;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1125;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1124;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 1123;
-UPDATE products SET default_expiry_days = 30 WHERE product_id = 1122;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1121;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1120;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1119;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1118;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 1117;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1116;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 1115;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 1114;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1113;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 1112;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 1111;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 1110;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1109;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 1108;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1107;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1106;
-UPDATE products SET default_expiry_days = 30 WHERE product_id = 1105;
-UPDATE products SET default_expiry_days = 30 WHERE product_id = 1104;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 1103;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1102;
-UPDATE products SET default_expiry_days = 30 WHERE product_id = 1101;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1100;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1099;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1098;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1097;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 1096;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1095;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 1094;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1093;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 1092;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 1091;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1090;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1089;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 1088;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1087;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 1086;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1085;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 1084;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1083;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 1082;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 1081;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 1080;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1079;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1078;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 1077;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 1076;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1075;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 1074;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 1073;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 1072;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1071;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 1070;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1069;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 1068;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 1067;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 1066;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 1065;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1064;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 1063;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1062;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 1061;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 1060;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1059;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1058;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1057;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1056;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1055;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1054;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1053;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 1052;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 1051;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1050;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1049;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1048;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1047;
-UPDATE products SET default_expiry_days = 30 WHERE product_id = 1046;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1045;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1044;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 1043;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1042;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1041;
-UPDATE products SET default_expiry_days = 30 WHERE product_id = 1040;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 1039;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 1038;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1037;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1036;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1035;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1034;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1033;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1032;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 1031;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 1030;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1029;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 1028;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 1027;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1026;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1025;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1024;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1023;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1022;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1021;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 1020;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1019;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1018;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1017;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1016;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1015;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1014;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 1013;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 1012;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1011;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1010;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 1009;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 1008;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1007;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 1006;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1005;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1004;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 1003;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 1002;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 1001;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 1000;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 999;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 998;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 997;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 996;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 995;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 994;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 993;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 992;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 991;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 990;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 989;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 988;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 987;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 986;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 985;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 984;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 983;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 982;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 981;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 980;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 979;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 978;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 977;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 976;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 975;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 974;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 973;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 972;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 971;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 970;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 968;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 967;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 966;
-UPDATE products SET default_expiry_days = 30 WHERE product_id = 965;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 964;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 963;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 962;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 961;
-UPDATE products SET default_expiry_days = 30 WHERE product_id = 960;
-UPDATE products SET default_expiry_days = 30 WHERE product_id = 959;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 958;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 957;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 956;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 955;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 954;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 953;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 952;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 951;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 950;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 949;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 948;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 947;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 946;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 945;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 944;
-UPDATE products SET default_expiry_days = 30 WHERE product_id = 943;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 942;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 941;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 940;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 939;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 938;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 937;
-UPDATE products SET default_expiry_days = 30 WHERE product_id = 936;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 935;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 934;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 933;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 932;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 931;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 930;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 929;
-UPDATE products SET default_expiry_days = 30 WHERE product_id = 928;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 927;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 926;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 925;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 924;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 923;
-UPDATE products SET default_expiry_days = 30 WHERE product_id = 922;
-UPDATE products SET default_expiry_days = 30 WHERE product_id = 921;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 920;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 919;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 918;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 917;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 916;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 915;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 914;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 913;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 912;
-UPDATE products SET default_expiry_days = 30 WHERE product_id = 911;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 910;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 909;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 908;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 907;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 906;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 905;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 904;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 903;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 902;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 901;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 900;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 899;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 898;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 897;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 896;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 895;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 894;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 893;
-UPDATE products SET default_expiry_days = 30 WHERE product_id = 892;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 891;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 890;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 889;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 888;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 887;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 886;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 885;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 884;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 883;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 882;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 881;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 880;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 879;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 878;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 877;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 876;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 875;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 874;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 873;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 872;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 871;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 870;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 869;
-UPDATE products SET default_expiry_days = 30 WHERE product_id = 868;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 867;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 866;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 865;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 864;
-UPDATE products SET default_expiry_days = 21 WHERE product_id = 863;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 862;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 861;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 860;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 859;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 858;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 857;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 856;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 855;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 854;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 853;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 852;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 851;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 850;
-UPDATE products SET default_expiry_days = 30 WHERE product_id = 849;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 848;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 847;
-UPDATE products SET default_expiry_days = 30 WHERE product_id = 846;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 845;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 844;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 843;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 842;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 841;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 840;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 839;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 838;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 837;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 836;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 835;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 834;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 833;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 832;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 831;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 830;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 829;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 828;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 827;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 826;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 825;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 824;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 823;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 822;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 821;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 820;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 819;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 818;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 817;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 816;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 815;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 814;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 813;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 812;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 811;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 810;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 809;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 808;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 807;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 806;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 805;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 804;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 803;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 802;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 801;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 800;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 799;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 798;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 797;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 796;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 795;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 794;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 793;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 792;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 791;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 790;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 789;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 788;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 787;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 786;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 785;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 784;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 783;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 782;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 781;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 780;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 779;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 778;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 776;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 775;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 774;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 773;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 772;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 771;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 770;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 769;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 768;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 767;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 766;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 765;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 764;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 763;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 762;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 761;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 760;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 759;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 758;
-UPDATE products SET default_expiry_days = 30 WHERE product_id = 757;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 756;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 755;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 754;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 753;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 752;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 751;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 750;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 749;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 748;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 747;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 746;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 745;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 744;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 743;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 742;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 741;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 740;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 739;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 738;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 736;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 735;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 734;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 733;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 732;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 731;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 730;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 729;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 728;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 727;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 726;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 725;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 724;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 723;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 722;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 721;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 720;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 719;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 718;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 717;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 716;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 715;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 714;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 713;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 712;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 711;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 710;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 709;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 708;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 707;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 706;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 705;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 704;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 703;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 702;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 701;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 700;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 699;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 698;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 697;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 696;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 695;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 694;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 693;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 692;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 691;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 690;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 689;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 688;
-UPDATE products SET default_expiry_days = 30 WHERE product_id = 687;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 686;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 685;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 684;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 683;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 682;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 681;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 680;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 679;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 678;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 677;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 676;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 675;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 674;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 673;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 672;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 671;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 670;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 669;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 668;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 667;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 666;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 665;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 664;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 663;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 662;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 661;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 660;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 659;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 658;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 657;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 656;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 655;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 654;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 653;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 652;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 651;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 650;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 649;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 648;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 647;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 646;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 645;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 644;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 643;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 642;
-UPDATE products SET default_expiry_days = 30 WHERE product_id = 641;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 640;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 639;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 638;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 637;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 636;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 635;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 634;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 633;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 632;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 631;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 630;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 629;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 628;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 627;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 626;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 625;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 624;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 623;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 622;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 621;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 620;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 619;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 618;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 617;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 616;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 615;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 614;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 613;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 612;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 611;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 610;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 609;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 608;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 607;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 606;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 605;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 604;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 603;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 602;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 601;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 600;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 599;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 598;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 597;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 596;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 595;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 594;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 593;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 592;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 591;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 590;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 589;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 588;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 587;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 586;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 585;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 584;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 583;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 582;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 581;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 580;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 579;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 578;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 577;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 576;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 575;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 574;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 573;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 572;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 571;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 570;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 569;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 568;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 567;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 566;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 565;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 564;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 563;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 562;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 561;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 560;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 559;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 558;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 557;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 556;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 555;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 554;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 553;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 552;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 551;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 550;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 549;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 548;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 547;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 546;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 545;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 544;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 543;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 542;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 541;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 540;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 539;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 538;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 537;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 536;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 535;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 534;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 533;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 532;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 531;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 530;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 529;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 528;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 527;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 526;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 525;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 524;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 523;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 522;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 521;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 520;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 519;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 518;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 517;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 516;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 515;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 514;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 513;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 512;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 511;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 510;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 509;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 508;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 507;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 506;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 505;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 504;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 503;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 502;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 501;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 500;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 499;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 498;
-UPDATE products SET default_expiry_days = 30 WHERE product_id = 497;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 496;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 495;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 494;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 493;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 492;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 491;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 490;
-UPDATE products SET default_expiry_days = 30 WHERE product_id = 489;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 488;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 487;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 486;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 485;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 484;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 483;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 482;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 481;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 480;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 479;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 478;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 477;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 476;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 475;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 474;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 473;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 472;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 471;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 470;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 469;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 468;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 467;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 466;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 465;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 464;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 463;
-UPDATE products SET default_expiry_days = 30 WHERE product_id = 462;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 461;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 460;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 459;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 458;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 457;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 456;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 455;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 454;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 453;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 452;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 451;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 450;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 449;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 448;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 447;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 446;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 445;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 444;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 443;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 442;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 441;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 440;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 439;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 438;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 437;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 436;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 435;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 434;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 433;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 432;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 431;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 430;
-UPDATE products SET default_expiry_days = 21 WHERE product_id = 429;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 428;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 427;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 426;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 425;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 424;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 423;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 422;
-UPDATE products SET default_expiry_days = 30 WHERE product_id = 421;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 420;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 419;
-UPDATE products SET default_expiry_days = 30 WHERE product_id = 418;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 417;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 416;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 415;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 414;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 413;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 412;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 411;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 410;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 409;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 408;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 407;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 406;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 405;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 404;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 403;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 402;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 401;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 400;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 399;
-UPDATE products SET default_expiry_days = 30 WHERE product_id = 398;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 397;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 396;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 395;
-UPDATE products SET default_expiry_days = 30 WHERE product_id = 394;
-UPDATE products SET default_expiry_days = 30 WHERE product_id = 393;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 392;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 391;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 390;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 389;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 388;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 387;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 386;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 385;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 384;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 383;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 382;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 381;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 380;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 379;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 378;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 377;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 376;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 375;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 374;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 373;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 372;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 371;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 370;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 369;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 368;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 367;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 366;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 365;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 364;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 363;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 362;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 361;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 360;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 359;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 358;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 357;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 356;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 355;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 354;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 353;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 352;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 351;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 350;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 349;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 348;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 347;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 346;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 345;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 344;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 343;
-UPDATE products SET default_expiry_days = 30 WHERE product_id = 342;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 341;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 340;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 339;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 338;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 337;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 336;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 335;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 334;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 333;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 332;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 331;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 330;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 329;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 328;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 327;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 326;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 325;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 324;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 323;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 322;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 321;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 320;
-UPDATE products SET default_expiry_days = 30 WHERE product_id = 319;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 318;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 317;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 316;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 315;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 314;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 313;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 312;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 311;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 310;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 309;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 308;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 307;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 306;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 305;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 304;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 303;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 302;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 301;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 300;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 299;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 298;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 297;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 296;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 295;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 294;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 293;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 292;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 291;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 290;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 289;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 288;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 287;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 286;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 285;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 284;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 283;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 282;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 281;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 280;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 279;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 278;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 277;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 276;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 275;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 274;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 273;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 272;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 271;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 270;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 269;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 268;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 267;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 266;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 265;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 264;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 263;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 262;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 261;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 260;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 259;
-UPDATE products SET default_expiry_days = 30 WHERE product_id = 258;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 257;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 256;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 255;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 254;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 253;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 252;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 251;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 250;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 249;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 248;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 247;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 246;
-UPDATE products SET default_expiry_days = 30 WHERE product_id = 245;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 244;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 243;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 242;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 241;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 240;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 239;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 238;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 237;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 236;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 235;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 234;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 233;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 232;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 231;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 230;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 229;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 228;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 227;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 226;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 225;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 224;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 223;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 222;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 221;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 220;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 219;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 218;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 217;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 216;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 215;
-UPDATE products SET default_expiry_days = 30 WHERE product_id = 214;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 213;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 212;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 211;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 210;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 209;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 208;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 207;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 206;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 205;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 204;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 203;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 202;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 201;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 200;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 199;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 198;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 197;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 196;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 195;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 194;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 193;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 192;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 191;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 190;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 189;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 188;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 187;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 186;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 185;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 184;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 183;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 182;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 181;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 180;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 179;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 178;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 177;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 176;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 175;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 174;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 173;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 172;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 171;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 170;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 169;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 168;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 167;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 166;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 165;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 164;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 163;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 162;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 161;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 160;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 159;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 158;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 157;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 156;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 155;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 154;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 153;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 152;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 151;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 150;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 149;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 148;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 147;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 146;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 145;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 144;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 143;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 142;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 141;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 140;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 139;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 138;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 137;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 136;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 135;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 134;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 133;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 132;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 131;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 130;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 129;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 128;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 127;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 126;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 125;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 124;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 123;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 122;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 121;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 120;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 119;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 118;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 117;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 116;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 115;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 114;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 113;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 112;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 111;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 110;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 109;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 108;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 107;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 106;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 105;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 104;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 103;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 102;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 101;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 100;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 99;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 98;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 97;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 96;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 95;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 94;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 93;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 92;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 91;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 90;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 89;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 88;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 87;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 86;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 85;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 84;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 83;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 82;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 81;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 80;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 79;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 78;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 77;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 76;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 75;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 74;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 73;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 72;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 71;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 70;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 69;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 68;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 67;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 66;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 65;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 64;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 63;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 62;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 61;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 60;
-UPDATE products SET default_expiry_days = 30 WHERE product_id = 59;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 58;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 57;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 56;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 55;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 54;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 53;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 52;
-UPDATE products SET default_expiry_days = 21 WHERE product_id = 51;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 50;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 49;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 48;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 47;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 46;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 45;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 44;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 43;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 42;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 41;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 40;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 39;
-UPDATE products SET default_expiry_days = 3 WHERE product_id = 38;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 37;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 36;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 35;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 34;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 33;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 32;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 31;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 30;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 29;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 28;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 27;
-UPDATE products SET default_expiry_days = 10 WHERE product_id = 26;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 25;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 24;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 23;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 22;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 21;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 20;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 19;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 18;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 17;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 16;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 15;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 14;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 13;
-UPDATE products SET default_expiry_days = 14 WHERE product_id = 12;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 11;
-UPDATE products SET default_expiry_days = 180 WHERE product_id = 10;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 9;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 8;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 7;
-UPDATE products SET default_expiry_days = 30 WHERE product_id = 6;
-UPDATE products SET default_expiry_days = 365 WHERE product_id = 5;
-UPDATE products SET default_expiry_days = 7 WHERE product_id = 4;
-UPDATE products SET default_expiry_days = 21 WHERE product_id = 3;
-UPDATE products SET default_expiry_days = 2 WHERE product_id = 2;
-UPDATE products SET default_expiry_days = 5 WHERE product_id = 1;
-
--- 기존 재료 카테고리/유통기한 정정
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 1402;
-UPDATE products SET product_category_id = 5, default_expiry_days = 30, is_active = true WHERE product_id = 1401;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1400;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 1399;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 1398;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1397;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1396;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1395;
-UPDATE products SET product_category_id = 5, default_expiry_days = 14, is_active = true WHERE product_id = 1394;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 1393;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1392;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1391;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1390;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1389;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 1388;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1387;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1386;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 1385;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 1384;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 1383;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 1382;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1381;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 1380;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1379;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1378;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1377;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1376;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1375;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1374;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 1373;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1372;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1371;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1370;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1369;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1368;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1367;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1366;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1365;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1364;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 1363;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1362;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1361;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1360;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1359;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1358;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 1357;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1356;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1355;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1354;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1353;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 1352;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1351;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 1350;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 1349;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 1348;
-UPDATE products SET product_category_id = 5, default_expiry_days = 30, is_active = true WHERE product_id = 1347;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1346;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1345;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1344;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1343;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 1342;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 1341;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1340;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1339;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1338;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1337;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1336;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1335;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1334;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1333;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1332;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1331;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 1330;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1329;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1328;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 1327;
-UPDATE products SET product_category_id = 2, default_expiry_days = 10, is_active = true WHERE product_id = 1326;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1325;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1324;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 1323;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1322;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1321;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1320;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1319;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 1318;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1317;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1316;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 1315;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 1314;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1313;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1312;
-UPDATE products SET product_category_id = 5, default_expiry_days = 30, is_active = true WHERE product_id = 1311;
-UPDATE products SET product_category_id = 5, default_expiry_days = 30, is_active = true WHERE product_id = 1310;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1309;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1308;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1307;
-UPDATE products SET product_category_id = 5, default_expiry_days = 30, is_active = true WHERE product_id = 1306;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1305;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1304;
-UPDATE products SET product_category_id = 2, default_expiry_days = 10, is_active = true WHERE product_id = 1303;
-UPDATE products SET product_category_id = 2, default_expiry_days = 10, is_active = true WHERE product_id = 1302;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1301;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 1300;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 1299;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1298;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 1297;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1296;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1295;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1294;
-UPDATE products SET product_category_id = 5, default_expiry_days = 60, is_active = true WHERE product_id = 1293;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 1292;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1291;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1290;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1289;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1288;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1287;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1286;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 1285;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 1284;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1283;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1282;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1281;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 1280;
-UPDATE products SET product_category_id = 5, default_expiry_days = 30, is_active = true WHERE product_id = 1279;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1278;
-UPDATE products SET product_category_id = 3, default_expiry_days = 3, is_active = true WHERE product_id = 1277;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1276;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1275;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1274;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1273;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 1272;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1271;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1270;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1269;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1268;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 1267;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 1266;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 1265;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 1264;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 1263;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 1262;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 1261;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 1260;
-UPDATE products SET product_category_id = 3, default_expiry_days = 3, is_active = true WHERE product_id = 1259;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1258;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1257;
-UPDATE products SET product_category_id = 5, default_expiry_days = 30, is_active = true WHERE product_id = 1256;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1255;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1254;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1253;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1252;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1251;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1250;
-UPDATE products SET product_category_id = 2, default_expiry_days = 10, is_active = true WHERE product_id = 1249;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1248;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 1247;
-UPDATE products SET product_category_id = 9, default_expiry_days = 180, is_active = true WHERE product_id = 1246;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 1245;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 1244;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1243;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1242;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1241;
-UPDATE products SET product_category_id = 9, default_expiry_days = 180, is_active = true WHERE product_id = 1240;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1239;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1238;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1237;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1236;
-UPDATE products SET product_category_id = 5, default_expiry_days = 14, is_active = true WHERE product_id = 1235;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1234;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 1233;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1232;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1231;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 1230;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 1229;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1228;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 1227;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1226;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 1225;
-UPDATE products SET product_category_id = 5, default_expiry_days = 21, is_active = true WHERE product_id = 1224;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1223;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1222;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 1221;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 1220;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1219;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1218;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1217;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1216;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 1215;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1214;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1213;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1212;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 1211;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1210;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1209;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1208;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1207;
-UPDATE products SET product_category_id = 3, default_expiry_days = 3, is_active = true WHERE product_id = 1206;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1205;
-UPDATE products SET product_category_id = 3, default_expiry_days = 3, is_active = true WHERE product_id = 1204;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1203;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 1202;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1201;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1199;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1198;
-UPDATE products SET product_category_id = 3, default_expiry_days = 3, is_active = true WHERE product_id = 1197;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1196;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 1195;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 1194;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1193;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1192;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 1191;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1190;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1187;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 1186;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1185;
-UPDATE products SET product_category_id = 2, default_expiry_days = 10, is_active = true WHERE product_id = 1184;
-UPDATE products SET product_category_id = 5, default_expiry_days = 21, is_active = true WHERE product_id = 1183;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 1182;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1181;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1180;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1179;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1178;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1177;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1176;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 1175;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 1174;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 1173;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1172;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1171;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1170;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1169;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1168;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 1167;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 1166;
-UPDATE products SET product_category_id = 2, default_expiry_days = 10, is_active = true WHERE product_id = 1165;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1164;
-UPDATE products SET product_category_id = 3, default_expiry_days = 3, is_active = true WHERE product_id = 1163;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 1162;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1161;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1160;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 1159;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 1158;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1157;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1156;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 1155;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 1154;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1153;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 1152;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1151;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1150;
-UPDATE products SET product_category_id = 5, default_expiry_days = 30, is_active = true WHERE product_id = 1149;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 1148;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1147;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1146;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1145;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1144;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1143;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1142;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1141;
-UPDATE products SET product_category_id = 5, default_expiry_days = 14, is_active = true WHERE product_id = 1140;
-UPDATE products SET product_category_id = 5, default_expiry_days = 14, is_active = true WHERE product_id = 1139;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1138;
-UPDATE products SET product_category_id = 9, default_expiry_days = 180, is_active = true WHERE product_id = 1137;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1136;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 1135;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1134;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1133;
-UPDATE products SET product_category_id = 5, default_expiry_days = 30, is_active = true WHERE product_id = 1132;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 1131;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1130;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1129;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 1128;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 1127;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1126;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 1125;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 1124;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 1123;
-UPDATE products SET product_category_id = 5, default_expiry_days = 30, is_active = true WHERE product_id = 1122;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1121;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1120;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1119;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 1118;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 1117;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1116;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 1115;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 1114;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1113;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 1112;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1111;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1110;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1109;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1108;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 1107;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1106;
-UPDATE products SET product_category_id = 5, default_expiry_days = 30, is_active = true WHERE product_id = 1105;
-UPDATE products SET product_category_id = 5, default_expiry_days = 30, is_active = true WHERE product_id = 1104;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1103;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1102;
-UPDATE products SET product_category_id = 5, default_expiry_days = 30, is_active = true WHERE product_id = 1101;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1100;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 1099;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1098;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 1097;
-UPDATE products SET product_category_id = 3, default_expiry_days = 3, is_active = true WHERE product_id = 1096;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 1095;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1094;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1093;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1092;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1091;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1090;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 1089;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 1088;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1087;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1086;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1085;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1084;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 1083;
-UPDATE products SET product_category_id = 2, default_expiry_days = 10, is_active = true WHERE product_id = 1082;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1081;
-UPDATE products SET product_category_id = 2, default_expiry_days = 10, is_active = true WHERE product_id = 1080;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 1079;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1078;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1077;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1076;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1075;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1074;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 1073;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1072;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 1071;
-UPDATE products SET product_category_id = 3, default_expiry_days = 3, is_active = true WHERE product_id = 1070;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1069;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 1068;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 1067;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 1066;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1065;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1064;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1063;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1062;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 1061;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 1060;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1059;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1058;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 1057;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1056;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 1055;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1054;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1053;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 1052;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 1051;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 1050;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1049;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1048;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 1047;
-UPDATE products SET product_category_id = 5, default_expiry_days = 30, is_active = true WHERE product_id = 1046;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1045;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1044;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1043;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1042;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1041;
-UPDATE products SET product_category_id = 5, default_expiry_days = 60, is_active = true WHERE product_id = 1040;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 1039;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1038;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1037;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1036;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1035;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1034;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1033;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 1032;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1031;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 1030;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1029;
-UPDATE products SET product_category_id = 3, default_expiry_days = 3, is_active = true WHERE product_id = 1028;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 1027;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1026;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1025;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1024;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 1023;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1022;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 1021;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1020;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 1019;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 1018;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 1017;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 1016;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 1015;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 1014;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 1013;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 1012;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1011;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1010;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1009;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 1008;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 1007;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1006;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1005;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 1004;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1003;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 1002;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1001;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 1000;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 999;
-UPDATE products SET product_category_id = 3, default_expiry_days = 3, is_active = true WHERE product_id = 998;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 997;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 996;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 995;
-UPDATE products SET product_category_id = 3, default_expiry_days = 3, is_active = true WHERE product_id = 994;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 993;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 992;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 991;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 990;
-UPDATE products SET product_category_id = 2, default_expiry_days = 10, is_active = true WHERE product_id = 989;
-UPDATE products SET product_category_id = 2, default_expiry_days = 10, is_active = true WHERE product_id = 988;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 987;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 986;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 985;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 984;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 983;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 982;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 981;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 980;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 979;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 978;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 977;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 976;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 975;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 974;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 973;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 972;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 971;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 970;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 968;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 967;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 966;
-UPDATE products SET product_category_id = 5, default_expiry_days = 30, is_active = true WHERE product_id = 965;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 964;
-UPDATE products SET product_category_id = 3, default_expiry_days = 3, is_active = true WHERE product_id = 963;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 962;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 961;
-UPDATE products SET product_category_id = 5, default_expiry_days = 30, is_active = true WHERE product_id = 960;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 959;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 958;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 957;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 956;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 955;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 954;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 953;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 952;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 951;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 950;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 949;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 948;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 947;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 946;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 945;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 944;
-UPDATE products SET product_category_id = 5, default_expiry_days = 30, is_active = true WHERE product_id = 943;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 942;
-UPDATE products SET product_category_id = 5, default_expiry_days = 14, is_active = true WHERE product_id = 941;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 940;
-UPDATE products SET product_category_id = 3, default_expiry_days = 3, is_active = true WHERE product_id = 939;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 938;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 937;
-UPDATE products SET product_category_id = 5, default_expiry_days = 60, is_active = true WHERE product_id = 936;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 935;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 934;
-UPDATE products SET product_category_id = 3, default_expiry_days = 3, is_active = true WHERE product_id = 933;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 932;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 931;
-UPDATE products SET product_category_id = 3, default_expiry_days = 3, is_active = true WHERE product_id = 930;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 929;
-UPDATE products SET product_category_id = 5, default_expiry_days = 30, is_active = true WHERE product_id = 928;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 927;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 926;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 925;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 924;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 923;
-UPDATE products SET product_category_id = 5, default_expiry_days = 30, is_active = true WHERE product_id = 922;
-UPDATE products SET product_category_id = 5, default_expiry_days = 30, is_active = true WHERE product_id = 921;
-UPDATE products SET product_category_id = 5, default_expiry_days = 14, is_active = true WHERE product_id = 920;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 919;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 918;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 917;
-UPDATE products SET product_category_id = 2, default_expiry_days = 10, is_active = true WHERE product_id = 916;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 915;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 914;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 913;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 912;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 911;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 910;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 909;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 908;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 907;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 906;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 905;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 904;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 903;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 902;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 901;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 900;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 899;
-UPDATE products SET product_category_id = 3, default_expiry_days = 3, is_active = true WHERE product_id = 898;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 897;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 896;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 895;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 894;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 893;
-UPDATE products SET product_category_id = 5, default_expiry_days = 30, is_active = true WHERE product_id = 892;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 891;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 890;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 889;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 888;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 887;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 886;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 885;
-UPDATE products SET product_category_id = 5, default_expiry_days = 14, is_active = true WHERE product_id = 884;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 883;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 882;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 881;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 880;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 879;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 878;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 877;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 876;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 875;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 874;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 873;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 872;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 871;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 870;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 869;
-UPDATE products SET product_category_id = 5, default_expiry_days = 30, is_active = true WHERE product_id = 868;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 867;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 866;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 865;
-UPDATE products SET product_category_id = 9, default_expiry_days = 180, is_active = true WHERE product_id = 864;
-UPDATE products SET product_category_id = 5, default_expiry_days = 21, is_active = true WHERE product_id = 863;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 862;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 861;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 860;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 859;
-UPDATE products SET product_category_id = 2, default_expiry_days = 10, is_active = true WHERE product_id = 858;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 857;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 856;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 855;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 854;
-UPDATE products SET product_category_id = 2, default_expiry_days = 10, is_active = true WHERE product_id = 853;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 852;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 851;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 850;
-UPDATE products SET product_category_id = 5, default_expiry_days = 30, is_active = true WHERE product_id = 849;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 848;
-UPDATE products SET product_category_id = 2, default_expiry_days = 10, is_active = true WHERE product_id = 847;
-UPDATE products SET product_category_id = 5, default_expiry_days = 30, is_active = true WHERE product_id = 846;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 845;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 844;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 843;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 842;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 841;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 840;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 839;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 838;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 837;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 836;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 835;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 834;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 833;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 832;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 831;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 830;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 829;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 828;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 827;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 826;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 825;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 824;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 823;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 822;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 821;
-UPDATE products SET product_category_id = 3, default_expiry_days = 3, is_active = true WHERE product_id = 820;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 819;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 818;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 817;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 816;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 815;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 814;
-UPDATE products SET product_category_id = 3, default_expiry_days = 3, is_active = true WHERE product_id = 813;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 812;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 811;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 810;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 809;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 808;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 807;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 806;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 805;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 804;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 803;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 802;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 801;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 800;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 799;
-UPDATE products SET product_category_id = 2, default_expiry_days = 10, is_active = true WHERE product_id = 798;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 797;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 796;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 795;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 794;
-UPDATE products SET product_category_id = 3, default_expiry_days = 3, is_active = true WHERE product_id = 793;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 792;
-UPDATE products SET product_category_id = 3, default_expiry_days = 3, is_active = true WHERE product_id = 791;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 790;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 789;
-UPDATE products SET product_category_id = 3, default_expiry_days = 3, is_active = true WHERE product_id = 788;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 787;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 786;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 785;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 784;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 783;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 782;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 781;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 780;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 779;
-UPDATE products SET product_category_id = 3, default_expiry_days = 3, is_active = true WHERE product_id = 778;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 776;
-UPDATE products SET product_category_id = 3, default_expiry_days = 3, is_active = true WHERE product_id = 775;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 774;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 773;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 772;
-UPDATE products SET product_category_id = 2, default_expiry_days = 10, is_active = true WHERE product_id = 771;
-UPDATE products SET product_category_id = 3, default_expiry_days = 3, is_active = true WHERE product_id = 770;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 769;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 768;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 767;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 766;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 765;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 764;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 763;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 762;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 761;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 760;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 759;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 758;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 757;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 756;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 755;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 754;
-UPDATE products SET product_category_id = 2, default_expiry_days = 10, is_active = true WHERE product_id = 753;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 752;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 751;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 750;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 749;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 748;
-UPDATE products SET product_category_id = 2, default_expiry_days = 10, is_active = true WHERE product_id = 747;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 746;
-UPDATE products SET product_category_id = 9, default_expiry_days = 180, is_active = true WHERE product_id = 745;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 744;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 743;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 742;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 741;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 740;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 739;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 738;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 736;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 735;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 734;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 733;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 732;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 731;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 730;
-UPDATE products SET product_category_id = 2, default_expiry_days = 10, is_active = true WHERE product_id = 729;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 728;
-UPDATE products SET product_category_id = 2, default_expiry_days = 10, is_active = true WHERE product_id = 727;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 726;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 725;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 724;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 723;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 722;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 721;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 720;
-UPDATE products SET product_category_id = 3, default_expiry_days = 3, is_active = true WHERE product_id = 719;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 718;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 717;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 716;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 715;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 714;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 713;
-UPDATE products SET product_category_id = 3, default_expiry_days = 3, is_active = true WHERE product_id = 712;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 711;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 710;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 709;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 708;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 707;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 706;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 705;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 704;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 703;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 702;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 701;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 700;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 699;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 698;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 697;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 696;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 695;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 694;
-UPDATE products SET product_category_id = 3, default_expiry_days = 3, is_active = true WHERE product_id = 693;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 692;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 691;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 690;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 689;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 688;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 687;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 686;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 685;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 684;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 683;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 682;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 681;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 680;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 679;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 678;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 677;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 676;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 675;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 674;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 673;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 672;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 671;
-UPDATE products SET product_category_id = 5, default_expiry_days = 14, is_active = true WHERE product_id = 670;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 669;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 668;
-UPDATE products SET product_category_id = 2, default_expiry_days = 10, is_active = true WHERE product_id = 667;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 666;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 665;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 664;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 663;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 662;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 661;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 660;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 659;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 658;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 657;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 656;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 655;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 654;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 653;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 652;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 651;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 650;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 649;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 648;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 647;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 646;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 645;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 644;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 643;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 642;
-UPDATE products SET product_category_id = 5, default_expiry_days = 30, is_active = true WHERE product_id = 641;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 640;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 639;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 638;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 637;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 636;
-UPDATE products SET product_category_id = 5, default_expiry_days = 14, is_active = true WHERE product_id = 635;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 634;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 633;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 632;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 631;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 630;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 629;
-UPDATE products SET product_category_id = 3, default_expiry_days = 3, is_active = true WHERE product_id = 628;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 627;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 626;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 625;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 624;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 623;
-UPDATE products SET product_category_id = 2, default_expiry_days = 10, is_active = true WHERE product_id = 622;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 621;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 620;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 619;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 618;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 617;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 616;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 615;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 614;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 613;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 612;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 611;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 610;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 609;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 608;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 607;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 606;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 605;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 604;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 603;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 602;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 601;
-UPDATE products SET product_category_id = 2, default_expiry_days = 10, is_active = true WHERE product_id = 600;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 599;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 598;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 597;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 596;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 595;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 594;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 593;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 592;
-UPDATE products SET product_category_id = 2, default_expiry_days = 10, is_active = true WHERE product_id = 591;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 590;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 589;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 588;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 587;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 586;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 585;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 584;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 583;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 582;
-UPDATE products SET product_category_id = 3, default_expiry_days = 3, is_active = true WHERE product_id = 581;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 580;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 579;
-UPDATE products SET product_category_id = 2, default_expiry_days = 10, is_active = true WHERE product_id = 578;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 577;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 576;
-UPDATE products SET product_category_id = 2, default_expiry_days = 10, is_active = true WHERE product_id = 575;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 574;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 573;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 572;
-UPDATE products SET product_category_id = 2, default_expiry_days = 10, is_active = true WHERE product_id = 571;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 570;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 569;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 568;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 567;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 566;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 565;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 564;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 563;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 562;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 561;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 560;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 559;
-UPDATE products SET product_category_id = 5, default_expiry_days = 14, is_active = true WHERE product_id = 558;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 557;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 556;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 555;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 554;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 553;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 552;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 551;
-UPDATE products SET product_category_id = 2, default_expiry_days = 10, is_active = true WHERE product_id = 550;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 549;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 548;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 547;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 546;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 545;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 544;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 543;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 542;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 541;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 540;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 539;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 538;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 537;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 536;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 535;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 534;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 533;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 532;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 531;
-UPDATE products SET product_category_id = 2, default_expiry_days = 10, is_active = true WHERE product_id = 530;
-UPDATE products SET product_category_id = 9, default_expiry_days = 180, is_active = true WHERE product_id = 529;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 528;
-UPDATE products SET product_category_id = 2, default_expiry_days = 10, is_active = true WHERE product_id = 527;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 526;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 525;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 524;
-UPDATE products SET product_category_id = 9, default_expiry_days = 180, is_active = true WHERE product_id = 523;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 522;
-UPDATE products SET product_category_id = 5, default_expiry_days = 14, is_active = true WHERE product_id = 521;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 520;
-UPDATE products SET product_category_id = 2, default_expiry_days = 10, is_active = true WHERE product_id = 519;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 518;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 517;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 516;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 515;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 514;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 513;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 512;
-UPDATE products SET product_category_id = 2, default_expiry_days = 10, is_active = true WHERE product_id = 511;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 510;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 509;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 508;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 507;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 506;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 505;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 504;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 503;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 502;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 501;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 500;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 499;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 498;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 497;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 496;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 495;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 494;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 493;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 492;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 491;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 490;
-UPDATE products SET product_category_id = 5, default_expiry_days = 30, is_active = true WHERE product_id = 489;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 488;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 487;
-UPDATE products SET product_category_id = 3, default_expiry_days = 3, is_active = true WHERE product_id = 486;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 485;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 484;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 483;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 482;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 481;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 480;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 479;
-UPDATE products SET product_category_id = 3, default_expiry_days = 3, is_active = true WHERE product_id = 478;
-UPDATE products SET product_category_id = 9, default_expiry_days = 180, is_active = true WHERE product_id = 477;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 476;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 475;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 474;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 473;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 472;
-UPDATE products SET product_category_id = 3, default_expiry_days = 3, is_active = true WHERE product_id = 471;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 470;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 469;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 468;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 467;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 466;
-UPDATE products SET product_category_id = 3, default_expiry_days = 3, is_active = true WHERE product_id = 465;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 464;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 463;
-UPDATE products SET product_category_id = 5, default_expiry_days = 30, is_active = true WHERE product_id = 462;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 461;
-UPDATE products SET product_category_id = 9, default_expiry_days = 180, is_active = true WHERE product_id = 460;
-UPDATE products SET product_category_id = 2, default_expiry_days = 10, is_active = true WHERE product_id = 459;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 458;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 457;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 456;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 455;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 454;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 453;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 452;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 451;
-UPDATE products SET product_category_id = 3, default_expiry_days = 3, is_active = true WHERE product_id = 450;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 449;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 448;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 447;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 446;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 445;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 444;
-UPDATE products SET product_category_id = 9, default_expiry_days = 180, is_active = true WHERE product_id = 443;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 442;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 441;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 440;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 439;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 438;
-UPDATE products SET product_category_id = 3, default_expiry_days = 3, is_active = true WHERE product_id = 437;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 436;
-UPDATE products SET product_category_id = 3, default_expiry_days = 3, is_active = true WHERE product_id = 435;
-UPDATE products SET product_category_id = 3, default_expiry_days = 3, is_active = true WHERE product_id = 434;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 433;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 432;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 431;
-UPDATE products SET product_category_id = 3, default_expiry_days = 3, is_active = true WHERE product_id = 430;
-UPDATE products SET product_category_id = 5, default_expiry_days = 21, is_active = true WHERE product_id = 429;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 428;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 427;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 426;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 425;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 424;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 423;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 422;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 421;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 420;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 419;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 418;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 417;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 416;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 415;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 414;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 413;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 412;
-UPDATE products SET product_category_id = 3, default_expiry_days = 3, is_active = true WHERE product_id = 411;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 410;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 409;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 408;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 407;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 406;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 405;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 404;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 403;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 402;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 401;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 400;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 399;
-UPDATE products SET product_category_id = 5, default_expiry_days = 30, is_active = true WHERE product_id = 398;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 397;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 396;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 395;
-UPDATE products SET product_category_id = 5, default_expiry_days = 30, is_active = true WHERE product_id = 394;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 393;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 392;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 391;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 390;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 389;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 388;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 387;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 386;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 385;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 384;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 383;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 382;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 381;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 380;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 379;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 378;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 377;
-UPDATE products SET product_category_id = 5, default_expiry_days = 14, is_active = true WHERE product_id = 376;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 375;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 374;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 373;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 372;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 371;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 370;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 369;
-UPDATE products SET product_category_id = 2, default_expiry_days = 10, is_active = true WHERE product_id = 368;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 367;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 366;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 365;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 364;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 363;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 362;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 361;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 360;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 359;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 358;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 357;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 356;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 355;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 354;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 353;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 352;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 351;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 350;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 349;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 348;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 347;
-UPDATE products SET product_category_id = 3, default_expiry_days = 3, is_active = true WHERE product_id = 346;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 345;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 344;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 343;
-UPDATE products SET product_category_id = 5, default_expiry_days = 30, is_active = true WHERE product_id = 342;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 341;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 340;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 339;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 338;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 337;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 336;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 335;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 334;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 333;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 332;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 331;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 330;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 329;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 328;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 327;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 326;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 325;
-UPDATE products SET product_category_id = 5, default_expiry_days = 14, is_active = true WHERE product_id = 324;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 323;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 322;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 321;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 320;
-UPDATE products SET product_category_id = 5, default_expiry_days = 30, is_active = true WHERE product_id = 319;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 318;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 317;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 316;
-UPDATE products SET product_category_id = 2, default_expiry_days = 10, is_active = true WHERE product_id = 315;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 314;
-UPDATE products SET product_category_id = 3, default_expiry_days = 3, is_active = true WHERE product_id = 313;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 312;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 311;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 310;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 309;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 308;
-UPDATE products SET product_category_id = 3, default_expiry_days = 3, is_active = true WHERE product_id = 307;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 306;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 305;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 304;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 303;
-UPDATE products SET product_category_id = 3, default_expiry_days = 3, is_active = true WHERE product_id = 302;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 301;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 300;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 299;
-UPDATE products SET product_category_id = 3, default_expiry_days = 3, is_active = true WHERE product_id = 298;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 297;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 296;
-UPDATE products SET product_category_id = 2, default_expiry_days = 10, is_active = true WHERE product_id = 295;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 294;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 293;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 292;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 291;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 290;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 289;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 288;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 287;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 286;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 285;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 284;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 283;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 282;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 281;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 280;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 279;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 278;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 277;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 276;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 275;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 274;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 273;
-UPDATE products SET product_category_id = 3, default_expiry_days = 3, is_active = true WHERE product_id = 272;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 271;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 270;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 269;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 268;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 267;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 266;
-UPDATE products SET product_category_id = 3, default_expiry_days = 3, is_active = true WHERE product_id = 265;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 264;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 263;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 262;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 261;
-UPDATE products SET product_category_id = 5, default_expiry_days = 14, is_active = true WHERE product_id = 260;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 259;
-UPDATE products SET product_category_id = 5, default_expiry_days = 30, is_active = true WHERE product_id = 258;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 257;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 256;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 255;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 254;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 253;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 252;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 251;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 250;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 249;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 248;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 247;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 246;
-UPDATE products SET product_category_id = 5, default_expiry_days = 30, is_active = true WHERE product_id = 245;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 244;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 243;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 242;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 241;
-UPDATE products SET product_category_id = 3, default_expiry_days = 3, is_active = true WHERE product_id = 240;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 239;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 238;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 237;
-UPDATE products SET product_category_id = 3, default_expiry_days = 3, is_active = true WHERE product_id = 236;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 235;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 234;
-UPDATE products SET product_category_id = 3, default_expiry_days = 3, is_active = true WHERE product_id = 233;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 232;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 231;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 230;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 229;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 228;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 227;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 226;
-UPDATE products SET product_category_id = 3, default_expiry_days = 3, is_active = true WHERE product_id = 225;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 224;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 223;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 222;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 221;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 220;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 219;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 218;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 217;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 216;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 215;
-UPDATE products SET product_category_id = 5, default_expiry_days = 30, is_active = true WHERE product_id = 214;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 213;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 212;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 211;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 210;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 209;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 208;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 207;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 206;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 205;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 204;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 203;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 202;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 201;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 200;
-UPDATE products SET product_category_id = 3, default_expiry_days = 3, is_active = true WHERE product_id = 199;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 198;
-UPDATE products SET product_category_id = 3, default_expiry_days = 3, is_active = true WHERE product_id = 197;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 196;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 195;
-UPDATE products SET product_category_id = 2, default_expiry_days = 10, is_active = true WHERE product_id = 194;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 193;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 192;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 191;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 190;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 189;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 188;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 187;
-UPDATE products SET product_category_id = 9, default_expiry_days = 180, is_active = true WHERE product_id = 186;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 185;
-UPDATE products SET product_category_id = 3, default_expiry_days = 3, is_active = true WHERE product_id = 184;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 183;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 182;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 181;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 180;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 179;
-UPDATE products SET product_category_id = 3, default_expiry_days = 3, is_active = true WHERE product_id = 178;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 177;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 176;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 175;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 174;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 173;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 172;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 171;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 170;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 169;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 168;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 167;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 166;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 165;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 164;
-UPDATE products SET product_category_id = 3, default_expiry_days = 3, is_active = true WHERE product_id = 163;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 162;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 161;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 160;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 159;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 158;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 157;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 156;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 155;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 154;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 153;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 152;
-UPDATE products SET product_category_id = 3, default_expiry_days = 3, is_active = true WHERE product_id = 151;
-UPDATE products SET product_category_id = 2, default_expiry_days = 10, is_active = true WHERE product_id = 150;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 149;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 148;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 147;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 146;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 145;
-UPDATE products SET product_category_id = 3, default_expiry_days = 3, is_active = true WHERE product_id = 144;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 143;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 142;
-UPDATE products SET product_category_id = 2, default_expiry_days = 10, is_active = true WHERE product_id = 141;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 140;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 139;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 138;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 137;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 136;
-UPDATE products SET product_category_id = 3, default_expiry_days = 3, is_active = true WHERE product_id = 135;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 134;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 133;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 132;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 131;
-UPDATE products SET product_category_id = 2, default_expiry_days = 10, is_active = true WHERE product_id = 130;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 129;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 128;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 127;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 126;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 125;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 124;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 123;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 122;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 121;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 120;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 119;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 118;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 117;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 116;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 115;
-UPDATE products SET product_category_id = 2, default_expiry_days = 10, is_active = true WHERE product_id = 114;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 113;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 112;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 111;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 110;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 109;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 108;
-UPDATE products SET product_category_id = 2, default_expiry_days = 10, is_active = true WHERE product_id = 107;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 106;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 105;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 104;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 103;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 102;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 101;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 100;
-UPDATE products SET product_category_id = 3, default_expiry_days = 3, is_active = true WHERE product_id = 99;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 98;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 97;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 96;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 95;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 94;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 93;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 92;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 91;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 90;
-UPDATE products SET product_category_id = 3, default_expiry_days = 3, is_active = true WHERE product_id = 89;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 88;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 87;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 86;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 85;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 84;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 83;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 82;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 81;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 80;
-UPDATE products SET product_category_id = 2, default_expiry_days = 10, is_active = true WHERE product_id = 79;
-UPDATE products SET product_category_id = 6, default_expiry_days = 180, is_active = true WHERE product_id = 78;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 77;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 76;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 75;
-UPDATE products SET product_category_id = 2, default_expiry_days = 10, is_active = true WHERE product_id = 74;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 73;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 72;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 71;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 70;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 69;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 68;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 67;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 66;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 65;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 64;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 63;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 62;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 61;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 60;
-UPDATE products SET product_category_id = 9, default_expiry_days = 180, is_active = true WHERE product_id = 59;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 58;
-UPDATE products SET product_category_id = 5, default_expiry_days = 14, is_active = true WHERE product_id = 57;
-UPDATE products SET product_category_id = 2, default_expiry_days = 10, is_active = true WHERE product_id = 56;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 55;
-UPDATE products SET product_category_id = 5, default_expiry_days = 14, is_active = true WHERE product_id = 54;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 53;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 52;
-UPDATE products SET product_category_id = 5, default_expiry_days = 21, is_active = true WHERE product_id = 51;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 50;
-UPDATE products SET product_category_id = 5, default_expiry_days = 14, is_active = true WHERE product_id = 49;
-UPDATE products SET product_category_id = 2, default_expiry_days = 10, is_active = true WHERE product_id = 48;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 47;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 46;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 45;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 44;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 43;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 42;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 41;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 40;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 39;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 38;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 37;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 36;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 35;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 34;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 33;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 32;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 31;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 30;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 29;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 28;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 27;
-UPDATE products SET product_category_id = 2, default_expiry_days = 10, is_active = true WHERE product_id = 26;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 25;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 24;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 23;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 22;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 21;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 20;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 19;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 18;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 17;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 16;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 15;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 14;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 13;
-UPDATE products SET product_category_id = 1, default_expiry_days = 7, is_active = true WHERE product_id = 12;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 11;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 10;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 9;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 8;
-UPDATE products SET product_category_id = 10, default_expiry_days = 30, is_active = true WHERE product_id = 7;
-UPDATE products SET product_category_id = 5, default_expiry_days = 60, is_active = true WHERE product_id = 6;
-UPDATE products SET product_category_id = 8, default_expiry_days = 365, is_active = true WHERE product_id = 5;
-UPDATE products SET product_category_id = 5, default_expiry_days = 14, is_active = true WHERE product_id = 4;
-UPDATE products SET product_category_id = 5, default_expiry_days = 21, is_active = true WHERE product_id = 3;
-UPDATE products SET product_category_id = 4, default_expiry_days = 2, is_active = true WHERE product_id = 2;
-UPDATE products SET product_category_id = 7, default_expiry_days = 180, is_active = true WHERE product_id = 1;
-
--- 신규 한국어 실제 재료명 추가
-INSERT INTO products (product_id, product_category_id, name, default_expiry_days, is_active, created_at, updated_at) VALUES
- (1403, 1, '적상추', 7, true, '2026-07-01 12:00:00.000', NULL),
- (1404, 1, '방울양배추', 7, true, '2026-07-01 12:00:00.000', NULL),
- (1405, 1, '비타민채', 7, true, '2026-07-01 12:00:00.000', NULL),
- (1406, 1, '돌미나리', 7, true, '2026-07-01 12:00:00.000', NULL),
- (1407, 1, '딜', 7, true, '2026-07-01 12:00:00.000', NULL),
- (1408, 1, '세이지', 7, true, '2026-07-01 12:00:00.000', NULL),
- (1409, 1, '샬롯', 7, true, '2026-07-01 12:00:00.000', NULL),
- (1410, 1, '미니당근', 7, true, '2026-07-01 12:00:00.000', NULL),
- (1411, 1, '총각무', 7, true, '2026-07-01 12:00:00.000', NULL),
- (1412, 1, '마', 7, true, '2026-07-01 12:00:00.000', NULL),
- (1413, 1, '돼지감자', 7, true, '2026-07-01 12:00:00.000', NULL),
- (1414, 1, '야콘', 7, true, '2026-07-01 12:00:00.000', NULL),
- (1415, 1, '카사바', 7, true, '2026-07-01 12:00:00.000', NULL),
- (1416, 1, '백오이', 7, true, '2026-07-01 12:00:00.000', NULL),
- (1417, 1, '가시오이', 7, true, '2026-07-01 12:00:00.000', NULL),
- (1418, 1, '노각', 7, true, '2026-07-01 12:00:00.000', NULL),
- (1419, 1, '주키니', 7, true, '2026-07-01 12:00:00.000', NULL),
- (1420, 1, '늙은호박', 7, true, '2026-07-01 12:00:00.000', NULL),
- (1421, 1, '풋호박', 7, true, '2026-07-01 12:00:00.000', NULL),
- (1422, 1, '대추방울토마토', 7, true, '2026-07-01 12:00:00.000', NULL),
- (1423, 1, '씀바귀', 7, true, '2026-07-01 12:00:00.000', NULL),
- (1424, 1, '엄나무순', 7, true, '2026-07-01 12:00:00.000', NULL),
- (1425, 1, '방풍나물', 7, true, '2026-07-01 12:00:00.000', NULL),
- (1426, 1, '숙주나물', 7, true, '2026-07-01 12:00:00.000', NULL),
- (1427, 1, '배추김치용배추', 7, true, '2026-07-01 12:00:00.000', NULL),
- (1428, 1, '송이버섯', 7, true, '2026-07-01 12:00:00.000', NULL),
- (1429, 1, '능이버섯', 7, true, '2026-07-01 12:00:00.000', NULL),
- (1430, 1, '포르치니버섯', 7, true, '2026-07-01 12:00:00.000', NULL),
- (1431, 1, '트러플', 7, true, '2026-07-01 12:00:00.000', NULL),
- (1432, 1, '버터헤드레터스', 7, true, '2026-07-01 12:00:00.000', NULL),
- (1433, 1, '엔다이브', 7, true, '2026-07-01 12:00:00.000', NULL),
- (1434, 1, '비름', 7, true, '2026-07-01 12:00:00.000', NULL),
- (1435, 1, '아티초크', 7, true, '2026-07-01 12:00:00.000', NULL),
- (1436, 1, '펜넬', 7, true, '2026-07-01 12:00:00.000', NULL),
- (1437, 1, '오크라', 7, true, '2026-07-01 12:00:00.000', NULL),
- (1438, 1, '루타바가', 7, true, '2026-07-01 12:00:00.000', NULL),
- (1439, 1, '파스닙', 7, true, '2026-07-01 12:00:00.000', NULL),
- (1440, 1, '물냉이', 7, true, '2026-07-01 12:00:00.000', NULL),
- (1441, 1, '스위스차드', 7, true, '2026-07-01 12:00:00.000', NULL),
- (1442, 1, '레디시', 7, true, '2026-07-01 12:00:00.000', NULL),
- (1443, 1, '겨자잎', 7, true, '2026-07-01 12:00:00.000', NULL),
- (1444, 1, '갓', 7, true, '2026-07-01 12:00:00.000', NULL),
- (1445, 1, '유채나물', 7, true, '2026-07-01 12:00:00.000', NULL),
- (1446, 1, '메밀순', 7, true, '2026-07-01 12:00:00.000', NULL),
- (1447, 1, '보리순', 7, true, '2026-07-01 12:00:00.000', NULL),
- (1448, 1, '완두순', 7, true, '2026-07-01 12:00:00.000', NULL),
- (1449, 1, '양하', 7, true, '2026-07-01 12:00:00.000', NULL),
- (1450, 1, '명이나물', 7, true, '2026-07-01 12:00:00.000', NULL),
- (1451, 1, '고들빼기', 7, true, '2026-07-01 12:00:00.000', NULL),
- (1452, 1, '질경이', 7, true, '2026-07-01 12:00:00.000', NULL),
- (1453, 1, '깻순', 7, true, '2026-07-01 12:00:00.000', NULL),
- (1454, 1, '고춧잎', 7, true, '2026-07-01 12:00:00.000', NULL),
- (1455, 1, '고구마잎', 7, true, '2026-07-01 12:00:00.000', NULL),
- (1456, 1, '당근잎', 7, true, '2026-07-01 12:00:00.000', NULL),
- (1457, 1, '비트잎', 7, true, '2026-07-01 12:00:00.000', NULL),
- (1458, 2, '아오리사과', 10, true, '2026-07-01 12:00:00.000', NULL),
- (1459, 2, '신고배', 10, true, '2026-07-01 12:00:00.000', NULL),
- (1460, 2, '원황배', 10, true, '2026-07-01 12:00:00.000', NULL),
- (1461, 2, '천혜향', 10, true, '2026-07-01 12:00:00.000', NULL),
- (1462, 2, '레드향', 10, true, '2026-07-01 12:00:00.000', NULL),
- (1463, 2, '황금향', 10, true, '2026-07-01 12:00:00.000', NULL),
- (1464, 2, '블러드오렌지', 10, true, '2026-07-01 12:00:00.000', NULL),
- (1465, 2, '금귤', 10, true, '2026-07-01 12:00:00.000', NULL),
- (1466, 2, '애플망고', 10, true, '2026-07-01 12:00:00.000', NULL),
- (1467, 2, '그린망고', 10, true, '2026-07-01 12:00:00.000', NULL),
- (1468, 2, '파파야', 10, true, '2026-07-01 12:00:00.000', NULL),
- (1469, 2, '구아바', 10, true, '2026-07-01 12:00:00.000', NULL),
- (1470, 2, '패션프루트', 10, true, '2026-07-01 12:00:00.000', NULL),
- (1471, 2, '람부탄', 10, true, '2026-07-01 12:00:00.000', NULL),
- (1472, 2, '망고스틴', 10, true, '2026-07-01 12:00:00.000', NULL),
- (1473, 2, '용과', 10, true, '2026-07-01 12:00:00.000', NULL),
- (1474, 2, '두리안', 10, true, '2026-07-01 12:00:00.000', NULL),
- (1475, 2, '잭프루트', 10, true, '2026-07-01 12:00:00.000', NULL),
- (1476, 2, '스타프루트', 10, true, '2026-07-01 12:00:00.000', NULL),
- (1477, 2, '골드키위', 10, true, '2026-07-01 12:00:00.000', NULL),
- (1478, 2, '그린키위', 10, true, '2026-07-01 12:00:00.000', NULL),
- (1479, 2, '애플수박', 10, true, '2026-07-01 12:00:00.000', NULL),
- (1480, 2, '머스크멜론', 10, true, '2026-07-01 12:00:00.000', NULL),
- (1481, 2, '허니듀멜론', 10, true, '2026-07-01 12:00:00.000', NULL),
- (1482, 2, '칸탈루프', 10, true, '2026-07-01 12:00:00.000', NULL),
- (1483, 2, '블랙베리', 10, true, '2026-07-01 12:00:00.000', NULL),
- (1484, 2, '아로니아', 10, true, '2026-07-01 12:00:00.000', NULL),
- (1485, 2, '앵두', 10, true, '2026-07-01 12:00:00.000', NULL),
- (1486, 2, '거봉', 10, true, '2026-07-01 12:00:00.000', NULL),
- (1487, 2, '샤인머스캣', 10, true, '2026-07-01 12:00:00.000', NULL),
- (1488, 2, '캠벨포도', 10, true, '2026-07-01 12:00:00.000', NULL),
- (1489, 2, '머루', 10, true, '2026-07-01 12:00:00.000', NULL),
- (1490, 2, '백도', 10, true, '2026-07-01 12:00:00.000', NULL),
- (1491, 2, '플럼', 10, true, '2026-07-01 12:00:00.000', NULL),
- (1492, 2, '넥타린', 10, true, '2026-07-01 12:00:00.000', NULL),
- (1493, 2, '생대추', 10, true, '2026-07-01 12:00:00.000', NULL),
- (1494, 2, '말린대추', 10, true, '2026-07-01 12:00:00.000', NULL),
- (1495, 2, '코코넛', 10, true, '2026-07-01 12:00:00.000', NULL),
- (1496, 2, '오디', 10, true, '2026-07-01 12:00:00.000', NULL),
- (1497, 2, '보리수', 10, true, '2026-07-01 12:00:00.000', NULL),
- (1498, 2, '구스베리', 10, true, '2026-07-01 12:00:00.000', NULL),
- (1499, 2, '블랙커런트', 10, true, '2026-07-01 12:00:00.000', NULL),
- (1500, 2, '레드커런트', 10, true, '2026-07-01 12:00:00.000', NULL),
- (1501, 2, '엘더베리', 10, true, '2026-07-01 12:00:00.000', NULL),
- (1502, 2, '클레멘타인', 10, true, '2026-07-01 12:00:00.000', NULL),
- (1503, 2, '만다린', 10, true, '2026-07-01 12:00:00.000', NULL),
- (1504, 2, '플루오트', 10, true, '2026-07-01 12:00:00.000', NULL),
- (1505, 2, '카람볼라', 10, true, '2026-07-01 12:00:00.000', NULL),
- (1506, 2, '롱간', 10, true, '2026-07-01 12:00:00.000', NULL),
- (1507, 2, '청귤', 10, true, '2026-07-01 12:00:00.000', NULL),
- (1508, 2, '건자두', 10, true, '2026-07-01 12:00:00.000', NULL),
- (1509, 2, '말린무화과', 10, true, '2026-07-01 12:00:00.000', NULL),
- (1510, 2, '말린망고', 10, true, '2026-07-01 12:00:00.000', NULL),
- (1511, 3, '한우소고기', 3, true, '2026-07-01 12:00:00.000', NULL),
- (1512, 3, '수입소고기', 3, true, '2026-07-01 12:00:00.000', NULL),
- (1513, 3, '소안심', 3, true, '2026-07-01 12:00:00.000', NULL),
- (1514, 3, '소채끝', 3, true, '2026-07-01 12:00:00.000', NULL),
- (1515, 3, '소갈빗살', 3, true, '2026-07-01 12:00:00.000', NULL),
- (1516, 3, '소부채살', 3, true, '2026-07-01 12:00:00.000', NULL),
- (1517, 3, '소살치살', 3, true, '2026-07-01 12:00:00.000', NULL),
- (1518, 3, '소토시살', 3, true, '2026-07-01 12:00:00.000', NULL),
- (1519, 3, '소치마살', 3, true, '2026-07-01 12:00:00.000', NULL),
- (1520, 3, '소업진살', 3, true, '2026-07-01 12:00:00.000', NULL),
- (1521, 3, '소우둔', 3, true, '2026-07-01 12:00:00.000', NULL),
- (1522, 3, '소홍두깨', 3, true, '2026-07-01 12:00:00.000', NULL),
- (1523, 3, '소목심', 3, true, '2026-07-01 12:00:00.000', NULL),
- (1524, 3, '소앞다리', 3, true, '2026-07-01 12:00:00.000', NULL),
- (1525, 3, '소다짐육', 3, true, '2026-07-01 12:00:00.000', NULL),
- (1526, 3, '소꼬리', 3, true, '2026-07-01 12:00:00.000', NULL),
- (1527, 3, '소족', 3, true, '2026-07-01 12:00:00.000', NULL),
- (1528, 3, '소간', 3, true, '2026-07-01 12:00:00.000', NULL),
- (1529, 3, '소곱창', 3, true, '2026-07-01 12:00:00.000', NULL),
- (1530, 3, '소대창', 3, true, '2026-07-01 12:00:00.000', NULL),
- (1531, 3, '소막창', 3, true, '2026-07-01 12:00:00.000', NULL),
- (1532, 3, '소양', 3, true, '2026-07-01 12:00:00.000', NULL),
- (1533, 3, '소염통', 3, true, '2026-07-01 12:00:00.000', NULL),
- (1534, 3, '돼지삼겹살', 3, true, '2026-07-01 12:00:00.000', NULL),
- (1535, 3, '돼지앞다리살', 3, true, '2026-07-01 12:00:00.000', NULL),
- (1536, 3, '돼지뒷다리살', 3, true, '2026-07-01 12:00:00.000', NULL),
- (1537, 3, '돼지안심', 3, true, '2026-07-01 12:00:00.000', NULL),
- (1538, 3, '돼지갈매기살', 3, true, '2026-07-01 12:00:00.000', NULL),
- (1539, 3, '돼지항정살', 3, true, '2026-07-01 12:00:00.000', NULL),
- (1540, 3, '돼지가브리살', 3, true, '2026-07-01 12:00:00.000', NULL),
- (1541, 3, '돼지다짐육', 3, true, '2026-07-01 12:00:00.000', NULL),
- (1542, 3, '돼지족발', 3, true, '2026-07-01 12:00:00.000', NULL),
- (1543, 3, '돼지간', 3, true, '2026-07-01 12:00:00.000', NULL),
- (1544, 3, '돼지곱창', 3, true, '2026-07-01 12:00:00.000', NULL),
- (1545, 3, '돼지막창', 3, true, '2026-07-01 12:00:00.000', NULL),
- (1546, 3, '돼지껍데기', 3, true, '2026-07-01 12:00:00.000', NULL),
- (1547, 3, '닭안심', 3, true, '2026-07-01 12:00:00.000', NULL),
- (1548, 3, '닭윙', 3, true, '2026-07-01 12:00:00.000', NULL),
- (1549, 3, '닭근위', 3, true, '2026-07-01 12:00:00.000', NULL),
- (1550, 3, '닭목살', 3, true, '2026-07-01 12:00:00.000', NULL),
- (1551, 3, '닭다짐육', 3, true, '2026-07-01 12:00:00.000', NULL),
- (1552, 3, '오리가슴살', 3, true, '2026-07-01 12:00:00.000', NULL),
- (1553, 3, '오리다리살', 3, true, '2026-07-01 12:00:00.000', NULL),
- (1554, 3, '양갈비', 3, true, '2026-07-01 12:00:00.000', NULL),
- (1555, 3, '양등심', 3, true, '2026-07-01 12:00:00.000', NULL),
- (1556, 3, '양어깨살', 3, true, '2026-07-01 12:00:00.000', NULL),
- (1557, 3, '양다리살', 3, true, '2026-07-01 12:00:00.000', NULL),
- (1558, 3, '양다짐육', 3, true, '2026-07-01 12:00:00.000', NULL),
- (1559, 3, '염소고기', 3, true, '2026-07-01 12:00:00.000', NULL),
- (1560, 3, '토끼고기', 3, true, '2026-07-01 12:00:00.000', NULL),
- (1561, 3, '칠면조고기', 3, true, '2026-07-01 12:00:00.000', NULL),
- (1562, 3, '칠면조가슴살', 3, true, '2026-07-01 12:00:00.000', NULL),
- (1563, 3, '말고기', 3, true, '2026-07-01 12:00:00.000', NULL),
- (1564, 3, '사슴고기', 3, true, '2026-07-01 12:00:00.000', NULL),
- (1565, 3, '메추리고기', 3, true, '2026-07-01 12:00:00.000', NULL),
- (1566, 3, '거위고기', 3, true, '2026-07-01 12:00:00.000', NULL),
- (1567, 3, '프랑크소시지', 3, true, '2026-07-01 12:00:00.000', NULL),
- (1568, 3, '비엔나소시지', 3, true, '2026-07-01 12:00:00.000', NULL),
- (1569, 3, '초리조', 3, true, '2026-07-01 12:00:00.000', NULL),
- (1570, 3, '프로슈토', 3, true, '2026-07-01 12:00:00.000', NULL),
- (1571, 3, '판체타', 3, true, '2026-07-01 12:00:00.000', NULL),
- (1572, 4, '정어리', 2, true, '2026-07-01 12:00:00.000', NULL),
- (1573, 4, '대멸치', 2, true, '2026-07-01 12:00:00.000', NULL),
- (1574, 4, '중멸치', 2, true, '2026-07-01 12:00:00.000', NULL),
- (1575, 4, '생태', 2, true, '2026-07-01 12:00:00.000', NULL),
- (1576, 4, '동태', 2, true, '2026-07-01 12:00:00.000', NULL),
- (1577, 4, '참가자미', 2, true, '2026-07-01 12:00:00.000', NULL),
- (1578, 4, '도다리', 2, true, '2026-07-01 12:00:00.000', NULL),
- (1579, 4, '참돔', 2, true, '2026-07-01 12:00:00.000', NULL),
- (1580, 4, '감성돔', 2, true, '2026-07-01 12:00:00.000', NULL),
- (1581, 4, '굴비', 2, true, '2026-07-01 12:00:00.000', NULL),
- (1582, 4, '임연수어', 2, true, '2026-07-01 12:00:00.000', NULL),
- (1583, 4, '열기', 2, true, '2026-07-01 12:00:00.000', NULL),
- (1584, 4, '볼락', 2, true, '2026-07-01 12:00:00.000', NULL),
- (1585, 4, '부시리', 2, true, '2026-07-01 12:00:00.000', NULL),
- (1586, 4, '전어', 2, true, '2026-07-01 12:00:00.000', NULL),
- (1587, 4, '청어', 2, true, '2026-07-01 12:00:00.000', NULL),
- (1588, 4, '전갱이', 2, true, '2026-07-01 12:00:00.000', NULL),
- (1589, 4, '숭어', 2, true, '2026-07-01 12:00:00.000', NULL),
- (1590, 4, '황새치', 2, true, '2026-07-01 12:00:00.000', NULL),
- (1591, 4, '청새치', 2, true, '2026-07-01 12:00:00.000', NULL),
- (1592, 4, '민물장어', 2, true, '2026-07-01 12:00:00.000', NULL),
- (1593, 4, '바닷장어', 2, true, '2026-07-01 12:00:00.000', NULL),
- (1594, 4, '홍어', 2, true, '2026-07-01 12:00:00.000', NULL),
- (1595, 4, '삼식이', 2, true, '2026-07-01 12:00:00.000', NULL),
- (1596, 4, '새꼬막', 2, true, '2026-07-01 12:00:00.000', NULL),
- (1597, 4, '피꼬막', 2, true, '2026-07-01 12:00:00.000', NULL),
- (1598, 4, '백합조개', 2, true, '2026-07-01 12:00:00.000', NULL),
- (1599, 4, '동죽조개', 2, true, '2026-07-01 12:00:00.000', NULL),
- (1600, 4, '석화', 2, true, '2026-07-01 12:00:00.000', NULL),
- (1601, 4, '가리비', 2, true, '2026-07-01 12:00:00.000', NULL),
- (1602, 4, '키조개', 2, true, '2026-07-01 12:00:00.000', NULL),
- (1603, 4, '맛조개', 2, true, '2026-07-01 12:00:00.000', NULL),
- (1604, 4, '대합', 2, true, '2026-07-01 12:00:00.000', NULL),
- (1605, 4, '재첩', 2, true, '2026-07-01 12:00:00.000', NULL),
- (1606, 4, '꽃새우', 2, true, '2026-07-01 12:00:00.000', NULL),
- (1607, 4, '민물새우', 2, true, '2026-07-01 12:00:00.000', NULL),
- (1608, 4, '대게', 2, true, '2026-07-01 12:00:00.000', NULL),
- (1609, 4, '홍게', 2, true, '2026-07-01 12:00:00.000', NULL),
- (1610, 4, '킹크랩', 2, true, '2026-07-01 12:00:00.000', NULL),
- (1611, 4, '랍스터', 2, true, '2026-07-01 12:00:00.000', NULL),
- (1612, 4, '한치', 2, true, '2026-07-01 12:00:00.000', NULL),
- (1613, 4, '해삼', 2, true, '2026-07-01 12:00:00.000', NULL),
- (1614, 4, '멍게', 2, true, '2026-07-01 12:00:00.000', NULL),
- (1615, 4, '성게알', 2, true, '2026-07-01 12:00:00.000', NULL),
- (1616, 4, '오만둥이', 2, true, '2026-07-01 12:00:00.000', NULL),
- (1617, 4, '생미역', 2, true, '2026-07-01 12:00:00.000', NULL),
- (1618, 4, '톳', 2, true, '2026-07-01 12:00:00.000', NULL),
- (1619, 4, '돌김', 2, true, '2026-07-01 12:00:00.000', NULL),
- (1620, 4, '구운김', 2, true, '2026-07-01 12:00:00.000', NULL),
- (1621, 4, '청각', 2, true, '2026-07-01 12:00:00.000', NULL),
- (1622, 4, '모자반', 2, true, '2026-07-01 12:00:00.000', NULL),
- (1623, 4, '우뭇가사리', 2, true, '2026-07-01 12:00:00.000', NULL),
- (1624, 5, '무지방우유', 14, true, '2026-07-01 12:00:00.000', NULL),
- (1625, 5, '멸균우유', 14, true, '2026-07-01 12:00:00.000', NULL),
- (1626, 5, '산양유', 14, true, '2026-07-01 12:00:00.000', NULL),
- (1627, 5, '염소우유', 14, true, '2026-07-01 12:00:00.000', NULL),
- (1628, 5, '무가당두유', 14, true, '2026-07-01 12:00:00.000', NULL),
- (1629, 5, '아몬드밀크', 14, true, '2026-07-01 12:00:00.000', NULL),
- (1630, 5, '오트밀크', 14, true, '2026-07-01 12:00:00.000', NULL),
- (1631, 5, '고다치즈', 30, true, '2026-07-01 12:00:00.000', NULL),
- (1632, 5, '브리치즈', 30, true, '2026-07-01 12:00:00.000', NULL),
- (1633, 5, '카망베르치즈', 30, true, '2026-07-01 12:00:00.000', NULL),
- (1634, 5, '페타치즈', 30, true, '2026-07-01 12:00:00.000', NULL),
- (1635, 5, '블루치즈', 30, true, '2026-07-01 12:00:00.000', NULL),
- (1636, 5, '에멘탈치즈', 30, true, '2026-07-01 12:00:00.000', NULL),
- (1637, 5, '그뤼에르치즈', 30, true, '2026-07-01 12:00:00.000', NULL),
- (1638, 5, '콜비잭치즈', 30, true, '2026-07-01 12:00:00.000', NULL),
- (1639, 5, '몬터레이잭치즈', 30, true, '2026-07-01 12:00:00.000', NULL),
- (1640, 5, '마스카포네치즈', 30, true, '2026-07-01 12:00:00.000', NULL),
- (1641, 5, '코티지치즈', 30, true, '2026-07-01 12:00:00.000', NULL),
- (1642, 5, '케피어', 14, true, '2026-07-01 12:00:00.000', NULL),
- (1643, 5, '무염버터', 60, true, '2026-07-01 12:00:00.000', NULL),
- (1644, 5, '가염버터', 60, true, '2026-07-01 12:00:00.000', NULL),
- (1645, 5, '마가린', 14, true, '2026-07-01 12:00:00.000', NULL),
- (1646, 5, '유정란', 14, true, '2026-07-01 12:00:00.000', NULL),
- (1647, 5, '오리알', 21, true, '2026-07-01 12:00:00.000', NULL),
- (1648, 5, '거위알', 21, true, '2026-07-01 12:00:00.000', NULL),
- (1649, 5, '난황', 14, true, '2026-07-01 12:00:00.000', NULL),
- (1650, 5, '난백', 14, true, '2026-07-01 12:00:00.000', NULL),
- (1651, 5, '액상계란', 21, true, '2026-07-01 12:00:00.000', NULL),
- (1652, 6, '늘보리', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1653, 6, '기장', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1654, 6, '조', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1655, 6, '메밀', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1656, 6, '아마란스', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1657, 6, '쿠스쿠스', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1658, 6, '불거', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1659, 6, '파로', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1660, 6, '스펠트', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1661, 6, '카무트', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1662, 6, '찰옥수수', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1663, 6, '감자전분', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1664, 6, '고구마전분', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1665, 6, '타피오카전분', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1666, 6, '중면', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1667, 6, '라면사리', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1668, 6, '녹두당면', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1669, 6, '링귀니', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1670, 6, '페투치네', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1671, 6, '마카로니', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1672, 6, '라자냐', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1673, 6, '리가토니', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1674, 6, '오르조', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1675, 6, '카펠리니', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1676, 6, '통밀빵', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1677, 6, '호밀빵', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1678, 6, '베이글', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1679, 6, '크루아상', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1680, 6, '모닝빵', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1681, 6, '난', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1682, 6, '피타브레드', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1683, 6, '잉글리시머핀', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1684, 6, '떡국떡', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1685, 6, '백설기', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1686, 6, '인절미', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1687, 7, '찌개두부', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1688, 7, '백태', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1689, 7, '녹두', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1690, 7, '적두', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1691, 7, '작두콩', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1692, 7, '동부콩', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1693, 7, '리마콩', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1694, 7, '핀토빈', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1695, 7, '키드니빈', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1696, 7, '병아리콩통조림', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1697, 7, '브라질너트', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1698, 7, '치아씨드', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1699, 7, '아마씨', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1700, 7, '햄프씨드', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1701, 7, '타히니', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1702, 7, '아몬드버터', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1703, 8, '꽃소금', 365, true, '2026-07-01 12:00:00.000', NULL),
- (1704, 8, '구운소금', 365, true, '2026-07-01 12:00:00.000', NULL),
- (1705, 8, '백설탕', 365, true, '2026-07-01 12:00:00.000', NULL),
- (1706, 8, '원당', 365, true, '2026-07-01 12:00:00.000', NULL),
- (1707, 8, '아카시아꿀', 365, true, '2026-07-01 12:00:00.000', NULL),
- (1708, 8, '밤꿀', 365, true, '2026-07-01 12:00:00.000', NULL),
- (1709, 8, '조림간장', 365, true, '2026-07-01 12:00:00.000', NULL),
- (1710, 8, '화이트와인식초', 365, true, '2026-07-01 12:00:00.000', NULL),
- (1711, 8, '엑스트라버진올리브오일', 365, true, '2026-07-01 12:00:00.000', NULL),
- (1712, 8, '해바라기유', 365, true, '2026-07-01 12:00:00.000', NULL),
- (1713, 8, '옥수수유', 365, true, '2026-07-01 12:00:00.000', NULL),
- (1714, 8, '아보카도오일', 365, true, '2026-07-01 12:00:00.000', NULL),
- (1715, 8, '굴소스', 365, true, '2026-07-01 12:00:00.000', NULL),
- (1716, 8, '피시소스', 365, true, '2026-07-01 12:00:00.000', NULL),
- (1717, 8, '참치액', 365, true, '2026-07-01 12:00:00.000', NULL),
- (1718, 8, '갈치속젓', 365, true, '2026-07-01 12:00:00.000', NULL),
- (1719, 8, '오징어젓', 365, true, '2026-07-01 12:00:00.000', NULL),
- (1720, 8, '창난젓', 365, true, '2026-07-01 12:00:00.000', NULL),
- (1721, 8, '스리라차소스', 365, true, '2026-07-01 12:00:00.000', NULL),
- (1722, 8, '타바스코소스', 365, true, '2026-07-01 12:00:00.000', NULL),
- (1723, 8, '우스터소스', 365, true, '2026-07-01 12:00:00.000', NULL),
- (1724, 8, '데리야키소스', 365, true, '2026-07-01 12:00:00.000', NULL),
- (1725, 8, '돈가스소스', 365, true, '2026-07-01 12:00:00.000', NULL),
- (1726, 8, '칠리소스', 365, true, '2026-07-01 12:00:00.000', NULL),
- (1727, 8, '핫소스', 365, true, '2026-07-01 12:00:00.000', NULL),
- (1728, 8, '고운고춧가루', 365, true, '2026-07-01 12:00:00.000', NULL),
- (1729, 8, '굵은고춧가루', 365, true, '2026-07-01 12:00:00.000', NULL),
- (1730, 8, '산초가루', 365, true, '2026-07-01 12:00:00.000', NULL),
- (1731, 8, '제피가루', 365, true, '2026-07-01 12:00:00.000', NULL),
- (1732, 8, '시나몬', 365, true, '2026-07-01 12:00:00.000', NULL),
- (1733, 8, '육두구', 365, true, '2026-07-01 12:00:00.000', NULL),
- (1734, 8, '카다멈', 365, true, '2026-07-01 12:00:00.000', NULL),
- (1735, 8, '타임가루', 365, true, '2026-07-01 12:00:00.000', NULL),
- (1736, 8, '로즈마리가루', 365, true, '2026-07-01 12:00:00.000', NULL),
- (1737, 8, '비프스톡', 365, true, '2026-07-01 12:00:00.000', NULL),
- (1738, 8, '채소스톡', 365, true, '2026-07-01 12:00:00.000', NULL),
- (1739, 9, '총각김치', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1740, 9, '갓김치', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1741, 9, '파김치', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1742, 9, '오이소박이', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1743, 9, '할라피뇨피클', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1744, 9, '올리브절임', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1745, 9, '고등어캔', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1746, 9, '꽁치캔', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1747, 9, '골뱅이캔', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1748, 9, '옥수수캔', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1749, 9, '토마토캔', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1750, 9, '콩통조림', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1751, 9, '햄통조림', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1752, 9, '런천미트', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1753, 9, '사각어묵', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1754, 9, '봉어묵', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1755, 9, '고기만두', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1756, 9, '김치만두', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1757, 9, '물만두', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1758, 9, '군만두', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1759, 9, '너겟', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1760, 9, '치킨너겟', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1761, 9, '생선가스', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1762, 9, '핫도그', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1763, 9, '짜장라면', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1764, 9, '비빔면', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1765, 9, '즉석밥', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1766, 9, '카레루', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1767, 9, '하이라이스루', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1768, 9, '짜장분말', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1769, 9, '사과잼', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1770, 9, '마멀레이드', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1771, 9, '밀크초콜릿', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1772, 9, '화이트초콜릿', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1773, 9, '비스킷', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1774, 9, '콘플레이크', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1775, 9, '선식', 180, true, '2026-07-01 12:00:00.000', NULL),
- (1776, 10, '코코아가루', 30, true, '2026-07-01 12:00:00.000', NULL),
- (1777, 10, '말차가루', 30, true, '2026-07-01 12:00:00.000', NULL),
- (1778, 10, '홍차잎', 30, true, '2026-07-01 12:00:00.000', NULL),
- (1779, 10, '커피원두', 30, true, '2026-07-01 12:00:00.000', NULL),
- (1780, 10, '원두커피', 30, true, '2026-07-01 12:00:00.000', NULL),
- (1781, 10, '인스턴트커피', 30, true, '2026-07-01 12:00:00.000', NULL),
- (1782, 10, '보리차', 30, true, '2026-07-01 12:00:00.000', NULL),
- (1783, 10, '둥굴레차', 30, true, '2026-07-01 12:00:00.000', NULL),
- (1784, 10, '결명자차', 30, true, '2026-07-01 12:00:00.000', NULL),
- (1785, 10, '루이보스', 30, true, '2026-07-01 12:00:00.000', NULL),
- (1786, 10, '히비스커스', 30, true, '2026-07-01 12:00:00.000', NULL),
- (1787, 10, '카모마일', 30, true, '2026-07-01 12:00:00.000', NULL),
- (1788, 10, '라벤더', 30, true, '2026-07-01 12:00:00.000', NULL),
- (1789, 10, '로즈힙', 30, true, '2026-07-01 12:00:00.000', NULL),
- (1790, 10, '감초', 30, true, '2026-07-01 12:00:00.000', NULL),
- (1791, 10, '홍삼', 30, true, '2026-07-01 12:00:00.000', NULL),
- (1792, 10, '마카분말', 30, true, '2026-07-01 12:00:00.000', NULL),
- (1793, 10, '스피루리나', 30, true, '2026-07-01 12:00:00.000', NULL),
- (1794, 10, '클로렐라', 30, true, '2026-07-01 12:00:00.000', NULL),
- (1795, 10, '프로폴리스', 30, true, '2026-07-01 12:00:00.000', NULL),
- (1796, 10, '타피오카펄', 30, true, '2026-07-01 12:00:00.000', NULL),
- (1797, 10, '우무', 30, true, '2026-07-01 12:00:00.000', NULL),
- (1798, 10, '차가버섯', 30, true, '2026-07-01 12:00:00.000', NULL),
- (1799, 10, '콜라겐분말', 30, true, '2026-07-01 12:00:00.000', NULL),
- (1800, 10, '코코넛칩', 30, true, '2026-07-01 12:00:00.000', NULL),
- (1801, 10, '건조코코넛', 30, true, '2026-07-01 12:00:00.000', NULL),
- (1802, 10, '바닐라익스트랙', 30, true, '2026-07-01 12:00:00.000', NULL),
- (1803, 10, '판한천', 30, true, '2026-07-01 12:00:00.000', NULL),
- (1804, 10, '식용색소', 30, true, '2026-07-01 12:00:00.000', NULL)
-ON CONFLICT (name) DO NOTHING;
 
 SELECT setval('grades_grade_id_seq', COALESCE((SELECT MAX(grade_id) FROM grades), 1));
 SELECT setval('product_categories_product_category_id_seq', COALESCE((SELECT MAX(product_category_id) FROM product_categories), 1));
