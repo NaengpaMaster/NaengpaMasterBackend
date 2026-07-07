@@ -33,7 +33,7 @@ public class InquiryService {
 
         Long memberId = resolveMemberId(email);
 
-        return inquiryRepository.findByMemberIdAndIsDeletedFalse(memberId, pageable)
+        return inquiryRepository.findByMemberIdAndIsDeletedFalseOrderByCreatedAtDesc(memberId, pageable)
                 .map(InquiryResponse::from);
     }
 

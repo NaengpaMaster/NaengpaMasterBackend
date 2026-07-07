@@ -26,8 +26,8 @@ public class AdminInquiriesController {
     // 문의 목록 조회 API
     @GetMapping
     public ResponseEntity<ApiResponse<Page<AdminInquiryResponse>>> getInquiries(
-            @RequestParam(required = false) Boolean isAnswered,
-            @PageableDefault(size = 10, sort = "createdAt", direction = Direction.DESC) Pageable pageable
+            @RequestParam Boolean isAnswered,
+            @PageableDefault(sort = "createdAt", direction = Direction.DESC) Pageable pageable
     ) {
         return ResponseEntity.ok(ApiResponse.success(adminInquiryService.getInquiries(isAnswered, pageable)));
     }

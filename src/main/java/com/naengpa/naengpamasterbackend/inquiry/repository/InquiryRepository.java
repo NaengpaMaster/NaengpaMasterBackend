@@ -11,7 +11,7 @@ import java.util.Optional;
 @Repository
 public interface InquiryRepository extends JpaRepository<Inquiry, Long> {
 
-    Page<Inquiry> findByMemberIdAndIsDeletedFalse(Long memberId, Pageable pageable);
+    Page<Inquiry> findByMemberIdAndIsDeletedFalseOrderByCreatedAtDesc(Long memberId, Pageable pageable);
 
     Optional<Inquiry> findByIdAndIsDeletedFalse(Long inquiryId);
 }
