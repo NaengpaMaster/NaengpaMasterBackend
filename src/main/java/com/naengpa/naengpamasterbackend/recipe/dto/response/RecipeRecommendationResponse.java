@@ -11,6 +11,7 @@ public record RecipeRecommendationResponse(
         Integer cookTime,
         Integer matchRate,
         boolean expiredIngredientIncluded,
+        boolean expiringSoonIngredientIncluded,
         Long likeCount,
         boolean liked,
         List<String> missingIngredients,

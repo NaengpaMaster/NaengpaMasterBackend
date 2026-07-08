@@ -109,9 +109,18 @@ public class RecipeRecommendationService {
                 .map(FridgeItem::getProductId)
                 .collect(Collectors.toSet());
 
-        LocalDate threshold = LocalDate.now().plusDays(EXPIRY_SOON_DAYS);
-        Set<Long> expiringProductIds = fridgeItems.stream()
-                .filter(item -> item.getExpiryDate() != null && !item.getExpiryDate().isAfter(threshold))
+        LocalDate today = LocalDate.now();
+        LocalDate soonThreshold = today.plusDays(EXPIRY_SOON_DAYS);
+        // 조회 시점 기준으로 이미 유통기한이 지난(만료된) 보유 재료
+        Set<Long> expiredProductIds = fridgeItems.stream()
+                .filter(item -> item.getExpiryDate() != null && item.getExpiryDate().isBefore(today))
+                .map(FridgeItem::getProductId)
+                .collect(Collectors.toSet());
+        // 아직 만료되지 않았지만 유통기한이 임박한(오늘~오늘+3일) 재료
+        Set<Long> expiringSoonProductIds = fridgeItems.stream()
+                .filter(item -> item.getExpiryDate() != null
+                        && !item.getExpiryDate().isBefore(today)
+                        && !item.getExpiryDate().isAfter(soonThreshold))
                 .map(FridgeItem::getProductId)
                 .collect(Collectors.toSet());
 
@@ -125,7 +134,8 @@ public class RecipeRecommendationService {
                 .map(FoodCategory::getId)
                 .collect(Collectors.toSet());
 
-        return new MemberContext(ownedProductIds, expiringProductIds, excludedProductIds, favoriteFoodCategoryIds);
+        return new MemberContext(ownedProductIds, expiredProductIds, expiringSoonProductIds,
+                excludedProductIds, favoriteFoodCategoryIds);
     }
 
     private Map<Long, List<RecipeRequiredProduct>> loadRequiredProducts(List<Recipe> candidates) {
@@ -190,14 +200,17 @@ public class RecipeRecommendationService {
                 .filter(java.util.Objects::nonNull)
                 .toList();
 
-        boolean usesExpiring = requiredProductIds.stream()
-                .anyMatch(context.expiringProductIds()::contains);
+        // 이 레시피가 요구하는 재료 중, 유저가 냉장고에 보유하고 있으면서 만료된 재료가 있는지
+        boolean usesExpired = requiredProductIds.stream()
+                .anyMatch(context.expiredProductIds()::contains);
+        boolean usesExpiringSoon = requiredProductIds.stream()
+                .anyMatch(context.expiringSoonProductIds()::contains);
         boolean matchesPreference = foodCategoryId != null
                 && context.favoriteFoodCategoryIds().contains(foodCategoryId);
 
         List<String> reasons = new ArrayList<>();
         reasons.add("보유 재료 " + matchRate + "%");
-        if (usesExpiring) {
+        if (usesExpiringSoon) {
             reasons.add("유통기한 임박 재료 활용");
         }
         if (matchesPreference) {
@@ -206,7 +219,7 @@ public class RecipeRecommendationService {
 
         int score = matchRate
                 + (matchRate >= HIGH_MATCH_RATE ? 100 : 0)
-                + (usesExpiring ? 50 : 0)
+                + (usesExpiringSoon ? 50 : 0)
                 + (matchesPreference ? 30 : 0);
 
         RecipeRecommendationResponse response = new RecipeRecommendationResponse(
@@ -217,7 +230,8 @@ public class RecipeRecommendationService {
                 recipe.getDifficulty().getLabel(),
                 recipe.getCookingTime(),
                 matchRate,
-                usesExpiring,
+                usesExpired,
+                usesExpiringSoon,
                 likeCount,
                 liked,
                 missingIngredients,
@@ -239,7 +253,8 @@ public class RecipeRecommendationService {
 
     private record MemberContext(
             Set<Long> ownedProductIds,
-            Set<Long> expiringProductIds,
+            Set<Long> expiredProductIds,
+            Set<Long> expiringSoonProductIds,
             Set<Long> excludedProductIds,
             Set<Long> favoriteFoodCategoryIds
     ) {
