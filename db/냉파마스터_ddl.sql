@@ -21976,6 +21976,73 @@ INSERT INTO recipe_required_products (recipe_required_product_id, recipe_id, pro
 ON CONFLICT (recipe_required_product_id) DO NOTHING;
 
 
+-- ===================================================
+-- 이번주 (2026-06-29 ~ 2026-07-03)
+-- ※ top5: 아욱 1위, 물오징어/기버터 공동 2위, 멜론/건당면 신규진입
+-- ===================================================
+
+INSERT INTO expired_products (member_id, product_id, product_category_id, product_name, category_name, created_at) VALUES (791, 243, 1, '아욱', '채소', '2026-06-29');
+INSERT INTO expired_products (member_id, product_id, product_category_id, product_name, category_name, created_at) VALUES (791, 243, 1, '아욱', '채소', '2026-06-30');
+INSERT INTO expired_products (member_id, product_id, product_category_id, product_name, category_name, created_at) VALUES (791, 243, 1, '아욱', '채소', '2026-07-01');
+INSERT INTO expired_products (member_id, product_id, product_category_id, product_name, category_name, created_at) VALUES (791, 1061, 4, '물오징어', '해산물', '2026-06-30');
+INSERT INTO expired_products (member_id, product_id, product_category_id, product_name, category_name, created_at) VALUES (791, 1061, 4, '물오징어', '해산물', '2026-07-02');
+INSERT INTO expired_products (member_id, product_id, product_category_id, product_name, category_name, created_at) VALUES (791, 1293, 5, '기버터', '유제품/달걀', '2026-07-01');
+INSERT INTO expired_products (member_id, product_id, product_category_id, product_name, category_name, created_at) VALUES (791, 1293, 5, '기버터', '유제품/달걀', '2026-07-03');
+INSERT INTO expired_products (member_id, product_id, product_category_id, product_name, category_name, created_at) VALUES (791, 600, 2, '멜론', '과일', '2026-07-02');
+INSERT INTO expired_products (member_id, product_id, product_category_id, product_name, category_name, created_at) VALUES (791, 716, 6, '건당면', '곡류/면/빵', '2026-07-03');
+
+-- ===================================================
+-- 지난주 (2026-06-22 ~ 2026-06-28)
+-- ※ top5: 기버터 1위, 아욱 2위, 코다리 공동 2위, 물오징어 4위, 강력분 5위
+-- ===================================================
+
+INSERT INTO expired_products (member_id, product_id, product_category_id, product_name, category_name, created_at) VALUES (791, 1293, 5, '기버터', '유제품/달걀', '2026-06-22');
+INSERT INTO expired_products (member_id, product_id, product_category_id, product_name, category_name, created_at) VALUES (791, 1293, 5, '기버터', '유제품/달걀', '2026-06-25');
+INSERT INTO expired_products (member_id, product_id, product_category_id, product_name, category_name, created_at) VALUES (791, 1293, 5, '기버터', '유제품/달걀', '2026-06-27');
+INSERT INTO expired_products (member_id, product_id, product_category_id, product_name, category_name, created_at) VALUES (791, 243, 1, '아욱', '채소', '2026-06-23');
+INSERT INTO expired_products (member_id, product_id, product_category_id, product_name, category_name, created_at) VALUES (791, 243, 1, '아욱', '채소', '2026-06-26');
+INSERT INTO expired_products (member_id, product_id, product_category_id, product_name, category_name, created_at) VALUES (791, 362, 4, '코다리', '해산물', '2026-06-22');
+INSERT INTO expired_products (member_id, product_id, product_category_id, product_name, category_name, created_at) VALUES (791, 362, 4, '코다리', '해산물', '2026-06-28');
+INSERT INTO expired_products (member_id, product_id, product_category_id, product_name, category_name, created_at) VALUES (791, 1061, 4, '물오징어', '해산물', '2026-06-24');
+INSERT INTO expired_products (member_id, product_id, product_category_id, product_name, category_name, created_at) VALUES (791, 833, 6, '강력분', '곡류/면/빵', '2026-06-26');
+
+-- ===================================================
+-- 2주전 (2026-06-15 ~ 2026-06-21)
+-- ===================================================
+
+INSERT INTO expired_products (member_id, product_id, product_category_id, product_name, category_name, created_at) VALUES (791, 122, 10, '황파프리카', '기타', '2026-06-16');
+INSERT INTO expired_products (member_id, product_id, product_category_id, product_name, category_name, created_at) VALUES (791, 122, 10, '황파프리카', '기타', '2026-06-19');
+INSERT INTO expired_products (member_id, product_id, product_category_id, product_name, category_name, created_at) VALUES (791, 716, 6, '건당면', '곡류/면/빵', '2026-06-17');
+INSERT INTO expired_products (member_id, product_id, product_category_id, product_name, category_name, created_at) VALUES (791, 600, 2, '멜론', '과일', '2026-06-20');
+INSERT INTO expired_products (member_id, product_id, product_category_id, product_name, category_name, created_at) VALUES (791, 242, 8, '통후추', '조미료/소스', '2026-06-18');
+
+-- ===================================================
+-- 3주전 (2026-06-08 ~ 2026-06-14)
+-- ===================================================
+
+INSERT INTO expired_products (member_id, product_id, product_category_id, product_name, category_name, created_at) VALUES (791, 243, 1, '아욱', '채소', '2026-06-09');
+INSERT INTO expired_products (member_id, product_id, product_category_id, product_name, category_name, created_at) VALUES (791, 243, 1, '아욱', '채소', '2026-06-12');
+INSERT INTO expired_products (member_id, product_id, product_category_id, product_name, category_name, created_at) VALUES (791, 362, 4, '코다리', '해산물', '2026-06-10');
+INSERT INTO expired_products (member_id, product_id, product_category_id, product_name, category_name, created_at) VALUES (791, 1293, 5, '기버터', '유제품/달걀', '2026-06-14');
+
+-- ===================================================
+-- 4주전 (2026-06-01 ~ 2026-06-07)
+-- ===================================================
+
+INSERT INTO expired_products (member_id, product_id, product_category_id, product_name, category_name, created_at) VALUES (791, 1061, 4, '물오징어', '해산물', '2026-06-02');
+INSERT INTO expired_products (member_id, product_id, product_category_id, product_name, category_name, created_at) VALUES (791, 1061, 4, '물오징어', '해산물', '2026-06-05');
+INSERT INTO expired_products (member_id, product_id, product_category_id, product_name, category_name, created_at) VALUES (791, 833, 6, '강력분', '곡류/면/빵', '2026-06-04');
+INSERT INTO expired_products (member_id, product_id, product_category_id, product_name, category_name, created_at) VALUES (791, 715, 10, '건청양고추', '기타', '2026-06-06');
+
+-- ===================================================
+-- 5주전 (2026-05-25 ~ 2026-05-31)
+-- ===================================================
+
+INSERT INTO expired_products (member_id, product_id, product_category_id, product_name, category_name, created_at) VALUES (791, 600, 2, '멜론', '과일', '2026-05-26');
+INSERT INTO expired_products (member_id, product_id, product_category_id, product_name, category_name, created_at) VALUES (791, 243, 1, '아욱', '채소', '2026-05-28');
+INSERT INTO expired_products (member_id, product_id, product_category_id, product_name, category_name, created_at) VALUES (791, 716, 6, '건당면', '곡류/면/빵', '2026-05-30');
+
+
 SELECT setval('grades_grade_id_seq', COALESCE((SELECT MAX(grade_id) FROM grades), 1));
 SELECT setval('product_categories_product_category_id_seq', COALESCE((SELECT MAX(product_category_id) FROM product_categories), 1));
 SELECT setval('products_product_id_seq', COALESCE((SELECT MAX(product_id) FROM products), 1));
@@ -21984,8 +22051,12 @@ SELECT setval('recipes_recipe_id_seq', COALESCE((SELECT MAX(recipe_id) FROM reci
 SELECT setval('recipe_steps_recipe_step_id_seq', COALESCE((SELECT MAX(recipe_step_id) FROM recipe_steps), 1));
 SELECT setval('recipe_required_products_recipe_required_product_id_seq', COALESCE((SELECT MAX(recipe_required_product_id) FROM recipe_required_products), 1));
 
-COMMIT;
-
 SELECT setval('expired_products_expired_product_id_seq', COALESCE((SELECT MAX(expired_product_id) FROM expired_products), 1));
 SELECT setval('scores_score_id_seq', COALESCE((SELECT MAX(score_id) FROM scores), 1));
 SELECT setval('score_histories_score_history_id_seq', COALESCE((SELECT MAX(score_history_id) FROM score_histories), 1));
+
+
+
+COMMIT;
+
+
