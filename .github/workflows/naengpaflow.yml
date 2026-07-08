@@ -3,7 +3,7 @@ name: Auto Deploy Docker
 on:
   pull_request:
     branches:
-      - main
+      - dev
 
 jobs:
   build-and-deploy:
