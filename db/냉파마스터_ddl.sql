@@ -1,5 +1,4 @@
 
-rollback;
 
 INSERT INTO product_categories (product_category_id, name) VALUES
     (1, '채소'),
