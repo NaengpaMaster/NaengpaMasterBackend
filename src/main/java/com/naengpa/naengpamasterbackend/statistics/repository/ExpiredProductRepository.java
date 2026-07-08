@@ -4,9 +4,9 @@ import com.naengpa.naengpamasterbackend.statistics.dto.response.ExpiredProductCa
 import com.naengpa.naengpamasterbackend.statistics.dto.response.ExpiredRecordResponse;
 import com.naengpa.naengpamasterbackend.statistics.dto.response.TopIngredientQueryResult;
 import com.naengpa.naengpamasterbackend.statistics.entity.ExpiredProduct;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDate;
 import java.util.List;
