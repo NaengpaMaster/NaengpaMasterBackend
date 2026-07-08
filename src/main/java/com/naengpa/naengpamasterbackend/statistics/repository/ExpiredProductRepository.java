@@ -4,9 +4,9 @@ import com.naengpa.naengpamasterbackend.statistics.dto.response.ExpiredProductCa
 import com.naengpa.naengpamasterbackend.statistics.dto.response.ExpiredRecordResponse;
 import com.naengpa.naengpamasterbackend.statistics.dto.response.TopIngredientQueryResult;
 import com.naengpa.naengpamasterbackend.statistics.entity.ExpiredProduct;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -28,11 +28,11 @@ public interface ExpiredProductRepository extends JpaRepository<ExpiredProduct, 
     List<TopIngredientQueryResult> findTop5ExpiredProductByMemberId(@Param("memberId") Long memberId,
                                                                     @Param("startDate") LocalDate startDate);
 
-    //카테고리별 만료량
+    //카테고리 별 만료량
     @Query("""
             SELECT new com.naengpa.naengpamasterbackend.statistics.dto.response.ExpiredProductCategoryResponse(
                         e.categoryName, COUNT(e.categoryName)
-            )
+            ) 
             FROM ExpiredProduct e
             WHERE e.memberId = :memberId
             AND e.createdAt >= :startDate
