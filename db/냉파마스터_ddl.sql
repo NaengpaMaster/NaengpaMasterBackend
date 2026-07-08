@@ -1,5 +1,4 @@
 
-BEGIN;
 
 INSERT INTO product_categories (product_category_id, name) VALUES
     (1, '채소'),
@@ -21986,3 +21985,7 @@ SELECT setval('recipe_steps_recipe_step_id_seq', COALESCE((SELECT MAX(recipe_ste
 SELECT setval('recipe_required_products_recipe_required_product_id_seq', COALESCE((SELECT MAX(recipe_required_product_id) FROM recipe_required_products), 1));
 
 COMMIT;
+
+SELECT setval('expired_products_expired_product_id_seq', COALESCE((SELECT MAX(expired_product_id) FROM expired_products), 1));
+SELECT setval('scores_score_id_seq', COALESCE((SELECT MAX(score_id) FROM scores), 1));
+SELECT setval('score_histories_score_history_id_seq', COALESCE((SELECT MAX(score_history_id) FROM score_histories), 1));
