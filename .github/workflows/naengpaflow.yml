@@ -3,8 +3,8 @@ name: Auto Deploy Docker
 on:
   pull_request:
     branches:
-      - dev
-
+      - main
+      
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
